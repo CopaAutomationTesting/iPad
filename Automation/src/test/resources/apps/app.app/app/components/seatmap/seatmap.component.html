@@ -1,0 +1,320 @@
+<ActionBar title="Seat Selection" icon="" class="action-bar">
+    <!--<NavigationButton visibility="collapsed"></NavigationButton>-->
+    <!--<StackLayout width="100%" orientation="horizontal">
+    <Image horizontalAlignment="right" class="company-logo" src="~/images/copa_logo.png"></Image>
+    </StackLayout>-->
+    <ActionItem ios.position="right" text="{{userdetails}}">
+    </ActionItem>
+    <ActionItem ios.position="right" icon="res://logout_icons/logoff_edit" (tap)="_service.LogOut()"> </ActionItem>
+</ActionBar>
+<GridLayout #pagecontainer>
+    <DockLayout stretchLastChild="true" class="page">
+        <StackLayout dock="top" class="page-header ">
+            <GridLayout columns="auto, *, auto" class="flight-info">
+                <!--<For *ngFor="let passengerls of FlightInfo">-->
+                <StackLayout col="0" class="flight-details bdr-right-big">
+                    <StackLayout orientation="horizontal" class="details">
+                        <Label automationText="seat_refresh"text="{{FlightInfo.OperatingFlight!= null?FlightInfo.OperatingFlight:FlightInfo.MarketingFlight}}" class="hd bdr-right" style.color="#0060A9" (tap)="refreshFlifo()"></Label>
+                        <Label [text]="FlightDate" class="p-l-10 font-small text-default "></Label>
+                    </StackLayout>
+                    <Label [text]="FlightInfo.status" class="details font-small text-default"></Label>
+                </StackLayout>
+                <StackLayout col="1" class="flight-details">
+                    <StackLayout orientation="horizontal" class="details p-l-10">
+                        <Label class="p-r-10 text-default font-medium">
+                            <FormattedString>
+                                <Span [text]="FlightInfo.Origin" fontAttributes="Bold"></Span>
+                                <Span text=", "></Span>
+                                <Span [text]="FlightInfo.OriginCity"></Span>
+
+                            </FormattedString>
+                        </Label>
+                        <Label text="&#xE5CC;" class="material-icon p-r-10 text-default font-medium"></Label>
+                        <Label class="p-r-10 text-default font-medium">
+                            <FormattedString>
+                                <Span [text]="FlightInfo.Destination" fontAttributes="Bold"></Span>
+                                <Span text=", "></Span>
+                                <Span [text]="FlightInfo.DestinationCity"></Span>
+
+                            </FormattedString>
+                        </Label>
+                    </StackLayout>
+                    <StackLayout orientation="horizontal" class="details p-l-10">
+                        <StackLayout orientation="horizontal">
+                            <Label text="STD" class="p-r-5 font-small text-default font-bold"></Label>
+                            <Label [text]="FlightInfo.STD" class="p-r-10 font-small text-black font-bold"></Label>
+                        </StackLayout>
+                        <StackLayout orientation="horizontal">
+                            <Label text="ETD" class="p-r-5 font-small text-default font-bold"></Label>
+                            <Label [text]="FlightInfo.ETD" class="p-r-10 font-small text-black font-bold"></Label>
+                        </StackLayout>
+                        <StackLayout orientation="horizontal">
+                            <Label text="ETA" class="p-r-5 font-small text-default font-bold"></Label>
+                            <Label [text]="FlightInfo.ETA" class="p-r-10 font-small text-black font-bold"></Label>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout col="2" orientation="horizontal" class="vrt-middle">
+                    <StackLayout>
+                        <Button automationText="seat_submit" class="btn btn-primary" (tap)='assignSeat(SelectedPassengerList)' text="Submit" visibility="{{ButtonContinue ?'collapsed':'visible' }}"></Button>
+                        <Button automationText="seat_continue" class="btn btn-primary" (tap)='navigateToCheckIn()' text="Continue" visibility="{{ButtonContinue ?'visible':'collapsed' }}"></Button>
+                    </StackLayout>
+                </StackLayout>
+                <!--</For>-->
+            </GridLayout>
+        </StackLayout>
+
+
+        <StackLayout dock="top" height="8%" class="stack" orientation="horizontal" [visibility]="isItemVisible(FlightInfo.MarketingFlight)">
+            <GridLayout row="*" columns="*,*,*,*">
+
+                <StackLayout orientation="horizontal" col="0" class="p-r-10 text-default font-medium" class="text">
+
+                    <Label text="Booking:" style="font-weight: bold ; margin-left:35"></Label>
+                    <DockLayout class="p-r-10 text-default font-medium" class="text" *ngFor="let invent of FlightInfo.inven ">
+                        <Label text="{{invent.CodeLetter}}" style="font-weight: bold;margin-left: 8;"></Label>
+                        <Label text="{{invent.Booking}}" style="font-weight: bold;margin-left: 8;"></Label>
+                    </DockLayout>
+                </StackLayout>
+                <StackLayout orientation="horizontal" col="1" class="p-r-10 text-default font-medium" class="text">
+
+                    <Label text="Capacity:" style="font-weight: bold ; margin-left:35"></Label>
+                    <DockLayout class="p-r-10 text-default font-medium" class="text" *ngFor="let invent of FlightInfo.inven ">
+                        <Label text="{{invent.CodeLetter}}" style="font-weight: bold;margin-left: 8;"></Label>
+                        <Label text="{{invent.Capacity}}" style="font-weight: bold;margin-left: 8;"></Label>
+                    </DockLayout>
+                </StackLayout>
+                <StackLayout col="2" orientation="horizontal" class="p-r-10 text-default font-medium" class="text">
+                    <Label text="Inbound:" style="font-weight: bold"></Label>
+                    <Label text="{{FlightInfo.inbound}}" style="font-weight: bold;margin-left: 8;"></Label>
+
+                </StackLayout>
+                <StackLayout col="3" orientation="horizontal" class="p-r-10 text-default font-medium" class="text">
+                    <Label text="Outbound:" style="font-weight: bold"></Label>
+                    <Label text="{{FlightInfo.outbound}}" style="font-weight: bold;margin-left: 8;"></Label>
+
+                </StackLayout>
+            </GridLayout>
+        </StackLayout>
+
+        <!-- <stackLayout dock="top" class="p-10" style="background-color: #F5F5F5;margin:8" orientation="vertical">
+    </stackLayout> -->
+
+        <StackLayout dock="bottom" class="page-footer">
+            <StackLayout class="tabbed-menu">
+                <StackLayout class="tabbed-menu-item active menu-divider" (tap)="navigateToSearch()">
+                    <Label text="&#xe907;"  class="menu-item-icon copa-icon"></Label>
+                    <Label text="Check In" class="menu-item-text"></Label>
+                </StackLayout>
+                <StackLayout class="tabbed-menu-item menu-divider"  (tap)="navigateToDepartures()">
+                    <Label text="&#xE904;" color="{{isGateDisabled  ? '#2260A4' : 'lightgray'}}" class="menu-item-icon copa-icon"></Label>
+                    <Label text="Departures" class="menu-item-text"></Label>
+                </StackLayout>
+                <StackLayout class="tabbed-menu-item menu-divider" (tap)="navigateToCompensation()">
+                    <Label text="&#xe90e;" color="{{isCompensationEnabled  ? '#2260A4' : 'lightgray'}}" class="menu-item-icon copa-icon"></Label>
+                    <Label text="Compensation" class="menu-item-text"></Label>
+                </StackLayout>
+                <StackLayout class="tabbed-menu-item menu-divider" (tap)="simpleTap()">
+                    <Label text="&#xe90f;" class="menu-item-icon copa-icon" style="color:lightgray"></Label>
+                    <Label text="Notification" class="menu-item-text"></Label>
+                </StackLayout>
+                <StackLayout class="tabbed-menu-item" (tap)="navigateToSetting()">
+                    <Label text="&#xe917;" class="menu-item-icon copa-icon"></Label>
+                    <Label text="Settings" class="menu-item-text"></Label>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+
+        <StackLayout orientation="horizontal">
+            <StackLayout orientation="vertical" style="background-color: #DBDAD8">
+                <StackLayout orientation="horizontal" style="background-color: #F5F5F5;padding: 10;margin:3" class="input-field input-field-vertical">
+                    <Label text="Order ID:" class="font-medium text-black font-bold p-b-10"></Label>
+                    <Label [text]="PassengerList[0].OrderID" class="font-medium text-black font-bold p-b-10 m-l-5"></Label>
+                </StackLayout>
+                <ScrollView automationText="seat_paxscroll">
+                    <StackLayout style="background-color: #DBDAD8">
+                        <For *ngFor="let passengerls of PassengerList; let i = index">
+                            <StackLayout width="300" height="auto" style="padding:10 0;margin:3;vertical-align:top;" class="normal" class="{{passengerls.IsSelected ? 'selected' : 'normal'}}">
+                                <StackLayout orientation="horizontal" style="padding:0 10;" height="auto" (tap)="select(passengerls)">
+                                    <!-- <Label text="&#xe907;" class="copa-icon input-icon font-big p-r-5" color="{{passengerls.CheckinStatus? '#00A973' : '#c1c1c1'}}"></Label> -->
+                                    <Label [text]="passengerls.RPH" class="{{passengerls.IsSelected ? 'paxSelected' : 'paxDefault'}}" style="padding:5; border-width:1;margin:5;width:28;height:28;text-align:center;"></Label>
+                                    <Label [text]="passengerls.SeatNumber == 'Auto' ? ' ': passengerls.NoSeat ? ' ':passengerls.SeatNumber" class="p-5 m-l-5 m-5 brdr"
+                                        style="width:45;height:32;text-align:center;color: #2260A4;"></Label>
+                                    <Label [text]="passengerls.seatCode" style="border-width:1;margin:5;width:28;height:28;text-align:center;color: #2260A4"
+                                        [visibility]="passengerls.seatCode==''?'collapsed':'visible'"></Label>
+                                    <Label automationText="seat_paxselect{{i}}" [text]="passengerls.FullName" textWrap="true" class="font-medium text-black font-bold"></Label>
+                                </StackLayout>
+                                <StackLayout orientation="vertical" class="{{passengerls.IsSelected ? 'selected' : 'normal'}}">
+
+                                    <StackLayout orientation="horizontal" style="padding:0 10;" height="auto" width="300" (tap)="select(passengerls)">
+                                        <Label text]="passengerls.PassengerType" textWrap="true" class="font-medium text-black font-bold p-b-10" width="150"></Label>
+                                        <!-- <Label [text]="passengerls.SeatNumber == 'Auto' ? ' ': passengerls.SeatNumber " style="padding:5; border-width:1;margin:5;width:51;height:32;text-align:center;color: #2260A4;margin-left: 40"
+    (tap)="select(passengerls)"></Label>
+    <Label [text]="passengerls.RPH" class="{{passengerls.IsSelected ? 'selected' : 'normal'}}" style="padding:5; border-width:1;margin:5;width:51;height:32;text-align:center"
+    (tap)="select(passengerls)"></Label> -->
+                                    </StackLayout>
+                                    <StackLayout *ngIf="passengerls.NoSeat || !passengerls.INFwithoutSeat" class="pax-hr">
+                                    </StackLayout>
+
+                                    <StackLayout *ngIf="!passengerls.INFwithoutSeat" style="padding:0 10;" orientation="horizontal" class="hrz-right" [visibility]="isMultiInitialPassengerCheck?'visible':'collapsed'">
+                                        <Label text="No Seat" class="font-small"></Label>
+                                        <Label automationText="seat_noseat" text="{{passengerls.NoSeat?'&#xE834;':'&#xE835;'}}" class="material-icon noseat m-l-5" (tap)="noSeat(passengerls)"></Label>
+                                    </StackLayout>
+                                    <!-- <StackLayout col="2" orientation="horizontal" class="hrz-right" [visibility]="MultiIntialPax?'visible':'collapsed'">
+    <Label text="No Seat" class="font-small"></Label>
+    </StackLayout> -->
+                                    <!-- </GridLayout> -->
+                                </StackLayout>
+                            </StackLayout>
+                        </For>
+
+                    </StackLayout>
+                </ScrollView>
+            </StackLayout>
+
+            <GridLayout rows="*" columns="*,4,300">
+                <!--seat-map-->
+                <ScrollView automationText="seat_seatscroll" orientation="vertical">
+                    <ScrollView orientation="horizontal">
+                        <StackLayout row="0" col="0" orientation="vertical" class="hrz-center">
+                            <GridLayout columns="*, auto,*" style="background-color: #FFF">
+                                <StackLayout col="1" style="background-color: #EFEFEE">
+                                    <!-- <StackLayout *ngFor="let items of SeatMapList.Items"> -->
+                                    <StackLayout *ngFor="let cabin of ShowSeatMapList.CabinList" class="aircraft-cabin">
+                                        <Label text="{{cabin.CabinType}}" class="cabin-header"></Label>
+                                        <Label text="&#xE5C5;" class="material-icon" style="font-size:32;margin-top:-15;color:#DDD;text-align: center;"></Label>
+                                        <StackLayout *ngFor="let row of cabin.AirRowList" orientation="horizontal" class="seat-row {{row.StyleClass}}">
+                                            <Label text="" class="exitcolumn"></Label>
+                                            <StackLayout *ngFor="let seat of row.AirSeatList">
+                                                <Label automationText="seat_{{row.RowNumber}}{{seat.SeatNumber}}/{{seat.SeatCode}}/{{seat.StyleClass}}/{{cabin.CabinType}}"(tap)="simpleTap(seat,row.RowNumber)" text="{{seat.MidCol ? row.RowNumber : row.HeaderRow ? seat.SeatNumber: seat.IsPaxSelected ? seat.PaxRPH : seat.SeatCode }}"
+                                                    class="seat {{seat.MidCol ? 'rowlabel': row.HeaderRow ? 'collabel' : seat.isSpecialSeat ? 'specialseat': seat.StyleClass}} {{seat.IsSeatSelected ? 'seatselected': ''}} {{seat.IsSelectedAdvanceDisplay ? seat.AdvanceDisplayStyleClass : seat.StyleClass}}"></Label>
+                                            </StackLayout>
+                                            <!-- <StackLayout *ngFor="let seat of row.AirSeatList">
+    <Label (tap)="simpleTap(seat,row.RowNumber)" text="{{seat.MidCol ? row.RowNumber : row.HeaderRow ? seat.SeatNumber: seat.IsPaxSelected ? seat.PaxRPH : seat.SeatCode }}"
+    class="seat{{seat.MidCol ? 'rowlabel': row.HeaderRow ? 'collabel' : seat.StyleClass}} {{seat.IsSeatSelected ? 'seatselected': ''}} {{seat.IsSelectedAdvanceDisplay ? seat.AdvanceDisplayStyleClass : seat.StyleClass}}"></Label>
+    </StackLayout> -->
+                                            <Label text="" class="exitcolumn right"></Label>
+                                        </StackLayout>
+                                    </StackLayout>
+                                    <!-- </StackLayout> -->
+                                </StackLayout>
+                            </GridLayout>
+                        </StackLayout>
+                    </ScrollView>
+                </ScrollView>
+                <stackLayout row="0" col="1" class="p-10" style="background-color: #F5F5F5" orientation="vertical">
+                </stackLayout>
+
+                <StackLayout row="0" col="2" class="p-10" style="margin:2">
+                    <ScrollView>
+                        <StackLayout orientation="vertical">
+                            <StackLayout [visibility]="isMultiLegFLight ? 'visible' : 'collapsed'" class="stack m-b-10">
+                                <GridLayout rows="auto" class="m-b-5" *ngFor="let legs of legsInfo, let i = index">
+                                    <StackLayout orientation="horizontal" class="m-t-10">
+                                        <Image src="~/images/seatmap/available.png" style="height:24;width:30" *ngIf="!isSegSelected[i]" (tap)="selectSeg(isSegSelected,i)"></Image>
+                                        <Label automationText="seat_segment"text="{{isSegSelected[i] ?'&#xE834;':'&#xE835;'}}" class="material-icon" color="{{isSegSelected[i]? '#9E4F24' :'#000'}}"
+                                            style="font-size: 30;" (tap)="selectSeg(isSegSelected,i)" *ngIf="isSegSelected[i]"></Label>
+                                        <Label text="{{legs.DepartureAirport.LocationCode}}" class="m-l-5 text-blue font-bold font-medium"></Label>
+                                        <Label text="&#xE5CC;" class="material-icon p-r-10 text-default font-medium"></Label>
+                                        <Label text="{{legs.ArrivalAirport.LocationCode}}" class="text-blue font-bold font-medium"></Label>
+                                    </StackLayout>
+                                </GridLayout>
+                            </StackLayout>
+                            <GridLayout rows="auto, auto,auto,auto" columns="*" style="background-color: #FFF">
+                                <StackLayout row="0" orientation="horizontal" class="m-b-10">
+                                    <Label automationText="seat_hideledgerd"text="&#xE313;" class="material-icon font-big" color="#0060A9" (tap)="hideShowLedgerd()" [visibility]="showSeatMapKey ? 'visible' : 'collapsed'"></Label>
+                                    <Label automationText="seat_hideledgerd"text="&#xE315;" class="material-icon font-big" color="#0060A9" (tap)="hideShowLedgerd()" [visibility]="showSeatMapKey ? 'collapsed' : 'visible'"></Label>
+                                    <Label automationText="seat_hideledgerd"text="Seat Map Key:" class="font-medium text-blue" (tap)="hideShowLedgerd()"></Label>
+                                </StackLayout>
+                                <div *ngIf="showSeatMapKey">
+                                    <StackLayout class="stack" row="1">
+                                        <GridLayout rows="auto, auto, auto" columns="*,*" style="background-color: #FFF">
+                                            <StackLayout row="0" col="0" orientation="horizontal" class="m-b-10">
+                                                <Image src="~/images/seatmap/available.png" style="height:28;width:28"></Image>
+                                                <Label text="Available" class="font-small text-black m-l-5"></Label>
+                                            </StackLayout>
+                                            <StackLayout row="0" col="1" orientation="horizontal" class="m-b-10">
+                                                <Image src="~/images/seatmap/taken.png" style="height:28;width:28"></Image>
+                                                <Label text="Taken" class="font-small text-black m-l-5"></Label>
+                                            </StackLayout>
+                                            <StackLayout row="1" col="0" orientation="horizontal" class="m-b-10">
+                                                <Image src="~/images/seatmap/assigned.png" style="height:28;width:28"></Image>
+                                                <Label text="Assigned" class="font-small text-black m-l-5"></Label>
+                                            </StackLayout>
+                                            <StackLayout row="1" col="1" orientation="horizontal" class="m-b-10">
+                                                <Image src="~/images/seatmap/blocked.png" style="height:28;width:28"></Image>
+                                                <Label text="Blocked" class="font-small text-black m-l-5"></Label>
+                                            </StackLayout>
+                                            <StackLayout row="2" col="0" orientation="horizontal" class="m-b-10">
+                                                <Image src="~/images/seatmap/held.png" style="height:28;width:28"></Image>
+                                                <Label text="Held" class="font-small text-black m-l-5"></Label>
+                                            </StackLayout>
+                                            <StackLayout row="2" col="1" orientation="horizontal" class="m-b-10">
+                                                <Image src="~/images/seatmap/unusable.png" style="height:28;width:28"></Image>
+                                                <Label text="Unusable" class="font-small text-black m-l-5"></Label>
+                                            </StackLayout>
+                                        </GridLayout>
+                                        <GridLayout rows="auto" style="background-color: #FFF" *ngFor="let info of SeatProductInfo, let i = index">
+                                            <StackLayout orientation="horizontal" class="m-b-10">
+                                                <Label class="availSeat text-center" text="{{info.SHARESCode}}" style="height:28;width:28;border-width: 2;border-color: #2260A4;"></Label>
+                                                <Label text="{{info.ProductName}}" class="font-small text-black m-l-5"></Label>
+                                            </StackLayout>
+                                            <!-- <StackLayout row="1" orientation="horizontal" class="m-b-10">
+    <Label class="availSeat text-center" text="E" style="height:28;width:28"></Label>
+    <Label text="Extra legroom, No recline" class="font-small text-black m-l-5"></Label>
+    </StackLayout> -->
+                                        </GridLayout>
+                                    </StackLayout>
+                                </div>
+                                <StackLayout row="2" orientation="horizontal" class="m-t-20 m-b-10">
+                                    <Label automationText="seat_showdisplay"text="&#xE313;" class="material-icon font-big" color="#0060A9" (tap)="hideShowAdavanceDisplay()" [visibility]="showAdvanceDisplay ? 'visible' : 'collapsed'"></Label>
+                                    <Label automationText="seat_showdisplay" text="&#xE315;" class="material-icon font-big" color="#0060A9" (tap)="hideShowAdavanceDisplay()" [visibility]="showAdvanceDisplay ? 'collapsed' : 'visible'"></Label>
+                                    <Label automationText="seat_showdisplay"text="Advanced Display:" class="font-medium text-blue " (tap)="hideShowAdavanceDisplay()"></Label>
+                                </StackLayout>
+                                <div *ngIf="showAdvanceDisplay">
+                                    <StackLayout row="3" class="stack">
+                                        <GridLayout rows="auto, auto" columns="*, *" style="background-color: #FFF">
+                                            <StackLayout row="0" col="0" orientation="horizontal" class="m-b-10">
+                                                <Image automationText="seat_check1" src="~/images/seatmap/available.png" style="height:24;width:30" *ngIf="!IsChecked1" (tap)="check1()"></Image>
+                                                <Label text="{{IsChecked1?'&#xE834;':'&#xE835;'}}" class="material-icon" color="{{IsChecked1? '#9E4F24' :'#000'}}" style="font-size: 30;"
+                                                    (tap)="check1()" *ngIf="IsChecked1"></Label>
+                                                <Image src="~/images/seatmap/infants_allowed.png" style="height:28;width:28"></Image>
+                                                <Label text="Seat with Infants" textWrap="true" class="font-small text-black m-l-5"></Label>
+                                            </StackLayout>
+                                            <StackLayout row="0" col="1" orientation="horizontal" class="m-b-10">
+                                                <Image automationText="seat_check2"src="~/images/seatmap/available.png" style="height:24;width:30" *ngIf="!IsChecked2" (tap)="check2()"></Image>
+                                                <Label  text="{{IsChecked2?'&#xE834;':'&#xE835;'}}" class="material-icon" color="{{IsChecked2? '#9E4F24' :'#000'}}" style="font-size: 30;"
+                                                    (tap)="check2()" *ngIf="IsChecked2"></Label>
+                                                <Image src="~/images/seatmap/buldhead.png" style="height:28;width:28" class="m-l-2"></Image>
+                                                <Label text="Bulkhead" class="font-small text-black m-l-5"></Label>
+                                            </StackLayout>
+                                            <StackLayout row="1" col="0" orientation="horizontal" class="m-b-10">
+                                                <Image automationText="seat_check3"src="~/images/seatmap/available.png" style="height:24;width:30" *ngIf="!IsChecked3" (tap)="check3()"></Image>
+                                                <Label text="{{IsChecked3?'&#xE834;':'&#xE835;'}}" class="material-icon" color="{{IsChecked3? '#9E4F24' :'#000'}}" style="font-size: 30;"
+                                                    (tap)="check3()" *ngIf="IsChecked3"></Label>
+                                                <Image src="~/images/seatmap/infants_not_allowed.png" style="height:28;width:28"></Image>
+                                                <Label text="Infants not allowed" textWrap="true" class="font-small text-black m-l-5"></Label>
+                                            </StackLayout>
+                                            <StackLayout row="1" col="1" orientation="horizontal" class="m-b-10">
+                                                <Image automationText="seat_check4" src="~/images/seatmap/available.png" style="height:24;width:30" *ngIf="!IsChecked4" (tap)="check4()"></Image>
+                                                <Label text="{{IsChecked4?'&#xE834;':'&#xE835;'}}" class="material-icon" color="{{IsChecked4? '#9E4F24' :'#000'}}" style="font-size: 30;"
+                                                    (tap)="check4()" *ngIf="IsChecked4"></Label>
+                                                <Image src="~/images/seatmap/exit_row.png" style="height:28;width:28" class="m-l-2"></Image>
+                                                <Label text="Exit Row" class="font-small text-black m-l-5"></Label>
+                                            </StackLayout>
+                                        </GridLayout>
+                                    </StackLayout>
+                                </div>
+
+
+                                <!--<Label row="8" col="0" colSpan="2" text="Seat Selected:{{SelectedSeat}}" class="font-medium text-blue m-t-30 m-b-10"></Label>-->
+                            </GridLayout>
+                        </StackLayout>
+                    </ScrollView>
+                </StackLayout>
+            </GridLayout>
+
+
+        </StackLayout>
+    </DockLayout>
+</GridLayout>​

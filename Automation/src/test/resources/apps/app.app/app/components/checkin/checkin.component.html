@@ -1,0 +1,273 @@
+<ActionBar title="Check-In" icon="" class="action-bar">
+    <!--<NavigationButton visibility="collapsed"></NavigationButton>-->
+    <!--<StackLayout orientation="horizontal"style="background-image:url('~/images/blur_back.png')">
+        <Image class="company-logo" src="~/images/copa_logo.png"></Image>
+    </StackLayout>-->
+    <ActionItem ios.position="right" text="{{userdetails}}">
+    </ActionItem>
+    <ActionItem ios.position="right" icon="res://logout_icons/logoff_edit" (tap)="_service.LogOut()"> </ActionItem>
+</ActionBar>
+<GridLayout #pagecontainer>
+    <DockLayout stretchLastChild="true" class="page" *ngFor="let FlightWithPax of MultiSegmentPaxArray.Segment, let i = index"
+        visibility="{{visiblityVal(i)}}">
+        <StackLayout dock="top" class="page-header " pageindex="{{i}}" (swipe)="gotoNextLeg($event,FlightWithPax)">
+            <GridLayout columns="auto, *, auto" class="flight-info">
+                <!--<For *ngFor="let passengerArr of PassengerArray">
+                    <For *ngFor="let passengerls of passengerArr.FlightDetails">-->
+                <StackLayout col="0" class="flight-details bdr-right-big">
+                    <StackLayout orientation="horizontal" class="details">
+                        <Label text="{{FlightWithPax.OperatingFlight!= null? FlightWithPax.OperatingFlight:FlightWithPax.MarketingFlight}}" class="p-r-10 text-blue font-medium font-bold  bdr-right" (tap)="refreshFlifo()"></Label>
+                        <Label [text]="FlightDate" class="p-l-10 font-small text-default "></Label>
+                    </StackLayout>
+                    <Label [text]="FlightWithPax.status" class="details font-medium text-blue"></Label>
+                </StackLayout>
+                <StackLayout col="1" class="flight-details">
+                    <StackLayout orientation="horizontal" class="details p-l-10">
+                        <Label class="p-r-10 text-default font-medium">
+                            <FormattedString>
+                                <Span [text]="FlightWithPax.Origin" fontAttributes="Bold"></Span>
+                                <Span text=", "></Span>
+                                <Span [text]="FlightWithPax.OriginCity"></Span>
+
+                            </FormattedString>
+                        </Label>
+                        <Label text="&#xE5CC;" class="material-icon p-r-10 text-default font-medium"></Label>
+                        <Label class="p-r-10 text-default font-medium">
+                            <FormattedString>
+                                <Span [text]="FlightWithPax.Destination" fontAttributes="Bold"></Span>
+                                <Span text=", "></Span>
+                                <Span [text]="FlightWithPax.DestinationCity"></Span>
+
+
+                            </FormattedString>
+                        </Label>
+                    </StackLayout>
+                    <StackLayout orientation="horizontal" class="details p-l-10">
+                        <StackLayout orientation="horizontal">
+                            <Label text="STD" class="p-r-5 font-small text-default font-bold"></Label>
+                            <Label [text]="FlightWithPax.STD" class="p-r-10 font-small text-black font-bold"></Label>
+                        </StackLayout>
+                        <StackLayout orientation="horizontal">
+                            <Label text="ETD" class="p-r-5 font-small text-default font-bold" textWrap="true"></Label>
+                            <Label [text]="FlightWithPax.ETD" class="p-r-10 font-small text-black font-bold"></Label>
+                        </StackLayout>
+                        <StackLayout orientation="horizontal">
+                            <Label text="ETA" class="p-r-5 font-small text-default font-bold"></Label>
+                            <Label [text]="FlightWithPax.ETA" class="p-r-10 font-small text-black font-bold"></Label>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+                <!--</For>
+                </For>-->
+                <StackLayout col="2" orientation="horizontal" class="vrt-middle ">
+                    <StackLayout class=" m-r-10 ">
+                        <Button automationText="btn_offload" class="btn btn-default" [isEnabled]="isOffloadButtonEnabled" text="Offload" (tap)="CheckInPax('')"></Button>
+                        <!--<Button class="btn btn-default" text="Offload" (tap)="CheckInPax()"></Button>-->
+                    </StackLayout>
+                    <StackLayout>
+                        <Button automationText="btn_checkin" class="btn btn-success" [isEnabled]="isContinueButtonEnabled" text="Check-in" (tap)="CheckInPax('CheckIn')"></Button>
+                        <!--<Button class="btn btn-success" text="Continue" (tap)="CheckInPax('CheckIn')"></Button>-->
+                    </StackLayout>
+                </StackLayout>
+            </GridLayout>
+
+        </StackLayout>
+
+        <StackLayout dock="top" height="8%" class="stack" orientation="horizontal" [visibility]="isItemVisible(FlightWithPax.MarketingFlight)">
+            <GridLayout row="*" columns="*,*,*,*">
+
+                <StackLayout orientation="horizontal" col="0" class="p-r-10 text-default font-medium" class="text">
+                    <Label text="Booking:" style="font-weight: bold ; margin-left:35"></Label>
+                    <DockLayout class="p-r-10 text-default font-medium" class="text" *ngFor="let invent of FlightWithPax.inven ">
+                        <Label text="{{invent.CodeLetter}}" style="font-weight: bold;margin-left: 8;"></Label>
+                        <Label text="{{invent.Booking}}" style="font-weight: bold;margin-left: 8;"></Label>
+                    </DockLayout>
+                </StackLayout>
+                <StackLayout orientation="horizontal" col="1" class="p-r-10 text-default font-medium" class="text">
+
+                    <Label text="Capacity:" style="font-weight: bold ; margin-left:35"></Label>
+                    <DockLayout class="p-r-10 text-default font-medium" class="text" *ngFor="let invent of FlightWithPax.inven ">
+                        <Label text="{{invent.CodeLetter}}" style="font-weight: bold;margin-left: 8;"></Label>
+                        <Label text="{{invent.Capacity}}" style="font-weight: bold;margin-left: 8;"></Label>
+                    </DockLayout>
+                </StackLayout>
+                <StackLayout col="2" orientation="horizontal" class="p-r-10 text-default font-medium" class="text">
+                    <Label text="Inbound:" style="font-weight: bold"></Label>
+                    <Label text="{{FlightWithPax.inbound}}" style="font-weight: bold;margin-left: 8;"></Label>
+
+                </StackLayout>
+                <StackLayout col="3" orientation="horizontal" class="p-r-10 text-default font-medium" class="text">
+                    <Label text="Outbound:" style="font-weight: bold"></Label>
+                    <Label text="{{FlightWithPax.outbound}}" style="font-weight: bold;margin-left: 8;"></Label>
+
+                </StackLayout>
+            </GridLayout>
+        </StackLayout>
+
+        <StackLayout dock="bottom" class="page-footer">
+            <StackLayout class="tabbed-menu">
+                <StackLayout class="tabbed-menu-item active" (tap)="navigateToSearch()">
+                    <Label text="&#xe907;" class="menu-item-icon copa-icon"></Label>
+                    <Label text="Check In" class="menu-item-text"></Label>
+                </StackLayout>
+                <StackLayout class="tabbed-menu-item menu-divider"  (tap)="navigateToDepartures()">
+                    <Label text="&#xE904;" color="{{isGateDisabled  ? '#2260A4' : 'lightgray'}}" class="menu-item-icon copa-icon"></Label>
+                    <Label text="Departures" class="menu-item-text"></Label>
+                </StackLayout>
+                <StackLayout class="tabbed-menu-item menu-divider" (tap)="navigateToCompensation()">
+                    <Label text="&#xe90e;" color="{{isCompensationEnabled  ? '#2260A4' : 'lightgray'}}" class="menu-item-icon copa-icon"></Label>
+                    <Label text="Compensation" class="menu-item-text"></Label>
+                </StackLayout>
+                <StackLayout class="tabbed-menu-item menu-divider">
+                    <Label text="&#xe90f;" class="menu-item-icon copa-icon" style="color:lightgray"></Label>
+                    <Label text="Notification" class="menu-item-text"></Label>
+                </StackLayout>
+                <StackLayout class="tabbed-menu-item" (tap)="navigateToSetting()">
+                    <Label text="&#xe917;" class="menu-item-icon copa-icon"></Label>
+                    <Label text="Settings" class="menu-item-text"></Label>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+
+        <StackLayout orientation="horizontal" style="horizontal-align:center;height:26;vertical-align: middle" dock="bottom">
+            <label class="material-icon" *ngFor="let item of MultiSegmentPaxArray.Segment, let i = index" pageindex="{{i}}" text="{{pageTabVal(i)?'&#xE3A6;':'&#xE836;'}}"></label>
+        </StackLayout>
+
+        <StackLayout dock="bottom">
+            <DockLayout orientation="horizontal" class="btmhdr" visibility="{{isPrintbtnEnabled()}}">
+                <WrapLayout class="btnarray m-t-5">
+                    <!-- <Button text="Email" class="btn btn-primary m-t-10" (tap)="createModelViewforSendingMail('start')" [isEnabled]="false"></Button> -->
+                    <Button automationText="boardingPass" text="Boarding Pass" class="btn btn-primary m-t-10" (tap)="hostPrinter()" [isEnabled]="!FlightWithPax.ETKTStatusNOTOK"style="margin-left:5"></Button>
+                </WrapLayout>
+            </DockLayout>
+        </StackLayout>
+
+        <ScrollView automationText="checkin_scroll" class="page-body" pageindex="{{i}}" (swipe)="gotoNextLeg($event)">
+            <StackLayout class="page-body-container" visibility="{{visiblityVal(i)}}">
+                <GridLayout rows="auto" columns="250, *" class="m-b-5" *ngFor="let item of FlightWithPax.Passenger, let i = index">
+                    <StackLayout id="checkin_passenger" class="tr  {{item.IsChecked ? 'selected' : 'normal' }}" (tap)="onMultipleSelector(item,i)" col="0" style="padding: 10">
+                        <StackLayout orientation="horizontal" class="p-b-10">
+                            <Label text="&#xe907;" class="copa-icon input-icon font-big p-r-5" color="{{item.CheckinStatus? '#00A973' : '#c1c1c1'}}"></Label>
+                            <Label automationText="checkin_passenger{{i}}"[text]="item.FullName" textWrap="true" class="font-medium text-black font-bold"></Label>
+                        </StackLayout>
+                        <StackLayout orientation="horizontal" class="p-b-10">
+                                <label text="&#xe904;" class="new-copa-icon font-big" style="margin: 2" visibility="{{item.PassengerType=='Child' ?'visible' : 'collapsed'}}"></label>
+                                <label text="&#xe90d;" class="copa-icon font-big m-l-2" style="margin: 2" visibility="{{(item.PassengerType=='Infant without seat'||item.PassengerType=='Infant with seat') ?'visible' : 'collapsed'}}"></label>                                                                
+                                <Label [text]="item.PassengerType" textWrap="true" class="font-medium text-black" textWrap="true"></Label>
+                        </StackLayout>
+                        <StackLayout orientation="horizontal" class="p-b-10">
+                            <Label  [text]="item.StandbyPassengerType" textWrap="true" class="font-medium text-black" textWrap="true" [visibility]="Standby(item.StandbyPassengerType)" ></Label>
+                            <Label  [text]="item.BoardingPriority" textWrap="true" class="font-medium text-black" textWrap="true" [visibility]="item.StandbyPassengerType != ''&&item.StandbyPassengerType  != null && item.BoardingPriority != null ?'visible':'collapsed' " class="p-l-10" ></Label>
+                            </StackLayout>
+                        <GridLayout rows="auto" columns="100, *" style="margin-top:8" class="p-b-10">
+                            <StackLayout row ="0" col="0" width="100%">
+                                <Label [text]="item.OrderID" class="font-medium text-black font-bold p-b-10"></Label>
+                            </StackLayout>
+                            <StackLayout row ="0" col="1" orientation="horizontal" class="hrz-right" style="margin-right:30">
+                                <Label [text]="item.SyncTicket||(MultiSegmentPaxArray.Warning!=null && MultiSegmentPaxArray.Warning[0].Message=='Ticket is out of sync with booked itinerary') ? '&#xe90a;' : ' '"
+                                    class="copa-icon font-big text-warning p-l-10"></Label>
+
+                            </StackLayout>
+                            <StackLayout row ="0" col="2" orientation="horizontal" class="hrz-right" style="margin-right:20">
+                                <!-- <Label [text]="item.OnStandby ? '&#xe903;' : ''" class="new-copa-icon font-big text-warning p-l-10"></Label> -->
+                                <Label [text]="item.OnStandby && (item.SeatNumber=='SBY'||item.SeatNumber=='FDJ'||item.SeatNumber=='CBJ')?'&#xe903;' :''" class="new-copa-icon font-big text-warning p-l-10"></Label>
+                            </StackLayout>
+                            <StackLayout row ="0" col="3" orientation="horizontal" class="hrz-right" style="margin-right:0">
+
+                                <Label [text]="item.Oversold ? '&#xE25C;' : ''" class="material-icon font-big text-danger p-l-10"></Label>
+
+                            </StackLayout>
+                            
+                        </GridLayout>
+                        <StackLayout orientation="horizontal" class="p-b-10" visibility="{{FlightWithPax.InboundDetail == ''? 'collapsed':'visible'}}" >                                                                
+                            <Label text="{{FlightWithPax.InboundDetail}}" class="font-medium text-black" textWrap="true"></Label>
+                        </StackLayout>
+                        
+                        <!--<StackLayout class="input-field input-field-vertical-disabled">
+                            <Label text="FQTV Number" textWrap="true" class="label"></Label>
+                            <StackLayout orientation="horizontal" class="input-group">
+                                <Label text="&#xE254;" class="material-icon input-icon text-default" (tap)="gotofqtv(item)"></Label>
+                                <Label [text]="item.FQTVNumber" class="input" (tap)="gotofqtv(item)"></Label>
+                            </StackLayout>
+                        </StackLayout>-->
+                    </StackLayout>
+                    <StackLayout col="1" style="background-color: #FFF;padding: 10;margin-left:3">
+                        <GridLayout rows="*,auto" columns="145,100,95,240,80,50">
+                            <StackLayout row="0" col="0" class="input-field input-field-vertical-disabled">
+                                <Label text="Doc check" textWrap="true" class="label"></Label>
+                                <StackLayout orientation="horizontal" class="input-group">
+                                    <Label text="&#xe910;" class="copa-icon input-icon" color="{{item.AdcDecisionStatus == 'OK' || item.AdcDecisionStatus == 'COK' ? '#00A973' :(item.AdcDecisionStatus == 'BYPASSED'||item.AdcDecisionStatus == 'AUTOBYPASSED')?'#F6A736': (item.AdcDecisionStatus == 'NOTOK'||item.AdcDecisionStatus == 'ERR')? '#DA3923' : '#c1c1c1'}}"></Label>
+                                    <Label text="&#xe901;" class="copa-icon input-icon" color="{{ (item.SecurityCode == 'NB'|| item.SecurityCode == 'NM' ||item.SecurityCode == 'VU'|| item.SecurityCode == 'NE'|| item.SecurityCode == 'ED') ?'#DA3923' :(item.ApisDocoStatus == 'Complete'&& item.Documents.length>0 && item.Documents[0].IsTrustedData!=true)?'#F6A736':(item.ApisDocoStatus == 'Complete') ? '#00A973' :'#c1c1c1'}}"></Label>
+                                    <Label automationText="{{i}}chk_apis"text="{{(FlightWithPax.IsInterline || FlightWithPax.ETKTStatusNOTOK || FlightWithPax.isAPISSeatBagDisabled) ? '':'ADD'}}" class="{{FlightWithPax.IsInterline?'':'input'}}" style="font-size: 18" (tap)="gotoApis(item,index)"></Label>
+                                </StackLayout>
+                                <Label automationText="chk_drs" text="{{item.SecurityValue == null ?'':item.SecurityValue.Help==null ? '' : item.SecurityValue.Description}}" class="input m-5"
+                                    (tap)="gotoDRS(item,index)" textWrap="true"></Label>
+                                <Label text="Go to Counter" [visibility]="verifyIDCheck(item)?'collapse':'visible'"></Label>
+                            </StackLayout>
+                            <StackLayout row="0" col="2" class="input-field input-field-vertical-disabled">
+                                <Label text="Baggage" textWrap="true" class="label"></Label>
+                                <StackLayout orientation="horizontal" class="input-group" (tap)="gotoBaggage(item,'Bag')">
+                                    <!-- <Label text="&#xE8F9;" class="material-icon font-big" color="{{(item.SecurityCode == 'NB'|| item.SecurityCode == 'NM' ||item.SecurityCode == 'VU'|| item.SecurityCode == 'NE'|| item.SecurityCode == 'ED'||item.SyncTicket||(MultiSegmentPaxArray.Warning!=null && MultiSegmentPaxArray.Warning[0].Message=='Ticket is out of sync with booked itinerary'))?'#989898':'#0060A9'}}"></Label> -->
+                                    <Label automationText="chk_bag{{i}}"  text="&#xE8F9;" class="material-icon font-big" color="{{isBaggageAvailable(item)?'#989898':'#0060A9'}}" (tap)="gotoBaggage(item,'Bag')"></Label>
+                                    <Label automationText="chk_baggage{{i}}" text=" {{item.INFwithoutSeat?'NA':(FlightWithPax.OperatingFlight!=null && FlightWithPax.OperatingFlight.substr(0,2)!='CM')?'':((FlightWithPax.OperatingFlight!=null && FlightWithPax.OperatingFlight.substr(0,2)=='CM')||(FlightWithPax.MarketingFlight!=null && FlightWithPax.MarketingFlight.substr(0,2)=='CM'))?item.BagCount:'' }}{{(item.INFwithoutSeat||((FlightWithPax.OperatingFlight!=null && FlightWithPax.OperatingFlight.substr(0,2)!='CM')||((FlightWithPax.OperatingFlight!=null && FlightWithPax.OperatingFlight.substr(0,2)=='CM')||FlightWithPax.MarketingFlight!=null && FlightWithPax.MarketingFlight.substr(0,2)!='CM')))?'':'/' }}{{item.INFwithoutSeat?'':(FlightWithPax.OperatingFlight!=null && FlightWithPax.OperatingFlight.substr(0,2)!='CM')?'':((FlightWithPax.MarketingFlight!=null && FlightWithPax.MarketingFlight.substr(0,2)=='CM'))?item.UnitOfMeasureQuantity:''}}"
+                                    class=" {{item.INFwithoutSeat ? '' : 'font-bold input text-black'}}" color="{{item.INFwithoutSeat ?'#000' :'#2260A4'}}" style="font-size: 18"></Label>
+                                </StackLayout>
+                                
+                            </StackLayout>
+                            <StackLayout row="0" col="1" class="input-field input-field-vertical-disabled">
+                                <Label text="Seat Number" textWrap="true" class="label"></Label>
+                                <StackLayout *ngFor="let seats of item.Seats">
+                                    <StackLayout id="chk_seat" orientation="horizontal" class="input-group" (tap)="gotoSeat(item,'Seat')">
+                                        <Label automationText="chk_seat{{i}}" text="&#xE637;" color="{{isSeatAvailable(item)?'#989898':'#0060A9'}}"
+                                            class="material-icon input-icon text-default font-big" (tap)="gotoSeat(item,'Seat')"></Label>
+                                        <Label automationText="chk_seat{{i}}"text="{{item.INFwithoutSeat ? 'NA' : seats.SeatNumber == 'Auto' ? ' ' : seats.SeatNumber }}" class="{{item.INFwithoutSeat ? '' : 'font-bold input text-black'}}" style="font-size: 18" 
+                                        color="{{item.INFwithoutSeat ?'#000' :'#2260A4'}}" (tap)="gotoSeat(item,'Seat')"></Label>
+                                        <Label text="{{seats.Cabin}}" class="input text-black font-bold" style="color:#2260A4;margin-left: 6;font-size: 18" ></Label>
+                                    </StackLayout>
+                                    <StackLayout orientation="horizontal" [visibility]="item.Seats.length > 1 ? 'visible' :'collapse'">
+                                        <Label text="{{seats.DepartureCode}}" class="font-small"></Label>
+                                        <Label text="&#xE5CC;" class="material-icon p-r-10 text-default font-medium"></Label>
+                                        <Label text="{{seats.ArrivalCode}}" class="font-small"></Label>
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+                            <StackLayout row="0" col="3" class="input-field input-field-vertical-disabled">
+                                <Label text="FQTV Number" textWrap="true" class="label"></Label>
+                                <StackLayout orientation="horizontal" class="input-group">
+                                    <Label automationText="chk_fqtv{{i}}" text="&#xE254;" color="{{(FlightWithPax.IsInterline||FlightWithPax.ETKTStatusNOTOK || FlightWithPax.isAPISSeatBagDisabled || FlightWithPax.IsFlightRestricted)?'#989898':'#0060A9'}}" class="material-icon input-icon text-default font-big" (tap)="gotofqtv(item,'FQTV')"></Label>
+                                    <Label automationText="chk_fqtv{{i}}" text="{{item.INFwithoutSeat ? 'NA' :item.ProgramIDxx}}{{item.INFwithoutSeat ? '' :item.FQTVNumber}}" textWrap="true"
+                                        class=" {{item.INFwithoutSeat ? '' : 'font-bold input text-black'}}" color="{{item.INFwithoutSeat ?'#000' :'#2260A4'}}" style="font-size: 18" (tap)="gotofqtv(item,'FQTV')"></Label>
+                                </StackLayout>
+                                <Label [text]="item.LoyalLevel" class="m-t-5 m-l-5 font-bold "></Label>
+                                <StackLayout orientation="horizontal" class="input-group" [visibility]="item.StarLevel == ''? 'collapse':'visible'">
+                                    <Label [text]="item.StarLevel" class="m-5 font-bold" color="gray"></Label>
+                                    <Image src="res://Star_Alliance/staralliance_1x" style="height:20;width:20"></Image>
+                                </StackLayout>
+                            </StackLayout>
+                            <StackLayout row="0" col="4" class="input-field input-field-vertical-disabled">
+                                <Label text="SSR" textWrap="true" class="label"></Label>
+                                <StackLayout orientation="vertical" class="input-group">
+                                    <Label *ngFor="let ssr of item.SSR.slice(0,3),let ind = index" [text]="ssr" textWrap="true" style="font-size: 18;" class="font-medium text-black font-bold input-group"
+                                        visibility="{{ind<=3?'visible':'collapse'}}" style="color:#2260A4;font-size: 18"></Label>
+                                    <Label automationText="chk_ssr{{i}}" text="more.." textWrap="true" class="input" visibility="{{item.SSR.length>4?'visible':'collapse'}}" (tap)="SSrmore(item.SSR)"></Label>
+                                </StackLayout>
+                            </StackLayout>
+                            <StackLayout row="0" col="5" class="input-field input-field-vertical-disabled">
+                                <Label text="EMD" textWrap="true" class="label"></Label>
+                                <StackLayout orientation="horizontal" class="input-group">
+                                    <Label [text]="item.INFwithoutSeat ? 'NA' :item.EMD" class="{{item.INFwithoutSeat ? '' : 'font-bold input text-black'}}" style="font-size: 18"
+                                    color="{{item.INFwithoutSeat ?'#000' :'#2260A4'}}" style="font-size: 18"></Label>
+                                </StackLayout>
+                            </StackLayout>
+                            <StackLayout id="chk_shortck"row="1" col="1" class="input-field input-field-vertical" visibility="{{(isShortCheck==true||isShortCheckin(item) == true) && currentPage == 0 ? 'visible' : 'collapse'}}" (tap)="selectShortCheckCode(item,i)">
+                                <Label automationText="chk_shortck" text="ShortCheck"  color="#0060A9"></Label>
+                                <TextField automationText="chk_shortck" class="isShortCheck?'input'" [(ngModel)]="item.ShortCheckAirportCode" ></TextField>
+                            </StackLayout>
+                        </GridLayout>
+                    </StackLayout>
+                </GridLayout>
+            </StackLayout>
+        </ScrollView>
+
+    </DockLayout>
+</GridLayout>

@@ -1,0 +1,21 @@
+.textfield-validation-error {
+ 
+       border: 1px solid red !important;
+ 
+       background-color: #fee !important;
+ 
+   }
+   .selected{
+    background-color:lightblue;
+}
+.normal{
+    background-color: #F5F5F5;
+}
+.lable-field{
+    margin-bottom:10;
+    padding-left:1;
+    height:20;
+    background-color:transparent;
+    border-width: 0 0 1 0;
+    border-color: #C6C6C3;
+}

@@ -1,0 +1,15 @@
+
+.page > .page-body{
+    background-color:RGB(219,218,216);
+    background-size: cover;
+}
+
+.page-body-container{
+    vertical-align: middle;
+}
+
+.card-menu-item > .card-menu-item-container{
+    background-color:RGBA(255, 255, 255, 0.75);
+    padding:10;
+    color:#2260A4;
+}

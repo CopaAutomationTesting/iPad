@@ -1,0 +1,39 @@
+<StackLayout class="modal-view-style">
+
+    <StackLayout orientation="horizontal" style="margin-top:10" class="input-field input-field-regular hrz-left m-t-10">
+        <Label text="Credit Card" class="input cashtxt" style="width:100%"></Label>
+    </StackLayout>
+    <StackLayout orientation="horizontal" style="margin-top:10" class="input-field input-field-regular hrz-left m-t-10">
+        <Label text="{{mCard ?'&#xE837;':'&#xE836;'}}" class="radiobtn  material-icon" (tap)="btnclicked('MCard')"></Label>
+        <Label text="Master card" class="cashtxt"></Label>
+        <Label text="{{vCard ?'&#xE837;':'&#xE836;'}}" class="radiobtn  material-icon" (tap)="btnclicked('VCard')"></Label>
+        <Label text="Visa card" class="cashtxt"></Label>
+        <Label text="{{aCard ?'&#xE837;':'&#xE836;'}}" class="radiobtn  material-icon" (tap)="btnclicked('ACard')"></Label>
+        <Label text="Amex card" class="cashtxt"></Label>
+    </StackLayout>
+    <StackLayout orientation="horizontal" style="margin-top:10" [class.error-field]="isCardNumber" class="input-field input-field-regular hrz-left m-t-10">
+        <TextField class="input " hint="Card Number" [(ngModel)]="cardNumber" (ngModelChange)="onChange($event,2)"style="width:100%"></TextField>
+    </StackLayout>
+    <StackLayout orientation="horizontal" style="margin-top:10" class="input-field input-field-regular hrz-left m-t-10">
+        <TextField class="input " hint="CVV" [(ngModel)]="cvv" (ngModelChange)="onChange($event,3)" style="width:50%;margin-right: 10px"></TextField>
+        <TextField class="input " hint="Expiry Date (MMYYYY)" [(ngModel)]="expiryDate" (ngModelChange)="onChange($event,4)" style="width:50%;margin-left: 10px"></TextField>
+    </StackLayout>
+    <StackLayout orientation="horizontal" style="margin-top:10" class="input-field input-field-regular hrz-left m-t-10">
+        <TextField class="input " hint="Cardholder Name" [(ngModel)]="cardHolder" (ngModelChange)="onChange($event,5)" style="width:100%"></TextField>
+    </StackLayout>
+    <StackLayout orientation="horizontal" style="margin-top:10" class="input-field input-field-regular hrz-left m-t-10">
+        <TextField class="input " hint="Street/Lane" [(ngModel)]="address" (ngModelChange)="onChange($event,6)" style="width:100%"></TextField>
+    </StackLayout>
+    <StackLayout orientation="horizontal" style="margin-top:10" class="input-field input-field-regular hrz-left m-t-10">
+        <TextField class="input " hint="City" [(ngModel)]="city" (ngModelChange)="onChange($event,7)"  style="width:50%;margin-right: 10px"></TextField>
+        <TextField class="input " hint="State/Province" [(ngModel)]="state"  (ngModelChange)="onChange($event,8)" style="width:50%;margin-left: 10px"></TextField>
+    </StackLayout>
+    <StackLayout orientation="horizontal" style="margin-top:10" class="input-field input-field-regular hrz-left m-t-10">
+        <TextField class="input " hint="Country" [(ngModel)]="country" (ngModelChange)="onChange($event,9)" style="width:50%;margin-right: 10px"></TextField>
+        <TextField class="input " hint="Zipcode" [(ngModel)]="zipcode" (ngModelChange)="onChange($event,10)" style="width:50%;margin-left: 10px"></TextField>
+    </StackLayout>
+
+    <Button class="btn btn-primary btn-active" text="Pay" (tap)="submit()" [sEnabled]="isButtonEnabled" style="margin-top:10"></Button>
+    <Button class="btn btn-primary btn-active" text="Cancel Payment" (tap)="cancel()" [isEnabled]="isButtonEnabled" style="margin-top:10"></Button>
+    
+</StackLayout>

@@ -1,0 +1,13 @@
+<DockLayout class="table-body" orientation="vertical" stretchLastChild="true">
+                
+                <button dock="bottom" text="Cancel" class="btn btn-primary" (tap)="cancel()"></button>        
+                <ListView dock="top" [items]="FQTVList">
+                        <ng-template let-item="item" let-i="index">
+                                <GridLayout columns="*" rows="40" (tap)="selected($event)">
+                                        <Label text="{{FQTVList[i]}}" style="text-align:center;vertical-align: middle" textWrap="true" width="100%" height="40%"></Label>
+                                </GridLayout>
+                        </ng-template>
+                </ListView>
+                <!-- << creating-listpicker-html -->
+        
+        </DockLayout>

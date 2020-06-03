@@ -1,0 +1,25 @@
+.headerinfo{
+    background-color: #EFEFEE;
+    padding-left:10;
+    padding-right: 10;
+    height: 90;
+}
+.button{
+    background-color: #0060A9;
+    color : #FFF;
+}
+.checkbox{
+    font-size: 22;
+    color:#95522D;
+}
+.tabledata{
+    padding:20 10;
+    font-size: 13;
+    color:#000;
+    vertical-align: middle;
+}
+.tablerow{
+    border-width:0 0 1 0; 
+    border-color:#EEE;
+    vertical-align: middle;
+}

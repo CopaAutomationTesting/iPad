@@ -1,0 +1,192 @@
+<ActionBar title="FQTV" icon="" class="action-bar">
+    <!--<NavigationButton visibility="collapsed"></NavigationButton>-->
+    <!--<StackLayout orientation="horizontal"style="background-image:url('~/images/blur_back.png')">
+        <Image class="company-logo" src="~/images/copa_logo.png"></Image>
+    </StackLayout>-->
+    <ActionItem ios.position="right" text="{{userdetails}}">
+    </ActionItem>
+    <ActionItem ios.position="right" icon="res://logout_icons/logoff_edit" (tap)="_service.LogOut()"> </ActionItem>
+</ActionBar>
+<GridLayout #pagecontainer>
+    <DockLayout stretchLastChild="true" class="page">
+        <StackLayout dock="top" class="page-header ">
+            <GridLayout columns="auto, *, auto" class="flight-info">
+
+                <StackLayout col="0" class="flight-details bdr-right-big">
+                    <StackLayout orientation="horizontal" class="details">
+                        <Label text="{{FlightInfo.OperatingFlight!= null?FlightInfo.OperatingFlight:FlightInfo.MarketingFlight}}" class="hd bdr-right" style.color="#0060A9" (tap)="refreshFlifo()"></Label>
+                        <Label [text]="FlightDate" class="p-l-10 font-small text-default "></Label>
+                    </StackLayout>
+                    <Label [text]="FlightInfo.status" class="details font-small text-default"></Label>
+                </StackLayout>
+                <StackLayout col="1" class="flight-details">
+                    <StackLayout orientation="horizontal" class="details p-l-10">
+                        <Label class="p-r-10 text-default font-medium">
+                            <FormattedString>
+                                <Span [text]="FlightInfo.Origin" fontAttributes="Bold"></Span>
+                                <Span text=", "></Span>
+                                <Span [text]="FlightInfo.OriginCity"></Span>
+
+                            </FormattedString>
+                        </Label>
+                        <Label text="&#xE5CC;" class="material-icon p-r-10 text-default font-medium"></Label>
+                        <Label class="p-r-10 text-default font-medium">
+                            <FormattedString>
+                                <Span [text]="FlightInfo.Destination" fontAttributes="Bold"></Span>
+                                <Span text=", "></Span>
+                                <Span [text]="FlightInfo.DestinationCity"></Span>
+
+                            </FormattedString>
+                        </Label>
+                    </StackLayout>
+                    <StackLayout orientation="horizontal" class="details p-l-10">
+                        <StackLayout orientation="horizontal">
+                            <Label text="STD" class="p-r-5 font-small text-default font-bold"></Label>
+                            <Label [text]="FlightInfo.STD" class="p-r-10 font-small text-black font-bold"></Label>
+                        </StackLayout>
+                        <StackLayout orientation="horizontal">
+                            <Label text="ETD" class="p-r-5 font-small text-default font-bold"></Label>
+                            <Label [text]="FlightInfo.ETD" class="p-r-10 font-small text-black font-bold"></Label>
+                        </StackLayout>
+                        <StackLayout orientation="horizontal">
+                            <Label text="ETA" class="p-r-5 font-small text-default font-bold"></Label>
+                            <Label [text]="FlightInfo.ETA" class="p-r-10 font-small text-black font-bold"></Label>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout col="2" orientation="horizontal" class="vrt-middle">
+                    <StackLayout>
+                        <Button automationText="fqtv_submit" class="btn btn-primary" (tap)="confirmUpdate('replace')" style="margin-left : 8" [isEnabled]="isButtonEnabled" text="Submit"></Button>
+                    </StackLayout>
+                </StackLayout>
+
+            </GridLayout>
+
+        </StackLayout>
+
+        <StackLayout dock="top" height="8%" class="stack" orientation="horizontal" [visibility]="isItemVisible(FlightInfo.MarketingFlight)">
+            <GridLayout row="*" columns="*,*,*,*">
+
+                <StackLayout orientation="horizontal" col="0" class="p-r-10 text-default font-medium" class="text">
+
+                    <Label text="Booking:" style="font-weight: bold ; margin-left:35"></Label>
+                    <DockLayout class="p-r-10 text-default font-medium" class="text" *ngFor="let invent of FlightInfo.inven ">
+                        <Label text="{{invent.CodeLetter}}" style="font-weight: bold;margin-left: 8;"></Label>
+                        <Label text="{{invent.Booking}}" style="font-weight: bold;margin-left: 8;"></Label>
+                    </DockLayout>
+                </StackLayout>
+                <StackLayout orientation="horizontal" col="1" class="p-r-10 text-default font-medium" class="text">
+
+                    <Label text="Capacity:" style="font-weight: bold ; margin-left:35"></Label>
+                    <DockLayout class="p-r-10 text-default font-medium" class="text" *ngFor="let invent of FlightInfo.inven ">
+                        <Label text="{{invent.CodeLetter}}" style="font-weight: bold;margin-left: 8;"></Label>
+                        <Label text="{{invent.Capacity}}" style="font-weight: bold;margin-left: 8;"></Label>
+                    </DockLayout>
+                </StackLayout>
+                <StackLayout col="2" orientation="horizontal" class="p-r-10 text-default font-medium" class="text">
+                    <Label text="Inbound:" style="font-weight: bold"></Label>
+                    <Label text="{{FlightInfo.inbound}}" style="font-weight: bold;margin-left: 8;"></Label>
+
+                </StackLayout>
+                <StackLayout col="3" orientation="horizontal" class="p-r-10 text-default font-medium" class="text">
+                    <Label text="Outbound:" style="font-weight: bold"></Label>
+                    <Label text="{{FlightInfo.outbound}}" style="font-weight: bold;margin-left: 8;"></Label>
+
+                </StackLayout>
+            </GridLayout>
+        </StackLayout>
+
+        <StackLayout dock="bottom" class="page-footer">
+            <StackLayout class="tabbed-menu">
+                <StackLayout class="tabbed-menu-item menu-divider" (tap)="navigateToSearch()">
+                    <Label text="&#xe907;"  class="menu-item-icon copa-icon"></Label>
+                    <Label text="Check In" class="menu-item-text"></Label>
+                </StackLayout>
+                <StackLayout class="tabbed-menu-item menu-divider"  (tap)="navigateToDepartures()">
+                    <Label text="&#xE904;" color="{{isGateDisabled  ? '#2260A4' : 'lightgray'}}" class="menu-item-icon copa-icon"></Label>
+                    <Label text="Departures" class="menu-item-text"></Label>
+                </StackLayout>
+                <StackLayout class="tabbed-menu-item menu-divider" (tap)="navigateToCompensation()">
+                    <Label text="&#xe90e;" color="{{isCompensationEnabled  ? '#2260A4' : 'lightgray'}}" class="menu-item-icon copa-icon"></Label>
+                    <Label text="Compensation" class="menu-item-text"></Label>
+                </StackLayout>
+                <StackLayout class="tabbed-menu-item menu-divider" (tap)="gotonotify()">
+                    <Label text="&#xE7F4;" class="menu-item-icon material-icon" style="color:lightgray"></Label>
+                    <Label text="Notification" class="menu-item-text"></Label>
+                </StackLayout>
+                <StackLayout class="tabbed-menu-item" (tap)="navigateToSetting()">
+                    <Label text="&#xE8B8;" class="menu-item-icon material-icon"></Label>
+                    <Label text="Settings" class="menu-item-text"></Label>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+        <ScrollView class="page-body">
+            <StackLayout class="page-body-container">
+                <GridLayout rows="auto" columns="250, *">
+                    <StackLayout col="0" style="background-color: #F5F5F5;padding: 10">
+                        <StackLayout orientation="horizontal" class="p-b-10">
+                            <Label text="&#xe907;" class="copa-icon input-icon font-big p-r-5" color="{{PassedPassengerDetail.CheckinStatus? '#00A973' : '#c1c1c1'}}"></Label>
+                            <Label [text]="PassedPassengerDetail.FullName" textWrap="true" class="font-medium text-black font-bold"></Label>
+                        </StackLayout>
+                        <Label [text]="PassedPassengerDetail.PassengerType" textWrap="true" class="font-medium text-black"></Label>
+
+                        <GridLayout rows="auto" columns="100, *" style="margin-top:8" class="p-b-10">
+                            <StackLayout col="0" width="100%">
+                                <Label [text]="PassedPassengerDetail.OrderID" class="font-medium text-black font-bold p-b-10"></Label>
+                            </StackLayout>
+                            <StackLayout col="1" orientation="horizontal" class="hrz-right">
+                                <Label [text]="PassedPassengerDetail.SyncTicket ? '&#xE638;' : ' '" class="material-icon font-big text-warning p-l-10"></Label>
+                            </StackLayout>
+                            <StackLayout col="2" orientation="horizontal" class="hrz-right">
+                                <Label [text]="PassedPassengerDetail.Oversold ? '&#xE25C;' : ''" class="material-icon font-big text-danger p-l-10"></Label>
+                            </StackLayout>
+                        </GridLayout>
+
+                    </StackLayout>
+                    <StackLayout col="1" style="background-color: #FFF;padding: 10;margin-left:3">
+                        <GridLayout rows="auto,auto" columns="*,*">
+                            <StackLayout row="0" col="0" class="input-field input-field-vertical p-r-10">
+                                <Label text="Airline Code/Program Name" class="label"></Label>
+                                <Label automationText="airline_code" text="{{this.airlineprogramcode}}" class="input" style="margin-top:12" (tap)="displayFQTVActionDialog(0)"></Label>
+                            </StackLayout>
+                            <StackLayout row="0" col="1" class="input-field input-field-vertical p-r-10">
+                                <Label text="Frequent Flyer Number" textWrap="true" class="label"></Label>
+                                <TextField automationText="fqtv_num" [(ngModel)]="PassedPassengerDetail.FQTVNumber" (ngModelChange)="onChange($event,0)" class="input" style="margin-top:12" keyboardType="number"
+                                    [class.error-field]="isFqtvEmpty"></TextField>
+                            </StackLayout>
+                            <StackLayout row="1" col="0" class="input-field input-field-vertical p-r-10">
+                                <Label textWrap="true" class="label">
+                                    <FormattedString>
+                                        <Span text="Tier Code"></Span>
+                                        <Span text=" *" foregroundColor="black"></Span>
+                                    </FormattedString>
+                                </Label>
+                                <Label text="-" color="blue"></Label>
+                            </StackLayout>
+                            <StackLayout row="1" col="1" class="input-field input-field-vertical p-r-10">
+                                <Label textWrap="true" class="label">
+                                    <FormattedString>
+                                        <Span text="Tier Name"></Span>
+                                        <Span text=" *" foregroundColor="black"></Span>
+                                    </FormattedString>
+                                </Label>
+                                <StackLayout orientation="vertical" class="input-group">
+                                    <Label text="{{this.tier}}" class="font-bold"></Label>
+                                    <StackLayout orientation="horizontal" [visibility]="star == ''? 'collapse':'visible'">
+                                        <Label text="{{this.star}}" color="gray" class="m-r-5 font-bold"></Label>
+                                        <Image src="res://Star_Alliance/staralliance_1x" style="height:20;width:20"></Image>
+                                    </StackLayout>
+
+                                </StackLayout>
+                            </StackLayout>
+
+                        </GridLayout>
+                    </StackLayout>
+
+
+                </GridLayout>
+
+            </StackLayout>
+        </ScrollView>
+    </DockLayout>
+</GridLayout>

@@ -1,0 +1,9 @@
+.selected{
+    background-color:lightblue;
+}
+.normal{
+    background-color: #F5F5F5;
+}
+.btnarray{
+    vertical-align: center;margin-left:800;
+}

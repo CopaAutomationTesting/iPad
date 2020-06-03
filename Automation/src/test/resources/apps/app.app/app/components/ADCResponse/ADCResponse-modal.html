@@ -1,0 +1,124 @@
+<DockLayout stretchLastchild="true" orientation="vertical" height="100%">
+    <StackLayout dock="top" class="hdr">
+        <Label text="ADC Response"></Label>
+    </StackLayout>
+    <StackLayout dock="bottom">
+        <button text="OK" class="btn btn-primary m-10" width="100" (tap)="close()"></button>
+    </StackLayout>
+    <!-- <StackLayout> -->
+    <!-- <ScrollView> -->
+    <!-- <StackLayout orientation="vertical" height="100%"> -->
+        <!-- <ScrollView height="100%"> -->
+        <ListView [items]="Response.ApisStatusList" >
+            <ng-template let-item="item" let-i="index">
+                <StackLayout >
+                    <StackLayout class="vrt-middle hrz-center " orientation="horizontal">
+                        <Label [text]="(item.AdcStatus=='NOTOK'||item.AdcStatus=='ERR')?'&#xE8B2;':(item.AdcStatus=='OK'||item.AdcStatus=='COK')?'&#xE876;':''" class="m-t-10 m-r-10 material-icon"></Label>
+                        <Label text="ADC {{ADCResponse[i]}}" class="m-t-10"></Label>
+                    </StackLayout>
+                    <StackLayout class="box m-t-20">
+                        <StackLayout class="description" orientation="vertical">
+                            <Label text="Description Message:" class="m-5"></Label>
+                            <Label *ngFor="let desc of Description[i].DecisionMessage" [text]="desc" class="m-5" textWrap="true"></Label>
+                        </StackLayout>
+                        <Label text="Passenger Information" class="hdrTxt m-10"></Label>
+                        <!-- <StackLayout orientation="vertical"> -->
+                        <DockLayout class="table">
+                            <GridLayout class="table-header" dock="top" rows="35" columns="*,*,*,*">
+                                <StackLayout class="th" col="0">
+                                    <Label text="Name"></Label>
+                                </StackLayout>
+                                <StackLayout class="th" col="1">
+                                    <Label text="Nationality"></Label>
+                                </StackLayout>
+                                <StackLayout class="th" col="2">
+                                    <Label text="RECLOC"></Label>
+                                </StackLayout>
+                                <StackLayout class="th" col="3">
+                                    <Label text="Decision"></Label>
+                                </StackLayout>
+                            </GridLayout>
+                            <GridLayout class="table-body tr" columns="*,*,*,*">
+                                <WrapLayout class="td" col="0">
+                                    <Label text="{{item.LastName}}/{{item.FirstName}}"></Label>
+                                </WrapLayout>
+                                <WrapLayout class="td" col="1">
+                                    <Label text="{{item.Nationality}}"></Label>
+                                </WrapLayout>
+                                <WrapLayout class="td" col="2">
+                                    <Label text="{{OrderID}}"></Label>
+                                </WrapLayout>
+                                <WrapLayout class="td" col="3">
+                                    <Label [text]="item.AdcStatus"></Label>
+                                </WrapLayout>
+                            </GridLayout>
+                        </DockLayout>
+                        <!-- </StackLayout> -->
+                        <Label text="Itinerary" class="hdrTxt m-10"></Label>
+                        <!-- <StackLayout orientation="vertical"> -->
+                        <DockLayout stretchLastChild="true" class="table">
+                            <GridLayout class="table-header" dock="top" rows="35" columns="*,*,*,*,*,*,*">
+                                <StackLayout class="th" col="0">
+                                    <Label text="FLT"></Label>
+                                </StackLayout>
+                                <StackLayout class="th" col="1">
+                                    <Label text="CARRIER"></Label>
+                                </StackLayout>
+                                <StackLayout class="th" col="2">
+                                    <Label text="FROM"></Label>
+                                </StackLayout>
+                                <StackLayout class="th" col="3">
+                                    <Label text="TO"></Label>
+                                </StackLayout>
+                                <StackLayout class="th" col="4">
+                                    <Label text="DEP"></Label>
+                                </StackLayout>
+                                <StackLayout class="th" col="5">
+                                    <Label text="ARR"></Label>
+                                </StackLayout>
+                                <StackLayout class="th" col="6">
+                                    <Label text="Decision"></Label>
+                                </StackLayout>
+                            </GridLayout>
+                            <!-- <ListView [items]="item.Decisions" class="table-bodys">
+                                <ng-template let-descision="item" let-i="index"> -->
+                            <StackLayout class="table-bodys">
+                                    <GridLayout *ngFor="let descision of item.Decisions" class="tr" columns="*,*,*,*,*,*,*">
+                                            <WrapLayout class="td" col="0">
+                                                <Label [text]="descision.FlightNumber"></Label>
+                                            </WrapLayout>
+                                            <WrapLayout class="td" col="1">
+                                                <Label [text]="descision.AirlineCode"></Label>
+                                            </WrapLayout>
+                                            <WrapLayout class="td" col="2">
+                                                <Label [text]="descision.DepartureAirport"></Label>
+                                            </WrapLayout>
+                                            <WrapLayout class="td" col="3">
+                                                <Label [text]="descision.ArrivalAirport"></Label>
+                                            </WrapLayout>
+                                            <WrapLayout class="td" col="4">
+                                                <Label [text]="descision.DepartureDateTime| date:'dd-MMM hh:mm '"></Label>
+                                            </WrapLayout>
+                                            <WrapLayout class="td" col="5">
+                                                <Label [text]="descision.ArrivalDateTime| date:'dd-MMM hh:mm '"></Label>
+                                            </WrapLayout>
+                                            <WrapLayout class="td" col="6">
+                                                <Label [text]="descision.DecisionCode"></Label>
+                                            </WrapLayout>
+                                        </GridLayout>
+                            </StackLayout>
+                           
+                            <!-- </ng-template>
+                            </ListView> -->
+                        </DockLayout>
+                        <!-- </StackLayout> -->
+                    </StackLayout>
+                </StackLayout >
+            </ng-template>
+        </ListView>
+
+        <!-- </ScrollView> -->
+    <!-- </StackLayout> -->
+    <!-- </ScrollView> -->
+    <!-- </StackLayout> -->
+</DockLayout>

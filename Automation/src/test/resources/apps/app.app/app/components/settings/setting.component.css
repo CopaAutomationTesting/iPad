@@ -1,0 +1,19 @@
+.header{
+    background-color: #FFF;
+    padding-left:10;
+    padding-right: 10;
+    height: 50;
+}
+.blue-line{
+    border-width:0 0 1 0;
+    border-color: #2260A4;
+}
+.left-panel{
+    background-color: #FFF;
+}
+.selected{
+    background-color:#2260A4;
+}
+.body{
+    background-color : #DDD;
+}

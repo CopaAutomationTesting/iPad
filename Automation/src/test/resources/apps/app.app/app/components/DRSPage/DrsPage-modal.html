@@ -1,0 +1,16 @@
+<DockLayout stretchLastChild="true" orientation="vertical">
+    <StackLayout dock="top" class="hdr">
+        <label text="Direct Reference System"></label>
+    </StackLayout>
+    <button text="OK" dock="bottom" class="btn btn-primary" (tap)="close()"></button>
+    <StackLayout orientation="vertical">
+        <StackLayout orientation="horizontal" class="brdcrmb">
+            <label [text]="categoryName" class="m-5"></label>
+            <Label text="&#xe90c;" textWrap="true" class="copa-icon card-menu-nav m-5"></Label>
+            <label [text]="subjectName" class="m-5"></label>
+            <Label text="&#xe90c;" textWrap="true" class="copa-icon card-menu-nav m-5"></Label>
+            <label [text]="pageName" class="m-5"></label>
+        </StackLayout>
+        <HtmlView [html]="content" ></HtmlView>
+    </StackLayout>
+</DockLayout>

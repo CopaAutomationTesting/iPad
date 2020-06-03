@@ -1,0 +1,380 @@
+<ActionBar title="Setting" icon="" class="action-bar">
+    <ActionItem ios.position="right" text="{{userdetails}}">
+    </ActionItem>
+    <ActionItem ios.position="right" icon="res://logout_icons/logoff_edit" (tap)="_service.LogOut()"> </ActionItem>
+</ActionBar>
+
+<GridLayout #pagecontainer>
+
+    <DockLayout stretchLastChild="true" class="page">
+
+        <StackLayout dock="bottom" class="page-footer">
+            <StackLayout class="tabbed-menu">
+                <StackLayout class="tabbed-menu-item menu-divider" (tap)="navigateToSearch()">
+                    <Label text="&#xe907;" color="{{isCheckinDisabled  ? '#2260A4' : 'lightgray'}}" class="menu-item-icon copa-icon"></Label>
+                    <Label text="Check In" class="menu-item-text"></Label>
+                </StackLayout>
+                <StackLayout class="tabbed-menu-item menu-divider"  (tap)="navigateToDepartures()">
+                    <Label text="&#xE904;" color="{{isGateDisabled  ? '#2260A4' : 'lightgray'}}" class="menu-item-icon copa-icon"></Label>
+                    <Label text="Departures" class="menu-item-text"></Label>
+                </StackLayout>
+                <StackLayout class="tabbed-menu-item menu-divider" (tap)="navigateToCompensation()">
+                    <Label text="&#xe90e;" color="{{isCompensationEnabled  ? '#2260A4' : 'lightgray'}}" class="menu-item-icon copa-icon"></Label>
+                    <Label text="Compensation" class="menu-item-text"></Label>
+                </StackLayout>
+                <StackLayout class="tabbed-menu-item menu-divider" >
+                    <Label text="&#xe90f;" class="menu-item-icon copa-icon" style="color:lightgray"></Label>
+                    <Label text="Notification" class="menu-item-text"></Label>
+                </StackLayout>
+                <StackLayout class="tabbed-menu-item active" (tap)="navigateToSetting()">
+                    <Label text="&#xe917;" class="menu-item-icon copa-icon"></Label>
+                    <Label text="Settings" class="menu-item-text"></Label>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+
+        <StackLayout dock="top" class="header blue-line">
+            <Label text="Printer Settings" [visibility]="FirstBlock ? 'visible' : 'collapse'" class="font-big m-t-10"></Label>
+            <Label text="Printer Settings" [visibility]="SecondBlock  ? 'visible' : 'collapse'" class="font-big m-t-10"></Label>
+            <Label text="Default Settings" [visibility]="ThirdBlock  ? 'visible' : 'collapse'" class="font-big m-t-10"></Label>
+            <Label text="My Preferences " [visibility]="FourthBlock  ? 'visible' : 'collapse'" class="font-big m-t-10"></Label>
+            <Label text="Plugin Settings" [visibility]="FifthBlock  ? 'visible' : 'collapse'" class="font-big m-t-10"></Label>
+            <Label text="Select Boarding Pass Printer" [visibility]="SelectPrinter1 ? 'visible' : 'collapse'" class="font-big m-t-10"></Label>
+            <Label text="Select Bagtag Printer" [visibility]="SelectPrinter2  ? 'visible' : 'collapse'" class="font-big m-t-10"></Label>
+        </StackLayout>
+
+        <StackLayout class="body">
+            <StackLayout class="page-body-container">
+
+                <GridLayout rows="*" columns="250, *" class="m-b-5">
+                    <StackLayout col="0" class="left-panel">
+                        <StackLayout orientation="vertical">
+                            <StackLayout height="50" class="stack vrt-middle {{SelectPrinter ? 'selected' : 'normal'}}" (tap)="FirstLayout()">
+                                <Label automationText="settings_printer"text="Printer" class=" {{SelectPrinter ?  'text-white' : 'text-blue'}} font-medium font-bold m-l-8"></Label>
+                            </StackLayout>
+                            <StackLayout height="50" class="stack vrt-middle {{ThirdBlock ? 'selected' : 'normal'}}" (tap)="ThirdLayout()">
+                                <Label automationText="settings_version" text="Version" class="{{ThirdBlock ? 'text-white' : 'text-blue' }} font-medium font-bold m-l-8" ></Label>
+                            </StackLayout>
+                            <StackLayout height="50" class="stack vrt-middle {{FourthBlock ? 'selected' : 'normal'}}">
+                                <Label text="My Preferences" class="{{FourthBlock ? 'text-white' : 'text-blue' }} font-medium font-bold m-l-8" style="color:lightgray"></Label>
+                            </StackLayout>
+                            <StackLayout height="50" class="stack vrt-middle {{FifthBlock ? 'selected' : 'normal'}}">
+                                <Label text="Plugin" class="font-medium font-bold m-l-8" style="color:lightgray"></Label>
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout col="1" class="body">
+                        <StackLayout *ngIf="FirstBlock" #hostprinter>
+                            <ScrollView>
+                                <StackLayout>
+                                    <StackLayout class="m-t-30">
+                                        <Label text="Boarding Pass Printer" textWrap="true" class="m-l-30 p-r-5   font-bold"></Label>
+                                        <StackLayout class="m-l-30 m-t-10" orientation="horizontal">
+                                            <StackLayout orientation="horizontal" class=" m-r-20">
+                                                <Label automationText="settings_host" [text]="isHostBoarding ? '&#xE837;' :'&#xE836;'" class="material-icon input-icon font-big m-r-5" (tap)="toggleBoardingDefault()"></Label>
+                                                <Label text="Host Printer" class="input"></Label>
+                                            </StackLayout>
+                                            <StackLayout orientation="horizontal">
+                                                <Label automationText="settings_bluetooth" [text]="isHostBoarding ? '&#xE836;' :'&#xE837;'" class="material-icon input-icon font-big m-r-5" (tap)="toggleBoardingDefault()"></Label>
+                                                <Label text="Bluetooth Printer" class="input"></Label>
+                                            </StackLayout>
+                                        </StackLayout>
+                                        <GridLayout *ngIf="!isHostBoarding" width="700" rows="*" columns="470,190,30" orientation="horizontal" height="50" class="m-t-10 m-r-10"
+                                            style="background-color:#FFF; border-radius: 4" (tap)="getBluetoothPrinterDetails()">
+                                            <Label col="0" text="Bluetooth Printer" class="m-l-10 font-medium text-black"></Label>
+                                            <Label automationText="settings_bltdetails"col="1" text="{{bltPrinter}}" style="text-align: right" class="font-medium" (tap)="getBluetoothPrinterDetails()"></Label>
+                                            <Label automationText="settings_bltdetailsicon"col="2" text="&#xE5CC;" class="material-icon p-r-10 text-default font-medium" (tap)="getBluetoothPrinterDetails()"></Label>
+                                        </GridLayout>
+                                        <GridLayout *ngIf="isHostBoarding" width="700" columns="150,*,40" orientation="horizontal" height="50" class="m-t-10 m-r-10"
+                                            style="background-color:#FFF;border-radius: 4">
+                                            <Label col="0" text="Office Name:" class="m-l-10 font-medium text-black"></Label>
+                                            <TextField automationText="settings_ofcname"col="1" dock="left" class="input " hint="Enter Office Name" [(ngModel)]="hostBoardingOffice" returnKeyPress="done"
+                                                (returnPress)="SearchOffice(hostBoardingOffice,false)"></TextField>
+                                            <label automationText="settings_ofcsearchicon"col="2" text="&#xe915;" class="label copa-icon font-big text-blue" (tap)="SearchOffice(hostBoardingOffice,false)"></label>
+                                        </GridLayout>
+                                        <GridLayout *ngIf="isHostBoarding" width="700" columns="150,*,40" orientation="horizontal" height="50" class="m-t-10 m-r-10"
+                                            style="background-color:#FFF;border-radius: 4">
+                                            <Label col="0" text="Workstation Name:" class="m-l-10 font-medium text-black"></Label>
+                                            <TextField automationText="settings_workstation"col="1" dock="left" class="input " hint="Enter Workstation Name" [(ngModel)]="hostBoardingWS" ></TextField>
+                                            <!-- <label col="2" text="&#xe915;" class="label copa-icon font-big text-blue" (tap)="SearchPrinter(hostBoardingWS,false)"></label>                                             -->
+                                        </GridLayout>
+                                        <GridLayout *ngIf="isHostBoarding" width="700" columns="470,200,30" orientation="horizontal" height="50" class="m-t-10 m-r-10"
+                                            style="background-color:#FFF; border-radius: 4" >
+                                            <Label col="0" text="Boarding Pass Printer" class="m-l-10 font-medium text-black"></Label>
+                                            <Label col="1" text="{{BoardingPassDeviceName}}" textWrap="true" class="font-medium text-right"></Label>
+                                            <!-- <Label col="2" text="&#xE5CC;" class="material-icon p-r-10 text-default font-l"></Label> -->
+                                        </GridLayout>
+                                    </StackLayout>
+                                    <StackLayout class="m-t-30">
+                                        <Label text="Bagtag Printer" textWrap="true" class="m-l-30 p-r-5 font-bold"></Label>
+                                        <StackLayout class="m-l-30 m-t-10" orientation="horizontal">
+                                            <StackLayout orientation="horizontal" class=" m-r-20">
+                                                <Label automationText="settings_hostbag"[text]="isHostBagtag ? '&#xE837;' :'&#xE836;'" class="material-icon input-icon font-big m-r-5" (tap)="toggleBagtagDefault()"></Label>
+                                                <Label text="Host Printer" class="input"></Label>
+                                            </StackLayout>
+                                            <StackLayout orientation="horizontal">
+                                                <Label automationText="settings_bluetoothbag"[text]="isHostBagtag ? '&#xE836;':'&#xE837;'" class="material-icon input-icon font-big m-r-5" (tap)="toggleBagtagDefault()"></Label>
+                                                <Label text="Bluetooth Printer" class="input"></Label>
+                                            </StackLayout>
+                                        </StackLayout>
+                                        <GridLayout *ngIf="!isHostBagtag" width="700" rows="*" columns="470,190,30" orientation="horizontal" height="50" class="m-t-10 m-r-10"
+                                            style="background-color:#FFF; border-radius: 4" (tap)="getBluetoothPrinterDetails()">
+                                            <Label col="0" text="Bluetooth Printer" class="m-l-10 font-medium text-black"></Label>
+                                            <Label automationText="settings_bltbag"col="1" text="{{bltPrinter}}" style="text-align: right" class="font-medium" (tap)="getBluetoothPrinterDetails()"></Label>
+                                            <Label automationText="settings_bltbagicon"col="2" text="&#xE5CC;" class="material-icon p-r-10 text-default font-medium" (tap)="getBluetoothPrinterDetails()"></Label>
+                                        </GridLayout>
+                                        <GridLayout *ngIf="isHostBagtag" width="700" columns="150,*,40" orientation="horizontal" height="50" class="m-t-10 m-r-10"
+                                            style="background-color:#FFF;border-radius: 4">
+                                            <Label col="0" text="Office Name:" class="m-l-10 font-medium text-black"></Label>
+                                            <TextField automationText="settings_ofcnamebag"col="1" dock="left" class="input " hint="Enter Office Name" [(ngModel)]="hostBagtagOffice" returnKeyPress="done"
+                                                (returnPress)="SearchOffice(hostBagtagOffice,true)"></TextField>
+                                            <label automationText="settings_ofcsearchbagicon" col="2" text="&#xe915;" class="label copa-icon font-big text-blue" (tap)="SearchOffice(hostBagtagOffice,true)"></label>
+                                        </GridLayout>
+                                        <GridLayout *ngIf="isHostBagtag" width="700" columns="150,*,70" orientation="horizontal" height="50" class="m-t-10 m-r-10"
+                                            style="background-color:#FFF;border-radius: 4">
+                                            <Label col="0" text="Workstation Name:" class="m-l-10 font-medium text-black"></Label>
+                                            <TextField automationText="settings_workstationbag"col="1" dock="left" class="input " hint="Enter Workstation Name" [(ngModel)]="hostBagtagWS" ></TextField>
+                                            <!-- <label col="2" text="&#xe915;" class="label copa-icon font-big text-blue" (tap)="SearchPrinter(hostBagtagWS,true)"></label>                                             -->
+                                        </GridLayout>
+                                        <GridLayout *ngIf="isHostBagtag" width="700" rows="*" columns="470,200,30" orientation="horizontal" height="50" class="m-t-10 m-r-10"
+                                            style="background-color:#FFF; border-radius: 4">
+                                            <Label col="0" text="Bagtag Printer" class="m-l-10 font-medium text-black"></Label>
+                                            <Label col="1" text="{{BagtagDeviceName}}" textwrap="true" class="font-medium text-right"></Label>
+                                            <!-- <Label col="2" text="&#xE5CC;" dock="right" class="material-icon p-r-10  text-default font-l"></Label> -->
+                                        </GridLayout>
+                                    </StackLayout>
+                                    <!-- <StackLayout class="m-t-30">
+                                        <Label text="Host Printer Setting" textWrap="true" class=" m-l-30 font-bold"></Label>
+                                        <GridLayout width="700" columns="150,*,40" orientation="horizontal" height="50" class="m-t-10 m-r-10" style="background-color:#FFF;border-radius: 4">
+                                            <Label col="0" text="Office Name:" class="m-l-10 font-medium text-black"></Label>
+                                            <TextField col="1" dock="left" class="input " hint="Enter Office Name" [(ngModel)]="OfficeName" returnKeyPress="done" (returnPress)="SearchOffice(OfficeName)"></TextField>
+                                            <label col="2" text="&#xe915;" class="label copa-icon font-big " (tap)="SearchOffice(OfficeName)"></label>
+                                        </GridLayout>
+                                    </StackLayout>
+                                    <StackLayout class="m-t-30">
+                                        <Label text="Host Printer Setting" textWrap="true" class=" m-l-30 font-bold"></Label>
+                                        <GridLayout width="700" columns="150,*,70" orientation="horizontal" height="50" class="m-t-10 m-r-10" style="background-color:#FFF;border-radius: 4">
+                                            <Label col="0" text="Workstation Name:" class="m-l-10 font-medium text-black"></Label>
+                                            <TextField col="1" dock="left" class="input " hint="Enter Workstation Name" [(ngModel)]="WorkstationName" [isEnabled]="false"></TextField>
+                                        </GridLayout>
+                                    </StackLayout>
+                                    <StackLayout class="m-t-30">
+                                        <Label text="Boarding Pass Printer" textWrap="true" class="m-l-30 p-r-5   font-bold"></Label>
+                                        <GridLayout width="700" columns="470,200,30" orientation="horizontal" height="50" class="m-t-10 m-r-10" style="background-color:#FFF; border-radius: 4"
+                                            (tap)="onChangePrinter()">
+                                            <Label col="0" text="Boarding Pass Printer" class="m-l-10 font-medium text-black"></Label>
+                                            <Label col="1" text="{{BoardingPassDeviceName}}" textWrap="true" class="font-medium text-right"></Label>
+                                            <Label col="2" text="&#xE5CC;" class="material-icon p-r-10 text-default font-l"></Label>
+                                        </GridLayout>
+                                    </StackLayout>
+                                    <StackLayout class="m-t-30">
+                                        <Label text="Bagtag Printer" textWrap="true" class="m-l-30 p-r-5   font-bold"></Label>
+                                        <GridLayout width="700" rows="*" columns="470,200,30" orientation="horizontal" height="50" class="m-t-10 m-r-10" style="background-color:#FFF; border-radius: 4"
+                                            (tap)="onChangePrinter2()">
+                                            <Label col="0" text="Bagtag Printer" class="m-l-10 font-medium text-black"></Label>
+                                            <Label col="1" text="{{BagtagDeviceName}}" textwrap="true" class="font-medium text-right"></Label>
+                                            <Label col="2" text="&#xE5CC;" dock="right" class="material-icon p-r-10  text-default font-l"></Label>
+                                        </GridLayout>
+                                    </StackLayout> -->
+
+                                </StackLayout>
+                            </ScrollView>
+                        </StackLayout>
+                        <StackLayout #default>
+                            <div *ngIf="ThirdBlock">
+                                 <StackLayout class="m-t-30 hrz-center">
+                                    <Label text="COPA AIRPORT TABLET" textWrap="true" class="m-l-30 p-r-5 font-big text-blue font-bold"></Label>
+                                </StackLayout>
+                                <StackLayout class="m-t-30 hrz-center" orientation="horizontal" >
+                                    <Label text="Version :" textWrap="true" class="m-l-30 p-r-5 font-bold text-black font-l"></Label>
+                                    <Label text="0.3.27" textWrap="true" class="m-l-10 p-r-5 font-bold text-black font-l"></Label>
+                                    <!-- <GridLayout width="700" rows="*" columns="610,50,30" orientation="horizontal" height="50" class="m-t-10 m-r-10" style="background-color:#FFF; border-radius: 4">
+                                        <Label col="0" text="Departure Airport" class="m-l-10 font-medium text-black"></Label>
+                                        <Label col="1" text="{{SearchFields.Location}}" class="font-medium"></Label>
+                                        <Label col="2" text="&#xE5CC;" class="material-icon p-r-10 text-default font-medium"></Label>
+                                    </GridLayout> -->
+                                </StackLayout>
+                                <StackLayout class="m-t-30 hrz-center" orientation="horizontal" >
+                                        <Label text="DATE :" textWrap="true" class="m-l-30 p-r-5 font-bold text-black font-l"></Label>
+                                        <Label text="13/02/2020" textWrap="true" class="m-l-10 p-r-5 font-bold text-black font-l"></Label>
+                                        <!-- <GridLayout width="700" rows="*" columns="610,50,30" orientation="horizontal" height="50" class="m-t-10 m-r-10" style="background-color:#FFF; border-radius: 4">
+                                            <Label col="0" text="Departure Airport" class="m-l-10 font-medium text-black"></Label>
+                                            <Label col="1" text="{{SearchFields.Location}}" class="font-medium"></Label>
+                                            <Label col="2" text="&#xE5CC;" class="material-icon p-r-10 text-default font-medium"></Label>
+                                        </GridLayout> -->
+                                    </StackLayout>
+                               
+                            </div>
+                        </StackLayout>
+                        <StackLayout #mypreference>
+                            <div *ngIf="FourthBlock">
+                                <StackLayout class="m-t-30">
+                                    <Label text="Time Format" textWrap="true" class="m-l-30 p-r-5 text-black font-bold"></Label>
+                                    <GridLayout width="700" rows="*" columns="620,50" orientation="horizontal" height="50" class="m-t-10 m-r-10" style="background-color:#FFF; border-radius: 4">
+                                        <Label col="0" text="24-Hour Time" class="m-l-10 text-black font-medium"></Label>
+                                        <StackLayout col="1" orientation="vertical" class="m-t-10">
+                                            <Switch checked="{{ someProperty }}"></Switch>
+                                            <Button isEnabled="{{ someProperty }}"></Button>
+                                        </StackLayout>
+                                    </GridLayout>
+                                </StackLayout>
+                                <StackLayout class="m-t-30">
+                                    <Label text="Date Format" textWrap="true" class="m-l-30 p-r-5 text-black font-bold"></Label>
+                                    <GridLayout width="700" rows="*" columns="510,160,30" orientation="horizontal" height="50" class="m-t-10 m-r-10" style="background-color:#FFF; border-radius: 4">
+                                        <Label col="0" text="{{Date}}" class="m-l-10 font-medium text-black"></Label>
+                                        <Label automationText="settings_changedate"col="1" text="{{DateFormat}}" class="font-medium text-right" (tap)="changeDate()"></Label>
+                                        <Label automationText="settings_changedateicon"col="2" text="&#xE5CC;" class="material-icon p-r-10 text-default font-medium" (tap)="changeDate()"></Label>
+                                    </GridLayout>
+                                </StackLayout>
+                            </div>
+                        </StackLayout>
+                        <StackLayout #plugin>
+                            <div *ngIf="FifthBlock">
+                                <StackLayout class="m-t-30">
+                                    <Label text="Plugins" textWrap="true" class="m-l-30 p-r-5   font-bold"></Label>
+                                    <GridLayout width="700" rows="*" columns="400,260,30" orientation="horizontal" height="50" class="m-t-10 m-r-10" style="background-color:#FFF; border-radius: 4">
+                                        <Label col="0" text="BlinkID License Key" class="m-l-10 font-medium text-black"></Label>
+                                        <Label col="1" text="" class="font-medium"></Label>
+                                        <Label col="2" text="&#xE5CC;" class="material-icon p-r-10 text-default font-medium"></Label>
+                                    </GridLayout>
+                                </StackLayout>
+                            </div>
+                        </StackLayout>
+
+                        <StackLayout #selectboardingprinter>
+                            <div *ngIf="SelectPrinter1">
+
+                                <StackLayout orientation="vertical" class="m-t-30" width="90%" style="border-radius: 4">
+                                    <DockLayout class="table">
+                                        <GridLayout class="table-header" dock="top" rows="35" columns="30,200,90,140,90,70,60">
+                                            <StackLayout class="th" col="0">
+                                                <Label text=""></Label>
+                                            </StackLayout>
+                                            <StackLayout class="th" style=" vertical-align:middle;" col="1">
+                                                <Label text="Device Name" textWrap="true"></Label>
+                                            </StackLayout>
+                                            <StackLayout class="th" style=" vertical-align:middle;" col="2">
+                                                <Label text="Status" textWrap="true"></Label>
+                                            </StackLayout>
+                                            <StackLayout class="th" style=" vertical-align:middle;" col="3">
+                                                <Label text="Queued Count" textWrap="true"></Label>
+                                            </StackLayout>
+                                            <StackLayout class="th" style=" vertical-align:middle;" col="4">
+                                                <Label text="Port" textWrap="true"></Label>
+                                            </StackLayout>
+                                            <StackLayout class="th" style=" vertical-align:middle;" col="5">
+                                                <Label text="Pectab" textWrap="true"></Label>
+                                            </StackLayout>
+                                            <StackLayout class="th" col="6">
+                                                <Label text=""></Label>
+                                            </StackLayout>
+                                        </GridLayout>
+                                        <ScrollView dock="bottom" class="table-body">
+                                            <StackLayout>
+                                                <StackLayout orientation="vertical" *ngFor="let item of newDeviceList; let i=index">
+                                                    <GridLayout class="tr" backgroundColor="{{i%2 == 0?'#F5F5F5':'#FFF'}}" rows="auto" columns="30,200,90,140,90,70,90" (tap)="toggleChecked(item)">
+                                                        <WrapLayout class="th" col="0">
+                                                            <Label text=""></Label>
+                                                        </WrapLayout>
+                                                        <WrapLayout class="td" col="1">
+                                                            <Label automationText="{{item.DeviceName}}"text="{{item.DeviceName}}" textWrap="true"></Label>
+                                                        </WrapLayout>
+                                                        <WrapLayout class="td" col="2">
+                                                            <Label text="{{item.Status == null ?' ':item.Status}}" textWrap="true"></Label>
+                                                        </WrapLayout>
+                                                        <WrapLayout col="3" class="hrz-center vrt-middle">
+                                                            <Label text="{{item.QueueCount == null ?' ':item.QueueCount}}" class="text-black" textWrap="true"></Label>
+                                                        </WrapLayout>
+                                                        <WrapLayout class="td" col="4">
+                                                            <Label text="{{item.Port == null ?' ':item.Port}}" textWrap="true"></Label>
+                                                        </WrapLayout>
+                                                        <WrapLayout col="5" class="hrz-center vrt-middle">
+                                                            <Label text="{{item.Pectab == null ?' ': item.Pectab}}" class="text-black" textWrap="true"></Label>
+                                                        </WrapLayout>
+                                                        <WrapLayout class="hrz-center vrt-middle" col="6">
+                                                            <Label text="{{item.IsSelectedDevice?'&#xE876;':''}}" class="material-icon font-l text-black"></Label>
+                                                        </WrapLayout>
+                                                    </GridLayout>
+                                                </StackLayout>
+                                            </StackLayout>
+                                        </ScrollView>
+
+                                    </DockLayout>
+                                </StackLayout>
+
+                            </div>
+                        </StackLayout>
+
+                        <StackLayout #selectbagprinter>
+                            <div *ngIf="SelectPrinter2">
+
+                                <StackLayout orientation="vertical" class="m-t-30" width="90%" style="border-radius: 4">
+                                    <DockLayout class="table">
+                                        <GridLayout class="table-header" dock="top" rows="35" columns="30,200,90,140,90,70,60">
+                                            <StackLayout class="th" col="0">
+                                                <Label text=""></Label>
+                                            </StackLayout>
+                                            <StackLayout class="th" style=" vertical-align:middle;" col="1">
+                                                <Label text="Device Name" textWrap="true"></Label>
+                                            </StackLayout>
+                                            <StackLayout class="th" style=" vertical-align:middle;" col="2">
+                                                <Label text="Status" textWrap="true"></Label>
+                                            </StackLayout>
+                                            <StackLayout class="th" style=" vertical-align:middle;" col="3">
+                                                <Label text="Queued Count" textWrap="true"></Label>
+                                            </StackLayout>
+                                            <StackLayout class="th" style=" vertical-align:middle;" col="4">
+                                                <Label text="Port" textWrap="true"></Label>
+                                            </StackLayout>
+                                            <StackLayout class="th" style=" vertical-align:middle;" col="5">
+                                                <Label text="Pectab" textWrap="true"></Label>
+                                            </StackLayout>
+                                            <StackLayout class="th" col="6">
+                                                <Label text=""></Label>
+                                            </StackLayout>
+                                        </GridLayout>
+                                        <ScrollView dock="bottom" class="table-body">
+                                            <StackLayout>
+                                                <StackLayout orientation="vertical" *ngFor="let item of newDeviceList; let i=index">
+                                                    <GridLayout class="tr" backgroundColor="{{i%2 == 0?'#F5F5F5':'#FFF'}}" rows="auto" columns="30,200,90,140,90,70,90" (tap)="togglebagtagChecked(item)">
+                                                        <WrapLayout class="th" col="0">
+                                                            <Label text=""></Label>
+                                                        </WrapLayout>
+                                                        <WrapLayout class="td" col="1">
+                                                            <Label text="{{item.DeviceName}}" textWrap="true"></Label>
+                                                        </WrapLayout>
+                                                        <WrapLayout class="td" col="2">
+                                                            <Label text="{{item.Status == null ?' ':item.Status}}" textWrap="true"></Label>
+                                                        </WrapLayout>
+                                                        <WrapLayout col="3" class="hrz-center vrt-middle">
+                                                            <Label text="{{item.QueueCount == null ?' ':item.QueueCount}}" class="text-black" textWrap="true"></Label>
+                                                        </WrapLayout>
+                                                        <WrapLayout class="td" col="4">
+                                                            <Label text="{{item.Port == null ?' ':item.Port}}" textWrap="true"></Label>
+                                                        </WrapLayout>
+                                                        <WrapLayout col="5" class="hrz-center vrt-middle">
+                                                            <Label text="{{item.Pectab == null ?' ': item.Pectab}}" class="text-black" textWrap="true"></Label>
+                                                        </WrapLayout>
+                                                        <WrapLayout class="hrz-center vrt-middle" col="6">
+                                                            <Label text="{{item.IsSelectedDevice?'&#xE876;':''}}" class="material-icon font-l text-black"></Label>
+                                                        </WrapLayout>
+                                                    </GridLayout>
+                                                </StackLayout>
+                                            </StackLayout>
+                                        </ScrollView>
+
+                                    </DockLayout>
+                                </StackLayout>
+
+                            </div>
+                        </StackLayout>
+
+
+                    </StackLayout>
+                </GridLayout>
+
+            </StackLayout>
+        </StackLayout>
+
+    </DockLayout>
+</GridLayout>

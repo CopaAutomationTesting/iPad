@@ -1,0 +1,17 @@
+.hdr{
+    background-color: #EFEFEF;
+    text-align: center;
+    font-weight: bold;
+    vertical-align: middle;
+    height:40;
+}
+
+.brdcrmb{
+    text-align: center;
+    font-weight: bold;
+    vertical-align: middle;
+    height:60;
+    border-width:2 0 2 0;
+    border-color: #999; 
+
+}

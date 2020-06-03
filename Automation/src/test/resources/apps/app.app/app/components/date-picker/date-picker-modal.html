@@ -1,0 +1,6 @@
+<DockLayout class="modal-view-style" stretchLastChild="true" height="100%" >
+    <Label dock="top" [text]='theday' class="day-disp" textWrap="false" horizontalAlignment="center" [visibility]="datePickerContext.displayHeader? 'visible':'collapsed'"></Label>
+    <Button dock="bottom" class="btn btn-primary btn-active m-b-20" style="margin-top: 20" text="Cancel" (tap)="cancel()"></Button>            
+    <Button dock="bottom" class="btn btn-primary btn-active" text="Submit" (tap)="submit()" [isEnabled]="isSelected"  ></Button>
+    <DatePicker id="datePicker" (dateChange)="onDateChange($event)"></DatePicker>
+</DockLayout>

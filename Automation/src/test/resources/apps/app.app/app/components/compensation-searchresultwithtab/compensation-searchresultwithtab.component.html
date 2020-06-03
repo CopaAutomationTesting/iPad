@@ -1,0 +1,275 @@
+<ActionBar title="Passenger List" icon="" class="action-bar">
+    <NavigationButton visibility="collapsed"></NavigationButton>
+    <StackLayout orientation="horizontal" ios.position="left">
+        <!-- <ActionItem ios.position="left" style="margin:0%"icon="res://back_icon/arrow_small.png" (tap)="navigateToCompensation()"></ActionItem> -->
+        <!-- <Image src="res://back_icon/arrow_small.png" (tap)="navigateToCompensation()"></Image> -->
+        <Label text="&#xE5CB;" class="material-icon" style="font-size: 30%" (tap)="navigateToCompensation()"></Label>
+        <Label text="Compensation" (tap)="navigateToCompensation()"></Label>
+    </StackLayout>
+    <!-- <ActionItem ios.position="left" style="margin:0%"icon="res://back_icon/arrow_small.png" (tap)="navigateToCompensation()"></ActionItem>
+    <ActionItem ios.position="left" style="margin-left:-30%" text="Compensation" (tap)="navigateToCompensation()"></ActionItem>     -->
+    <ActionItem ios.position="right" text="{{userdetails}}"></ActionItem>
+    <ActionItem ios.position="right" icon="res://logout_icons/logoff_edit" (tap)="_services.LogOut()"></ActionItem>
+</ActionBar>
+<GridLayout #pagecontainer>
+    <DockLayout stretchLastChild="true" class="page">
+        <StackLayout dock="bottom" class="page-footer">
+            <StackLayout class="tabbed-menu">
+                <StackLayout class="tabbed-menu-item menu-divider" (tap)="navigateToSearch()">
+                    <Label text="&#xe907;" color="{{isCheckinDisabled  ? '#2260A4' : 'lightgray'}}" class="menu-item-icon copa-icon"></Label>
+                    <Label text="Check In" class="menu-item-text"></Label>
+                </StackLayout>
+                <StackLayout class="tabbed-menu-item menu-divider"  (tap)="navigateToDepartures()">
+                    <Label text="&#xE904;" color="{{isGateDisabled  ? '#2260A4' : 'lightgray'}}" class="menu-item-icon copa-icon"></Label>
+                    <Label text="Departures" class="menu-item-text"></Label>
+                </StackLayout>    
+                <StackLayout class="tabbed-menu-item active menu-divider" (tap)="navigateToCompensation()">
+                    <Label text="&#xe90e;" class="menu-item-icon copa-icon"></Label>
+                    <Label text="Compensation" class="menu-item-text"></Label>
+                </StackLayout>
+                <StackLayout class="tabbed-menu-item menu-divider">
+                    <Label text="&#xe90f;" class="menu-item-icon copa-icon" style="color:lightgray"></Label>
+                    <Label text="Notification" class="menu-item-text"></Label>
+                </StackLayout>
+                <StackLayout class="tabbed-menu-item" (tap)="navigateToSetting()">
+                    <Label text="&#xe917;" class="menu-item-icon copa-icon"></Label>
+                    <Label text="Settings" class="menu-item-text"></Label>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+
+        <StackLayout dock="top" class="headerinfo">
+            <GridLayout columns="auto, auto,*,auto" class="flight-info" [visibility]="FlightInfoNotSet ? 'collapse' : 'visible'">
+                <StackLayout col="0" class="flight-details bdr-right-big">
+                    <StackLayout orientation="horizontal" class="details">
+                        <Label text="{{FlightHeaderInfo.FlightNumber}}" class="p-r-10 text-blue font-medium font-bold  bdr-right"></Label>
+                        <Label text="{{FlightHeaderInfo.DepartureDate}}" class="p-l-10 font-small text-default "></Label>
+                    </StackLayout>
+                    <Label text="{{FlightHeaderInfo.Status}}" class="details font-medium text-blue"></Label>
+                    <Label text="{{PassengerType}}" class="details font-medium"></Label>
+                </StackLayout>
+                <StackLayout col="1" class="flight-details bdr-right-big">
+                    <StackLayout orientation="horizontal" class="details p-l-10">
+                        <Label class="p-r-10 text-default font-medium">
+                            <FormattedString>
+                                <Span text="{{FlightHeaderInfo.DepartureAirport}}" fontAttributes="Bold"></Span>
+                            </FormattedString>
+                        </Label>
+                        <Label text="&#xE5CC;" class="material-icon p-r-10 text-default font-medium"></Label>
+                        <Label class="p-r-10 text-default font-medium">
+                            <FormattedString>
+                                <Span text="{{FlightHeaderInfo.DestinationAirport}}" fontAttributes="Bold"></Span>
+                            </FormattedString>
+                        </Label>
+                        <Label *ngIf="FlightHeaderInfo.multiLegFlight" text="&#xE5CC;" class="material-icon p-r-10 text-default font-medium"   ></Label>
+                        <Label *ngIf="FlightHeaderInfo.multiLegFlight" class="p-r-10 text-default font-medium" >
+                            <FormattedString>
+                                <Span text="{{FlightHeaderInfo.finalDestination}}" fontAttributes="Bold"></Span>
+                            </FormattedString>
+                        </Label>
+                    </StackLayout>
+                    <StackLayout orientation="horizontal" class="details p-l-10">
+                        <StackLayout orientation="horizontal">
+                            <Label text="STD" class="p-r-5 font-small text-default font-bold"></Label>
+                            <Label text="{{FlightHeaderInfo.STD}}" class="p-r-10 font-small text-black font-bold"></Label>
+                        </StackLayout>
+                        <StackLayout orientation="horizontal">
+                            <Label text="ETD" class="p-r-5 font-small text-default font-bold"></Label>
+                            <Label text="{{FlightHeaderInfo.ETD}}" class="p-r-10 font-small text-black font-bold"></Label>
+                        </StackLayout>
+                        <StackLayout orientation="horizontal">
+                            <Label text="ETA" class="p-r-5 font-small text-default font-bold"></Label>
+                            <Label text="{{FlightHeaderInfo.STA}}" class="p-r-10 font-small text-black font-bold"></Label>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+
+                <StackLayout col="3" orientation="horizontal" class="vrt-middle">
+                    <StackLayout orientation="horizontal" class="m-l-10" [visibility]="CompensationIssuedList ? 'visible' : 'collapsed'">
+                        <StackLayout>
+                            <!-- <Button class="btn btn-primary" text="Print"  (tap)="naviagatetoCompensationPrintListwithtab()"></Button> -->
+                        </StackLayout>
+                        <StackLayout class="m-l-10">
+                            <!-- <Button class="btn btn-primary" text="Email" (tap)="naviagatetoCompensationPrintListwithtab()"></Button> -->
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout orientation="horizontal" [visibility]="CompensationNotIssuedList ? 'visible' : 'collapsed'">
+                        <StackLayout>
+                            <Button automationText="comprestab_save" class="btn btn-primary" text="Save" (tap)="save()" [isEnabled]="saveEnabled()"></Button>
+                        </StackLayout>
+                        <StackLayout class="m-l-10">
+                            <Button automationText="comprestab_continue"class="btn btn-primary" text="Continue" (tap)="continue()" [isEnabled]="continueEnabled()"></Button>
+                        </StackLayout>
+                        <StackLayout class="m-l-10">
+                            <Button automationText="comprestab_delete" class="btn btn-primary" text="Delete" (tap)="delete()" [isEnabled]="continueEnabled()"></Button>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+            </GridLayout>
+            <StackLayout orientation="horizontal" [visibility]="FlightInfoNotSet ? 'visible' : 'collapse'">
+                <StackLayout orientation="vertical" class="m-t-10">
+                    <Label text="{{OrderId}}" class="text-blue font-big m-l-5"></Label>
+                    <Label text="Compensation based on Order ID" class="font-medium m-l-5"></Label>
+                </StackLayout>
+                <StackLayout style="margin-left:600" orientation="horizontal" class="m-t-15">
+                    <StackLayout>
+                        <Button automationText="comprestab_save"class="btn btn-primary" text="Save"></Button>
+                    </StackLayout>
+                    <StackLayout class="m-l-5">
+                        <Button automationText="comprestab_continue"class="btn btn-primary" text="Continue" (tap)="Continue()"></Button>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+
+        <StackLayout dock="top" height="60" class="stack" orientation="horizontal">
+            <!-- <DockLayout width="240" class="input-field input-field-regular hrz-left m-l-10" stretchLastChild="true" (tap)="displayDialogForFliterPassengerType()">
+                <Label dock="right" text="&#xe901;" class="new-copa-icon text-blue" style="font-size:7"></Label>
+                <Label dock="left" class="input" [text]="PassengerFliterCriteria"></Label>
+            </DockLayout> -->
+            <DockLayout width="90" class="input-field input-field-regular hrz-left m-l-10" stretchLastChild="true" (tap)="displayProductActionDialogForSmartFilter()">
+                <Label automationText="comprestab_criteria"dock="right" text="&#xe901;" class="new-copa-icon text-blue" style="font-size:7"></Label>
+                <Label dock="left" class="input" [text]="SearchCriteria"></Label>
+            </DockLayout>
+            <DockLayout width="280" height="40" class="input-field input-field-regular m-l-10" style="background-color:white" stretchLastChild="true">
+                <Label automationText="comprestab_fieldicon"dock="right" class="label copa-icon m-5 " text="&#xe915;" color="{{isValid?'blue':'gray'}}" (tap)="filter(searchField)"></Label>
+                <TextField automationText="comprestab_field" dock="left" hint="Enter" class="input m-5" [(ngModel)]="searchField" (ngModelChange)="filter(searchField)" returnKeyPress="done"
+                    (returnPress)="filter(searchField)"></TextField>
+            </DockLayout>
+            <DockLayout width="120" class="input-field input-field-regular m-l-10" style="background-color:white" stretchLastChild="true">
+                <!-- <StackLayout orientation="horizontal">
+                    <Label text="(" class=" font-medium text-blue font-bold"></Label>
+                    <Label [text]="selectedPassengerCount" class="font-medium text-blue font-bold"></Label>
+                    <Label text="/" class="font-medium text-blue  font-bold"></Label>
+                    <Label [text]="TotalPassengerCount" class="font-medium text-blue font-bold"></Label>
+                    <Label text=")" class=" font-medium text-blue font-bold"></Label>
+                </StackLayout> -->
+            </DockLayout>
+            <DockLayout style="margin-left:120" [visibility]="CompensationNotIssuedList ? 'visible' : 'collapsed'">
+                <Label automationText="comprestab_reason" text="Compensation Reason" class="label"></Label>
+                <Label automationText="comprestab_reason"[text]="ComensationReason" textWrap="true" class="label font-bold text-blue m-5" (tap)="displayProductActionDialog()"></Label>
+            </DockLayout>
+        </StackLayout>
+
+        <!-- <StackLayout dock="bottom" [visibility]="CompensationIssuedList ? 'visible' : 'collapsed'">
+            <GridLayout orientation="horizontal" class="btmhdr" columns="540,80,80,80,80" height="10%">
+                <StackLayout col="0" class="vrt-middle" style="margin-left:60">
+                    <Label text="Total"></Label>
+                </StackLayout>
+                <StackLayout col="1" class="hrz-center vrt-middle">
+                    <Label text="0"></Label>
+                </StackLayout>
+                <StackLayout col="2" class="hrz-center vrt-middle">
+                    <Label text="2"></Label>
+                </StackLayout>
+                <StackLayout col="3" class="hrz-center vrt-middle">
+                    <Label text="6"></Label>
+                </StackLayout>
+                <StackLayout col="4" class="hrz-center vrt-middle">
+                    <Label text="4"></Label>
+                </StackLayout>
+            </GridLayout>
+        </StackLayout> -->
+
+        <StackLayout class="page-body">
+            <SegmentedBar #segbar [items]="apisdetails" width="55%" selectedIndex="0" style="margin-left:60" (selectedIndexChanged)="selectSegment($event)">
+            </SegmentedBar>
+            <DockLayout stretchLastChild="true" class="m-t-5" class="table m-10">
+
+                <GridLayout class="table-header" dock="top" rows="auto,auto" columns="45,*, 70,75, 80, 100, *, 160">
+                    <StackLayout [visibility]="CompensationNotIssuedList ?'visible':'collapsed'" class="th" col="0">
+                        <Label automationText="comprestab_allpax"text="{{SelectAllPax ? '&#xE834;':'&#xE835;'}}" class="material-icon checkbox" (tap)="selectingAllPax()"></Label>
+                    </StackLayout>
+                    <StackLayout class="th" col="1" (tap)="sortBasedOnPaxName()" orientation="horizontal">
+                        <Label automationText="comprestab_sortname"[text]="this.nameSortIndicator == -1 ? '&#xe902;' : this.nameSortIndicator ==0 ? '&#xe900;': '&#xe901;'" class="new-copa-icon font-small m-5"></Label>
+                        <Label text="Name" textWrap="true"></Label>
+                        <StackLayout orientation="horizontal" class="m-l-10">
+                            <Label text="(" class="font-bold text-black"></Label>
+                            <Label [text]="selectedPassengerCount" class="font-bold text-black"></Label>
+                            <Label text="/" class="font-bold text-black"></Label>
+                            <Label [text]="TotalPassengerCount" class="font-bold text-black"></Label>
+                            <Label text=")" class="font-bold text-black"></Label>
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout class="th" col="2" (tap)="sortBasedOnSSR()" orientation="horizontal">
+                        <Label automationText="comprestab_sortssr"[text]="this.ssrSortIndicator == -1 ? '&#xe902;' : this.ssrSortIndicator ==0 ? '&#xe900;': '&#xe901;'" class="new-copa-icon font-small "></Label>
+                        <Label text="SSR" textWrap="true"></Label>
+                    </StackLayout>
+                    <StackLayout class="th" col="3" (tap)="sortBasedOnTier()" orientation="horizontal">
+                        <Label automationText="comprestab_sorttier"[text]="this.tierSortIndicator == -1 ? '&#xe902;' : this.tierSortIndicator ==0 ? '&#xe900;': '&#xe901;'" class="new-copa-icon font-small "></Label>
+                        <Label text="Tier" textWrap="true"></Label>
+                    </StackLayout>
+                    <StackLayout class="th" col="4" (tap)="sortBasedOnClass()" orientation="horizontal">
+                        <Label automationText="comprestab_sortclass"[text]="this.classSortIndicator == -1 ? '&#xe902;' : this.classSortIndicator ==0 ? '&#xe900;': '&#xe901;'" class="new-copa-icon font-small "></Label>
+                        <Label text="Cabin" textWrap="true"></Label>
+                    </StackLayout>
+                    <StackLayout class="th" col="5" (tap)="sortBasedOnOrderId()" orientation="horizontal">
+                        <Label automationText="comprestab_sortorder"[text]="this.orderIdSortIndicator == -1 ? '&#xe902;' : this.orderIdSortIndicator ==0 ? '&#xe900;': '&#xe901;'" class="new-copa-icon font-small "></Label>
+                        <Label text="Order ID" textWrap="true"></Label>
+                    </StackLayout>
+                    <StackLayout class="th" col="6">
+                        <Label text="Compensation Reason"></Label>
+                    </StackLayout>
+                    <StackLayout class="th" col="7">
+                        <Label text="Additional Deatils"></Label>
+                    </StackLayout>
+                </GridLayout>
+
+                <!-- <ListView [items]="CompPaxList" separatorColor="transparent" dock="bottom" class="table-body">
+                    <ng-template let-item="item" let-odd="odd" let-even="even" let-i="index"> -->
+                <ScrollView>
+                    <StackLayout separatorColor="transparent" dock="bottom">
+                        <StackLayout *ngFor="let item of CompPaxList; let i = index" class="table-body">
+                            <GridLayout class="tablerow" backgroundColor="{{item.IsSelected?'#F6F2DC':i%2 == 0?'#F5F5F5':'#FFF'}}" columns="45,*, 70,75, 80, 100, *, 160"
+                                (tap)="toggleChecked(item)">
+                                <WrapLayout class="tabledata" col="0">
+
+                                    <StackLayout>
+                                        <!-- <Label text="&#xe907;" class="copa-icon input-icon font-big" color="{{item.CheckedInIndicator == 'Checkedin'? '#00A973' : '#c1c1c1'}}"></Label> -->
+                                    </StackLayout>
+                                    <StackLayout  visibility="{{item.EticketIndicator ?'visible':'collapse'}}">
+                                        <label text="&#xe90a;" class="copa-icon font-small text-warning" style="margin: 2;"></label>
+                                        <!-- <label text="&#xe93c;" class="copa-icon font-small"></label> -->
+                                    </StackLayout>
+
+                                </WrapLayout>
+                                <WrapLayout orientation="vertical" class="tabledata" col="1">
+
+                                    <StackLayout>
+                                        <Label automationText="comprestab_toggle{{i}}"text="{{item.FullName}}" textWrap="true" class="hrz-center"></Label>
+                                        <Label text="{{item.PaxType == 'ADT' ? '' : item.PaxType }}" class="font-small text-blue"></Label>
+                                        <Label text="{{item.PaxSplChar}}" class="font-small text-blue"></Label>
+                                        <Label text="{{item.PaxStatus}}" class="font-small text-blue"></Label>
+                                    </StackLayout>
+
+                                </WrapLayout>
+                                <WrapLayout class="tabledata hrz-center" col="2" (tap)="displaySSRs(item)">
+                                        <Label automationText="comprestab_displayssr"text="{{item.SSRsCount}}"></Label>
+                                    </WrapLayout>
+                                <WrapLayout class="tabledata" col="3">
+                                    <Label text="{{item.Tier}}" class="hrz-center"></Label>
+                                </WrapLayout>
+                                <WrapLayout class="tabledata" col="4">
+                                    <Label text="{{item.Cabin}}" class="hrz-center"></Label>
+                                </WrapLayout>
+
+                                <WrapLayout class="tabledata" style="margin-left:10" col="5">
+                                    <Label text="{{item.OrderId}}" class="hrz-center"></Label>
+                                </WrapLayout>
+                                <WrapLayout class="tabledata" col="6" style="margin-left:10">
+                                    <Label [text]="item.CompensationReason" textWrap="true" class="hrz-center"></Label>
+                                </WrapLayout>
+                                <WrapLayout class="tabledata" col="7">
+                                    <Label automationText="comprestab_navdetails"text="{{item.AdditionalDetails}}" (tap)="navigatetoadditionaldetails(item)" class="hrz-center m-l-10 text-blue font-bold"></Label>
+                                </WrapLayout>
+                            </GridLayout>
+                            <!-- </ng-template>
+                            </ListView> -->
+                        </StackLayout>
+                    </StackLayout>
+                </ScrollView>
+
+            </DockLayout>
+        </StackLayout>
+    </DockLayout>
+</GridLayout>

@@ -1,0 +1,13 @@
+.card-menu-item-container > .card-menu-icon{
+    font-size: 64;
+    /*margin-left: -5;
+    margin-top:-5*/
+}
+
+.card-menu-content > .card-menu-title{
+    font-size: 24;
+}
+
+.card-menu-content > .card-menu-nav{
+    font-size: 32;
+}

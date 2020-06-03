@@ -1,0 +1,260 @@
+<ActionBar title="Passenger List" icon="" class="action-bar">
+
+    <!--<NavigationButton visibility="collapsed"></NavigationButton>-->
+    <!--<StackLayout width="100%" orientation="horizontal">
+        <Image horizontalAlignment="right" class="company-logo" src="~/images/copa_logo.png"></Image>
+    </StackLayout>-->
+    <ActionItem ios.position="right" text="{{userdetails}}">
+    </ActionItem>
+    <ActionItem ios.position="right" icon="res://logout_icons/logoff_edit" (tap)="_service.LogOut()"> </ActionItem>
+</ActionBar>
+<GridLayout #pagecontainer>
+    <DockLayout stretchLastChild="true" class="page">
+        <StackLayout dock="top" class="page-header ">
+            <GridLayout columns="auto, auto,*,auto" class="flight-info">
+                <StackLayout col="0" class="flight-details bdr-right-big">
+                    <StackLayout orientation="horizontal" class="details">
+                        <Label [text]="DepartureArray.FlightNumber" class="p-r-10 text-blue font-medium font-bold  bdr-right"></Label>
+                        <Label [text]="flightDate" class="p-l-10 font-small text-default "></Label>
+                    </StackLayout>
+                    <Label [text]="status" class="details font-medium text-blue"></Label>
+                </StackLayout>
+                <StackLayout col="1" class="flight-details bdr-right-big">
+                    <StackLayout orientation="horizontal" class="details p-l-10">
+                        <Label class="p-r-10 text-default font-medium">
+                            <FormattedString>
+                                <Span text="{{OriginCode}}" fontAttributes="Bold"></Span>
+                                <!--<Span text=", "></Span>
+                            <Span text="Panama City"></Span>-->
+                            </FormattedString>
+                        </Label>
+                        <Label text="&#xE5CC;" class="material-icon p-r-10 text-default font-medium"></Label>
+                        <Label class="p-r-10 text-default font-medium">
+                            <FormattedString>
+                                <Span text="{{DestinationCode}}" fontAttributes="Bold"></Span>
+                                <!--<Span text=", "></Span>
+                            <Span text="Los Angels"></Span>-->
+                            </FormattedString>
+                        </Label>
+                        <Label text="&#xE5CC;" class="material-icon p-r-10 text-default font-medium" [visibility]="isMulitLegFlight ? 'visible' : 'collapsed'"></Label>
+                        <Label class="p-r-10 text-default font-medium" [visibility]="isMulitLegFlight ? 'visible' : 'collapsed'">
+                            <FormattedString>
+                                <Span text="{{SecondLegDestination}}" fontAttributes="Bold"></Span>
+                                <!--<Span text=", "></Span>
+                        <Span text="Los Angels"></Span>-->
+                            </FormattedString>
+                        </Label>
+                        <!--<Label text="&#xE5CC;" class="material-icon p-r-10 text-default font-medium"  ></Label>
+                    <Label class="p-r-10 text-default font-medium">
+                        <FormattedString>
+                            <Span text="NYC" fontAttributes="Bold"></Span>
+                            <Span text=", "></Span>
+                            <Span text="New York"></Span>
+                        </FormattedString>
+                    </Label>-->
+                    </StackLayout>
+                    <StackLayout orientation="horizontal" class="details p-l-10">
+                        <StackLayout orientation="horizontal">
+                            <Label text="STD" class="p-r-5 font-small text-default font-bold"></Label>
+                            <Label [text]="DepartureArray.STD" class="p-r-10 font-small text-black font-bold"></Label>
+                        </StackLayout>
+                        <StackLayout orientation="horizontal">
+                            <Label text="ETD" class="p-r-5 font-small text-default font-bold"></Label>
+                            <Label [text]="DepartureArray.ETD" class="p-r-10 font-small text-black font-bold"></Label>
+                        </StackLayout>
+                        <StackLayout orientation="horizontal">
+                            <Label text="ETA" class="p-r-5 font-small text-default font-bold"></Label>
+                            <Label [text]="DepartureArray.STA" class="p-r-10 font-small text-black font-bold"></Label>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+
+                <StackLayout col="3" orientation="horizontal" class="vrt-middle">
+                    <StackLayout>
+                        <Button automationText="pax_continue" class="btn btn-primary" [isEnabled]="checkedCount==0?'false':'true'" text="Continue" (tap)="gotoCheckIn()"></Button>
+                    </StackLayout>
+                </StackLayout>
+            </GridLayout>
+        </StackLayout>
+        <StackLayout dock="top" height="8%" class="stack" orientation="horizontal">
+            <GridLayout row="*" columns="*,*,*,*">
+
+                <StackLayout orientation="horizontal" col="0" class="p-r-10 text-default font-medium" class="text">
+
+                    <Label text="Booking:" style="font-weight: bold ; margin-left:35"></Label>
+                    <DockLayout class="p-r-10 text-default font-medium" class="text" *ngFor="let invent of  invent1.inven ">
+                        <Label text="{{invent.CodeLetter}}" style="font-weight: bold;margin-left: 8;"></Label>
+                        <Label text="{{invent.Booking}}" style="font-weight: bold;margin-left: 8;"></Label>
+                    </DockLayout>
+                </StackLayout>
+                <StackLayout orientation="horizontal" col="1" class="p-r-10 text-default font-medium" class="text">
+
+                    <Label text="Capacity:" style="font-weight: bold ; margin-left:35"></Label>
+                    <DockLayout class="p-r-10 text-default font-medium" class="text" *ngFor="let invent of invent1.inven ">
+                        <Label text="{{invent.CodeLetter}}" style="font-weight: bold;margin-left: 8;"></Label>
+                        <Label text="{{invent.Capacity}}" style="font-weight: bold;margin-left: 8;"></Label>
+                    </DockLayout>
+                </StackLayout>
+                <StackLayout col="2" orientation="horizontal" class="p-r-10 text-default font-medium" class="text">
+                    <Label text="Inbound:" style="font-weight: bold"></Label>
+                    <Label text="{{inbound}}" style="font-weight: bold;margin-left: 8;"></Label>
+
+                </StackLayout>
+                <StackLayout col="3" orientation="horizontal" class="p-r-10 text-default font-medium" class="text">
+                    <Label text="Outbound:" style="font-weight: bold"></Label>
+                    <Label text="{{outbound}}" style="font-weight: bold;margin-left: 8;"></Label>
+                </StackLayout>
+            </GridLayout>
+        </StackLayout>
+        <StackLayout dock="bottom" class="page-footer">
+
+            <StackLayout class="tabbed-menu">
+                <StackLayout class="tabbed-menu-item menu-divider" (tap)="navigateToSearch()">
+                    <Label text="&#xe907;" color="{{isCheckinDisabled  ? '#2260A4' : 'lightgray'}}" class="menu-item-icon copa-icon"></Label>
+                    <Label text="Check In" class="menu-item-text"></Label>
+                </StackLayout>
+                <StackLayout class="tabbed-menu-item active" (tap)="navigateToDepartures()">
+                    <Label text="&#xE904;"  class="menu-item-icon copa-icon"></Label>
+                    <Label text="Departures" class="menu-item-text"></Label>
+                </StackLayout>    
+                <StackLayout class="tabbed-menu-item menu-divider" (tap)="navigateToCompensation()">
+                    <Label text="&#xe90e;" color="{{isCompensationEnabled  ? '#2260A4' : 'lightgray'}}" class="menu-item-icon copa-icon"></Label>
+                    <Label text="Compensation" class="menu-item-text"></Label>
+                </StackLayout>
+                <StackLayout class="tabbed-menu-item menu-divider">
+                    <Label text="&#xe90f;" class="menu-item-icon copa-icon" style="color:lightgray"></Label>
+                    <Label text="Notification" class="menu-item-text"></Label>
+                </StackLayout>
+                <StackLayout class="tabbed-menu-item" (tap)="navigateToSetting()">
+                    <Label text="&#xe917;" class="menu-item-icon copa-icon"></Label>
+                    <Label text="Settings" class="menu-item-text"></Label>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+        <StackLayout class="page-body">
+            <StackLayout class="page-body-container">
+                <StackLayout orientation="horizontal" style="margin-left:5">
+                    <!--<Button  text="Checked-in" color="{{ind1?'white':'#00609A'}}" style="margin-left:40%"  class=" {{ind1?'btnbrown':'btnwhite'}}" (tap)="checkin()"></Button>
+                      <Button  text="Not Checked-in" color="{{ind2?'white':'#00609A'}}"  class=" {{ind2?'btnbrown':'btnwhite'}}" (tap)="notcheckin()"></Button>-->
+                    <DockLayout width="220" class="inputs" style="background-color:white" stretchLastChild="true">
+                        <Label automationText="pax_searchnameicon"dock="right" class="label copa-icon m-5 " text="&#xe915;" color="{{isValid?'blue':'gray'}}" (tap)="filter(SearchByName)"></Label>
+                        <TextField automationText="pax_searchname" dock="left" hint="Search by Name" class="m-5" [(ngModel)]="SearchByName" (ngModelChange)="filter($event)" returnKeyPress="done"
+                            (returnPress)="filter(SearchByName)"></TextField>
+                    </DockLayout>
+                    <SegmentedBar  #segbar [items]="apisdetails" width="46%" selectedIndex="0" (selectedIndexChanged)="selectSegment($event)"
+                        style="margin-left:60">
+                    </SegmentedBar>
+
+                </StackLayout>
+                <DockLayout stretchLastChild="true" style="margin-top: 5" class="table">
+
+                    <GridLayout class="table-header" dock="top" rows="auto,auto" columns="60,*, 105,90, 90, 100, 100, 90, 75, 75">
+                        <StackLayout class="th" col="0">
+                            <Label text=""></Label>
+                        </StackLayout>
+                        <StackLayout class="th" col="1">
+                            <Label text="Passenger Name" textWrap="true"></Label>
+                        </StackLayout>
+                        <StackLayout class="th" col="2">
+                            <Label text="Order ID"></Label>
+                        </StackLayout>
+                        <StackLayout class="th" col="3">
+                            <Label text="From"></Label>
+                        </StackLayout>
+                        <StackLayout class="th" col="4">
+                            <Label text="To"></Label>
+                        </StackLayout>
+                        <StackLayout class="th" col="5">
+                            <Label text="Doc Check"></Label>
+                        </StackLayout>
+                        <StackLayout class="th" col="6">
+                            <Label text="Bags"></Label>
+                        </StackLayout>
+                        <StackLayout class="th" col="7">
+                            <Label text="Seat"></Label>
+                        </StackLayout>
+                        <StackLayout class="th" col="8">
+                            <Label text="SSR"></Label>
+                        </StackLayout>
+                        <StackLayout class="th" col="9">
+                            <Label text="EMD"></Label>
+                        </StackLayout>
+                    </GridLayout>
+
+                    <ListView [items]="NewPassengerList" separatorColor="transparent" dock="bottom" class="table-body">
+                        <ng-template let-item="item" let-odd="odd" let-even="even" let-i="index">
+                            <GridLayout id="paxList" class="tr" backgroundColor="{{item.IsChecked?'#F6F2DC':i%2 == 0?'#F5F5F5':'#FFF'}}" (tap)="toggleChecked($event)"
+                                columns="60,*, 105,90, 90, 100, 100, 90, 75, 75">
+                                <WrapLayout class="td td-icon" col="0">
+
+                                    <WrapLayout>
+                                        <Label text="&#xe907;" class="copa-icon input-icon font-big" color="{{item.CheckinStatus? '#00A973' : '#c1c1c1'}}"></Label>
+                                    </WrapLayout>
+                                    <WrapLayout visibility="{{(item.InfantIndicator||item.PassengerType=='INF') ?'visible' : 'collapsed'}}">
+                                        <label text="&#xe90d;" class="copa-icon font-big" style="margin: 2"></label>
+                                    </WrapLayout>
+                                    <WrapLayout visibility="{{item.PassengerType=='CHD' ?'visible' : 'collapsed'}}">
+                                        <label text="&#xe904;" class="new-copa-icon font-big" style="margin: 2"></label>
+                                    </WrapLayout>
+                                    <WrapLayout visibility="{{item.Oversold ?'visible' : 'collapsed'}}">
+                                        <label text="&#xE25C;" class="material-icon font-big text-danger" style="margin: 2;margin-top: 5"></label>
+                                    </WrapLayout>
+                                    <WrapLayout visibility="{{item.SyncTicket ?'visible' : 'collapsed'}}">
+                                        <label text="&#xe90a;" class="copa-icon font-small text-warning" style="margin: 2;"></label>
+                                    </WrapLayout>
+                                    <WrapLayout visibility="{{item.OnStandby ?'visible' : 'collapsed'}}">
+                                        <label text="&#xe903;" class="new-copa-icon font-big text-warning" style="margin: 2;"></label>
+                                    </WrapLayout>
+
+                                </WrapLayout>
+                                <WrapLayout orientation="vertical" class="td" col="1">
+
+                                    <WrapLayout>
+                                        <Label automationText="pax_name{{i}}"text="{{item.FullName}}" textWrap="true"></Label>
+                                    </WrapLayout>
+                                    <WrapLayout visibility="{{item.TierLevel ?'visible' : 'collapsed'}}">
+                                        <Label text="{{item.TierLevel }}" style="margin: 2;font-weight:bold"></Label>
+                                    </WrapLayout>
+                                    <WrapLayout visibility="{{item.BoardPriority ?'visible' : 'collapsed'}}">
+                                        <Label text="{{item.BoardPriority}}" style="margin: 2;"></Label>
+                                    </WrapLayout>
+                                </WrapLayout>
+                                <WrapLayout class="td" col="2">
+                                    <Label text="{{item.OrderId}}"></Label>
+                                </WrapLayout>
+                                <WrapLayout class="td" col="3">
+                                    <Label text="{{item.DepartureCode}}"></Label>
+                                </WrapLayout>
+                                <WrapLayout class="td" col="4">
+                                    <Label text="{{item.Dest}}"></Label>
+                                </WrapLayout>
+                                <WrapLayout class="td td-icon" col="5">
+
+                                    <Label class="copa-icon font-big" text="&#xe907;" color="{{item.IsSecurityDocsComplete? '#00A973' : '#c1c1c1'}}"></Label>
+                                </WrapLayout>
+                                <WrapLayout orientation="horizontal" class="td td-icon" col="6">
+                                    <!--<GridLayout columns="*" rows="*">-->
+
+                                    <Label text="&#xE8F9;" class="material-icon font-big" color="#0060A9"></Label>
+                                    <Label text="{{item.CheckedBagCount !='0'?item.CheckedBagCount:'0'}}" style="font-size:15%;color:black;margin-left:6"></Label>
+                                    <!--</GridLayout>-->
+                                </WrapLayout>
+                                <WrapLayout class="td" col="7">
+                                    <Label text="{{ item.SeatNumber!=null ? item.SeatNumber:''}}"></Label>
+                                </WrapLayout>
+                                <WrapLayout class="td" col="8">
+                                    <Label text="{{item.ssrcount}}"></Label>
+                                </WrapLayout>
+                                <WrapLayout class="td" col="9">
+                                    <Label text="{{item.emd}}"></Label>
+                                </WrapLayout>
+                            </GridLayout>
+                        </ng-template>
+                    </ListView>
+
+                </DockLayout>
+
+            </StackLayout>
+        </StackLayout>
+    </DockLayout>
+</GridLayout>

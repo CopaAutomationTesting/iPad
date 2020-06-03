@@ -1,0 +1,115 @@
+<ActionBar title="Search Result" icon="" class="action-bar">
+    <ActionItem ios.position="right" text="{{userdetails}}">
+    </ActionItem>
+    <ActionItem ios.position="right" icon="res://logout_icons/logoff_edit" (tap)="_services.LogOut()">
+    </ActionItem>
+</ActionBar>
+<GridLayout #pagecontainer>
+    <DockLayout stretchLastChild="true" class="page">
+
+        <StackLayout dock="bottom" class="page-footer">
+            <StackLayout class="tabbed-menu">
+                <StackLayout class="tabbed-menu-item menu-divider" (tap)="navigateToSearch()">
+                    <Label text="&#xe907;" color="{{isCheckinDisabled  ? '#2260A4' : 'lightgray'}}" class="menu-item-icon copa-icon"></Label>
+                    <Label text="Check In" class="menu-item-text"></Label>
+                </StackLayout>
+                <StackLayout class="tabbed-menu-item menu-divider"  (tap)="navigateToDepartures()">
+                    <Label text="&#xE904;" color="{{isGateDisabled  ? '#2260A4' : 'lightgray'}}" class="menu-item-icon copa-icon"></Label>
+                    <Label text="Departures" class="menu-item-text"></Label>
+                </StackLayout>
+                <StackLayout class="tabbed-menu-item active menu-divider" (tap)="navigateToCompensation()">
+                    <Label text="&#xe90e;" class="menu-item-icon copa-icon"></Label>
+                    <Label text="Compensation" class="menu-item-text"></Label>
+                </StackLayout>
+                <StackLayout class="tabbed-menu-item menu-divider">
+                    <Label text="&#xe90f;" class="menu-item-icon copa-icon" style="color:lightgray"></Label>
+                    <Label text="Notification" class="menu-item-text"></Label>
+                </StackLayout>
+                <StackLayout class="tabbed-menu-item" (tap)="navigateToSetting()">
+                    <Label text="&#xe917;" class="menu-item-icon copa-icon"></Label>
+                    <Label text="Settings" class="menu-item-text"></Label>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+
+
+        <StackLayout dock="top" class="page-header ">
+            <StackLayout orientation="horizontal">
+                <StackLayout orientation="vertical" class="m-t-10">
+                    <Label text="{{FQTVNum}}" class="text-blue font-big m-l-5"></Label>
+                    <Label text="Compensation based on FQTV" class="font-medium m-l-5"></Label>
+                </StackLayout>
+                <StackLayout style="margin-left:600" class="m-t-15">
+                    <Button automationText="compfqtv_continue"class="btn btn-primary" text="Continue" (tap)="continue()"></Button>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+
+        <StackLayout class="page-body">
+            <DockLayout stretchLastChild="true" style="margin-top: 5" class="table m-10">
+
+                <GridLayout class="table-header stack" dock="top" rows="auto,auto" columns="80,*,*,*,*,*">
+                    <StackLayout class="th" col="0">
+                        <Label text=""></Label>
+                    </StackLayout>
+                    <StackLayout class="th" col="1">
+                        <Label text="Order ID"></Label>
+                    </StackLayout>
+                    <StackLayout class="th" col="2">
+                        <Label text="Flight" textWrap="true"></Label>
+                    </StackLayout>
+                    <StackLayout class="th" col="3">
+                        <Label text="Date"></Label>
+                    </StackLayout>
+                    <StackLayout class="th" col="4">
+                        <Label text="From"></Label>
+                    </StackLayout>
+                    <StackLayout class="th" col="5">
+                        <Label text="To"></Label>
+                    </StackLayout>
+                </GridLayout>
+                <ScrollView>
+                    <StackLayout separatorColor="transparent" dock="bottom">
+                        <StackLayout *ngFor="let item of CompensationOrderDetails; let i = index" class="table-body">
+                            <!-- <ListView [items]="CompensationOrderDetails" separatorColor="transparent" dock="bottom" class="table-body">
+                    <ng-template let-item="item" let-odd="odd" let-even="even" let-i="index"> -->
+                            <GridLayout class=tablerow backgroundColor="{{item.IsSelected?'#F6F2DC':i%2 == 0?'#F5F5F5':'#FFF'}}" columns="80,*,*,*,*,*" (tap)="toggleChecked(item)">
+                                <WrapLayout class="tabledata td-icon" col="0">
+
+                                    <WrapLayout>
+                                        <Label automationText="compfqtv_toggle{{i}}"text="{{item.IsSelected?'&#xE837;' :'&#xE836;'}}" class="material-icon input-icon font-big " (tap)="toggleChecked(item)"></Label>
+                                    </WrapLayout>
+
+
+                                </WrapLayout>
+                                <WrapLayout orientation="vertical" class="tabledata" col="1">
+
+                                    <WrapLayout>
+                                        <Label text="{{item.OrderID}}" textWrap="true" class="hrz-center"></Label>
+                                    </WrapLayout>
+
+                                </WrapLayout>
+                                <WrapLayout class="tabledata" col="2">
+                                    <Label text="{{item.FlightNumber}}" class="hrz-center"></Label>
+                                </WrapLayout>
+
+                                <WrapLayout class="tabledata" col="3">
+                                    <Label text="{{item.FlightDate}}" class="hrz-center"></Label>
+                                </WrapLayout>
+                                <WrapLayout class="tabledata" col="4">
+                                    <Label text="{{item.Origin}}" class="hrz-center"></Label>
+                                </WrapLayout>
+                                <WrapLayout class="tabledata" col="5">
+                                    <Label text="{{item.Destination}}" class="hrz-center"></Label>
+                                </WrapLayout>
+                            </GridLayout>
+                            <!-- </ng-template>
+                </ListView> -->
+                        </StackLayout>
+                    </StackLayout>
+                </ScrollView>
+            </DockLayout>
+        </StackLayout>
+
+    </DockLayout>
+</GridLayout>

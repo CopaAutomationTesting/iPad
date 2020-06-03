@@ -1,0 +1,53 @@
+"use strict";
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+var CheckinService = require("../services/checkin.service");
+var CheckinOrderService = require("../services/checkinorder.service");
+var DataService = require("../services/passenger-list.services");
+var PassengerService = require("../services/passenger.service");
+var PaymentService = require("../services/payment.service");
+var TimeOutService = require("../services/timeOut.service");
+var Compensation = require("../services/compensation.service");
+var PrintEmailService = require("../services/print_email.services");
+var DepartureService = require("../services/departure.services");
+var Common = require("../services/common.service");
+var SeatMapService = require("../services/seatmap.services");
+var LoginService = require("../services/login.service");
+var HomePageService = require("../services/homePage.services");
+var SearchService = require("../services/search.services");
+var MessageService = require("../services/message.service");
+exports.APP_SERVICE = [
+    CheckinService,
+    CheckinOrderService,
+    DataService,
+    PassengerService,
+    PaymentService,
+    TimeOutService,
+    Compensation,
+    DepartureService,
+    PrintEmailService,
+    Common,
+    SeatMapService,
+    LoginService,
+    HomePageService,
+    SearchService,
+    MessageService
+];
+__export(require("../services/checkin.service"));
+__export(require("../services/checkinorder.service"));
+__export(require("../services/passenger-list.services"));
+__export(require("../services/passenger.service"));
+__export(require("../services/common.service"));
+__export(require("../services/payment.service"));
+__export(require("../services/timeOut.service"));
+__export(require("../services/compensation.service"));
+__export(require("../services/departure.services"));
+__export(require("../services/print_email.services"));
+__export(require("../services/seatmap.services"));
+__export(require("../services/login.service"));
+__export(require("../services/homePage.services"));
+__export(require("../services/search.services"));
+__export(require("../services/message.service"));
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJpbmRleC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7OztBQUFBLDREQUE4RDtBQUM5RCxzRUFBd0U7QUFDeEUsaUVBQW1FO0FBQ25FLGdFQUFrRTtBQUVsRSw0REFBOEQ7QUFDOUQsNERBQThEO0FBQzlELCtEQUFpRTtBQUNqRSxvRUFBcUU7QUFDckUsaUVBQW1FO0FBQ25FLG1EQUFxRDtBQUNyRCw2REFBZ0U7QUFDaEUsd0RBQTBEO0FBQzFELCtEQUFnRTtBQUNoRSwyREFBNkQ7QUFDN0QsNERBQThEO0FBQ2pELFFBQUEsV0FBVyxHQUFVO0lBQ2pDLGNBQWM7SUFDZCxtQkFBbUI7SUFDbkIsV0FBVztJQUNYLGdCQUFnQjtJQUNoQixjQUFjO0lBQ2QsY0FBYztJQUNkLFlBQVk7SUFDWixnQkFBZ0I7SUFDaEIsaUJBQWlCO0lBQ2pCLE1BQU07SUFDTixjQUFjO0lBQ2QsWUFBWTtJQUNaLGVBQWU7SUFDZixhQUFhO0lBQ2IsY0FBYztDQUNkLENBQUM7QUFFRixpREFBNEM7QUFDNUMsc0RBQWlEO0FBQ2pELHlEQUFvRDtBQUNwRCxtREFBOEM7QUFDOUMsZ0RBQTJDO0FBQzNDLGlEQUE0QztBQUM1QyxpREFBNEM7QUFDNUMsc0RBQWlEO0FBQ2pELG9EQUErQztBQUMvQyxzREFBaUQ7QUFDakQsa0RBQTZDO0FBQzdDLCtDQUEwQztBQUMxQyxtREFBOEM7QUFDOUMsaURBQTRDO0FBQzVDLGlEQUE0QyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCAqIGFzIENoZWNraW5TZXJ2aWNlIGZyb20gXCIuLi9zZXJ2aWNlcy9jaGVja2luLnNlcnZpY2VcIjtcbmltcG9ydCAqIGFzIENoZWNraW5PcmRlclNlcnZpY2UgZnJvbSBcIi4uL3NlcnZpY2VzL2NoZWNraW5vcmRlci5zZXJ2aWNlXCI7XG5pbXBvcnQgKiBhcyBEYXRhU2VydmljZSBmcm9tIFwiLi4vc2VydmljZXMvcGFzc2VuZ2VyLWxpc3Quc2VydmljZXNcIjtcbmltcG9ydCAqIGFzIFBhc3NlbmdlclNlcnZpY2UgZnJvbSBcIi4uL3NlcnZpY2VzL3Bhc3Nlbmdlci5zZXJ2aWNlXCI7XG5pbXBvcnQgKiBhcyBDb21tb25TZXJ2aWNlIGZyb20gXCIuLi9zZXJ2aWNlcy9jb21tb24uc2VydmljZVwiO1xuaW1wb3J0ICogYXMgUGF5bWVudFNlcnZpY2UgZnJvbSBcIi4uL3NlcnZpY2VzL3BheW1lbnQuc2VydmljZVwiO1xuaW1wb3J0ICogYXMgVGltZU91dFNlcnZpY2UgZnJvbSBcIi4uL3NlcnZpY2VzL3RpbWVPdXQuc2VydmljZVwiO1xuaW1wb3J0ICogYXMgQ29tcGVuc2F0aW9uIGZyb20gXCIuLi9zZXJ2aWNlcy9jb21wZW5zYXRpb24uc2VydmljZVwiO1xuaW1wb3J0ICogYXMgUHJpbnRFbWFpbFNlcnZpY2UgZnJvbSBcIi4uL3NlcnZpY2VzL3ByaW50X2VtYWlsLnNlcnZpY2VzXCJcbmltcG9ydCAqIGFzIERlcGFydHVyZVNlcnZpY2UgZnJvbSBcIi4uL3NlcnZpY2VzL2RlcGFydHVyZS5zZXJ2aWNlc1wiO1xuaW1wb3J0ICogYXMgQ29tbW9uIGZyb20gXCIuLi9zZXJ2aWNlcy9jb21tb24uc2VydmljZVwiO1xuaW1wb3J0ICogYXMgU2VhdE1hcFNlcnZpY2UgIGZyb20gXCIuLi9zZXJ2aWNlcy9zZWF0bWFwLnNlcnZpY2VzXCI7XG5pbXBvcnQgKiBhcyBMb2dpblNlcnZpY2UgZnJvbSBcIi4uL3NlcnZpY2VzL2xvZ2luLnNlcnZpY2VcIjtcbmltcG9ydCAqIGFzIEhvbWVQYWdlU2VydmljZSBmcm9tIFwiLi4vc2VydmljZXMvaG9tZVBhZ2Uuc2VydmljZXNcIlxuaW1wb3J0ICogYXMgU2VhcmNoU2VydmljZSBmcm9tIFwiLi4vc2VydmljZXMvc2VhcmNoLnNlcnZpY2VzXCI7XG5pbXBvcnQgKiBhcyBNZXNzYWdlU2VydmljZSBmcm9tIFwiLi4vc2VydmljZXMvbWVzc2FnZS5zZXJ2aWNlXCI7XG5leHBvcnQgY29uc3QgQVBQX1NFUlZJQ0U6IGFueVtdID0gW1xuIENoZWNraW5TZXJ2aWNlLFxuIENoZWNraW5PcmRlclNlcnZpY2UsXG4gRGF0YVNlcnZpY2UsXG4gUGFzc2VuZ2VyU2VydmljZSxcbiBQYXltZW50U2VydmljZSxcbiBUaW1lT3V0U2VydmljZSxcbiBDb21wZW5zYXRpb24sXG4gRGVwYXJ0dXJlU2VydmljZSxcbiBQcmludEVtYWlsU2VydmljZSxcbiBDb21tb24sXG4gU2VhdE1hcFNlcnZpY2UsXG4gTG9naW5TZXJ2aWNlLFxuIEhvbWVQYWdlU2VydmljZSxcbiBTZWFyY2hTZXJ2aWNlLFxuIE1lc3NhZ2VTZXJ2aWNlXG5dO1xuXG5leHBvcnQgKiBmcm9tIFwiLi4vc2VydmljZXMvY2hlY2tpbi5zZXJ2aWNlXCI7XG5leHBvcnQgKiBmcm9tIFwiLi4vc2VydmljZXMvY2hlY2tpbm9yZGVyLnNlcnZpY2VcIjtcbmV4cG9ydCAqIGZyb20gXCIuLi9zZXJ2aWNlcy9wYXNzZW5nZXItbGlzdC5zZXJ2aWNlc1wiO1xuZXhwb3J0ICogZnJvbSBcIi4uL3NlcnZpY2VzL3Bhc3Nlbmdlci5zZXJ2aWNlXCI7XG5leHBvcnQgKiBmcm9tIFwiLi4vc2VydmljZXMvY29tbW9uLnNlcnZpY2VcIjtcbmV4cG9ydCAqIGZyb20gXCIuLi9zZXJ2aWNlcy9wYXltZW50LnNlcnZpY2VcIjtcbmV4cG9ydCAqIGZyb20gXCIuLi9zZXJ2aWNlcy90aW1lT3V0LnNlcnZpY2VcIjtcbmV4cG9ydCAqIGZyb20gXCIuLi9zZXJ2aWNlcy9jb21wZW5zYXRpb24uc2VydmljZVwiO1xuZXhwb3J0ICogZnJvbSBcIi4uL3NlcnZpY2VzL2RlcGFydHVyZS5zZXJ2aWNlc1wiO1xuZXhwb3J0ICogZnJvbSBcIi4uL3NlcnZpY2VzL3ByaW50X2VtYWlsLnNlcnZpY2VzXCI7XG5leHBvcnQgKiBmcm9tIFwiLi4vc2VydmljZXMvc2VhdG1hcC5zZXJ2aWNlc1wiO1xuZXhwb3J0ICogZnJvbSBcIi4uL3NlcnZpY2VzL2xvZ2luLnNlcnZpY2VcIjtcbmV4cG9ydCAqIGZyb20gXCIuLi9zZXJ2aWNlcy9ob21lUGFnZS5zZXJ2aWNlc1wiO1xuZXhwb3J0ICogZnJvbSBcIi4uL3NlcnZpY2VzL3NlYXJjaC5zZXJ2aWNlc1wiO1xuZXhwb3J0ICogZnJvbSBcIi4uL3NlcnZpY2VzL21lc3NhZ2Uuc2VydmljZVwiO1xuIl19

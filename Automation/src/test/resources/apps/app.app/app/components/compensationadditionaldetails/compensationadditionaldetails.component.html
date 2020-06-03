@@ -1,0 +1,1091 @@
+<ActionBar title="Additional Details" class="action-bar">
+    <ActionItem (tap)="navigateToHome()" ios.position="right" text="{{userdetails}}">
+    </ActionItem>
+    <ActionItem ios.position="right" icon="res://logout_icons/logoff_edit" (tap)="_services.LogOut()">
+    </ActionItem>
+</ActionBar>
+<GridLayout #pagecontainer>
+    <DockLayout stretchLastChild="true" class="page">
+
+        <StackLayout dock="bottom" class="page-footer">
+            <StackLayout class="tabbed-menu">
+                <StackLayout class="tabbed-menu-item menu-divider" (tap)="navigateToSearch()">
+                    <Label text="&#xe907;" color="{{isCheckinDisabled  ? '#2260A4' : 'lightgray'}}" class="menu-item-icon copa-icon"></Label>
+                    <Label text="Check In" class="menu-item-text"></Label>
+                </StackLayout>
+                <StackLayout class="tabbed-menu-item menu-divider" (tap)="navigateToDepartures()">
+                    <Label text="&#xE904;" color="{{isGateDisabled  ? '#2260A4' : 'lightgray'}}" class="menu-item-icon copa-icon"></Label>
+                    <Label text="Departures" class="menu-item-text"></Label>
+                </StackLayout>
+                <StackLayout class="tabbed-menu-item active menu-divider" (tap)="navigateToCompensation()">
+                    <Label text="&#xe90e;" class="menu-item-icon copa-icon"></Label>
+                    <Label text="Compensation" class="menu-item-text"></Label>
+                </StackLayout>
+                <StackLayout class="tabbed-menu-item menu-divider">
+                    <Label text="&#xe90f;" class="menu-item-icon copa-icon" style="color:lightgray"></Label>
+                    <Label text="Notification" class="menu-item-text"></Label>
+                </StackLayout>
+                <StackLayout class="tabbed-menu-item" (tap)="navigateToSetting()">
+                    <Label text="&#xe917;" class="menu-item-icon copa-icon"></Label>
+                    <Label text="Settings" class="menu-item-text"></Label>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+        <div *ngIf="IsFlightInfo">
+            <StackLayout dock="top" class="headerinfo">
+                <GridLayout columns="auto, auto,*,auto" class="flight-info">
+                    <StackLayout col="0" class="flight-details bdr-right-big">
+                        <StackLayout orientation="horizontal" class="details">
+                            <Label text="{{FlightHeaderInfo.FlightNumber}}" class="p-r-10 text-blue font-medium font-bold  bdr-right"></Label>
+                            <Label text="{{FlightHeaderInfo.DepartureDate}}" class="p-l-10 font-small text-default "></Label>
+                        </StackLayout>
+                        <Label text="{{FlightHeaderInfo.Status}}" class="details font-medium text-blue"></Label>
+                        <Label text="{{PassengerType}}" class="details font-medium"></Label>
+                    </StackLayout>
+                    <StackLayout col="1" class="flight-details bdr-right-big">
+                        <StackLayout orientation="horizontal" class="details p-l-10">
+                            <Label class="p-r-10 text-default font-medium">
+                                <FormattedString>
+                                    <Span text="{{FlightHeaderInfo.DepartureAirport}}" fontAttributes="Bold"></Span>
+                                </FormattedString>
+                            </Label>
+                            <Label text="&#xE5CC;" class="material-icon p-r-10 text-default font-medium"></Label>
+                            <Label class="p-r-10 text-default font-medium">
+                                <FormattedString>
+                                    <Span text="{{FlightHeaderInfo.DestinationAirport}}" fontAttributes="Bold"></Span>
+                                </FormattedString>
+                            </Label>
+                        </StackLayout>
+                        <StackLayout orientation="horizontal" class="details p-l-10">
+                            <StackLayout orientation="horizontal">
+                                <Label text="STD" class="p-r-5 font-small text-default font-bold"></Label>
+                                <Label text="{{FlightHeaderInfo.STD}}" class="p-r-10 font-small text-black font-bold"></Label>
+                            </StackLayout>
+                            <StackLayout orientation="horizontal">
+                                <Label text="ETD" class="p-r-5 font-small text-default font-bold"></Label>
+                                <Label text="{{FlightHeaderInfo.ETD}}" class="p-r-10 font-small text-black font-bold"></Label>
+                            </StackLayout>
+                            <StackLayout orientation="horizontal">
+                                <Label text="ETA" class="p-r-5 font-small text-default font-bold"></Label>
+                                <Label text="{{FlightHeaderInfo.STA}}" class="p-r-10 font-small text-black font-bold"></Label>
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+
+                    <StackLayout col="3" orientation="horizontal" class="vrt-middle">
+                        <StackLayout class="m-l-10">
+                            <Button automationText="additional_okbtn"class="btn btn-primary" text="OK" (tap)="save()" [isEnabled]="submitEnabled()"></Button>
+                        </StackLayout>
+                    </StackLayout>
+                </GridLayout>
+            </StackLayout>
+        </div>
+        <div *ngIf="IsHeaderInfo">
+            <StackLayout dock="top" class="headerinfo">
+                <StackLayout orientation="horizontal">
+                    <StackLayout orientation="vertical" class="m-t-10">
+                        <Label text="Compensation based on Order ID" class="font-medium m-l-5"></Label>
+                    </StackLayout>
+                    <StackLayout style="margin-left:600" orientation="horizontal" class="m-t-15">
+                        <StackLayout class="m-l-5">
+                            <Button automationText="additional_okbtn1"class="btn btn-primary" text="OK" (tap)="Save()"></Button>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+        </div>
+
+        <StackLayout dock="top" class="page-body" orientation="horizontal">
+            <StackLayout *ngIf="!IsVisibleAllTab">
+                <SegmentedBar [items]="apisdetails" selectedIndex="0" class="{{TabNotVisible ?'segmented-bar':''}}" style="margin-left: 125"
+                    (selectedIndexChanged)="selectSegment($event)">
+                </SegmentedBar>
+            </StackLayout>
+            <StackLayout *ngIf="IsVisibleAllTab">
+                <SegmentedBar [items]="apisdetails" selectedIndex="0" class="{{TabNotVisible ?'segmented-bar':''}}" style="margin-left: 340"
+                    (selectedIndexChanged)="selectSegment($event)">
+                </SegmentedBar>
+            </StackLayout>
+        </StackLayout>
+
+        <StackLayout #compensationHistory>
+            <div *ngIf="CompensationHistory">
+                <GridLayout columns="*, 350" height="50" dock="top" class="bluemargin">
+                    <StackLayout col="0" orientation="horizontal">
+                        <Label text="Details of " class="m-l-10 vrt-middle"></Label>
+                        <Label text="{{PassengerName}}" class="text-blue font-bold"></Label>
+                    </StackLayout>
+                </GridLayout>
+                <GridLayout dock="top" rows="*" columns="250, *">
+                    <StackLayout col="0" height="100%" class="left-panel">
+                        <StackLayout orientation="vertical">
+                            <StackLayout height="50" class="stack vrt-middle {{FirstBlock ? 'selected' : 'normal'}}" (tap)="monetaryLayout()">
+                                <Label automationText="additional_monetaryemd"text="Monetary EMD" class=" {{FirstBlock ?  'text-white' : 'text-blue'}} font-medium font-bold m-l-8"></Label>
+                            </StackLayout>
+                            <StackLayout height="50" class="stack vrt-middle  {{SecondBlock ? 'selected' : 'normal'}}" (tap)="hotelLayout()">
+                                <Label automationText="additional_hotelemd"text="Hotel EMD" class="{{SecondBlock ? 'text-white' : 'text-blue'}} font-medium font-bold m-l-8"></Label>
+                            </StackLayout>
+                            <StackLayout height="50" class="stack vrt-middle {{ThirdBlock ? 'selected' : 'normal'}}" (tap)="mealLayout()">
+                                <Label automationText="additional_mealemd"text="Meal EMD" class="{{ThirdBlock ? 'text-white' : 'text-blue' }} font-medium font-bold m-l-8"></Label>
+                            </StackLayout>
+                            <StackLayout height="50" class="stack vrt-middle {{FourthBlock ? 'selected' : 'normal'}}" (tap)="transportLayout()">
+                                <Label automationText="additional_transportemd"text="Transport EMD" class="{{FourthBlock ? 'text-white' : 'text-blue' }} font-medium font-bold m-l-8"></Label>
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout col="1" class="m-l-5" height="100%" class="outer-layer">
+                        <StackLayout class="m-t-30" height="350" class="inner-layer m-30">
+
+                            <StackLayout #firstLayer>
+                                <div *ngIf="FirstBlock">
+                                    <div *ngIf="IsMonetaryHistoryVisible">
+                                        <ScrollView>
+                                            <StackLayout height="auto">
+                                                <StackLayout *ngFor="let items of MonetaryCompenstion; let i = index">
+                                                    <StackLayout *ngFor="let item of items.Emds; let j = index">
+                                                        <GridLayout rows="40,40,40,40,40,40,40,40,90">
+                                                            <GridLayout row="0" columns="250,*" class="stack vrt-middle">
+                                                                <StackLayout col="1" class="vrt-middle hrz-left m-l-5">
+                                                                    <Label text="EMD {{i+1}}" class="font-bold text-blue"></Label>
+                                                                </StackLayout>
+                                                            </GridLayout>
+                                                            <GridLayout row="1" columns="250,*" class="stack vrt-middle">
+                                                                <StackLayout col="0" class="vrt-middle m-l-5" height="25">
+                                                                    <Label text="Total Value" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                                <StackLayout col="1" class="vrt-middle" height="25">
+                                                                    <Label text="{{item.CompAmt}}" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                            </GridLayout>
+                                                            <GridLayout row="2" columns="250,*" class="stack vrt-middle">
+                                                                <StackLayout col="0" class="vrt-middle m-l-5" height="25">
+                                                                    <Label text="Reason for issuance" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                                <StackLayout col="1" class="vrt-middle" height="25">
+                                                                    <Label text="{{items.CompReasonText}}" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                            </GridLayout>
+                                                            <GridLayout row="3" columns="250,*" class="stack vrt-middle">
+                                                                <StackLayout col="0" class="vrt-middle m-l-5" height="25">
+                                                                    <Label text="EMD Number" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                                <StackLayout col="1" class="vrt-middle" height="25">
+                                                                    <Label text="{{item.PrimaryDocumentNbr}}" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                            </GridLayout>
+                                                            <GridLayout row="4" columns="250,*" class="stack vrt-middle">
+                                                                <StackLayout col="0" class="vrt-middle m-l-5" height="25">
+                                                                    <Label text="Issued Date" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                                <StackLayout col="1" class="vrt-middle" height="25">
+                                                                    <Label [text]="item.IssueDt.substr(0,10)" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                            </GridLayout>
+                                                            <GridLayout row="5" columns="250,*" class="stack vrt-middle">
+                                                                <StackLayout col="0" class="vrt-middle m-l-5" height="25">
+                                                                    <Label text="Issued By" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                                <StackLayout col="1" class="vrt-middle" height="25">
+                                                                    <Label text="{{item.UserId}}" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                            </GridLayout>
+                                                            <GridLayout row="6" columns="250,*" class="stack vrt-middle">
+                                                                <StackLayout col="0" class="vrt-middle m-l-5" height="25">
+                                                                    <Label text="Flight" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                                <StackLayout col="1" class="vrt-middle" height="25">
+                                                                    <Label text="{{items.AirlineCode + items.FlightNo}}" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                            </GridLayout>
+                                                            <GridLayout row="7" columns="250,*" class="stack vrt-middle">
+                                                                <StackLayout col="0" class="vrt-middle m-l-5" height="25">
+                                                                    <Label text="Date" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                                <StackLayout col="1" class="vrt-middle" height="25">
+                                                                    <Label text="{{items.DepartureDt}}" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                            </GridLayout>
+                                                            <GridLayout row="8" columns="250,*" class="stack vrt-middle">
+                                                                <StackLayout col="0" class="vrt-middle m-l-5" height="25">
+                                                                    <Label text="Endorsements" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                                <StackLayout col="1" class="vrt-middle" height="100%">
+                                                                    <ScrollView>
+                                                                        <StackLayout>
+                                                                            <Label *ngFor="let ssr of EndorsmentTextMonetary,let ind = index" [text]="ssr.replace('?','').replace('|','')" textWrap="true" class="text-black  font-medium"></Label>
+                                                                        </StackLayout>
+                                                                    </ScrollView>
+                                                                </StackLayout>
+                                                            </GridLayout>
+                                                        </GridLayout>
+                                                    </StackLayout>
+                                                </StackLayout>
+                                            </StackLayout>
+                                        </ScrollView>
+                                    </div>
+                                    <div *ngIf="! IsMonetaryHistoryVisible">
+                                        <Label text="No Existing Compensation Related EMDs for Monetary" class="m-l-10 m-t-10 text-blue font-medium"></Label>
+                                    </div>
+                                </div>
+                            </StackLayout>
+
+                            <StackLayout #secondLayer>
+                                <div *ngIf="SecondBlock">
+                                    <div *ngIf="IsHotelHistoryVisible">
+                                        <ScrollView>
+                                            <StackLayout height="auto">
+                                                <StackLayout *ngFor="let items of HotelCompenstion; let i = index">
+                                                    <StackLayout *ngFor="let item of items.Emds; let i = index">
+                                                        <GridLayout rows="40,40,40,40,40,40,40,40,90">
+                                                            <GridLayout row="0" columns="250,*" class="stack vrt-middle">
+                                                                <StackLayout col="1" class="vrt-middle hrz-left m-l-5">
+                                                                    <Label text="EMD {{i+1}}" class="font-bold text-blue"></Label>
+                                                                </StackLayout>
+                                                            </GridLayout>
+                                                            <GridLayout row="1" columns="250,*" class="stack vrt-middle">
+                                                                <StackLayout col="0" class="vrt-middle m-l-5" height="25">
+                                                                    <Label text="Total Value" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                                <StackLayout col="1" class="vrt-middle" height="25">
+                                                                    <Label text="{{item.CompAmt}}" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                            </GridLayout>
+                                                            <GridLayout row="2" columns="250,*" class="stack vrt-middle">
+                                                                <StackLayout col="0" class="vrt-middle m-l-5" height="25">
+                                                                    <Label text="Reason for issuance" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                                <StackLayout col="1" class="vrt-middle" height="25">
+                                                                    <Label text="{{items.CompReasonText}}" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                            </GridLayout>
+                                                            <GridLayout row="3" columns="250,*" class="stack vrt-middle">
+                                                                <StackLayout col="0" class="vrt-middle m-l-5" height="25">
+                                                                    <Label text="EMD Number" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                                <StackLayout col="1" class="vrt-middle" height="25">
+                                                                    <Label text="{{item.PrimaryDocumentNbr}}" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                            </GridLayout>
+                                                            <GridLayout row="4" columns="250,*" class="stack vrt-middle">
+                                                                <StackLayout col="0" class="vrt-middle m-l-5" height="25">
+                                                                    <Label text="Issued Date" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                                <StackLayout col="1" class="vrt-middle" height="25">
+                                                                    <Label [text]="item.IssueDt.substr(0,10)" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                            </GridLayout>
+                                                            <GridLayout row="5" columns="250,*" class="stack vrt-middle">
+                                                                <StackLayout col="0" class="vrt-middle m-l-5" height="25">
+                                                                    <Label text="Issued By" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                                <StackLayout col="1" class="vrt-middle" height="25">
+                                                                    <Label text="{{item.UserId}}" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                            </GridLayout>
+                                                            <GridLayout row="6" columns="250,*" class="stack vrt-middle">
+                                                                <StackLayout col="0" class="vrt-middle m-l-5" height="25">
+                                                                    <Label text="Flight" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                                <StackLayout col="1" class="vrt-middle" height="25">
+                                                                    <Label text="{{items.AirlineCode + items.FlightNo}}" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                            </GridLayout>
+                                                            <GridLayout row="7" columns="250,*" class="stack vrt-middle">
+                                                                <StackLayout col="0" class="vrt-middle m-l-5" height="25">
+                                                                    <Label text="Date" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                                <StackLayout col="1" class="vrt-middle" height="25">
+                                                                    <Label text="{{items.DepartureDt}}" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                            </GridLayout>
+                                                            <GridLayout row="8" columns="250,*" class="stack vrt-middle">
+                                                                <StackLayout col="0" class="vrt-middle m-l-5" height="25">
+                                                                    <Label text="Endorsements" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                                <StackLayout col="1" class="vrt-middle" height="100%">
+                                                                    <ScrollView>
+                                                                        <StackLayout>
+                                                                            <Label *ngFor="let ssr of EndorsmentTextHotel,let ind = index" [text]="ssr.replace('?','').replace('|','')" textWrap="true" class="text-black  font-medium"></Label>
+                                                                        </StackLayout>
+                                                                    </ScrollView>
+                                                                </StackLayout>
+                                                            </GridLayout>
+                                                        </GridLayout>
+                                                    </StackLayout>
+                                                </StackLayout>
+                                            </StackLayout>
+                                        </ScrollView>
+                                    </div>
+                                    <div *ngIf="! IsHotelHistoryVisible">
+                                        <Label text="No Existing Compensation Related EMDs for Hotel" class="m-l-10 m-t-10 text-blue font-medium"></Label>
+                                    </div>
+                                </div>
+                            </StackLayout>
+
+                            <StackLayout #thirdLayer>
+                                <div *ngIf="ThirdBlock">
+                                    <div *ngIf="IsMealHistoryVisible">
+                                        <ScrollView>
+                                            <StackLayout height="auto">
+                                                <StackLayout *ngFor="let items of MealCompenstion; let i = index">
+                                                    <StackLayout *ngFor="let item of items.Emds; let i = index">
+                                                        <GridLayout rows="40,40,40,40,40,40,40,40,90">
+                                                            <GridLayout row="0" columns="250,*" class="stack vrt-middle">
+                                                                <StackLayout col="1" class="vrt-middle hrz-left m-l-5">
+                                                                    <Label text="EMD {{i+1}}" class="font-bold text-blue"></Label>
+                                                                </StackLayout>
+                                                            </GridLayout>
+                                                            <GridLayout row="1" columns="250,*" class="stack vrt-middle">
+                                                                <StackLayout col="0" class="vrt-middle m-l-5" height="25">
+                                                                    <Label text="Total Value" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                                <StackLayout col="1" class="vrt-middle" height="25">
+                                                                    <Label text="{{item.CompAmt}}" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                            </GridLayout>
+                                                            <GridLayout row="2" columns="250,*" class="stack vrt-middle">
+                                                                <StackLayout col="0" class="vrt-middle m-l-5" height="25">
+                                                                    <Label text="Reason for issuance" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                                <StackLayout col="1" class="vrt-middle" height="25">
+                                                                    <Label text="{{items.CompReasonText}}" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                            </GridLayout>
+                                                            <GridLayout row="3" columns="250,*" class="stack vrt-middle">
+                                                                <StackLayout col="0" class="vrt-middle m-l-5" height="25">
+                                                                    <Label text="EMD Number" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                                <StackLayout col="1" class="vrt-middle" height="25">
+                                                                    <Label text="{{item.PrimaryDocumentNbr}}" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                            </GridLayout>
+                                                            <GridLayout row="4" columns="250,*" class="stack vrt-middle">
+                                                                <StackLayout col="0" class="vrt-middle m-l-5" height="25">
+                                                                    <Label text="Issued Date" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                                <StackLayout col="1" class="vrt-middle" height="25">
+                                                                    <Label [text]="item.IssueDt.substr(0,10)" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                            </GridLayout>
+                                                            <GridLayout row="5" columns="250,*" class="stack vrt-middle">
+                                                                <StackLayout col="0" class="vrt-middle m-l-5" height="25">
+                                                                    <Label text="Issued By" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                                <StackLayout col="1" class="vrt-middle" height="25">
+                                                                    <Label text="{{item.UserId}}" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                            </GridLayout>
+                                                            <GridLayout row="6" columns="250,*" class="stack vrt-middle">
+                                                                <StackLayout col="0" class="vrt-middle m-l-5" height="25">
+                                                                    <Label text="Flight" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                                <StackLayout col="1" class="vrt-middle" height="25">
+                                                                    <Label text="{{items.AirlineCode + items.FlightNo}}" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                            </GridLayout>
+                                                            <GridLayout row="7" columns="250,*" class="stack vrt-middle">
+                                                                <StackLayout col="0" class="vrt-middle m-l-5" height="25">
+                                                                    <Label text="Date" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                                <StackLayout col="1" class="vrt-middle" height="25">
+                                                                    <Label text="{{items.DepartureDt}}" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                            </GridLayout>
+                                                            <GridLayout row="8" columns="250,*" class="stack vrt-middle">
+                                                                <StackLayout col="0" class="vrt-middle m-l-5" height="25">
+                                                                    <Label text="Endorsements" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                                <StackLayout col="1" class="vrt-middle" height="100%">
+                                                                    <ScrollView>
+                                                                        <StackLayout>
+                                                                            <Label *ngFor="let ssr of EndorsmentTextMeal,let ind = index" [text]="ssr.replace('?','').replace('|','')" textWrap="true" class="text-black  font-medium"></Label>
+                                                                        </StackLayout>
+                                                                    </ScrollView>
+                                                                </StackLayout>
+                                                            </GridLayout>
+                                                        </GridLayout>
+                                                    </StackLayout>
+                                                </StackLayout>
+                                            </StackLayout>
+                                        </ScrollView>
+                                    </div>
+                                    <div *ngIf="! IsMealHistoryVisible">
+                                        <Label text="No Existing Compensation Related EMDs for Meal" class="m-l-10 m-t-10 text-blue font-medium"></Label>
+                                    </div>
+                                </div>
+                            </StackLayout>
+
+                            <StackLayout #fourthLayer>
+                                <div *ngIf="FourthBlock">
+                                    <div *ngIf="IsTransportHistoryVisible">
+                                        <ScrollView>
+                                            <StackLayout height="auto">
+                                                <StackLayout *ngFor="let items of TransportCompenstion; let i = index">
+                                                    <StackLayout *ngFor="let item of items.Emds; let i = index">
+                                                        <GridLayout rows="40,40,40,40,40,40,40,40,90">
+                                                            <GridLayout row="0" columns="250,*" class="stack vrt-middle">
+                                                                <StackLayout col="1" class="vrt-middle hrz-left m-l-5">
+                                                                    <Label text="EMD {{i+1}}" class="font-bold text-blue"></Label>
+                                                                </StackLayout>
+                                                            </GridLayout>
+                                                            <GridLayout row="1" columns="250,*" class="stack vrt-middle">
+                                                                <StackLayout col="0" class="vrt-middle m-l-5" height="25">
+                                                                    <Label text="Total Value" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                                <StackLayout col="1" class="vrt-middle" height="25">
+                                                                    <Label text="{{item.CompAmt}}" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                            </GridLayout>
+                                                            <GridLayout row="2" columns="250,*" class="stack vrt-middle">
+                                                                <StackLayout col="0" class="vrt-middle m-l-5" height="25">
+                                                                    <Label text="Reason for issuance" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                                <StackLayout col="1" class="vrt-middle" height="25">
+                                                                    <Label text="{{items.CompReasonText}}" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                            </GridLayout>
+                                                            <GridLayout row="3" columns="250,*" class="stack vrt-middle">
+                                                                <StackLayout col="0" class="vrt-middle m-l-5" height="25">
+                                                                    <Label text="EMD Number" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                                <StackLayout col="1" class="vrt-middle" height="25">
+                                                                    <Label text="{{item.PrimaryDocumentNbr}}" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                            </GridLayout>
+                                                            <GridLayout row="4" columns="250,*" class="stack vrt-middle">
+                                                                <StackLayout col="0" class="vrt-middle m-l-5" height="25">
+                                                                    <Label text="Issued Date" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                                <StackLayout col="1" class="vrt-middle" height="25">
+                                                                    <Label [text]="item.IssueDt.substr(0,10)" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                            </GridLayout>
+                                                            <GridLayout row="5" columns="250,*" class="stack vrt-middle">
+                                                                <StackLayout col="0" class="vrt-middle m-l-5" height="25">
+                                                                    <Label text="Issued By" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                                <StackLayout col="1" class="vrt-middle" height="25">
+                                                                    <Label text="{{item.UserId}}" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                            </GridLayout>
+                                                            <GridLayout row="6" columns="250,*" class="stack vrt-middle">
+                                                                <StackLayout col="0" class="vrt-middle m-l-5" height="25">
+                                                                    <Label text="Flight" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                                <StackLayout col="1" class="vrt-middle" height="25">
+                                                                    <Label text="{{items.AirlineCode + items.FlightNo}}" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                            </GridLayout>
+                                                            <GridLayout row="7" columns="250,*" class="stack vrt-middle">
+                                                                <StackLayout col="0" class="vrt-middle m-l-5" height="25">
+                                                                    <Label text="Date" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                                <StackLayout col="1" class="vrt-middle" height="25">
+                                                                    <Label text="{{items.DepartureDt}}" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                            </GridLayout>
+                                                            <GridLayout row="8" columns="250,*" class="stack vrt-middle">
+                                                                <StackLayout col="0" class="vrt-middle m-l-5" height="25">
+                                                                    <Label text="Endorsements" class="text-black  font-medium"></Label>
+                                                                </StackLayout>
+                                                                <StackLayout col="1" class="vrt-middle" height="100%">
+                                                                    <ScrollView>
+                                                                        <StackLayout>
+                                                                            <Label *ngFor="let ssr of EndorsmentTextTransport,let ind = index" [text]="ssr.replace('?','').replace('|','')" class="text-black  font-medium"
+                                                                                textWrap="true" class="text-black"></Label>
+                                                                        </StackLayout>
+                                                                    </ScrollView>
+                                                                </StackLayout>
+                                                            </GridLayout>
+                                                        </GridLayout>
+                                                    </StackLayout>
+                                                </StackLayout>
+                                            </StackLayout>
+                                        </ScrollView>
+                                    </div>
+                                    <div *ngIf="! IsTransportHistoryVisible">
+                                        <Label text="No Existing Compensation Related EMDs for Transport" class="m-l-10 m-t-10 text-blue font-medium"></Label>
+                                    </div>
+                                </div>
+                            </StackLayout>
+
+                        </StackLayout>
+                    </StackLayout>
+                </GridLayout>
+            </div>
+        </StackLayout>
+
+        <StackLayout #reaccomodationdetails>
+            <div *ngIf="ReaccomodationDetails">
+                <GridLayout columns="*, 450" height="50" dock="top" class="bluemargin">
+                    <StackLayout col="0" orientation="horizontal">
+                        <Label text="Details of " class="m-l-10 vrt-middle"></Label>
+                        <Label text="{{PassengerName}}" class="text-blue font-bold"></Label>
+                    </StackLayout>
+                    <StackLayout orientation="horizontal" col="1" class="hrz-right m-r-30">
+                        <Label text="Current Flight: "></Label>
+                        <Label text="{{CurrentFlightStatus}}" textWrap="true" class="text-blue font-bold"></Label>
+                    </StackLayout>
+                </GridLayout>
+                <GridLayout dock="top" rows="*" columns="250, *" class="body">
+                    <StackLayout col="0" height="100%" class="left-panel">
+                        <StackLayout orientation="vertical">
+                            <StackLayout height="50" class="stack vrt-middle {{IsFromFlight ? 'selected' : 'normal'}}" (tap)="selectFromFlight()">
+                                <Label automationText="additional_fromflight"text="From Flight" class=" {{IsFromFlight ?  'text-white' : 'text-blue'}} font-medium font-bold m-l-8"></Label>
+                            </StackLayout>
+                            <StackLayout height="50" class="stack vrt-middle  {{IsToFlight ? 'selected' : 'normal'}}" (tap)="selectToFlight()">
+                                <Label automationText="additional_toflight"text="To Flight" class="{{IsToFlight ? 'text-white' : 'text-blue'}} font-medium font-bold m-l-8"></Label>
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout col="1" class="m-l-5" height="100%" class="outer-layer">
+                        <StackLayout orientation="horizontal" class="m-t-10 m-l-30" [visibility]="copyToSelectPaxReacc ? 'visible' : 'collapsed'">
+                            <Label automationText="additional_copypax" text="{{PaxItem.copyToSelectedPaxReaccom ? '&#xE834;':'&#xE835;'}}" class="material-icon checkbox font-big" (tap)="copyReaccomodationToSelectedPax()"></Label>
+                            <Label text="Copy to Selected Passengers" class="text-black font-bold font-medium m-l-10"></Label>
+                        </StackLayout>
+                        <StackLayout class="m-t-30" height="320" class="inner-layer m-30">
+                            <StackLayout #fromflight>
+                                <div *ngIf="IsFromFlight">
+                                    <DockLayout stretchLastChild="true" class="m-t-5">
+
+                                        <GridLayout class="table-header stack" dock="top" rows="40" columns="80,120, 120,120,120,40">
+                                            <StackLayout class="th" col="0">
+                                            </StackLayout>
+                                            <StackLayout class="hrz-center vrt-middle" col="1">
+                                                <Label text="Flight#" class="font-bold  text-black"></Label>
+                                            </StackLayout>
+                                            <StackLayout class="hrz-center vrt-middle" col="2">
+                                                <Label text="Date" class="font-bold hrz-center text-black"></Label>
+                                            </StackLayout>
+                                            <StackLayout class="hrz-center vrt-middle" col="3">
+                                                <Label text="From" class="font-bold hrz-center text-black"></Label>
+                                            </StackLayout>
+                                            <StackLayout class="hrz-center vrt-middle" col="4">
+                                                <Label text="To" class="font-bold hrz-center text-black"></Label>
+                                            </StackLayout>
+                                            <StackLayout class="th" col="5">
+                                            </StackLayout>
+                                        </GridLayout>
+
+                                        <GridLayout class="table-body" dock="bottom" rows="40,40">
+                                            <GridLayout class="tr stack" row="0" columns="80,120, 120,15,120,120,40">
+                                                <StackLayout class="hrz-center vrt-middle" col="0">
+                                                    <Label text="Flight 1" class="text-black"></Label>
+                                                </StackLayout>
+                                                <StackLayout class="hrz-center vrt-middle" col="1">
+                                                    <DockLayout class="input-field input-field-regular" stretchLastChild="true" [visibility]="isLabelField  ? 'collapsed' : 'visible'">
+                                                        <TextField automationText="additional_flightno1" dock="right" width="60%" class="input text-black" [(ngModel)]="FromFlightOneNumber" (ngModelChange)="onChange($event,1)"
+                                                            [class.error-field]="FromFlightOneError" autocapitalizationType="allCharacters"></TextField>
+                                                    </DockLayout>
+                                                    <DockLayout class="input-field input-field-regular" stretchLastChild="true" [visibility]="isLabelField   ? 'visible' : 'collapsed'">
+                                                        <Label text="{{FromFlightOneNumber}}" width="60%" class="input text-black "></Label>
+                                                    </DockLayout>
+                                                </StackLayout>
+                                                <StackLayout class="hrz-center vrt-middle" col="2">
+                                                    <DockLayout row="0" col="0" width="400" class="input-field input-field-regular" stretchLastChild="true" [visibility]="isLabelField  ? 'collapsed' : 'visible'">
+                                                        <Label automationText="additional_dateicon1"dock="left" class="label copa-icon" text="&#xe905;" (tap)="createModelViewForFrom1Date('start')"></Label>
+                                                        <Label automationText="additional_date1"id="datePick" keyboardType="number" dock="right" class="input text-black" (tap)="createModelViewForFrom1Date('start')"
+                                                            [text]='FromFlightOneDate | date:"MM/dd/yyyy"' (ngModelChange)="onChange($event,1)"></Label>
+                                                    </DockLayout>
+                                                    <DockLayout class="input-field input-field-regular" width="400" stretchLastChild="true" [visibility]="isLabelField   ? 'visible' : 'collapsed'">
+                                                        <Label text="{{FromFlightOneDate}}" class="input text-black"></Label>
+                                                    </DockLayout>
+                                                </StackLayout>
+                                                <StackLayout class="hrz-center vrt-middle" col="4">
+                                                    <DockLayout class="input-field input-field-regular" stretchLastChild="true" [visibility]="isLabelField  ? 'collapsed' : 'visible'">
+                                                        <TextField  automationText="additional_from1"maxLength="3" dock="right" width="60%" class="input text-black" [(ngModel)]="FromFlightOne.ReaccomBoardCityCd" (ngModelChange)="onChange($event,2)"
+                                                            [class.error-field]="FromOriginOneError" autocapitalizationType="allCharacters"></TextField>
+                                                    </DockLayout>
+                                                    <DockLayout class="input-field input-field-regular" stretchLastChild="true" [visibility]="isLabelField   ? 'visible' : 'collapsed'">
+                                                        <Label text="{{FromFlightOne.ReaccomBoardCityCd}}"  width="60%" class="input text-black"></Label>
+                                                    </DockLayout>
+                                                </StackLayout>
+                                                <StackLayout class="hrz-center vrt-middle" col="5">
+                                                    <DockLayout class="input-field input-field-regular" stretchLastChild="true" [visibility]="isLabelField  ? 'collapsed' : 'visible'">
+                                                        <TextField automationText="additional_to1" maxLength="3" dock="right" width="60%" class="input text-black" [(ngModel)]="FromFlightOne.ReaccomOffCityCd" (ngModelChange)="onChange($event,3)"
+                                                            [class.error-field]="FromDestOneError" autocapitalizationType="allCharacters"></TextField>
+                                                    </DockLayout>
+                                                    <DockLayout class="input-field input-field-regular" stretchLastChild="true" [visibility]="isLabelField   ? 'visible' : 'collapsed'">
+                                                        <Label text="{{FromFlightOne.ReaccomOffCityCd}}"  width="60%" class="input text-black"></Label>
+                                                    </DockLayout>
+                                                </StackLayout>
+                                                <StackLayout class="hrz-center vrt-middle" col="6" [visibility]="isLabelField  ? 'collapsed' : 'visible'">
+                                                    <Label automationText="additional_clear1"text="&#xE14C;" class="material-icon text-blue font-big" (tap)="clearFrom1FlightInfo()"></Label>
+                                                </StackLayout>
+                                                <StackLayout class="hrz-center vrt-middle" col="6" [visibility]="isLabelField   ? 'visible' : 'collapsed'">
+                                                    <Label  text="&#xE14C;" class="material-icon  font-big" ></Label>
+                                                </StackLayout>
+                                            </GridLayout>
+                                            <GridLayout class="tr stack" row="1" columns="80,120, 120,15,120,120,40">
+                                                <StackLayout class="hrz-center vrt-middle" col="0">
+                                                    <Label text="Flight 2" class="text-black"></Label>
+                                                </StackLayout>
+                                                <StackLayout class="hrz-center vrt-middle" col="1">
+                                                    <DockLayout class="input-field input-field-regular" stretchLastChild="true" [visibility]="isLabelField  ? 'collapsed' : 'visible'">
+                                                        <TextField automationText="additional_flightno2"dock="right" width="60%" class="input text-black" [(ngModel)]="FromFlightTwoNumber" (ngModelChange)="onChange($event,4)"
+                                                            [class.error-field]="FromFlightTwoError" autocapitalizationType="allCharacters"></TextField>
+                                                    </DockLayout>
+                                                    <DockLayout class="input-field input-field-regular" stretchLastChild="true" [visibility]="isLabelField   ? 'visible' : 'collapsed'">
+                                                        <Label text="{{FromFlightTwoNumber}}"  width="60%" class="input text-black"></Label>
+                                                    </DockLayout>
+                                                </StackLayout>
+                                                <StackLayout class="hrz-center vrt-middle" col="2">
+                                                    <DockLayout row="0" col="0" width="400" class="input-field input-field-regular" stretchLastChild="true" [visibility]="isLabelField  ? 'collapsed' : 'visible'">
+                                                        <Label automationText="additional_dateicon2"dock="left" class="label copa-icon" text="&#xe905;" (tap)="createModelViewFrom2Date('start')"></Label>
+                                                        <Label automationText="additional_date2"id="datePick" keyboardType="number" dock="right" class="input text-black" (tap)="createModelViewFrom2Date('start')"
+                                                            [text]='FromFlightTwoDate | date:"MM/dd/yyyy"'></Label>
+                                                    </DockLayout>
+                                                    <DockLayout class="input-field input-field-regular"  width="400" stretchLastChild="true" [visibility]="isLabelField   ? 'visible' : 'collapsed'">
+                                                        <Label text="{{FromFlightTwoDate}}" class="input text-black"></Label>
+                                                    </DockLayout>
+                                                </StackLayout>
+                                                <StackLayout class="hrz-center vrt-middle" col="4">
+                                                    <DockLayout class="input-field input-field-regular" stretchLastChild="true" [visibility]="isLabelField  ? 'collapsed' : 'visible'">
+                                                        <TextField automationText="additional_from2" maxLength="3" dock="right" width="60%" class="input text-black" [(ngModel)]="FromFlightTwo.ReaccomBoardCityCd" (ngModelChange)="onChange($event,5)"
+                                                            [class.error-field]="FromOriginTwoError" autocapitalizationType="allCharacters"></TextField>
+                                                    </DockLayout>
+                                                    <DockLayout class="input-field input-field-regular" stretchLastChild="true" [visibility]="isLabelField   ? 'visible' : 'collapsed'">
+                                                        <Label text="{{FromFlightTwo.ReaccomBoardCityCd}}"  width="60%" class="input text-black"></Label>
+                                                    </DockLayout>
+                                                </StackLayout>
+                                                <StackLayout class="hrz-center vrt-middle" col="5">
+                                                    <DockLayout class="input-field input-field-regular" stretchLastChild="true" [visibility]="isLabelField  ? 'collapsed' : 'visible'">
+                                                        <TextField automationText="additional_to2"maxLength="3" dock="right" width="60%" class="input text-black" [(ngModel)]="FromFlightTwo.ReaccomOffCityCd" (ngModelChange)="onChange($event,6)"
+                                                            [class.error-field]="FromDestTwoError" autocapitalizationType="allCharacters"></TextField>
+                                                    </DockLayout>
+                                                    <DockLayout class="input-field input-field-regular" stretchLastChild="true" [visibility]="isLabelField   ? 'visible' : 'collapsed'">
+                                                        <Label text="{{FromFlightTwo.ReaccomOffCityCd}}"  width="60%" class="input text-black"></Label>
+                                                    </DockLayout>
+                                                </StackLayout>
+                                                <StackLayout class="hrz-center vrt-middle" col="6" [visibility]="isLabelField  ? 'collapsed' : 'visible'">
+                                                    <Label automationText="additional_clear2"text="&#xE14C;" class="material-icon text-blue font-big" (tap)="clearFrom2FlightInfo()"></Label>
+                                                </StackLayout>
+                                                <StackLayout class="hrz-center vrt-middle" col="6" [visibility]="isLabelField   ? 'visible' : 'collapsed'">
+                                                    <Label text="&#xE14C;" class="material-icon  font-big" ></Label>
+                                                </StackLayout>
+                                            </GridLayout>
+                                        </GridLayout>
+                                    </DockLayout>
+                                </div>
+                            </StackLayout>
+
+                            <StackLayout #toflight>
+                                <div *ngIf="IsToFlight">
+                                    <DockLayout stretchLastChild="true" class="m-t-5">
+
+                                        <GridLayout class="table-header stack" dock="top" rows="40" columns="80,120, 120,120,120,40">
+                                            <StackLayout class="th" col="0">
+                                            </StackLayout>
+                                            <StackLayout class="hrz-center vrt-middle" col="1">
+                                                <Label text="Flight#" class="font-bold  text-black"></Label>
+                                            </StackLayout>
+                                            <StackLayout class="hrz-center vrt-middle" col="2">
+                                                <Label text="Date" class="font-bold hrz-center text-black"></Label>
+                                            </StackLayout>
+                                            <StackLayout class="hrz-center vrt-middle" col="3">
+                                                <Label text="From" class="font-bold hrz-center text-black"></Label>
+                                            </StackLayout>
+                                            <StackLayout class="hrz-center vrt-middle" col="4">
+                                                <Label text="To" class="font-bold hrz-center text-black"></Label>
+                                            </StackLayout>
+                                        </GridLayout>
+
+                                        <GridLayout class="table-body" dock="bottom" rows="40,40">
+                                            <GridLayout class="tr stack" row="0" columns="80,120, 120,15,120,120,40">
+                                                <StackLayout class="hrz-center vrt-middle" col="0">
+                                                    <Label text="Flight 1" class="text-black"></Label>
+                                                </StackLayout>
+                                                <StackLayout class="hrz-center vrt-middle" col="1">
+                                                    <DockLayout class="input-field input-field-regular" stretchLastChild="true" [visibility]="isLabelField  ? 'collapsed' : 'visible'">
+                                                        <TextField automationText="additional_toflightno1"dock="right" width="60%" class="input text-black" [(ngModel)]="ToFlightOneNumber" (ngModelChange)="onChange($event,7)"
+                                                            [class.error-field]="ToFlightOneError" autocapitalizationType="allCharacters"></TextField>
+                                                    </DockLayout>
+                                                    <DockLayout class="input-field input-field-regular" stretchLastChild="true" [visibility]="isLabelField   ? 'visible' : 'collapsed'">
+                                                        <Label text="{{ToFlightOneNumber}}"  width="60%" class="input text-black"></Label>
+                                                    </DockLayout>
+                                                </StackLayout>
+                                                <StackLayout class="hrz-center vrt-middle" col="2">
+                                                    <DockLayout row="0" col="0" width="400" class="input-field input-field-regular" stretchLastChild="true" [visibility]="isLabelField  ? 'collapsed' : 'visible'">
+                                                        <Label automationText="additional_todateicon1"dock="left" class="label copa-icon" text="&#xe905;" (tap)="createModelViewTo1Date('start')"></Label>
+                                                        <Label automationText="additional_todate1"id="datePick" keyboardType="number" dock="right" class="input text-black" (tap)="createModelViewTo1Date('start')"
+                                                            [text]='ToFlightOneDate | date:"MM/dd/yyyy"'></Label>
+                                                    </DockLayout>
+                                                    <DockLayout class="input-field input-field-regular"  width="400" stretchLastChild="true" [visibility]="isLabelField   ? 'visible' : 'collapsed'">
+                                                        <Label text="{{ToFlightOneDate}}"   class="input text-black "></Label>
+                                                    </DockLayout>
+                                                </StackLayout>
+                                                <StackLayout class="hrz-center vrt-middle" col="4">
+                                                    <DockLayout class="input-field input-field-regular" stretchLastChild="true" [visibility]="isLabelField  ? 'collapsed' : 'visible'">
+                                                        <TextField automationText="additional_from3" maxLength="3" dock="right" width="60%" class="input text-black" [(ngModel)]="ToFlightOne.ReaccomBoardCityCd" maxLength="3" (ngModelChange)="onChange($event,8)"
+                                                            [class.error-field]="ToOriginOneError" autocapitalizationType="allCharacters"></TextField>
+                                                    </DockLayout>
+                                                    <DockLayout class="input-field input-field-regular" stretchLastChild="true" [visibility]="isLabelField   ? 'visible' : 'collapsed'">
+                                                        <Label text="{{ToFlightOne.ReaccomBoardCityCd}}"   width="60%" class="input text-black "></Label>
+                                                    </DockLayout>
+                                                </StackLayout>
+                                                <StackLayout class="hrz-center vrt-middle" col="5">
+                                                    <DockLayout class="input-field input-field-regular" stretchLastChild="true" [visibility]="isLabelField  ? 'collapsed' : 'visible'">
+                                                        <TextField automationText="additional_to3"maxLength="3" dock="right" width="60%" class="input text-black" [(ngModel)]="ToFlightOne.ReaccomOffCityCd" (ngModelChange)="onChange($event,9)"
+                                                            [class.error-field]="ToDestOneError" autocapitalizationType="allCharacters"></TextField>
+                                                    </DockLayout>
+                                                    <DockLayout class="input-field input-field-regular" stretchLastChild="true" [visibility]="isLabelField   ? 'visible' : 'collapsed'">
+                                                        <Label text="{{ToFlightOne.ReaccomOffCityCd}}"  width="60%" class="input text-black "></Label>
+                                                    </DockLayout>
+                                                </StackLayout>
+                                                <StackLayout class="hrz-center vrt-middle" col="6" [visibility]="isLabelField  ? 'collapsed' : 'visible'">
+                                                    <Label automationText="additional_toclear1"text="&#xE14C;" class="material-icon text-blue font-big" (tap)="clearTo1FlightInfo()"></Label>
+                                                </StackLayout>
+                                                <StackLayout class="hrz-center vrt-middle" col="6" [visibility]="isLabelField   ? 'visible' : 'collapsed'">
+                                                    <Label text="&#xE14C;" class="material-icon  font-big" ></Label>
+                                                </StackLayout>
+                                            </GridLayout>
+                                            <GridLayout class="tr stack" row="1" columns="80,120,120,15,120,120,40">
+                                                <StackLayout class="hrz-center vrt-middle" col="0">
+                                                    <Label text="Flight 2" class="text-black"></Label>
+                                                </StackLayout>
+                                                <StackLayout class="hrz-center vrt-middle" col="1">
+                                                    <DockLayout class="input-field input-field-regular" stretchLastChild="true" [visibility]="isLabelField  ? 'collapsed' : 'visible'">
+                                                        <TextField automationText="additional_toflightno2"maxLength="4" dock="right" width="60%" class="input text-black" [(ngModel)]="ToFlightTwoNumber" (ngModelChange)="onChange($event,10)"
+                                                            [class.error-field]="ToFlightTwoError" autocapitalizationType="allCharacters"></TextField>
+                                                    </DockLayout>
+                                                    <DockLayout class="input-field input-field-regular" stretchLastChild="true" [visibility]="isLabelField   ? 'visible' : 'collapsed'">
+                                                        <Label text="{{ToFlightTwoNumber}}"  width="60%"  class="input text-black"></Label>
+                                                    </DockLayout>
+                                                </StackLayout>
+                                                <StackLayout class="hrz-center vrt-middle" col="2">
+                                                    <DockLayout row="0" col="0" width="400" class="input-field input-field-regular" stretchLastChild="true" [visibility]="isLabelField  ? 'collapsed' : 'visible'">
+                                                        <Label automationText="additional_todateicon2"dock="left" class="label copa-icon" text="&#xe905;" (tap)="createModelViewTo2Date('start')"></Label>
+                                                        <Label automationText="additional_todate2"id="datePick" keyboardType="number" dock="right" class="input text-black" (tap)="createModelViewTo2Date('start')"
+                                                            [text]='ToFlightTwoDate | date:"MM/dd/yyyy"'></Label>
+                                                    </DockLayout>
+                                                    <DockLayout class="input-field input-field-regular"  width="400" stretchLastChild="true" [visibility]="isLabelField   ? 'visible' : 'collapsed'">
+                                                        <Label text="{{ToFlightTwoDate}}" class="input text-black "></Label>
+                                                    </DockLayout>
+                                                </StackLayout>
+                                                <StackLayout class="hrz-center vrt-middle" col="4">
+                                                    <DockLayout class="input-field input-field-regular" stretchLastChild="true" [visibility]="isLabelField  ? 'collapsed' : 'visible'">
+                                                        <TextField automationText="additional_from4"maxLength="3" dock="right" width="60%" class="input text-black" [(ngModel)]="ToFlightTwo.ReaccomBoardCityCd" (ngModelChange)="onChange($event,11)"
+                                                            [class.error-field]="ToOriginTwoError" autocapitalizationType="allCharacters"></TextField>
+                                                    </DockLayout>
+                                                    <DockLayout class="input-field input-field-regular" stretchLastChild="true" [visibility]="isLabelField   ? 'visible' : 'collapsed'">
+                                                        <Label text="{{ToFlightTwo.ReaccomBoardCityCd}}"  width="60%"  class="input text-black "></Label>
+                                                    </DockLayout>
+                                                </StackLayout>
+                                                <StackLayout class="hrz-center vrt-middle" col="5">
+                                                    <DockLayout class="input-field input-field-regular" stretchLastChild="true" [visibility]="isLabelField  ? 'collapsed' : 'visible'">
+                                                        <TextField automationText="additional_to4"maxLength="3" dock="right" width="60%" class="input text-black" [(ngModel)]="ToFlightTwo.ReaccomOffCityCd" (ngModelChange)="onChange($event,12)"
+                                                            [class.error-field]="ToDestTwoError" autocapitalizationType="allCharacters"></TextField>
+                                                    </DockLayout>
+                                                    <DockLayout class="input-field input-field-regular" stretchLastChild="true" [visibility]="isLabelField   ? 'visible' : 'collapsed'">
+                                                        <Label text="{{ToFlightTwo.ReaccomOffCityCd}}"  width="60%"  class="input text-black "></Label>
+                                                    </DockLayout>
+                                                </StackLayout>
+                                                <StackLayout class="hrz-center vrt-middle" col="6" [visibility]="isLabelField  ? 'collapsed' : 'visible'">
+                                                    <Label automationText="additional_toclear2"text="&#xE14C;" class="material-icon text-blue font-big" (tap)="clearTo2FlightInfo()"></Label>
+                                                </StackLayout>
+                                                <StackLayout class="hrz-center vrt-middle" col="6" [visibility]="isLabelField   ? 'visible' : 'collapsed'">
+                                                    <Label text="&#xE14C;" class="material-icon  font-big" ></Label>
+                                                </StackLayout>
+                                            </GridLayout>
+                                        </GridLayout>
+                                    </DockLayout>
+
+
+                                </div>
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+                </GridLayout>
+            </div>
+        </StackLayout>
+
+        <StackLayout #compensationdetails>
+            <div *ngIf="CompensationDetails">
+                <GridLayout columns="*, 450" height="50" dock="top" class="bluemargin">
+                    <StackLayout col="0" orientation="horizontal">
+                        <Label text="Details of " class="m-l-10 vrt-middle"></Label>
+                        <Label text="{{PassengerName}}" textWrap="true" class="text-blue font-bold"></Label>
+                    </StackLayout>
+                    <StackLayout orientation="horizontal" col="1" class="hrz-right m-r-30">
+                        <Label text="Compensation Reason - "></Label>
+                        <Label text="{{CompensationReason}}" textWrap="true" class="text-blue font-bold"></Label>
+                    </StackLayout>
+                </GridLayout>
+                <GridLayout dock="top" rows="*" columns="250, *" class="body">
+                    <StackLayout col="0" height="100%" class="left-panel">
+                        <StackLayout orientation="vertical">
+                            <StackLayout height="50" class="stack vrt-middle {{IsMonetoryEmd ? 'selected' : 'normal'}}" (tap)="selectMonetoryEmd()">
+                                <Label automationText="additional_compmonetary" text="Monetary EMD" class=" {{IsMonetoryEmd ?  'text-white' : 'text-blue'}} font-medium font-bold m-l-8"></Label>
+                            </StackLayout>
+                            <StackLayout height="50" class="stack vrt-middle  {{IsHotelEmd ? 'selected' : 'normal'}}" (tap)="selectHotelEmd()">
+                                <Label automationText="additional_comphotel"text="Hotel EMD" class="{{IsHotelEmd ? 'text-white' : 'text-blue'}} font-medium font-bold m-l-8"></Label>
+                            </StackLayout>
+                            <StackLayout height="50" class="stack vrt-middle {{IsMealEmd ? 'selected' : 'normal'}}" (tap)="selectMealEmd()">
+                                <Label automationText="additional_compmeal"text="Meal EMD" class="{{IsMealEmd ? 'text-white' : 'text-blue' }} font-medium font-bold m-l-8"></Label>
+                            </StackLayout>
+                            <StackLayout height="50" class="stack vrt-middle {{IsTransportEmd ? 'selected' : 'normal'}}" (tap)="selectTransportEmd()">
+                                <Label automationText="additional_comptransport"text="Transport EMD" class="{{IsTransportEmd ? 'text-white' : 'text-blue' }} font-medium font-bold m-l-8"></Label>
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout col="1" class="m-l-5" height="100%" class="outer-layer">
+                        <StackLayout orientation="horizontal" class="m-t-10 m-l-30" [visibility]="copyToSelectPax ? 'visible' : 'collapsed'">
+                            <Label automationText="additional_compcopypax"text="{{PaxItem.copyToSelectedPax ? '&#xE834;':'&#xE835;'}}" class="material-icon checkbox font-big" (tap)="copyToSelectedPax()"></Label>
+                            <Label text="Copy to Selected Passengers" class="text-black font-bold font-medium m-l-10"></Label>
+                        </StackLayout>
+                        <StackLayout height="350" class="inner-layer m-20">
+                            <StackLayout #monetoryemd>
+                                <div *ngIf="IsMonetoryEmd">
+                                    <GridLayout rows="30,220,45,45">
+                                        <StackLayout row="0">
+                                            <Label text="Endorsements" class="font-l m-t-10 m-l-10"></Label>
+                                        </StackLayout>
+                                        <StackLayout class="stack" row="1">
+                                            <ScrollView>
+                                                <StackLayout>
+                                                    <Label *ngFor="let ssr of MonetaryText,let ind = index" [text]="ssr.replace('?','').replace('|','')" textWrap="true" class="text-black font-l m-t-5 m-l-10"></Label>
+                                                </StackLayout>
+                                            </ScrollView>
+                                        </StackLayout>
+                                        <StackLayout row="2" class="m-t-5">
+                                            <DockLayout class="input-field input-field-regular" stretchLastChild="true" [visibility]="isLabelField  ? 'collapsed' : 'visible'">
+                                                <TextField automationText="additional_monetaryendorsment"dock="right" width="100%" class="input text-black font-l" hint="Enter Endorsement" [(ngModel)]="PaxItem.monetaryfreeText"
+                                                    (ngModelChange)="onChange($event,15)" [class.error-field]="IsMonetaryTextValid"
+                                                    autocapitalizationType="allCharacters"></TextField>
+                                            </DockLayout>
+                                            <DockLayout class="input-field input-field-regular" [visibility]="isLabelField  && (PaxItem.monetaryfreeText == null || PaxItem.monetaryfreeText == '')  ? 'visible' : 'collapsed'" stretchLastChild="true">
+                                                    <Label  width="100%"  class="input font-l" text="Enter Endorsement" color="lightgray"></Label>                            
+                                            </DockLayout>
+                                            <DockLayout class="input-field input-field-regular" stretchLastChild="true" [visibility]="isLabelField  && (PaxItem.monetaryfreeText != null || PaxItem.monetaryfreeText != '') ? 'visible' : 'collapsed'">
+                                                <Label text="{{PaxItem.monetaryfreeText}}" class="input text-black font-l"></Label>
+                                            </DockLayout>
+                                        </StackLayout>
+                                        <StackLayout row="3">
+                                            <DockLayout class="input-field input-field-regular" stretchLastChild="true" [visibility]="isLabelField  ? 'collapsed' : 'visible'">
+                                                <TextField automationText="additional_monetaryreason"dock="right" width="100%" class="input text-black font-l" hint="Monetary Override Reason" autocapitalizationType="allCharacters"
+                                                    [(ngModel)]="PaxItem.MonetaryOverrideReason"></TextField>
+                                            </DockLayout>
+                                            <DockLayout class="input-field input-field-regular" [visibility]="isLabelField  && (PaxItem.MonetaryOverrideReason == null || PaxItem.MonetaryOverrideReason == '')  ? 'visible' : 'collapsed'" stretchLastChild="true">
+                                                    <Label  width="100%"  class="input font-l" text="Monetary Override Reason" color="lightgray"></Label>                            
+                                            </DockLayout>
+                                            <DockLayout class="input-field input-field-regular" stretchLastChild="true" [visibility]="isLabelField && (PaxItem.MonetaryOverrideReason != null || PaxItem.MonetaryOverrideReason != '')  ? 'visible' : 'collapsed'">
+                                                <Label text="{{PaxItem.MonetaryOverrideReason}}" class="input text-black font-l"></Label>
+                                            </DockLayout>
+                                        </StackLayout>
+                                    </GridLayout>
+                                </div>
+                            </StackLayout>
+                            <StackLayout #hotelemd>
+                                <div *ngIf="IsHotelEmd">
+                                    <GridLayout rows="30,200,38,38,38">
+                                        <StackLayout row="0">
+                                            <Label text="Endorsements" class="font-l m-t-10 m-l-10"></Label>
+                                        </StackLayout>
+                                        <StackLayout class="stack" row="1">
+                                            <ScrollView>
+                                                <StackLayout>
+                                                    <Label *ngFor="let ssr of HotelText,let ind = index" [text]="ssr.replace('?','').replace('|','')" textWrap="true" class="text-black font-l m-t-5 m-l-10"></Label>
+                                                </StackLayout>
+                                            </ScrollView>
+                                        </StackLayout>
+                                        <StackLayout row="2" class="m-t-5">
+                                            <DockLayout class="input-field input-field-regular" stretchLastChild="true" [visibility]="isLabelField  ? 'collapsed' : 'visible'">
+                                                <TextField automationText="additional_hotelendorsment"dock="right" width="100%" class="input text-black font-l" hint="Enter Endorsement" [(ngModel)]="PaxItem.hotelFreeText"
+                                                    (ngModelChange)="onChange($event,16)" autocapitalizationType="allCharacters"
+                                                    [class.error-field]="IsHotelTextValid"></TextField>
+                                            </DockLayout>
+                                            <DockLayout class="input-field input-field-regular" [visibility]="isLabelField  && (PaxItem.hotelFreeText == null || PaxItem.hotelFreeText == '')  ? 'visible' : 'collapsed'" stretchLastChild="true">
+                                                    <Label  width="100%"  class="input font-l" text="Enter Endorsement" color="lightgray"></Label>                            
+                                            </DockLayout>
+                                            <DockLayout class="input-field input-field-regular" stretchLastChild="true" [visibility]="isLabelField  && (PaxItem.hotelFreeText != null || PaxItem.hotelFreeText != '')? 'visible' : 'collapsed'">
+                                                <Label text="{{PaxItem.hotelFreeText}}" class="input text-black font-l"></Label>
+                                            </DockLayout>
+                                        </StackLayout>
+                                        <StackLayout row="3">
+                                            <DockLayout class="input-field input-field-regular" stretchLastChild="true" [visibility]="isLabelField  ? 'collapsed' : 'visible'">
+                                                <TextField automationText="additional_hoteldetails"dock="right" width="100%" class="input text-black font-l" hint="Enter Hotel Details" [(ngModel)]="PaxItem.hotelDetails"
+                                                    (ngModelChange)="onChange($event,17)" autocapitalizationType="allCharacters"
+                                                    [class.error-field]="IsHotelNameValid"></TextField>
+                                            </DockLayout>
+                                            <DockLayout class="input-field input-field-regular" [visibility]="isLabelField  && (PaxItem.hotelDetails == null || PaxItem.hotelDetails == '')  ? 'visible' : 'collapsed'" stretchLastChild="true">
+                                                    <Label  width="100%"  class="input font-l" text="Enter Hotel Details" color="lightgray"></Label>                            
+                                            </DockLayout>
+                                            <DockLayout class="input-field input-field-regular" stretchLastChild="true" [visibility]="isLabelField  && (PaxItem.hotelDetails != null || PaxItem.hotelDetails != '') ? 'visible' : 'collapsed'">
+                                                <Label text="{{PaxItem.hotelDetails}}" class="input text-black font-l"></Label>
+                                            </DockLayout>
+                                        </StackLayout>
+                                        <StackLayout row="4">
+                                            <DockLayout class="input-field input-field-regular" stretchLastChild="true" [visibility]="isLabelField  ? 'collapsed' : 'visible'">
+                                                <TextField automationText="additional_hotelreason"dock="right" width="100%" class="input text-black font-l" autocapitalizationType="allCharacters" hint="Hotel Override reason"
+                                                    text="{{PaxItem.HotelOverrideReason != '' ? PaxItem.HotelOverrideReason : ''  }}"></TextField>
+                                            </DockLayout>
+                                            <DockLayout class="input-field input-field-regular" [visibility]="isLabelField   && (PaxItem.HotelOverrideReason == null || PaxItem.HotelOverrideReason == '')  ? 'visible' : 'collapsed'" stretchLastChild="true">
+                                                    <Label  width="100%"  class="input font-l" text="Hotel Override reason" color="lightgray"></Label>                            
+                                            </DockLayout>
+                                            <DockLayout class="input-field input-field-regular" stretchLastChild="true" [visibility]="isLabelField && (PaxItem.HotelOverrideReason != null || PaxItem.HotelOverrideReason != '') ? 'visible' : 'collapsed'">
+                                                <Label text="{{PaxItem.HotelOverrideReason}}" class="input text-black font-l"></Label>
+                                            </DockLayout>
+                                        </StackLayout>
+                                    </GridLayout>
+                                </div>
+                            </StackLayout>
+                            <StackLayout #mealemd>
+                                <div *ngIf="IsMealEmd">
+                                    <GridLayout rows="30,200,38,38,38">
+                                        <StackLayout row="0">
+                                            <Label text="Endorsements" class="font-l m-t-10 m-l-10"></Label>
+                                        </StackLayout>
+                                        <StackLayout class="stack" row="1">
+                                            <ScrollView>
+                                                <StackLayout>
+                                                    <Label *ngFor="let ssr of MealText,let ind = index" [text]="ssr.replace('?','').replace('|','')" textWrap="true" class="text-black font-l m-t-5 m-l-10"></Label>
+                                                </StackLayout>
+                                            </ScrollView>
+                                        </StackLayout>
+                                        <StackLayout row="2" class="m-t-5">
+                                            <DockLayout class="input-field input-field-regular" stretchLastChild="true" [visibility]="isLabelField  ? 'collapsed' : 'visible'">
+                                                <TextField automationText="additional_mealendorsment"dock="right" width="100%" class="input text-black font-l" hint="Enter Endorsement" [(ngModel)]="PaxItem.mealFreeText"
+                                                    (ngModelChange)="onChange($event,18)" autocapitalizationType="allCharacters"
+                                                    [class.error-field]="IsMealTextValid"></TextField>
+                                            </DockLayout>
+                                            <DockLayout class="input-field input-field-regular" [visibility]="isLabelField   && (PaxItem.mealFreeText == null || PaxItem.mealFreeText == '')  ? 'visible' : 'collapsed'" stretchLastChild="true">
+                                                    <Label  width="100%"  class="input font-l" text="Enter Endorsement" color="lightgray"></Label>                            
+                                            </DockLayout>
+                                            <DockLayout class="input-field input-field-regular" stretchLastChild="true" [visibility]="isLabelField   && (PaxItem.mealFreeText != null || PaxItem.mealFreeText != '')? 'visible' : 'collapsed'">
+                                                <Label text="{{PaxItem.mealFreeText}}" class="input text-black font-l"></Label>
+                                            </DockLayout>
+                                        </StackLayout>
+                                        <StackLayout row="3">
+                                            <DockLayout class="input-field input-field-regular" stretchLastChild="true" [visibility]="isLabelField  ? 'collapsed' : 'visible'">
+                                                <TextField automationText="additional_mealdetails"dock="right" width="100%" class="input text-black font-l" hint="Enter Meal Details" [(ngModel)]="PaxItem.mealDetails"
+                                                    (ngModelChange)="onChange($event,20)" autocapitalizationType="allCharacters"
+                                                    [class.error-field]="isMealDetailValid"></TextField>
+                                            </DockLayout>
+                                            <DockLayout class="input-field input-field-regular" [visibility]="isLabelField   && (PaxItem.mealDetails == null || PaxItem.mealDetails == '')  ? 'visible' : 'collapsed'" stretchLastChild="true">
+                                                    <Label  width="100%"  class="input font-l" text="Enter Meal Details" color="lightgray"></Label>                            
+                                            </DockLayout>
+                                            <DockLayout class="input-field input-field-regular" stretchLastChild="true" [visibility]="isLabelField  && (PaxItem.mealDetails != null || PaxItem.mealDetails != '') ? 'visible' : 'collapsed'">
+                                                <Label text="{{PaxItem.mealDetails}}" class="input text-black font-l"></Label>
+                                            </DockLayout>
+                                        </StackLayout>
+                                        <StackLayout row=4>
+                                            <DockLayout class="input-field input-field-regular" stretchLastChild="true" [visibility]="isLabelField  ? 'collapsed' : 'visible'">
+                                                <TextField automationText="additional_mealreason" dock="right" width="100%" autocapitalizationType="allCharacters" class="input text-black font-l" hint="Meal Override Reason"
+                                                    [class.error-field]="isMealDetailValid" text="{{PaxItem.MealOverrideReason != '' ? PaxItem.MealOverrideReason : ''  }}"></TextField>
+                                            </DockLayout>
+                                            <DockLayout class="input-field input-field-regular" [visibility]="isLabelField   && (PaxItem.MealOverrideReason == null || PaxItem.MealOverrideReason == '')  ? 'visible' : 'collapsed'" stretchLastChild="true">
+                                                    <Label  width="100%"  class="input font-l" text="Meal Override Reason" color="lightgray"></Label>                            
+                                            </DockLayout>
+                                            <DockLayout class="input-field input-field-regular" stretchLastChild="true" [visibility]="isLabelField   && (PaxItem.MealOverrideReason != null || PaxItem.MealOverrideReason != '')? 'visible' : 'collapsed'">
+                                                <Label text="{{PaxItem.MealOverrideReason}}" class="input text-black font-l"></Label>
+                                            </DockLayout>
+                                        </StackLayout>
+                                    </GridLayout>
+                                </div>
+                            </StackLayout>
+                            <StackLayout #transportemd>
+                                <div *ngIf="IsTransportEmd">
+                                    <GridLayout rows="30,200,38,38,38">
+                                        <StackLayout row="0">
+                                            <Label text="Endorsements" class="font-l m-t-10 m-l-10"></Label>
+                                        </StackLayout>
+                                        <StackLayout class="stack" row="1">
+                                            <ScrollView>
+                                                <StackLayout>
+                                                    <Label *ngFor="let ssr of TransportText,let ind = index" [text]="ssr.replace('?','').replace('|','')" textWrap="true" class="text-black font-l m-t-5 m-l-10"></Label>
+                                                </StackLayout>
+                                            </ScrollView>
+                                        </StackLayout>
+                                        <StackLayout row="2" class="m-t-5">
+                                            <DockLayout class="input-field input-field-regular" stretchLastChild="true" [visibility]="isLabelField  ? 'collapsed' : 'visible'">
+                                                <TextField automationText="additional_transportendorsement"dock="right" width="100%" class="input text-black font-l" hint="Enter Endorsement" [(ngModel)]="PaxItem.transportFreeText"
+                                                    (ngModelChange)="onChange($event,19)" autocapitalizationType="allCharacters"
+                                                    [class.error-field]="IsTransportTextValid"></TextField>
+                                            </DockLayout>
+                                            <DockLayout class="input-field input-field-regular" [visibility]="isLabelField   && PaxItem.transportFreeText == ''  ? 'visible' : 'collapsed'" stretchLastChild="true">
+                                                    <Label  width="100%"  class="input font-l" text="Enter Endorsement" color="lightgray"></Label>                            
+                                            </DockLayout>
+                                            <DockLayout class="input-field input-field-regular" stretchLastChild="true" [visibility]="isLabelField && PaxItem.transportFreeText != ''  ? 'visible' : 'collapsed'">
+                                                <Label text="{{PaxItem.transportFreeText}}" class="input text-black font-l"></Label>
+                                            </DockLayout>
+                                        </StackLayout>
+                                        <StackLayout row="3">
+                                            <DockLayout class="input-field input-field-regular" stretchLastChild="true" [visibility]="isLabelField  ? 'collapsed' : 'visible'">
+                                                <TextField automationText="additional_transportcompemd"dock="right" width="100%" class="input text-black font-l" hint="Transport EMD" [(ngModel)]="PaxItem.transportEMD"
+                                                    (ngModelChange)="onChange($event,21)" autocapitalizationType="allCharacters"
+                                                    [class.error-field]="isTransportEMDValid"></TextField>
+                                            </DockLayout>
+                                            <DockLayout class="input-field input-field-regular" [visibility]="isLabelField   && (PaxItem.transportEMD == null|| PaxItem.transportEMD == '')  ? 'visible' : 'collapsed'" stretchLastChild="true">
+                                                    <Label  width="100%"  class="input font-l" text="Transport EMD" color="lightgray"></Label>                            
+                                            </DockLayout>
+                                            <DockLayout class="input-field input-field-regular" stretchLastChild="true" [visibility]="isLabelField && (PaxItem.transportEMD != null|| PaxItem.transportEMD != '')  ? 'visible' : 'collapsed'">
+                                                <Label text="{{PaxItem.transportEMD}}" class="input text-black font-l"></Label>
+                                            </DockLayout>
+                                        </StackLayout>
+                                        <StackLayout row="4">
+                                            <DockLayout class="input-field input-field-regular" stretchLastChild="true" [visibility]="isLabelField  ? 'collapsed' : 'visible'">
+                                                <TextField automationText="additional_transportreason" dock="right" width="100%" class="input text-black font-l" autocapitalizationType="allCharacters" hint="Transport Override Reason"
+                                                    text="{{PaxItem.TransportOverrideReason != '' ? PaxItem.TransportOverrideReason : ''  }}"></TextField>
+                                            </DockLayout>
+                                            <DockLayout class="input-field input-field-regular" [visibility]="isLabelField   && (PaxItem.TransportOverrideReason == null || PaxItem.TransportOverrideReason == '')  ? 'visible' : 'collapsed'" stretchLastChild="true">
+                                                    <Label  width="100%"  class="input font-l" text="Transport Override Reason" color="lightgray"></Label>                            
+                                            </DockLayout>
+                                            <DockLayout class="input-field input-field-regular" stretchLastChild="true" [visibility]="isLabelField && (PaxItem.TransportOverrideReason != null || PaxItem.TransportOverrideReason != '') ? 'visible' : 'collapsed'">
+                                                <Label text="{{PaxItem.TransportOverrideReason}}" class="input text-black font-l"></Label>
+                                            </DockLayout>
+                                        </StackLayout>
+                                    </GridLayout>
+                                </div>
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+                </GridLayout>
+            </div>
+        </StackLayout>
+
+        <StackLayout #otherdetails>
+            <div *ngIf="OtherDetails">
+                <GridLayout columns="*, 450" height="50" dock="top" class="bluemargin">
+                    <StackLayout col="0" orientation="horizontal">
+                        <Label text="Details of " class="m-l-10 vrt-middle"></Label>
+                        <Label text="{{PassengerName}}" textWrap="true" class="text-blue font-bold"></Label>
+                    </StackLayout>
+                    <StackLayout orientation="horizontal" col="1" class="hrz-right m-r-30">
+                        <Label text="Compensation Reason - "></Label>
+                        <Label text="{{CompensationReason}}" textWrap="true" class="text-blue font-bold"></Label>
+                    </StackLayout>
+                </GridLayout>
+                <GridLayout dock="top" class="body">
+                    <StackLayout height="100%" class="outer-layer">
+                        <StackLayout class="m-t-30" height="350" class="inner-layer m-30">
+                            <WrapLayout orientation="horizontal" class="m-l-10 m-t-10">
+                                <StackLayout class="input-field input-field-regular" stretchLastChild="true" [visibility]="isLabelField  ? 'collapsed' : 'visible'">
+                                    <TextField automationText="additional_worldtracer"width="25%" class="input text-black font-l" hint="World Tracer Number" [(ngModel)]="PaxItem.WorldTracerNum" (ngModelChange)="onChange($event,13)"
+                                        [class.error-field]="IsWorldTraceValid"></TextField>
+                                </StackLayout>
+                                <StackLayout class="input-field input-field-regular m-l-10" [visibility]="isLabelField   && PaxItem.WorldTracerNum == null  ? 'visible' : 'collapsed'" stretchLastChild="true">
+                                        <Label  width="30%"  class="input font-l" text="World Tracer Number" color="lightgray"></Label>                            
+                                </StackLayout>
+                                <StackLayout class="input-field input-field-regular m-l-10" stretchLastChild="true" [visibility]="isLabelField && PaxItem.WorldTracerNum != null ? 'visible' : 'collapsed'">
+                                    <Label width="30%" text="{{PaxItem.WorldTracerNum}}" class="input text-black font-l"></Label>
+                                </StackLayout>
+
+                                <StackLayout class="input-field input-field-regular m-l-10" stretchLastChild="true" [visibility]="isLabelField  ? 'collapsed' : 'visible'">
+                                    <TextField automationText="additional_customercase" width="30%" class="input text-black font-l" hint="Customer Care Case Number" [(ngModel)]="PaxItem.CustomerCareCaseNum"
+                                        (ngModelChange)="onChange($event,14)" [class.error-field]="IsCustomerCareValid"></TextField>
+                                </StackLayout>
+                                <StackLayout class="input-field input-field-regular m-l-10" [visibility]="isLabelField   && PaxItem.CustomerCareCaseNum == null  ? 'visible' : 'collapsed'" stretchLastChild="true">
+                                        <Label  width="30%"  class="input font-l" text="Customer Care Case Number" color="lightgray"></Label>                            
+                                </StackLayout>
+                                <StackLayout class="input-field input-field-regular m-l-10" [visibility]="isLabelField   && PaxItem.CustomerCareCaseNum != null  ? 'visible' : 'collapsed'" stretchLastChild="true">
+                                    <Label width="30%"  text="{{PaxItem.CustomerCareCaseNum}}" class="input  text-black font-l"></Label>                                    
+                                </StackLayout>
+                            </WrapLayout>
+                        </StackLayout>
+                    </StackLayout>
+                </GridLayout>
+            </div>
+        </StackLayout>
+
+    </DockLayout>
+</GridLayout>

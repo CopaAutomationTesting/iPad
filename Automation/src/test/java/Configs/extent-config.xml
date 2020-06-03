@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<extentreports>
+<header>
+<link rel="shortcut icon" type="image/x-icon" href="/Users/mphasis/eclipse-workspace/TestNG_read_from_excel/src/test/java/Configs/favicon.png" />
+<!--link rel="shortcut icon" type="image/x-icon" href="C:/MSmart/Configs/Files/favicon.png" /-->
+</header>
+    <configuration>
+        <!-- report theme -->
+        <!-- standard, dark -->
+        <theme>dark</theme>
+    
+        <!-- document encoding -->
+        <!-- defaults to UTF-8 -->
+        
+	<encoding>UTF-8</encoding>
+        <!-- protocol for script and stylesheets -->
+        <!-- defaults to https -->
+        <protocol>https</protocol>
+        
+        <!-- title of the document -->
+        <documentTitle>Mphasis Automation</documentTitle>
+        
+        <!-- report name - displayed at top-nav -->
+        <!-- <reportName><![CDATA[
+		     Automation Report
+		    <image id="image-zoom">
+		 <img src='C:/MSmart/Configs/Files/logo.png' />
+		 
+	</image>
+	 ]]> -->
+	 
+	 <reportName><![CDATA[
+		     Automation Report
+		    <image id="image-zoom">
+		 <img src='/Users/mphasis/eclipse-workspace/TestNG_read_from_excel/src/test/java/Configs/logo.png' />
+		 
+	</image>
+	 ]]>
+	 
+		</reportName>
+        <reportHeadline>Mphasis</reportHeadline>
+        <!-- location of charts in the test view -->
+        <!-- top, bottom -->
+        <testViewChartLocation></testViewChartLocation>
+        
+        <!-- custom javascript -->
+        <scripts>
+           <![CDATA[
+		   $(document).ready(function() { 
+		   
+              
+			   $('.nav-wrapper.brand-logo blue darken-3').hide();
+              
+		   });
+                
+
+
+		   ]]> 
+        </scripts>
+        
+        <!-- custom styles -->
+        <styles>
+            <![CDATA[
+                .report-name { padding-left: 0px; } .report-name > img { float: left;height: 96%;margin-left: 1px;margin-top: 2px;width auto; }
+				 $('.nav-wrapper.brand-logo blue darken-3').hide();
+            ]]>
+        </styles>
+    </configuration>
+</extentreports>

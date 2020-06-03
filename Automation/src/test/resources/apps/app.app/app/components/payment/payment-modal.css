@@ -1,0 +1,16 @@
+.modal-view-style { 
+    background-color: rgb(255,255,255); /* Fallback color */
+    background-color: rgba(255,255,255,0.9); /* Black w/ opacity */
+    padding: 20px;
+}
+.day-disp {
+    font-size: 20em;
+    color: rgb(red, green, blue);
+    margin-top: 20px;
+}
+.cashtxt{
+    font-size: 18;margin:5;
+}
+.radiobtn{
+    font-size: 20;margin:2;
+}

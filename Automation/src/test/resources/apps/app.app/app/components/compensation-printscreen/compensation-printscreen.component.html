@@ -1,0 +1,302 @@
+<ActionBar title="Print List" class="action-bar">
+    <NavigationButton visibility="collapsed"></NavigationButton>
+    <StackLayout orientation="horizontal" ios.position="left">
+        <!-- <ActionItem ios.position="left" style="margin:0%"icon="res://back_icon/arrow_small.png" (tap)="navigateToCompensation()"></ActionItem> -->
+        <!-- <Image src="res://back_icon/arrow_small.png" (tap)="navigateToCompensation()"></Image> -->
+        <Label automationText="compprint_navigateicon" text="&#xE5CB;" class="material-icon" style="font-size: 30%" (tap)="navigateToCompensation()"></Label>
+        <Label automationText="compprint_navigatecomp" text="Compensation" (tap)="navigateToCompensation()"></Label>
+    </StackLayout>
+    <ActionItem (tap)="navigateToHome()" ios.position="right" text="{{userdetails}}">
+    </ActionItem>
+    <ActionItem ios.position="right" icon="res://logout_icons/logoff_edit" (tap)="_services.LogOut()">
+    </ActionItem>
+</ActionBar>
+<GridLayout #pagecontainer>
+    <DockLayout stretchLastChild="true" class="page">
+        <StackLayout dock="bottom" class="page-footer">
+            <StackLayout class="tabbed-menu">
+                <StackLayout class="tabbed-menu-item menu-divider" (tap)="navigateToSearch()">
+                    <Label text="&#xe907;" color="{{isCheckinDisabled  ? '#2260A4' : 'lightgray'}}" class="menu-item-icon copa-icon"></Label>
+                    <Label text="Check In" class="menu-item-text"></Label>
+                </StackLayout>
+                <StackLayout class="tabbed-menu-item menu-divider"  (tap)="navigateToDepartures()">
+                    <Label text="&#xE904;" color="{{isGateDisabled  ? '#2260A4' : 'lightgray'}}" class="menu-item-icon copa-icon"></Label>
+                    <Label text="Departures" class="menu-item-text"></Label>
+                </StackLayout>    
+                <StackLayout class="tabbed-menu-item active menu-divider" (tap)="navigateToCompensation()">
+                    <Label text="&#xe90e;" class="menu-item-icon copa-icon"></Label>
+                    <Label text="Compensation" class="menu-item-text"></Label>
+                </StackLayout>
+                <StackLayout class="tabbed-menu-item menu-divider">
+                    <Label text="&#xe90f;" class="menu-item-icon copa-icon" style="color:lightgray"></Label>
+                    <Label text="Notification" class="menu-item-text"></Label>
+                </StackLayout>
+                <StackLayout class="tabbed-menu-item" (tap)="navigateToSetting()">
+                    <Label text="&#xe917;" class="menu-item-icon copa-icon"></Label>
+                    <Label text="Settings" class="menu-item-text"></Label>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+
+        <StackLayout dock="bottom" [visibility]="CompensationIssuedList ? 'visible' : 'collapsed'">
+            <GridLayout orientation="horizontal" class="btmhdr" columns="540,80,80,80,80" height="10%">
+
+                <StackLayout col="0" class="vrt-middle" style="margin-left:60">
+                    <Label text="Total"></Label>
+                </StackLayout>
+                <StackLayout col="1" class="hrz-center vrt-middle">
+                    <Label text="{{totalIssuedMonetary}}"></Label>
+                </StackLayout>
+                <StackLayout col="2" class="hrz-center vrt-middle">
+                    <Label text="{{totalIssuedHotel}}"></Label>
+                </StackLayout>
+                <StackLayout col="3" class="hrz-center vrt-middle">
+                    <Label text="{{totalIssuedMeal}}"></Label>
+                </StackLayout>
+                <StackLayout col="4" class="hrz-center vrt-middle">
+                    <Label text="{{totalIssuedTransport}}"></Label>
+                </StackLayout>
+            </GridLayout>
+
+        </StackLayout>
+        <StackLayout dock="bottom" [visibility]="CompensationNotIssuedList ? 'visible' : 'collapsed'">
+            <GridLayout orientation="horizontal" class="btmhdr" columns="540,80,70,80,80" height="10%">
+
+                <StackLayout col="0" class="vrt-middle" style="margin-left:60">
+                    <Label text="Total"></Label>
+                </StackLayout>
+                <StackLayout col="1" class="hrz-center vrt-middle">
+                    <Label text="{{totalNotIssuedMonetary}}"></Label>
+                </StackLayout>
+                <StackLayout col="2" class="hrz-center vrt-middle">
+                    <Label text="{{totalNotIssuedHotel}}"></Label>
+                </StackLayout>
+                <StackLayout col="3" class="hrz-center vrt-middle">
+                    <Label text="{{totalNotIssuedMeal}}"></Label>
+                </StackLayout>
+                <StackLayout col="4" class="hrz-center vrt-middle">
+                    <Label text="{{totalNotIssuedTransport}}"></Label>
+                </StackLayout>
+            </GridLayout>
+
+        </StackLayout>
+
+        <StackLayout dock="top" class="headerinfo">
+            <GridLayout columns="auto, auto,*,auto" class="flight-info" [visibility]="FlightInfoNotSet ? 'collapse' : 'visible'">
+                <StackLayout col="0" class="flight-details bdr-right-big">
+                    <StackLayout orientation="horizontal" class="details">
+                        <Label text="{{FlightHeaderInfo.FlightNumber}}" class="p-r-10 text-blue font-medium font-bold  bdr-right"></Label>
+                        <Label text="{{FlightHeaderInfo.DepartureDate}}" class="p-l-10 font-small text-default "></Label>
+                    </StackLayout>
+                    <Label text="{{FlightHeaderInfo.Status}}" class="details font-medium text-blue"></Label>
+                    <Label text="{{PassengerType}}" class="details font-medium"></Label>
+                </StackLayout>
+                <StackLayout col="1" class="flight-details bdr-right-big">
+                    <StackLayout orientation="horizontal" class="details p-l-10">
+                        <Label class="p-r-10 text-default font-medium">
+                            <FormattedString>
+                                <Span text="{{FlightHeaderInfo.DepartureAirport}}" fontAttributes="Bold"></Span>
+                            </FormattedString>
+                        </Label>
+                        <Label text="&#xE5CC;" class="material-icon p-r-10 text-default font-medium"></Label>
+                        <Label class="p-r-10 text-default font-medium">
+                            <FormattedString>
+                                <Span text="{{FlightHeaderInfo.DestinationAirport}}" fontAttributes="Bold"></Span>
+                            </FormattedString>
+                        </Label>
+                        <Label *ngIf="FlightHeaderInfo.multiLegFlight" text="&#xE5CC;" class="material-icon p-r-10 text-default font-medium"></Label>
+                        <Label *ngIf="FlightHeaderInfo.multiLegFlight" class="p-r-10 text-default font-medium">
+                            <FormattedString>
+                                <Span text="{{FlightHeaderInfo.finalDestination}}" fontAttributes="Bold"></Span>
+                            </FormattedString>
+                        </Label>
+                    </StackLayout>
+                    <StackLayout orientation="horizontal" class="details p-l-10">
+                        <StackLayout orientation="horizontal">
+                            <Label text="STD" class="p-r-5 font-small text-default font-bold"></Label>
+                            <Label text="{{FlightHeaderInfo.STD}}" class="p-r-10 font-small text-black font-bold"></Label>
+                        </StackLayout>
+                        <StackLayout orientation="horizontal">
+                            <Label text="ETD" class="p-r-5 font-small text-default font-bold"></Label>
+                            <Label text="{{FlightHeaderInfo.ETD}}" class="p-r-10 font-small text-black font-bold"></Label>
+                        </StackLayout>
+                        <StackLayout orientation="horizontal">
+                            <Label text="ETA" class="p-r-5 font-small text-default font-bold"></Label>
+                            <Label text="{{FlightHeaderInfo.STA}}" class="p-r-10 font-small text-black font-bold"></Label>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+
+                <StackLayout col="3" orientation="horizontal" class="vrt-middle">
+                    <StackLayout class="m-l-10" [visibility]="CompensationIssuedList ? 'visible' : 'collapsed'">
+                        <!-- <Button class="btn btn-primary" text="Issue Compensation" (tap)="IssueCompensation()"></Button> -->
+                    </StackLayout>
+                    <StackLayout orientation="horizontal" [visibility]="CompensationNotIssuedList ? 'visible' : 'collapsed'">
+                        <StackLayout>
+                            <Button automationText="compprint_printbtn"class="btn btn-primary" text="Print" [isEnabled]="printEnabled()" (tap)="displayProductActionDialogForPrinter()"></Button>
+                        </StackLayout>
+                        <StackLayout class="m-l-10">
+                            <Button automationText="compprint_emailbtn"class="btn btn-primary" text="Email" [isEnabled]="emailEnabled()" (tap)="sendEmail()"></Button>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+            </GridLayout>
+
+        </StackLayout>
+
+        <StackLayout dock="top" height="60" class="stack" orientation="horizontal">
+            <!-- <DockLayout width="240" class="input-field input-field-regular hrz-left m-l-10" stretchLastChild="true" (tap)="displayDialogForFliterPassengerType()">
+                    <Label dock="right" text="&#xe901;" class="new-copa-icon text-blue" style="font-size:7"></Label>
+                    <Label dock="left" class="input" [text]="PassengerFliterCriteria"></Label>
+                </DockLayout> -->
+            <DockLayout width="90" class="input-field input-field-regular hrz-left m-l-10" stretchLastChild="true" (tap)="displayProductActionDialogForSmartFilter()">
+                <Label automationText="compprint_criteriaicon" dock="right" text="&#xe901;" class="new-copa-icon text-blue" style="font-size:7"></Label>
+                <Label automationText="compprint_criteria" dock="left" class="input" [text]="SearchCriteria"></Label>
+            </DockLayout>
+            <DockLayout width="280" height="40" class="input-field input-field-regular m-l-10" style="background-color:white" stretchLastChild="true">
+                <Label automationText="compprint_searcfieldicon"dock="right" class="label copa-icon m-5 " text="&#xe915;" color="{{isValid?'blue':'gray'}}" (tap)="filter(searchField)"></Label>
+                <TextField automationText="compprint_searcfield" dock="left" hint="Enter" class="input m-5" [(ngModel)]="searchField" (ngModelChange)="filter(searchField)" returnKeyPress="done"
+                    (returnPress)="filter(searchField)"></TextField>
+            </DockLayout>
+            <DockLayout width="120" class="input-field input-field-regular m-l-10" style="background-color:white" stretchLastChild="true">
+                <!-- <StackLayout orientation="horizontal">
+                    <Label text="(" class=" font-medium text-blue font-bold"></Label>
+                    <Label [text]="selectedPassengerCount" class="font-medium text-blue font-bold"></Label>
+                    <Label text="/" class="font-medium text-blue  font-bold"></Label>
+                    <Label [text]="TotalPassengerCount" class="font-medium text-blue font-bold"></Label>
+                    <Label text=")" class=" font-medium text-blue font-bold"></Label>
+                </StackLayout> -->
+            </DockLayout>
+            <!-- <DockLayout style="margin-left:80" [visibility]="CompensationNotIssuedList ? 'visible' : 'collapsed'">
+                    <Label text="Compensation Reason" class="label"></Label>
+                    <Label [text]="ComensationReason" textWrap="true" class="label font-bold text-blue m-5" (tap)="displayProductActionDialog()"></Label>
+                </DockLayout> -->
+        </StackLayout>
+        <StackLayout class="page-body">
+
+            <SegmentedBar #segbar [items]="apisdetails" width="46%" selectedIndex="0" style="margin-left:60" (selectedIndexChanged)="selectSegment($event)">
+            </SegmentedBar>
+
+            <DockLayout stretchLastChild="true" style="margin-top: 5" class="table m-10 stack">
+                <GridLayout row="0" class="table-header" dock="top" rows="auto,auto" columns="40,180,70,65,75,100,80,80,80,75,55,90">
+                    <StackLayout  [visibility]="CompensationNotIssuedList ?'visible':'collapsed'"  class="th" col="0">
+                        <Label automationText="compprint_selectpax"text="{{SelectAllPax ? '&#xE834;':'&#xE835;'}}" class="material-icon checkbox" (tap)="selectingAllPax()"></Label>
+                    </StackLayout>
+                    <StackLayout class="th" col="1" (tap)="sortBasedOnPaxName()" orientation="horizontal">
+                        <Label automationText="compprint_sortpaxname"[text]="this.nameSortIndicator == -1 ? '&#xe902;' : this.nameSortIndicator ==0 ? '&#xe900;': '&#xe901;'" class="new-copa-icon font-small m-5"></Label>
+                        <Label text="Name" textWrap="true"></Label>
+                        <StackLayout orientation="horizontal" class="m-l-10">
+                            <Label text="(" class="font-bold text-black"></Label>
+                            <Label [text]="selectedPassengerCount" class="font-bold text-black"></Label>
+                            <Label text="/" class="font-bold text-black"></Label>
+                            <Label [text]="TotalPassengerCount" class="font-bold text-black"></Label>
+                            <Label text=")" class="font-bold text-black"></Label>
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout class="th" col="2" (tap)="sortBasedOnSSR()" orientation="horizontal">
+                        <Label automationText="compprint_sortssr"[text]="this.ssrSortIndicator == -1 ? '&#xe902;' : this.ssrSortIndicator ==0 ? '&#xe900;': '&#xe901;'" class="new-copa-icon font-small "></Label>
+                        <Label text="SSR" textWrap="true"></Label>
+                    </StackLayout>
+                    <StackLayout class="th" col="3" (tap)="sortBasedOnTier()" orientation="horizontal">
+                        <Label automationText="compprint_sorttier"[text]="this.tierSortIndicator == -1 ? '&#xe902;' : this.tierSortIndicator ==0 ? '&#xe900;': '&#xe901;'" class="new-copa-icon font-small "></Label>
+                        <Label text="Tier" textWrap="true"></Label>
+                    </StackLayout>
+                    <StackLayout class="th" col="4" (tap)="sortBasedOnClass()" orientation="horizontal">
+                        <Label automationText="compprint_sortclass"[text]="this.classSortIndicator == -1 ? '&#xe902;' : this.classSortIndicator ==0 ? '&#xe900;': '&#xe901;'" class="new-copa-icon font-small "></Label>
+                        <Label text="Cabin" textWrap="true"></Label>
+                    </StackLayout>
+                    <StackLayout class="th" col="5" (tap)="sortBasedOnOrderId()" orientation="horizontal">
+                        <Label automationText="compprint_sortorderid"[text]="this.orderIdSortIndicator == -1 ? '&#xe902;' : this.orderIdSortIndicator ==0 ? '&#xe900;': '&#xe901;'" class="new-copa-icon font-small m-5"></Label>
+                        <Label text="Order ID" textWrap="true"></Label>
+                    </StackLayout>
+                    <StackLayout class="th" col="6">
+                        <Label text="Amt($)"></Label>
+                    </StackLayout>
+                    <StackLayout class="th" col="7">
+                        <Label text="Hotel"></Label>
+                    </StackLayout>
+                    <StackLayout class="th" col="8">
+                        <Label text="Meal"></Label>
+                    </StackLayout>
+                    <StackLayout class="th" col="9">
+                        <Label text="Trans"></Label>
+                    </StackLayout>
+                    <StackLayout class="th" col="10">
+                        <Label text="Email" textWrap="true"></Label>
+                    </StackLayout>
+                    <StackLayout class="th" col="11">
+                        <Label text="Additional Details" textWrap="true"></Label>
+                    </StackLayout>
+                </GridLayout>
+                <ScrollView>
+                    <StackLayout separatorColor="transparent" dock="bottom">
+                        <StackLayout *ngFor="let item of CompPaxList; let i = index" class="table-body">
+
+                            <GridLayout class="tablerow" backgroundColor="{{item.IsSelected?'#F6F2DC':i%2 == 0?'#F5F5F5':'#FFF'}}" (tap)="toggleChecked(item)"
+                                columns="40,180,80,60,60,100,0,95,80,80,70,70,100">
+                                <WrapLayout class="tabledata td-icon" col="0">
+
+                                    <WrapLayout>
+                                        <!-- <Label text="{{item.IsSelected?'&#xE834;':'&#xE835;'}}" class="material-icon checkbox"></Label> -->
+                                    </WrapLayout>
+
+                                </WrapLayout>
+                                <WrapLayout orientation="vertical" class="tabledata" col="1">
+                                    <StackLayout>
+                                        <Label automationText="compprint_toggle{{i}}" text="{{item.FullName}}" textWrap="true" class="hrz-center"></Label>
+                                        <Label text="{{item.PaxType == 'ADT' ? '' : item.PaxType }}" class="font-small text-blue"></Label>
+                                        <Label text="{{item.PaxSplChar}}" class="font-small text-blue"></Label>
+                                        <Label text="{{item.PaxStatus}}" class="font-small text-blue"></Label>
+                                    </StackLayout>
+                                </WrapLayout>
+                                <WrapLayout class="tabledata hrz-center" col="2" (tap)="displaySSRs(item)">
+                                    <Label automationText="compprint_displayssr"text="{{item.SSRsCount}}"></Label>
+                                </WrapLayout>
+                                <WrapLayout class="tabledata hrz-center" col="3">
+                                    <Label text="{{item.Tier}}" class="hrz-center"></Label>
+                                </WrapLayout>
+                                <WrapLayout class="tabledata hrz-center" col="4">
+                                    <Label text="{{item.Cabin}}" class="hrz-center"></Label>
+                                </WrapLayout>
+
+                                <WrapLayout class="tabledata hrz-center" style="margin-left:18" col="5">
+                                    <Label text="{{item.OrderId}}" class="hrz-center"></Label>
+                                </WrapLayout>
+                                <WrapLayout class="tabledata" col="7">
+                                    <Label text="{{item.monetary}}" class="text-black font-medium "></Label>
+                                    <Label text="[" class="text-black font-medium "></Label>
+                                    <Label text="{{item.monetarycount}}" class="text-black font-medium "></Label>
+                                    <Label text="]" class="text-black font-medium "></Label>
+                                    <Label text="&#xe907;" class="copa-icon input-icon font-medium" color="{{item.isMonetaryParitallyPrinted? '#FFA500' : '#00A973'}}" [visibility]="item.monetaryPrintStatus ? 'visible' : 'collapsed'"></Label>
+                                </WrapLayout>
+                                <WrapLayout class="tabledata" col="8">
+                                    <Label text="{{item.hotel}}" class="text-black font-medium"></Label>
+                                    <Label text="&#xe907;" class="copa-icon input-icon font-medium" color="{{item.isHotelsParitallyPrinted? '#FFA500' : '#00A973'}}"  [visibility]="item.hotelPrintStatus ? 'visible' : 'collapsed'"></Label>
+                                </WrapLayout>
+                                <WrapLayout class="tabledata" col="9">
+                                    <Label text="{{item.meal}}" class="text-black font-medium"></Label>
+                                    <Label text="&#xe907;" class="copa-icon input-icon font-medium" color="{{item.isMealParitallyPrinted? '#FFA500' : '#00A973'}}"  [visibility]="item.mealPrintStatus ? 'visible' : 'collapsed'"></Label>
+                                </WrapLayout>
+
+                                <WrapLayout class="tabledata" col="10">
+                                    <Label text="{{item.transportation}}" class="text-black font-medium"></Label>
+                                    <Label text="&#xe907;" class="copa-icon input-icon font-medium" color="{{item.isTransportParitallyPrinted? '#FFA500' : '#00A973'}}"  [visibility]="item.transportPrintStatus ? 'visible' : 'collapsed'"></Label>
+                                </WrapLayout>
+                                <WrapLayout class="tabledata" col="11" (tap)="toggleChecked(item)">
+                                    <Label automationText="compprint_emailitem"text="Edit" color="{{item.IsSelected ? '#2260A4':'gray'}}" class="text-blue font-bold" (tap)="email(item)"></Label>
+                                    <Label text="&#xe907;"  class="copa-icon input-icon font-medium" color="#00A973" color="{{item.isEmailSent ? '#00A973' : '#00A973'}}" [visibility]="item.isEmailSent ? 'visible' : 'collapsed'"></Label>
+                                </WrapLayout>
+                                <WrapLayout class="tabledata" col="12" (tap)="toggleChecked(item)">
+                                    <Label automationText="compprint_navdetails"text="{{item.AdditionalDetails}}"  color="{{item.IsSelected ? '#2260A4':'gray'}}" class="hrz-center text-blue font-bold" (tap)="navigatetoadditionaldetails(item)"></Label>
+                                </WrapLayout>
+                            </GridLayout>
+                        </StackLayout>
+                    </StackLayout>
+                </ScrollView>
+
+            </DockLayout>
+
+        </StackLayout>
+
+    </DockLayout>
+</GridLayout>

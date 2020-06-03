@@ -1,0 +1,89 @@
+<ActionBar title="Compensation" class="action-bar">
+    <NavigationButton visibility="collapsed"></NavigationButton>
+    <ActionItem ios.position="right" text="{{userdetails}}" (tap)="navigateToHome()">
+    </ActionItem>
+    <ActionItem ios.position="right" icon="res://logout_icons/logoff_edit" (tap)="_services.LogOut()">
+    </ActionItem>
+</ActionBar>
+<GridLayout #pagecontainer>
+    <DockLayout stretchLastChild="true" class="page">
+        <StackLayout dock="bottom" class="page-footer">
+            <StackLayout class="tabbed-menu">
+                <StackLayout class="tabbed-menu-item menu-divider" (tap)="navigateToSearch()">
+                    <Label text="&#xe907;" color="{{isCheckinDisabled  ? '#2260A4' : 'lightgray'}}" class="menu-item-icon copa-icon"></Label>
+                    <Label text="Check In" class="menu-item-text"></Label>
+                </StackLayout>
+                <StackLayout class="tabbed-menu-item menu-divider"  (tap)="navigateToDepartures()">
+                    <Label text="&#xE904;" color="{{isGateDisabled  ? '#2260A4' : 'lightgray'}}" class="menu-item-icon copa-icon"></Label>
+                    <Label text="Departures" class="menu-item-text"></Label>
+                </StackLayout>
+                <StackLayout class="tabbed-menu-item active menu-divider">
+                    <Label text="&#xe90e;" class="menu-item-icon copa-icon"></Label>
+                    <Label text="Compensation" class="menu-item-text"></Label>
+                </StackLayout>
+                <StackLayout class="tabbed-menu-item menu-divider">
+                    <Label text="&#xe90f;" class="menu-item-icon copa-icon" style="color:lightgray"></Label>
+                    <Label text="Notification" class="menu-item-text"></Label>
+                </StackLayout>
+                <StackLayout class="tabbed-menu-item" (tap)="navigateToSetting()">
+                    <Label text="&#xe917;" class="menu-item-icon copa-icon"></Label>
+                    <Label text="Settings" class="menu-item-text"></Label>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+        <ScrollView dock="top" class="page-body">
+            <StackLayout class="page-body-container" class="blankspace">
+
+                <StackLayout class="panel panel-margin panel-solid">
+                    <Label text="Search by Passenger" textWrap="true" class="header-text"></Label>
+                    <DockLayout width="400" class="input-field input-field-special hrz-left" [class.error-field]="searchempty()" stretchLastChild="true">
+                        <Label automationText="comp_searchanyicon"dock="right" class="label copa-icon" text="&#xe915;" color="{{isValid?'blue':'gray'}}" (tap)="searchPax()"></Label>
+                        <TextField  automationText="comp_searchany" dock="left" class="input " hint="Enter ETKT/ Order ID/FQTV" [(ngModel)]="SearchFields.SearchAny" returnKeyPress="done"
+                            (ngModelChange)="onChange($event,0)" (returnPress)="searchPax()"></TextField>
+                    </DockLayout>
+                </StackLayout>
+                <StackLayout class="panel panel-margin panel-solid">
+                    <Label text="Search by Flight" textWrap="true" class="header-text"></Label>
+                    <GridLayout rows="*, *" columns="*, *" class="m-b-20 ">
+                        <DockLayout row="0" col="0" width="400" class="input-field input-field-regular hrz-left" stretchLastChild="true">
+                            <Label automationText="comp_dateicon"dock="left" class="label copa-icon" text="&#xe905;" (tap)="createModelView('start')"></Label>
+                            <Label automationText="comp_date"id="datePick" keyboardType="number" dock="right" class="input" (tap)="createModelView('start')" [text]='curDate | date:"dd MMMM yyyy"'></Label>
+                        </DockLayout>
+                        <DockLayout row="0" col="1" width="400" class="input-field input-field-regular hrz-left" stretchLastChild="true" (tap)="displayCityListActionDialog()">
+                            <Label automationText="comp_posicon"dock="left" class="label copa-icon" text="&#xe912;"></Label>
+                            <Label automationText="comp_pos" dock="right" class="input" [text]="SearchFields.Location"></Label>
+                        </DockLayout>
+                        <DockLayout row="1" col="0" width="400" class="input-field input-field-regular hrz-left m-t-10" stretchLastChild="true">
+                            <Label dock="left" class="label copa-icon" text="&#xe904;"></Label>
+                            <TextField automationText="comp_flight" dock="right" [class.error-field]="flightEmpty()" class="input" hint="Flight Number" [(ngModel)]="FlightNumber"
+                                (ngModelChange)="onChange($event,1)"></TextField>
+                        </DockLayout>
+                        <DockLayout row="1" col="1" width="400" class="input-field input-field-regular hrz-left m-t-10" stretchLastChild="true" (tap)="displayPassengerTypeDialog()"
+                            [visibility]="isTextField ? 'visible' : 'collapsed'">
+                            <Label automationText="comp_selecticon" dock="left" class="label copa-icon" text="&#xe911;"></Label>
+                            <Label automationText="comp_select" dock="right" class="input" text="Select Passenger List" color="gray"></Label>
+                        </DockLayout>
+                        <DockLayout row="1" col="1" width="400" class="input-field input-field-regular hrz-left m-t-10" stretchLastChild="true" (tap)="displayPassengerTypeDialog()"
+                            [visibility]="isLabelField ? 'visible' : 'collapsed'">
+                            <Label automationText="comp_selectposticon"dock="left" class="label copa-icon" text="&#xe911;"></Label>
+                            <Label automationText="comp_selectpost" dock="right" class="input " [text]="PassengerType"></Label>
+                        </DockLayout>
+
+
+                    </GridLayout>
+                    <StackLayout orientation="horizontal" class="hrz-center">
+                        <StackLayout class=" m-r-10">
+                            <Button automationText="comp_search" class="btn btn-primary" isEnabled="{{searchButtonEnabled()}}" text="Search" width="150" (tap)="searchPaxByFlight()"></Button>
+                        </StackLayout>
+                        <StackLayout>
+                            <Button automationText="comp_clear" class="btn btn-default " text="Clear" width="150" (tap)="clear()"></Button>
+                        </StackLayout>
+
+                    </StackLayout>
+
+
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </DockLayout>
+</GridLayout>

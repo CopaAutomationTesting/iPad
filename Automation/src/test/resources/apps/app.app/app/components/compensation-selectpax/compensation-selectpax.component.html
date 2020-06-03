@@ -1,0 +1,128 @@
+<ActionBar title="Search Result" icon="" class="action-bar">
+    <ActionItem ios.position="right" text="{{userdetails}}">
+    </ActionItem>
+    <ActionItem ios.position="right" icon="res://logout_icons/logoff_edit" (tap)="_services.LogOut()">
+    </ActionItem>
+</ActionBar>
+<GridLayout #pagecontainer>
+    <DockLayout stretchLastChild="true" class="page">
+
+        <StackLayout dock="bottom" class="page-footer">
+            <StackLayout class="tabbed-menu">
+                <StackLayout class="tabbed-menu-item menu-divider" (tap)="navigateToSearch()">
+                    <Label text="&#xe907;" color="{{isCheckinDisabled  ? '#2260A4' : 'lightgray'}}" class="menu-item-icon copa-icon"></Label>
+                    <Label text="Check In" class="menu-item-text"></Label>
+                </StackLayout>
+                <StackLayout class="tabbed-menu-item menu-divider"  (tap)="navigateToDepartures()">
+                    <Label text="&#xE904;" color="{{isGateDisabled  ? '#2260A4' : 'lightgray'}}" class="menu-item-icon copa-icon"></Label>
+                    <Label text="Departures" class="menu-item-text"></Label>
+                </StackLayout>
+                <StackLayout class="tabbed-menu-item active menu-divider" (tap)="navigateToCompensation()">
+                    <Label text="&#xe90e;" class="menu-item-icon copa-icon"></Label>
+                    <Label text="Compensation" class="menu-item-text"></Label>
+                </StackLayout>
+                <StackLayout class="tabbed-menu-item menu-divider">
+                    <Label text="&#xe90f;" class="menu-item-icon copa-icon" style="color:lightgray"></Label>
+                    <Label text="Notification" class="menu-item-text"></Label>
+                </StackLayout>
+                <StackLayout class="tabbed-menu-item" (tap)="navigateToSetting()">
+                    <Label text="&#xe917;" class="menu-item-icon copa-icon"></Label>
+                    <Label text="Settings" class="menu-item-text"></Label>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+
+
+        <StackLayout dock="top" class="page-header ">
+            <StackLayout orientation="horizontal">
+                <StackLayout orientation="vertical" class="m-t-10">
+                    <Label text="{{OrderId}}" class="text-blue font-big m-l-5"></Label>
+                    <Label text="Compensation based on Order ID" class="font-medium m-l-5"></Label>
+                </StackLayout>
+                <StackLayout style="margin-left:600" orientation="horizontal" class="m-t-15">
+                    <StackLayout>
+                        <Button automationText="compselpax_save"class="btn btn-primary" text="Save" (tap)="Save()" [isEnabled]="saveEnabled()" ></Button>
+                    </StackLayout>
+                    <StackLayout class="m-l-5">
+                        <Button automationText="compselpax_continue"class="btn btn-primary" text="Continue" (tap)="continue()" [isEnabled]="continueEnabled()"></Button>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+
+        <StackLayout dock="top" height="60" class="stack" orientation="horizontal">
+            <DockLayout width="280" height="40" class="inputs" style="background-color:white; margin-left:10" stretchLastChild="true">
+                <Label automationText="compselpax_searchnameicon"dock="right" class="label copa-icon m-5 " text="&#xe915;" color="{{isValid?'blue':'gray'}}" (tap)="filter(SearchByName)"></Label>
+                <TextField automationText="compselpax_searchname"dock="left" hint="Search by Name" class="m-5" [(ngModel)]="SearchByName" (ngModelChange)="filter($event)" returnKeyPress="done"
+                    (returnPress)="filter(SearchByName)"></TextField>
+            </DockLayout>
+            <DockLayout style="margin-left:380">
+                <Label automationText="compselpax_reason" text="Compensation Reason" class="label"></Label>
+                <Label automationText="compselpax_reason"[text]="ComensationReason" textWrap="true" class="label font-bold text-blue m-5" (tap)="displayProductActionDialog()"></Label>
+            </DockLayout>
+        </StackLayout>
+
+        <StackLayout class="page-body">
+            <DockLayout stretchLastChild="true" style="margin-top: 5" class="table m-10">
+
+                <GridLayout class="table-header" dock="top" rows="auto,auto" columns="80,*,*,*,*">
+                    <StackLayout class="th" col="0">
+                        <Label text=""></Label>
+                    </StackLayout>
+                    <StackLayout class="th" col="1">
+                        <Label text="Passenger Name" textWrap="true"></Label>
+                    </StackLayout>
+                    <StackLayout class="th" col="2">
+                        <Label text="Order ID"></Label>
+                    </StackLayout>
+                    <StackLayout class="th" col="3">
+                        <Label text="Compensation Reason"></Label>
+                    </StackLayout>
+                    <StackLayout class="th" col="4">
+                        <Label text="Additional Deatils"></Label>
+                    </StackLayout>
+                </GridLayout>
+
+                <ScrollView>
+                    <StackLayout separatorColor="transparent" dock="bottom">
+                        <StackLayout *ngFor="let item of PaxInfo; let i = index" class="table-body">
+                            <GridLayout class="tablerow" backgroundColor="{{item.Isselected?'#F6F2DC':i%2 == 0?'#F5F5F5':'#FFF'}}" columns="80,*,*,*,*" (tap)="toggleChecked(item)">
+                                <WrapLayout class="td td-icon" col="0" >
+
+                                    <!-- <WrapLayout>
+                                        <Label text="{{item.Isselected?'&#xE834;':'&#xE835;'}}" class="material-icon checkbox" ></Label>
+                                    </WrapLayout>
+                                    <WrapLayout visibility="{{item.InfantIndicator ?'visible' : 'collapsed'}}">
+                                        <label text="&#xe90d;" class="copa-icon font-big" style="margin: 2"></label>
+                                    </WrapLayout> -->
+
+
+                                </WrapLayout>
+                                <WrapLayout orientation="vertical" class="tabledata" col="1">
+
+                                    <WrapLayout>
+                                        <Label automationText="compselpax_toggle{{i}}" text="{{item.PaxFirstNm + '/' + item.PaxLastNm}}" textWrap="true" class="hrz-center"></Label>
+                                    </WrapLayout>
+
+                                </WrapLayout>
+
+                                <WrapLayout class="tabledata" col="2">
+                                    <Label text="{{OrderId}}" class="hrz-center"></Label>
+                                </WrapLayout>
+                                <WrapLayout class="tabledata" col="3">
+                                    <Label text="{{item.CompensationReason}}" textWrap="true" class="hrz-center"></Label>
+                                </WrapLayout>
+                                <WrapLayout class="tabledata" col="4">
+                                    <Label automationText="compselpax_edit" text="Edit" (tap)="navigatetoadditionaldetails(item)" class="text-blue font-bold hrz-center"></Label>
+                                </WrapLayout>
+                            </GridLayout>
+                        </StackLayout>
+                    </StackLayout>
+                </ScrollView>
+
+            </DockLayout>
+        </StackLayout>
+
+
+    </DockLayout>
+</GridLayout>

@@ -1,0 +1,12 @@
+{
+   "Messages":[
+        {
+            "MessageID" : "ERRMSG1",
+            "MessageText": "This is a sample error Message 1"
+        },
+        {
+            "MessageID": "ERRMSG2",
+            "MessageText": "The transaction is not Complete"
+        }
+    ]
+}

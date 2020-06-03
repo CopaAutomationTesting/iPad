@@ -1,0 +1,130 @@
+<ActionBar title="All Departures" icon="" class="action-bar">
+    <!--<NavigationButton visibility="collapsed"></NavigationButton>-->
+    <!--<StackLayout width="100%" orientation="horizontal">
+        <Image horizontalAlignment="right" class="company-logo" src="~/images/copa_logo.png"></Image>
+    </StackLayout>-->
+    <ActionItem ios.position="right" text="{{userdetails}}">
+    </ActionItem>
+    <ActionItem ios.position="right" icon="res://logout_icons/logoff_edit" (tap)="_service.LogOut()"> </ActionItem>
+</ActionBar>
+<GridLayout #pagecontainer>
+    <DockLayout class="page">
+        <StackLayout dock="bottom" class="page-footer">
+            <StackLayout class="tabbed-menu">
+                <StackLayout class="tabbed-menu-item menu-divider" (tap)="navigateToSearch()">
+                    <Label text="&#xe907;" color="{{isCheckinDisabled  ? '#2260A4' : 'lightgray'}}" class="menu-item-icon copa-icon"></Label>
+                    <Label text="Check In" class="menu-item-text"></Label>
+                </StackLayout>
+                <StackLayout class="tabbed-menu-item active" (tap)="navigateToDepartures()">
+                    <Label text="&#xE904;" class="menu-item-icon copa-icon"></Label>
+                    <Label text="Departures" class="menu-item-text"></Label>
+                </StackLayout>
+                <StackLayout class="tabbed-menu-item menu-divider" (tap)="navigateToCompensation()">
+                    <Label text="&#xe90e;" color="{{isCompensationEnabled  ? '#2260A4' : 'lightgray'}}" class="menu-item-icon copa-icon"></Label>
+                    <Label text="Compensation" class="menu-item-text"></Label>
+                </StackLayout>
+                <StackLayout class="tabbed-menu-item menu-divider" (tap)="simpleTap()">
+                    <Label text="&#xe90f;" class="menu-item-icon copa-icon" style="color:lightgray"></Label>
+                    <Label text="Notification" class="menu-item-text" style="color:lightgray"></Label>
+                </StackLayout>
+                <StackLayout class="tabbed-menu-item" (tap)="navigateToSetting()">
+                    <Label text="&#xe917;" class="menu-item-icon copa-icon"></Label>
+                    <Label text="Settings" class="menu-item-text"></Label>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+        <StackLayout class="page-body">
+            <StackLayout class="page-body-container">
+                <DockLayout stretchLastChild="true" class="table">
+                    <GridLayout class="table-header" dock="top" rows="35" columns="*,100,75,75, 75, 75,105, *, 101,85">
+                        <StackLayout orientation="horizontal" class="th" col="0">
+                            <Label text="Flight Number" (tap)="sortFlight()"></Label>
+                            <Label automationText="depall_sortflight"[text]="this.flightSortIndicator == -1 ? '&#xe902;' : this.flightSortIndicator ==0 ? '&#xe900;': '&#xe901;'" class="new-copa-icon font-small m-5"></Label>
+                        </StackLayout>
+                        <StackLayout class="th" col="1">
+                            <Label text="Date"></Label>
+                        </StackLayout>
+                        <StackLayout class="th" col="2">
+                            <Label text="From"></Label>
+                        </StackLayout>
+                        <StackLayout class="th" orientation="horizontal" col="3">
+                            <Label text="To" (tap)="sortTo()"></Label>
+                            <Label automationText="depall_sortto"[text]="this.toSortIndicator == -1 ? '&#xe902;' : this.toSortIndicator ==0 ? '&#xe900;': '&#xe901;'" class="new-copa-icon font-small m-5"></Label>
+                        </StackLayout>
+                        <StackLayout class="th" orientation="horizontal" col="4">
+                            <Label text="STD" (tap)="sortSTD()"></Label>
+                            <Label automationText="depall_sortstd"[ [text]="this.StdSortIndicator == -1 ? '&#xe902;' : this.StdSortIndicator ==0 ? '&#xe900;': '&#xe901;'" class="new-copa-icon font-small m-5"></Label>
+                        </StackLayout>
+                        <StackLayout class="th" orientation="horizontal" col="5">
+                            <Label text="ETD" (tap)="sortETD()"></Label>
+                            <Label automationText="depall_sortetd"[text]="this.EtdSortIndicator == -1 ? '&#xe902;' : this.EtdSortIndicator ==0 ? '&#xe900;': '&#xe901;'" class="new-copa-icon font-small m-5"></Label>
+                        </StackLayout>
+                        <StackLayout class="th" col="6">
+                            <Label text="Inventory"></Label>
+                        </StackLayout>
+                        <StackLayout class="th" orientation="horizontal" col="7">
+                            <Label text="Status" (tap)="sortStatus()"></Label>
+                            <Label automationText="depall_sortstatus"[text]="this.StatusSortIndicator == -1 ? '&#xe902;' : this.StatusSortIndicator ==0 ? '&#xe900;': '&#xe901;'" class="new-copa-icon font-small m-5"></Label>
+                        </StackLayout>
+                        <StackLayout class="th" orientation="horizontal" col="8">
+                            <Label text="Gate Num" (tap)="sortGate()"></Label>
+                            <Label [text]="this.gateSortIndicator == -1 ? '&#xe902;' : this.gateSortIndicator ==0 ? '&#xe900;': '&#xe901;'" class="new-copa-icon font-small m-5"></Label>
+                        </StackLayout>
+                        <StackLayout class="th" orientation="horizontal" col="9">
+                            <Label automationText="depall_refresh" text="&#xE627;" class="material-icon" style="font-size:30%;margin-left: 30" (tap)="refresh()"></Label>
+                        </StackLayout>
+                    </GridLayout>
+
+                    <ListView [items]="DepartureArray" separatorColor="transparent" dock="bottom" class="table-body">
+                        <ng-template let-item="item" let-odd="odd" let-even="even" let-i="index">
+                            <StackLayout>
+                                <StackLayout orientation="vertical">
+
+                                    <GridLayout id="flightList" class="tr {{i%2 == 0 ? 'even':'odd'}} {{item.IsChecked ? 'selected' : '' }}" (tap)="toggleChecked($event)" columns="*,100,75,75, 75, 75,105, *, 101,85">
+                                        <WrapLayout class="td" col="0">
+                                            <Label automationText="depall_{{item.FlightNumber}}"text="{{item.FlightNumber}}"></Label>
+                                        </WrapLayout>
+                                        <WrapLayout class="td" col="1">
+                                            <Label text="{{item.Date }}"></Label>
+                                        </WrapLayout>
+                                        <WrapLayout class="td" col="2">
+                                            <Label text="{{locationcode}}"></Label>
+                                        </WrapLayout>
+                                        <WrapLayout class="td" col="3">
+                                            <Label text="{{item.DestinationAirport}}"></Label>
+                                        </WrapLayout>
+                                        <WrapLayout class="td" col="4">
+                                            <Label text="{{item.STD}}"></Label>
+                                        </WrapLayout>
+                                        <WrapLayout class="td" col="5">
+                                            <Label text="{{item.ETD}}"></Label>
+                                        </WrapLayout>
+
+                                        <WrapLayout orientation="vertical" class="td" col="6">
+                                            <!--<Repeater items="{{item.configuration}}">
+                                            <Repeater.itemTemplate>
+                                                <Label text="{{ CodeLetter }}" textWrap="true" class="title"></Label>
+                                            </Repeater.itemTemplate>
+                                        </Repeater>-->
+                                            <Label *ngFor="let confItem of item.configuration" text="{{confItem.CodeLetter}} {{confItem.Booked}}/{{confItem.Capacity}}"></Label>
+                                            <!--<Label *ngFor="let confItem of item.configuration" text="{{confItem.CodeLetter}} {{confItem.Booked}}{{confItem.Capacity}}"></Label>-->
+                                        </WrapLayout>
+
+                                        <WrapLayout class="td" col="7">
+                                            <Label text="{{item.FlightStatus}}" textWrap="true"></Label>
+                                            <!-- <Label text="{{item.CheckinStatus}}" textWrap="true"></Label> -->
+                                        </WrapLayout>
+                                        <WrapLayout class="td" col="8">
+                                            <Label text="{{item.Gate}}"></Label>
+                                        </WrapLayout>
+                                    </GridLayout>
+                                </StackLayout>
+                            </StackLayout>
+                        </ng-template>
+                    </ListView>
+
+                </DockLayout>
+            </StackLayout>
+        </StackLayout>
+    </DockLayout>
+</GridLayout>

@@ -1,0 +1,24 @@
+
+<GridLayout #pagecontainer>
+<AbsoluteLayout class="login-page-container">
+    <Image class="company-logo" src="~/images/copa_logo.png"></Image>
+    <StackLayout class="login-container">
+      
+        <StackLayout class="login-input-container">
+            <Label class="header-text" text="Agent Login"></Label>
+            <Label class="error-message" [visibility]="isError ? 'visible' : 'collapsed'" [text]="errorMessage" textWrap="true"></Label>
+            <StackLayout orientation="horizontal" class="input-field">
+                <Label class="label material-icon" text="&#xE7FD;" ></Label>
+                <TextField  automationText="login_usr" class="input" hint="User ID"  [(ngModel)]="UserName" (ngModelChange)="onChange()" returnKeyType= "next" autocorrect="false" autocapitalizationType="none" (returnPress)="userNameReturnPress()" ></TextField>
+            </StackLayout>
+            <StackLayout orientation="horizontal" class="input-field">
+                <Label class="label material-icon" text="&#xE897;" ></Label>
+                <TextField automationText="login_pwd" id="password" class="input" hint="Password" [(ngModel)]="PassWord" (ngModelChange)="onChange()" secure="true" returnKeyType= "done" (returnPress)="loginSubmit()" ></TextField>
+            </StackLayout>
+            <StackLayout>
+            <Button automationText="login_btn" text="Login " class="btn btn-login" [isEnabled]="isButtonEnabled" (tap)="loginSubmit()"></Button>
+            </StackLayout>
+        </StackLayout>
+    </StackLayout>
+</AbsoluteLayout>
+</GridLayout>

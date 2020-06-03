@@ -1,0 +1,233 @@
+.lab {
+    color: blue;
+    margin-bottom: 10;
+    font-size: 20;
+}
+
+.aircraft-cabin {
+    /*padding: 20;*/
+    width: auto;
+    padding-bottom: 20;
+}
+
+.cabin-back {
+    horizontal-align: center;
+    background-color: #AAA;
+    margin: 0 50;
+    width:100%;
+    height: 100%;
+}
+
+.cabin-header {
+    text-align: center;
+    color: #2260A4;;
+    text-transform: uppercase;
+    font-size: 14;
+    background-color: #DDD;
+    
+    padding: 5;
+}
+
+.seat-row {
+    horizontal-align: center;
+}
+
+.hiderow {
+    visibility: collapse;
+}
+
+
+.exitrow .exitcolumn {
+    background-image: url('~/images/seatmap/exit_row.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    width: 32;
+    height: 32;
+    margin-right: 20;
+}
+
+.exitrow .exitcolumn.right {
+    transform: rotate(180deg);
+    margin-left: 0;
+    margin-right: 0;
+    margin-left: 20;
+}
+
+.seat {
+    padding: 5;
+    margin: 5;
+    width: 32;
+    height: 32;
+    text-align: center;
+    border-width: 1;
+    border-color: #AAA;
+    color: black;
+    background-color: #FFF;
+    }
+
+.seat.rowlabel {
+    border-width: 0;
+    color: #2260A4;
+    background-color: transparent;
+    font-size: 13;
+    font-weight: bold;
+    
+}
+.seat.specialseat{
+    border-width: 2;
+    border-color:  #2260A4;
+}
+
+.seat.collabel {
+    border-width: 0;
+    color: #555;
+    vertical-align: bottom;
+    padding-top: 25;
+    background-color: transparent;
+    font-size: 13;
+    font-weight: bold;
+    margin-top:-30;
+}
+.seat.selectedseat{
+    background-image: url('~/images/seatmap/assigned.png');
+    background-size: cover;
+}
+.brdr{
+    border-width:0 0 1 0;
+    border-color: #C6C6C3
+}
+
+.pax-hr{
+    margin-left: -10;
+    margin-right: -10;
+    height: 2;
+    background-color: #C6C6C3;
+}
+.seat.seatAssigned {
+    background-image: url('~/images/seatmap/held.png');
+    background-size: cover;
+}
+
+.seat.seatOccupied {
+    background-image: url('~/images/seatmap/taken.png');
+    background-size: cover;
+}
+
+.seat.noSeat {
+    opacity: 0;
+}
+
+.seat.unavailable {
+    background-image: url('~/images/seatmap/unusable.png');
+    background-size: cover;
+}
+
+.seat.seatBlocked {
+    background-image: url('~/images/seatmap/blocked.png');
+    background-size: cover;
+}
+
+.seat.seatBlockedForOtherReason {
+    background-image: url('~/images/seatmap/blocked.png');
+    background-size: cover;
+}
+
+.seat.seatProtectedForCodeSharing {
+    background-image: url('~/images/seatmap/assigned.png');
+    background-size: cover;
+}
+
+.seat.extraLegSeat {
+    background-image: url('~/images/seatmap/available.png');
+    background-size: cover;
+    /* background-image: url('~/images/seatmap/preferred.png');
+    background-size: cover; */
+}
+
+.seat.extraLegExitSeat {
+    background-image: url('~/images/seatmap/available.png');
+    background-size: cover;
+}
+
+.seat.availableSeat {
+    background-image: url('~/images/seatmap/available.png');
+    background-size: cover;
+}
+
+.seat.seatBlockedForLocalPassengerBoarded {
+    background-image: url('~/images/seatmap/assigned.png');
+    background-size: cover;
+}
+
+.seat.seatBlockedForThroughPassengerBoarded {
+    background-image: url('~/images/seatmap/assigned.png');
+    background-size: cover;
+}
+
+.seat.seatselected {
+    background-color: #FF0000;
+    color: #FFF;
+     /* background-image: url('~/images/seatmap/assigned.png'); */
+    background-size: cover;
+}
+.seat.newseatselected {
+    background-color: brown;
+     /* background-image: url('~/images/seatmap/assigned.png'); */
+    background-size: cover;
+}
+.seat.infantnotallowed{
+    background-image: url('~/images/seatmap/infants_not_allowed.png');
+     background-size: cover;
+}
+.seat.infantallowed{
+   background-image: url('~/images/seatmap/infants_allowed.png');
+     background-size: cover; 
+}
+.seat.bulkhead{
+    background-image: url('~/images/seatmap/buldhead.png');
+     background-size: cover; 
+} 
+.seat.exitrow{
+     background-image: url('~/images/seatmap/exit_row.png');
+     background-size: cover;
+     width: 32;
+    height: 32;
+}
+seat.PaxRPH {
+    text-align: center;
+    color:#FFF;
+    font-size: 14;
+}
+
+.selected{
+  
+    background-color: #F6F2DC;
+}
+.normal{
+    background-color: #F5F5F5;
+    color: black;
+}
+.availSeat {
+    background-image: url('~/images/seatmap/available.png');
+    background-size: cover;
+}
+.paxSelected {
+    background-color: #9E4F24;
+    color: #FFF;
+}
+
+.paxDefault {
+    background-color: #DDB747;
+    color:#000;
+}
+.advancedset{
+    color: #9E4F24;
+}
+.advancednotset{
+    color:#000; 
+}
+
+/* .noseat{
+    size: 
+} */

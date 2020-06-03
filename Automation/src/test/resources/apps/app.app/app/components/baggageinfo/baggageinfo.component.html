@@ -1,0 +1,347 @@
+<ActionBar title="Baggage Details" icon="" class="action-bar">
+    <NavigationButton visibility="{{navigateButtonEnabled ?'visible':'collapsed' }}"></NavigationButton>
+    <!--<StackLayout orientation="horizontal"style="background-image:url('~/images/blur_back.png')">
+        <Image class="company-logo" src="~/images/copa_logo.png"></Image>
+    </StackLayout>-->
+    <ActionItem ios.position="right" text="{{userdetails}}">
+    </ActionItem>
+    <ActionItem ios.position="right" icon="res://logout_icons/logoff_edit" (tap)="_service.LogOut()"> </ActionItem>
+    <NavigationButton visibility="hidden" ></NavigationButton>
+</ActionBar>
+<GridLayout #pagecontainer>
+
+    <DockLayout stretchLastChild="true" class="page">
+        <StackLayout dock="top" class="page-header ">
+            <GridLayout columns="auto, *, auto" class="flight-info">
+
+                <StackLayout col="0" class="flight-details bdr-right-big">
+                    <StackLayout orientation="horizontal" class="details">
+                        <Label text="{{FlightInfo.OperatingFlight!= null?FlightInfo.OperatingFlight:FlightInfo.MarketingFlight}}" class="hd bdr-right" style.color="#0060A9" (tap)="refreshFlifo()"></Label>
+                        <Label [text]="FlightDate" class="p-l-10 font-small text-default "></Label>
+                    </StackLayout>
+                    <Label [text]="FlightInfo.status" class="details font-small text-default"></Label>
+                </StackLayout>
+                <StackLayout col="1" class="flight-details">
+                    <StackLayout orientation="horizontal" class="details p-l-10">
+                        <Label class="p-r-10 text-default font-medium">
+                            <FormattedString>
+                                <Span [text]="FlightInfo.Origin" fontAttributes="Bold"></Span>
+                                <Span text=", "></Span>
+                                <Span [text]="FlightInfo.OriginCity"></Span>
+
+                            </FormattedString>
+                        </Label>
+                        <Label text="&#xE5CC;" class="material-icon p-r-10 text-default font-medium"></Label>
+                        <Label class="p-r-10 text-default font-medium">
+                            <FormattedString>
+                                <Span [text]="FlightInfo.Destination" fontAttributes="Bold"></Span>
+                                <Span text=", "></Span>
+                                <Span [text]="FlightInfo.DestinationCity"></Span>
+
+                            </FormattedString>
+                        </Label>
+                    </StackLayout>
+                    <StackLayout orientation="horizontal" class="details p-l-10">
+                        <StackLayout orientation="horizontal">
+                            <Label text="STD" class="p-r-5 font-small text-default font-bold"></Label>
+                            <Label [text]="FlightInfo.STD" class="p-r-10 font-small text-black font-bold"></Label>
+                        </StackLayout>
+                        <StackLayout orientation="horizontal">
+                            <Label text="ETD" class="p-r-5 font-small text-default font-bold"></Label>
+                            <Label [text]="FlightInfo.ETD" class="p-r-10 font-small text-black font-bold"></Label>
+                        </StackLayout>
+                        <StackLayout orientation="horizontal">
+                            <Label text="ETA" class="p-r-5 font-small text-default font-bold"></Label>
+                            <Label [text]="FlightInfo.ETA" class="p-r-10 font-small text-black font-bold"></Label>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+
+                <StackLayout col="2" orientation="horizontal" class="vrt-middle">
+                    <StackLayout class=" m-r-10" visibility="{{isContinuebtnEnabled ?'visible':'collapsed' }}">
+                        <Button automationText="bag_continue" class="btn btn-primary" text="Continue" (tap)="onContinue()"></Button>
+                    </StackLayout>
+                    <StackLayout class=" m-r-10" visibility="{{isContinuebtnEnabled ?'collapsed':'visible' }}">
+                        <Button automationText="bag_cancel" class="btn btn-default" (tap)='cancel()' text="Cancel"></Button>
+                    </StackLayout>
+                    <StackLayout class=" m-r-10" visibility="{{isContinuebtnEnabled ?'collapsed':'visible' }}">
+                        <Button automationText="bag_submit"class="btn {{isButtonEnabled?'btn-primary':'btn-disable'}}" (tap)="onSubmit()" text="Submit" [isEnabled]="isButtonEnabled"></Button>
+                    </StackLayout>
+                </StackLayout>
+
+            </GridLayout>
+        </StackLayout>
+
+        <StackLayout dock="top" height="8%" style="background-color: white" orientation="horizontal" [visibility]="isItemVisible(FlightInfo.MarketingFlight)">
+            <GridLayout row="*" columns="*,*,*,*">
+
+                <StackLayout orientation="horizontal" col="0" class="p-r-10 text-default font-medium" class="text">
+
+                    <Label text="Booking:" style="font-weight: bold ; margin-left:35"></Label>
+                    <DockLayout class="p-r-10 text-default font-medium" class="text" *ngFor="let invent of FlightInfo.inven ">
+                        <Label text="{{invent.CodeLetter}}" style="font-weight: bold;margin-left: 8;"></Label>
+                        <Label text="{{invent.Booking}}" style="font-weight: bold;margin-left: 8;"></Label>
+                    </DockLayout>
+                </StackLayout>
+                <StackLayout orientation="horizontal" col="1" class="p-r-10 text-default font-medium" class="text">
+
+                    <Label text="Capacity:" style="font-weight: bold ; margin-left:35"></Label>
+                    <DockLayout class="p-r-10 text-default font-medium" class="text" *ngFor="let invent of FlightInfo.inven ">
+                        <Label text="{{invent.CodeLetter}}" style="font-weight: bold;margin-left: 8;"></Label>
+                        <Label text="{{invent.Capacity}}" style="font-weight: bold;margin-left: 8;"></Label>
+                    </DockLayout>
+                </StackLayout>
+                <StackLayout col="2" orientation="horizontal" class="p-r-10 text-default font-medium" class="text">
+                    <Label text="Inbound:" style="font-weight: bold"></Label>
+                    <Label text="{{FlightInfo.inbound}}" style="font-weight: bold;margin-left: 8;"></Label>
+
+                </StackLayout>
+                <StackLayout col="3" orientation="horizontal" class="p-r-10 text-default font-medium" class="text">
+                    <Label text="Outbound:" style="font-weight: bold"></Label>
+                    <Label text="{{FlightInfo.outbound}}" style="font-weight: bold;margin-left: 8;"></Label>
+                </StackLayout>
+            </GridLayout>
+        </StackLayout>
+
+        <StackLayout dock="bottom" class="page-footer">
+
+            <StackLayout class="tabbed-menu">
+                <StackLayout class="tabbed-menu-item active" (tap)="navigateToSearch()">
+                    <Label text="&#xe907;" class="menu-item-icon copa-icon"></Label>
+                    <Label text="Check In" class="menu-item-text"></Label>
+                </StackLayout>
+                <StackLayout class="tabbed-menu-item menu-divider" (tap)="navigateToDepartures()">
+                    <Label text="&#xE904;" color="{{isGateDisabled  ? '#2260A4' : 'lightgray'}}" class="menu-item-icon copa-icon"></Label>
+                    <Label text="Departures" class="menu-item-text"></Label>
+                </StackLayout>>
+                <StackLayout class="tabbed-menu-item menu-divider" (tap)="navigateToCompensation()">
+                    <Label text="&#xe90e;" color="{{isCompensationEnabled  ? '#2260A4' : 'lightgray'}}" class="menu-item-icon copa-icon"></Label>
+                    <Label text="Compensation" class="menu-item-text"></Label>
+                </StackLayout>
+                <StackLayout class="tabbed-menu-item menu-divider" (tap)="simpleTap()">
+                    <Label text="&#xe90f;" class="menu-item-icon copa-icon" style="color:lightgray"></Label>
+                    <Label text="Notification" class="menu-item-text"></Label>
+                </StackLayout>
+                <StackLayout class="tabbed-menu-item" (tap)="navigateToSetting()">
+                    <Label text="&#xe917;" class="menu-item-icon copa-icon"></Label>
+                    <Label text="Settings" class="menu-item-text"></Label>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+        <!-- <StackLayout dock="bottom">
+            <DockLayout orientation="horizontal" class="btmhdr" visibility="{{cart?'collapsed':'visible'}}">
+                <WrapLayout class="btnarray">
+                    <Button *ngFor="let btns of btnList" [isEnabled]="isCartButtonEnabled" text="{{btns==1? 'print':'cart'}}" class="btn1" class="btn {{btns==1? 'btn-default':'btn-success'}}"
+                        (tap)="cartclicked(btns.btn)"></Button>
+                </WrapLayout>
+            </DockLayout>
+            <StackLayout orientation="vertical" class="lightgrey" height="60%" visibility="{{cart?'visible':'collapsed'}}">
+                <StackLayout class="lightgrey payhdr" height="20%" orientation="horizontal">
+                    <Label text="Order Summary" class="hdrtxt"></Label>
+                    <Label text="&#xE5CD;" class="material-icon font-big" style="margin-left:700;vertical-align: middle" (tap)="close()"></Label>
+                </StackLayout>
+                <StackLayout orientation="horizontal" height="60%" width="100%" class="whitebg">
+                    <StackLayout width="50%" orientation="vertical" class="whitebg">
+                        <StackLayout width="80%" height="80%" orientation="vertical" class="bgdgrid">
+                            <GridLayout columns="*,90,90" rows="auto" height="25%" class="grid">
+                                <label col="0" text="Item" class="text"></label>
+                                <label col="1" text="" class="text"></label>
+                                <label col="2" text="Amount" class="text"></label>
+                            </GridLayout>
+                            <StackLayout height="50%">
+                                <GridLayout columns="*,90,90" rows="auto" height="auto" class="grid" *ngFor="let amt of AmountArray">
+                                    <Label col="0" text="StandardProduct" class="text"></Label>
+                                    <Label col="1" text="" class="text"></Label>
+                                    <Label col="2" text="{{amt}}" class="text"></Label>
+                                </GridLayout>
+                            </StackLayout>
+                            <GridLayout columns="*,90,90" rows="auto" height="25%" class="lightgrey">
+                                <label col="0" text="Total Price" class="text"></label>
+                                <label col="1" text=""></label>
+                                <label col="2" text="{{totalAmount}}" class="text"></label>
+                            </GridLayout>
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout width="50%">
+                        <label text="Payment Method" class="paytxt"></label>
+                        <StackLayout width="70%" height="30%" orientation="horizontal" class="cashtype">
+                            <Label text="{{cCard ?'&#xE837;':'&#xE836;'}}" class="radiobtn  material-icon" (tap)="btnclicked('CCard')"></Label>
+                            <Label text="credit card" class="cashtxt"></Label>
+                            <!--<Label text="{{cCard ?'&#xE837;':'&#xE836;'}}" class="radiobtn  material-icon" (tap)="btnclicked('CCard')"></Label>
+                            <Label text="debit card" class="cashtxt"></Label>-->
+        <!-- <Label text="{{cash ?'&#xE837;':'&#xE836;'}}" class="radiobtn  material-icon" (tap)="btnclicked('Cash')"></Label>
+                            <Label text="cash" class="cashtxt"></Label>
+                        </StackLayout>
+                        <StackLayout visibility="{{cash? 'visible':'collapsed'}}">
+                            <Label text="{{AddBaggegeDetailsarray.fees}}" margin="10" color="black"></Label>
+                            <StackLayout orientation="horizontal" [visibility]="checkPayment()">
+                                <Label text="&#xe907;" color="green" class="copa-icon radiobtn"></Label>
+                                <Label text="paid" class="text"></Label>
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout class="lightgrey" height="25%">
+                    <button text="Confirm Payment" textWrap="true" [isEnabled]="isButtonEnabled" class="btn btn-success confirmPay" (tap)="confirm(null)"></button>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout> -->
+
+        <StackLayout class="page-body">
+            <StackLayout class="page-body-container">
+                <GridLayout rows="auto" columns="250, *">
+                    <StackLayout col="0" orientation="vertical">
+                        <StackLayout orientation="horizontal" style="background-color: #F5F5F5;padding: 10;margin:3" class="input-field input-field-vertical">
+                            <Label text="Order ID:" class="font-medium text-black font-bold p-b-10"></Label>
+                            <Label [text]="PassedPassengerDetail.OrderID" class="font-medium text-black font-bold p-b-10 m-l-5"></Label>
+                        </StackLayout>
+                        <StackLayout style="background-color: #F5F5F5;padding: 10;margin:3" class="input-field input-field-vertical">
+                            <StackLayout orientation="horizontal" class="p-b-10">
+                                <Label text="&#xe907;" class="copa-icon input-icon font-big p-r-5" color="{{PassedPassengerDetail.CheckinStatus? '#00A973' : '#c1c1c1'}}"></Label>
+                                <Label [text]="PassedPassengerDetail.FullName" textWrap="true" class="font-medium text-black font-bold"></Label>
+                            </StackLayout>
+                            <Label text="( FBA - {{FBA}} Bags )" textWrap="true" class="hd text-black" style="margin-top:6"></Label>
+                            <!-- <Label [text]="PassedPassengerDetail.PassengerType" textWrap="true" class="hd text-black" style="margin-top: 10"></Label> -->
+                        </StackLayout>
+                    </StackLayout>
+                    <DockLayout stretchLastchild="true" col="1" orientation="vertical" height="100%">
+                        <GridLayout dock="top" rows="auto" columns="35,*,70,90,*,90,*" class="p-5">
+                            <Label col="1" text="Product" textWrap="true" class="font-s text-black font-bold"></Label>
+                            <Label col="2" text="Bag Tags" visibility="{{isbagExist ? 'collapsed' : 'visible'}}" textWrap="true" class="font-s text-black font-bold"></Label>
+                            <Label col="3" text="Weight" visibility="{{isbagExist ? 'collapsed' : 'visible'}}" textWrap="true" class="font-s text-black font-bold"></Label>
+                            <Label col="4" text="Tag Number" textWrap="true" class="font-s text-black font-bold"></Label>
+                            <Label col="5" text="Fees" textWrap="true" class="font-s text-black font-bold"></Label>
+                            <Label col="6" text="Baggage Status" textWrap="true" class="font-s text-black font-bold"></Label>
+                        </GridLayout>
+                        <DockLayout dock="bottom" orientation="horizontal">
+                            <StackLayout dock="left" orientation="vertical">
+                                <StackLayout orientation="horizontal">
+                                    <Label automationText="bag_add" text="&#xE147;" class="material-icon input-icon font-big" color="{{enableAddBag?'#0060A9':'#989898'}}" style="margin-left: 10" (tap)="AddBaggage()"></Label>
+                                    <Label automationText="bag_add" text="Add Bag" class="input text-blue" style="margin-top: 0" (tap)="AddBaggage()"></Label>
+                                </StackLayout>
+                                <!-- <StackLayout orientation="horizontal">
+                                        <div *ngIf="isRemoveBtnEnabled">
+                                            <Label text="&#xE15C;" class="material-icon input-icon text-blue font-big" style="margin-left: 10" (tap)="removeAll()"></Label>
+                                        </div>
+                                        
+                                        <div *ngIf="isRemoveBtnEnabled">
+                                            <Label text="Remove All Bags" class="input text-blue" style="margin-top: 0" (tap)="removeAll()"></Label>
+                                        </div>
+
+                                </StackLayout> -->
+                            </StackLayout>
+                            <StackLayout dock="right" orientation="horizontal" class="hrz-right">
+                                <Label text="Total Weight:" class="input text-blue font-big" style="margin-top: 5"></Label>
+                                <Label [text]="totalweight" class="font-big text-black" style="margin-top: 5"></Label>
+                                <Label text="{{totalweightcode}}" class="font-big text-black" style="margin-top: 5;margin-left:5"></Label>
+                            </StackLayout>
+                        </DockLayout>
+                        <ScrollView automationText="baggagescroll"#baggageScroller height="auto">
+                            <StackLayout #baggageContainer>
+                                <StackLayout height="auto" dock="top" *ngFor="let item of AddBaggegeDetailsarray; let i = index">
+                                    <GridLayout rows="auto,auto,auto" columns="35,*,70,90,*,90,*" class="p-5 {{i%2 == 0 ? 'odd':'even'}}">
+                                        <div *ngIf="item.status == ''">
+                                            <Label automationText="bag_remove{{i}}" row="0" col="0" text="&#xE15C;" class="material-icon text-blue font-big vrt-middle" [class.text-default]="!isRemoveBtnEnabled && item.AlreadyExisting"
+                                                (tap)="remove(item)"></Label>
+                                        </div>
+                                        <div *ngIf="item.status == 'CheckedIn' || item.status == 'Pending Delete'">
+                                            <Label automationText="bag_remove{{i}}"row="0" col="0" text="&#xE872;" color ="{{enableRemoveBag?'#0060A9':'#989898'}}" class="material-icon font-big vrt-middle" (tap)="remove(item)"></Label>
+                                        </div>
+                                        <StackLayout row="0" col="1" outorientation="vertical" visibility="{{item.AlreadyExisting ?'collapsed':'visible' }}">
+                                            <DockLayout class="input-field input-field-regular vrt-middle" stretchLastChild="true">
+                                                <TextField automationText="bag_select{{i}}" text="{{item.selectedproduct}}" editable="false" id="productitems" color="#0060A9" (tap)="displayProductActionDialog(item)"></TextField>
+                                            </DockLayout>
+                                        </StackLayout>
+                                        <StackLayout row="0" col="1" outorientation="vertical" visibility="{{item.AlreadyExisting ?'visible':'collapsed' }}" class="vrt-middle">
+                                            <Label text="Standard" class="font-small"></Label>
+                                        </StackLayout>
+                                        <StackLayout row="0" col="2" orientation="vertical" visibility="{{item.AlreadyExisting ?'collapsed':'visible' }}">
+
+                                            <DockLayout class="input-field input-field-regular" stretchLastChild="true">
+                                                <TextField automationText="bag_auto{{i}}" text="{{item.auto ?'Auto':'Manual' }}" editable="false" id="tagitems" color="#0060A9" (tap)="displayTagActionDialog(item)"></TextField>
+                                            </DockLayout>
+                                        </StackLayout>
+                                        <!-- <StackLayout row="0" col="2" orientation="vertical" visibility="{{item.AlreadyExisting ?'visible':'collapsed' }}" class="vrt-middle">
+
+                                            <Label text="Auto" class="font-small"></Label>
+
+                                        </StackLayout> -->
+                                        <StackLayout row="0" col="3" visibility="{{item.AlreadyExisting ?'collapsed':'visible' }}" class=".ip-field.ip-vertical vrt-middle"
+                                            style="margin-bottom:1">
+                                            <DockLayout class="input-field input-field-regular" stretchLastChild="true">
+                                                <Label dock="right" class="font-small" text="KG"></Label>
+                                                <TextField automationText="bag_weight{{i}}" id="lv" dock="left" class="input" [(ngModel)]="item.weight" [class.error-field]="weight[i]" keyboardType="number"
+                                                    (ngModelChange)="onChange($event,i,0,item)"></TextField>
+                                            </DockLayout>
+                                        </StackLayout>
+
+                                        <!-- <StackLayout row="0" col="3" visibility="{{item.AlreadyExisting ?'visible':'collapsed' }}" class="vrt-middle" style="margin-bottom:1">
+                                            <DockLayout stretchLastChild="true">
+                                            <Label class="font-small" text="{{item.weight}} KG"></Label>
+                                            </DockLayout>
+                                        </StackLayout> -->
+
+
+                                        <StackLayout row="0" col="4" class="vrt-middle" style="margin-bottom:1">
+                                            <Label text="{{item.tagNumber}}" class="font-small" visibility="{{item.AlreadyExisting?'visible':'collapsed'}}"></Label>
+                                            <DockLayout visibility="{{item.manual?'visible':'collapsed'}}" class="input-field input-field-regular" stretchLastChild="true">
+                                                <!--<Label dock="right" class="font-small text-black" text="Kgs"></Label>-->
+                                                <TextField automationText="bag_tagnum{{i}}" dock="left" class="input" keyboardType="number" [(ngModel)]="item.tagNumber" (ngModelChange)="onChange($event,i,1,item)"></TextField>
+                                            </DockLayout>
+                                        </StackLayout>
+
+
+                                        <StackLayout row="0" col="5" orientation="horizontal" class="vrt-middle">
+                                            <Label text="{{item.fees}}" class="font-small" textWrap="true"></Label>
+                                        </StackLayout>
+
+
+                                        <StackLayout row="0" col="6" orientation="horizontal" visibility="{{item.status ?'visible':'collapsed' }}" class="vrt-middle">
+                                            <StackLayout visibility="{{item.status=='CheckedIn'?'visible':'collapsed' }}">
+                                                <Label text="&#xe907;" class="copa-icon input-icon font-big" color='#00A973'></Label>
+                                            </StackLayout>
+                                            <StackLayout visibility="{{item.status=='CheckedIn'?'collapsed':'visible' }}">
+                                                <Label text="&#xE872;" class="material-icon input-icon font-big" color='#FF0000'></Label>
+                                            </StackLayout>
+
+                                            <Label text="{{item.status}}" class="font-small" textWrap="true"></Label>
+                                        </StackLayout>
+
+                                        <StackLayout row="1" col="1" colSpan="6" style="margin-top:5" class="vrt-middle">
+                                            <StackLayout visibility="{{item.standard?'visible' :'collapsed'}}" row="1" col="1" orientation="horizontal">
+                                                <Label text="{{item.StdProduct}}" class="font-small"></Label>
+                                            </StackLayout>
+                                            <StackLayout visibility="{{item.catalog?'visible' :'collapsed'}}" row="1" orientation="horizontal">
+                                                <Label text="{{item.CtlgProduct}}" class="font-small"></Label>
+                                            </StackLayout>
+                                        </StackLayout>
+                                        <StackLayout row="0" col="6" class="input-field input-field-vertical" visibility="{{isShortCheckin(PassedPassengerDetail,item)==true? 'visible' : 'collapse'}}" (tap)="selectShortCheckCode(PassedPassengerDetail,item)">
+                                            <Label text="ShortCheck" color="#0060A9"></Label>
+                                            <TextField automationText="bag_shortck{{i}}" [(ngModel)]="item.ShortCheckAirportCode" ></TextField>
+                                        </StackLayout>
+                                        <!-- <StackLayout row="2" col="1" colSpan="6" style="margin-top:5" class="vrt-middle" orientation="horizontal"> -->
+                                        <StackLayout row="2" col="1" orientation="horizontal" visibility="{{item.AlreadyExisting ?'collapsed':'visible' }}">
+                                            <Label automationText="bag_oversize{{i}}" text="{{item.Oversize?'&#xE834;':'&#xE835;'}}" class="material-icon font-big" (tap)="oversizeCheck(item)"></Label>
+                                            <Label text="Oversize" class="font-small"></Label>
+                                        </StackLayout>
+                                        <!-- <StackLayout row="2" col="2" orientation="horizontal" visibility="{{item.AlreadyExisting ?'collapsed':'visible' }}">
+                                            <Label text="{{Oversize?'&#xE834;':'&#xE835;'}}" class="material-icon font-big" (tap)="Gate()"></Label>
+                                            <Label text="Gate" class="font-small"></Label>
+                                        </StackLayout> -->
+                                        <!-- </StackLayout> -->
+
+                                    </GridLayout>
+
+                                </StackLayout>
+                                <StackLayout height="auto" dock="top" height=75>
+                                </StackLayout>
+                            </StackLayout>
+                        </ScrollView>
+
+                    </DockLayout>
+
+                </GridLayout>
+            </StackLayout>
+        </StackLayout>
+    </DockLayout>
+</GridLayout>

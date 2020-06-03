@@ -1,0 +1,42 @@
+.toplayer{
+    background-color: grey;
+}
+.bluemargin{
+    border-width:0 0 1 0;
+    border-color:  #0B63A7;
+}
+.body{
+    background-color:#DDD;
+}
+.left-panel{
+    background-color: #FFF;
+    
+}
+.outer-layer{
+    background-color:#DDD;
+}
+.inner-layer{
+    background-color: #FFF;
+}
+.active{
+    background-color:  #0B63A7;
+}
+.text-white{
+    color:#FFF;
+}
+.selected{
+    background-color:#0B63A7;
+}
+.normal{
+    background-color: #F5F5F5;
+}
+.headerinfo{
+    background-color: #EFEFEE;
+    padding-left:10;
+    padding-right: 10;
+    height: 90;
+}
+.segmented-bar {
+    background-color: #DDD;
+    
+}

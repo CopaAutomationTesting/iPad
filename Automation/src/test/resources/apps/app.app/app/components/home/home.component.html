@@ -1,0 +1,73 @@
+<ActionBar title="Home" icon="" class="action-bar">
+        <NavigationButton visibility="collapsed"></NavigationButton>
+
+    <!--<StackLayout width="100%" orientation="horizontal">
+    </StackLayout>-->
+    <ActionItem automationText="home_pos" ios.position="right" icon="res://icons/location_edit" (tap)="changeAgentLocation()"> </ActionItem> 
+    <ActionItem ios.position="right" text="{{userdetails}}" class="material-icon"> </ActionItem>
+    <ActionItem ios.position="right" icon="res://logout_icons/logoff_edit" (tap)="_service.LogOut()"> </ActionItem> 
+    
+</ActionBar> 
+
+<GridLayout #pagecontainer>
+
+<DockLayout stretchLastChild="true" class="page">
+    <StackLayout dock="bottom" class="page-footer">
+        <StackLayout class="tabbed-menu">
+            <StackLayout class="tabbed-menu-item menu-divider" (tap)="navigateToSearch()">
+                <Label text="&#xe907;" color="{{isCheckinDisabled  ? '#2260A4' : 'lightgray'}}" class="menu-item-icon copa-icon"></Label>
+                <Label text="Check In" class="menu-item-text"></Label>
+            </StackLayout>
+            <StackLayout class="tabbed-menu-item menu-divider"  (tap)="navigateToDepartures()">
+                <Label text="&#xE904;" color="{{isGateDisabled  ? '#2260A4' : 'lightgray'}}" class="menu-item-icon copa-icon"></Label>
+                <Label text="Departures" class="menu-item-text"></Label>
+            </StackLayout>
+            <StackLayout class="tabbed-menu-item menu-divider" (tap)="navigateToCompensation()">
+                <Label text="&#xe90e;"  color="{{isCompensationDisabled  ? '#2260A4' : 'lightgray'}}" class="menu-item-icon copa-icon" ></Label>
+                <Label text="Compensation"  class="menu-item-text"></Label>
+            </StackLayout>
+            <StackLayout class="tabbed-menu-item menu-divider">
+                <Label text="&#xe90f;" class="menu-item-icon copa-icon" style="color:lightgray"></Label>
+                <Label text="Notification" class="menu-item-text"></Label>
+            </StackLayout>
+            <StackLayout class="tabbed-menu-item" (tap)="navigateToSetting()">
+                <Label text="&#xe917;" class="menu-item-icon copa-icon" ></Label>
+                <Label text="Settings" class="menu-item-text"></Label>
+            </StackLayout>
+        </StackLayout>
+    </StackLayout>
+    <ScrollView dock="top" class="page-body">
+        <StackLayout class="page-body-container">
+            <GridLayout rows="*" columns="*, *, *" class="card-menu">
+                <StackLayout accessibility-id="home_checkin"row="0" col="0" class="card-menu-item">
+                    <StackLayout id="home_checkin" class="card-menu-item-container" (tap)="navigateToSearch()">
+                        <Label text="&#xe907;" textWrap="true" class="copa-icon card-menu-icon" color="{{isCheckinDisabled  ? '#2260A4' : 'lightgray'}}"></Label>
+                        <StackLayout class="card-menu-content">
+                            <Label automationText="home_checkin" text="Check In" class="lato-light card-menu-title" color="{{isCheckinDisabled  ? '#2260A4' : 'lightgray'}}"></Label>
+                            <Label text="&#xe90c;" textWrap="true" class="copa-icon card-menu-nav" color="{{isCheckinDisabled  ? '#2260A4' : 'lightgray'}}"></Label>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout row="0" col="1" class="card-menu-item">
+                    <StackLayout id="home_dep" class="card-menu-item-container" (tap)="navigateToDepartures()">
+                        <Label text="&#xE904;" textWrap="true" class="copa-icon card-menu-icon" color="{{isGateDisabled  ? '#2260A4' : 'lightgray'}}"></Label>
+                        <StackLayout class="card-menu-content">
+                            <Label automationText="home_dep" text="Departures" class="lato-light card-menu-title" color="{{isGateDisabled  ? '#2260A4' : 'lightgray'}}"></Label>
+                            <Label text="&#xe90c;" textWrap="true" class="copa-icon card-menu-nav" color="{{isGateDisabled  ? '#2260A4' : 'lightgray'}}"></Label>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout row="0" col="2" class="card-menu-item">
+                    <StackLayout id="home_comp" class="card-menu-item-container" (tap)="navigateToCompensation()">
+                        <Label text="&#xe90e;" textWrap="true" class="copa-icon card-menu-icon" color="{{isCompensationDisabled  ? '#2260A4' : 'lightgray'}}"></Label>
+                        <StackLayout class="card-menu-content">
+                            <Label automationText="home_comp" text="Compensation"  class="lato-light card-menu-title" color="{{isCompensationDisabled  ? '#2260A4' : 'lightgray'}}" ></Label>
+                            <Label text="&#xe90c;" textWrap="true"  class="copa-icon card-menu-nav" color="{{isCompensationDisabled ? '#2260A4' : 'lightgray'}}" ></Label>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+            </GridLayout>
+        </StackLayout>
+    </ScrollView>
+</DockLayout>
+</GridLayout>

@@ -1,0 +1,84 @@
+.login-page-container {
+    width: 100%;
+    height: 100%;
+}
+
+.company-logo {
+    width: 200;
+    margin-left: 10;
+    margin-top: 10;
+}
+
+.login-container {
+    height: 100%;
+    width: 100%;
+    vertical-align: middle;
+}
+
+.login-container > .header-icon {
+    color: #FFF;
+    margin-bottom: -32;
+    horizontal-align: center;
+    z-index: 1000;
+    background-color: #0060A9;
+    border-radius: 32;
+    font-size: 54;
+    padding: 5;
+}
+
+.login-container .login-input-container {
+    background-color: rgba(239, 239, 239, 0.7);
+    padding: 20;
+    width: 400;
+}
+
+.header-text {
+    text-align: center;
+    margin-top: 20;
+    margin-bottom: 20;
+    color: #2260A4;
+    font-size: 20;
+    font-weight: bold;
+}
+
+.error-message{
+    border-width: 1;
+    border-color: RGB(255, 58, 9);
+    margin-bottom: 10;
+    padding: 5;
+    background-color: RGBA(255, 58, 9, 0.50);
+    font-size: 12;
+    color:RGBA(101, 23, 4, 1.00);
+    text-align: center;
+}
+
+.input-field{
+    width: 100%;
+    margin-bottom: 10;
+}
+
+.input-field > .label {
+    font-size: 24;
+    color: #DDD;
+    background-color: #FFF;
+    padding-left: 7;
+}
+
+.input-field > .input {
+    background-color: #FFF;
+    border-color: #FFF;
+    font-size: 16;
+    width: 100%;
+    padding: 10 5 10 5;
+}
+
+.btn.btn-login{
+    background-color: #2260A4;
+    color: white;
+    font-size: 24;
+    margin: 0;
+    margin-top: 10;
+    padding: 10;
+    
+    border-radius: 24;
+}

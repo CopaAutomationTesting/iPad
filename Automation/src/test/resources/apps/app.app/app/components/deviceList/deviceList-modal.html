@@ -1,0 +1,53 @@
+<DockLayout class="page" stretchLastChild="true">
+    <button dock="bottom" text="Cancel" class="btn btn-primary" (tap)="cancel()"></button>
+    <Label dock="top" text="Select Printer Device" class="header-text m-t-10" style="text-align:center"></Label>
+    <StackLayout dock="top" class="page-body">
+        <StackLayout class="page-body-container">
+            <DockLayout stretchLastChild="true" class="table">
+                <GridLayout class="table-header" dock="top" rows="35" columns="*,90,*,70,70">
+                    <StackLayout class="th" style=" vertical-align:middle;" col="0">
+                        <Label text="Device Name" textWrap="true"></Label>
+                    </StackLayout>
+                    <StackLayout class="th" style=" vertical-align:middle;" col="1">
+                        <Label text="Status" textWrap="true"></Label>
+                    </StackLayout>
+                    <StackLayout class="th" style=" vertical-align:middle;" col="2">
+                        <Label text="Queued Count" textWrap="true"></Label>
+                    </StackLayout>
+                    <StackLayout class="th" style=" vertical-align:middle;" col="3">
+                        <Label text="Port" textWrap="true"></Label>
+                    </StackLayout>
+                    <StackLayout class="th" style=" vertical-align:middle;" col="4">
+                        <Label text="Pectab" textWrap="true"></Label>
+                    </StackLayout>
+                </GridLayout>
+                <ScrollView dock="bottom" class="table-body">
+                    <StackLayout>
+                        <StackLayout orientation="vertical" *ngFor="let item of newDeviceList; let i=index">
+                            <GridLayout class="tr {{i%2 == 0 ? 'even':'odd'}}" rows="auto" columns="*,90,*,70,70" (tap)="SelectPrinter(item)">
+                                <WrapLayout  class="td" col="0">
+                                    <Label text="{{item.DeviceName}}" textWrap="true"></Label>
+                                </WrapLayout>
+                                <WrapLayout  class="td" col="1">
+                                    <Label text="{{item.Status }}" textWrap="true"></Label>
+                                </WrapLayout>
+                                <WrapLayout  class="td" col="2" >
+                                    <Label text="{{item.QueueCount}}" textWrap="true"  ></Label>
+                                </WrapLayout>
+                                <WrapLayout  class="td" col="3">
+                                    <Label text="{{item.Port}}" textWrap="true"></Label>
+                                </WrapLayout>
+                                <WrapLayout  class="td" col="4">
+                                    <Label text="{{item.Pectab}}" textWrap="true"></Label>
+                                </WrapLayout>
+
+                            </GridLayout>
+                        </StackLayout>
+                    </StackLayout>
+                    <!--</ng-template>
+                        </ListView>-->
+                </ScrollView>
+            </DockLayout>
+        </StackLayout>
+    </StackLayout>
+</DockLayout>

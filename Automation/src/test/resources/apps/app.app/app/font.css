@@ -1,0 +1,33 @@
+.material-icon {
+   font-family: 'Material Icons';
+}
+
+.copa-icon {
+    font-family: 'Copa-Fonts';
+}
+.new-copa-icon{
+    font-family: 'Copa-Fonts2';
+}
+
+.lato-light{
+    font-family: 'Lato-Light';
+}
+.lato-light-italic{
+    font-family: 'Lato-LightItalic';
+}
+.lato-regular{
+    font-family: 'Lato-Regular';
+}
+
+.lato-bold{
+    font-family: 'Lato-Bold';
+}
+
+.lato-bold-italic{
+    font-family: 'Lato-BoldItalic';
+}
+
+* {
+    font-family: 'Lato-Regular';
+}
+

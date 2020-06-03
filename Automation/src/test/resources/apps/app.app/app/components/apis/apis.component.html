@@ -1,0 +1,774 @@
+<ActionBar title="API Details" icon="" class="action-bar">
+    <NavigationButton text="Check-In" (tap)="postCheckin()"></NavigationButton>
+    <!--<StackLayout orientation="horizontal"style="background-image:url('~/images/blur_back.png')">
+        <Image class="company-logo" src="~/images/copa_logo.png"></Image>
+    </StackLayout>-->
+    <ActionItem ios.position="right" text="{{userdetails}}">
+    </ActionItem>
+    <ActionItem ios.position="right" icon="res://logout_icons/logoff_edit" (tap)="_service.LogOut()"> </ActionItem>
+</ActionBar>
+<GridLayout #pagecontainer>
+    <DockLayout stretchLastChild="true" class="page">
+        <StackLayout dock="top" class="page-header ">
+            <GridLayout columns="auto, *, auto" class="flight-info">
+                <!--<For *ngFor="let FlightWithPax of MultiSegmentPaxArray.Segment">-->
+                <StackLayout col="0" class="flight-details bdr-right-big">
+                    <StackLayout orientation="horizontal" class="details" (tap)="refreshFlifo()">
+                        <Label automationText="apis_refresh"text="{{FlightInfo.OperatingFlight!= null?FlightInfo.OperatingFlight:FlightInfo.MarketingFlight}}" class="p-r-10 text-blue font-medium font-bold  bdr-right"></Label>
+                        <Label automationText="apis_refresh"[text]="FlightDate" class="p-l-10 font-small text-default "></Label>
+                    </StackLayout>  
+                    <Label [text]="FlightInfo.status" class="details font-medium text-blue"></Label>
+                </StackLayout>
+                <StackLayout col="1" class="flight-details">
+                    <StackLayout orientation="horizontal" class="details p-l-10">
+                        <Label class="p-r-10 text-default font-medium">
+                            <FormattedString>
+                                <Span [text]="FlightInfo.Origin" fontAttributes="Bold"></Span>
+                                <Span text=", "></Span>
+                                <Span [text]="FlightInfo.OriginCity"></Span>
+
+                            </FormattedString>
+                        </Label>
+                        <Label text="&#xE5CC;" class="material-icon p-r-10 text-default font-medium"></Label>
+                        <Label class="p-r-10 text-default font-medium">
+                            <FormattedString>
+                                <Span [text]="FlightInfo.Destination" fontAttributes="Bold"></Span>
+                                <Span text=", "></Span>
+                                <Span [text]="FlightInfo.DestinationCity"></Span>
+                            </FormattedString>
+                        </Label>
+                    </StackLayout>
+                    <StackLayout orientation="horizontal" class="details p-l-10">
+                        <StackLayout orientation="horizontal">
+                            <Label text="STD" class="p-r-5 font-small text-default font-bold"></Label>
+                            <Label [text]="FlightInfo.STD" class="p-r-10 font-small text-black font-bold"></Label>
+                        </StackLayout>
+                        <StackLayout orientation="horizontal">
+                            <Label text="ETD" class="p-r-5 font-small text-default font-bold"></Label>
+                            <Label [text]="FlightInfo.ETD" class="p-r-10 font-small text-black font-bold"></Label>
+                        </StackLayout>
+                        <StackLayout orientation="horizontal">
+                            <Label text="ETA" class="p-r-5 font-small text-default font-bold"></Label>
+                            <Label [text]="FlightInfo.ETA" class="p-r-10 font-small text-black font-bold"></Label>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout col="2" orientation="horizontal" class="vrt-middle">
+                    <StackLayout class=" m-r-10">
+                        <div *ngIf="isAPISComplete||isCleared">
+                            <Button automationText="apis_confirmation"class="btn btn-default" text="Delete" [isEnabled]="isDeleteEnable" (tap)="confirmationPopup()"></Button>
+                        </div>
+                        <div *ngIf="!isAPISComplete">
+                            <StackLayout *ngIf="!isCleared">
+                                <Button automationText="apis_clear" class="btn btn-default" text="Clear" (tap)="postClear(ApisIndex)"></Button>
+                            </StackLayout>
+                        </div>
+                    </StackLayout>
+                    <StackLayout>
+                        <div *ngIf="isAPISComplete">
+                            <Button automationText="apis_done"class="btn btn-primary" (tap)='postCheckin()' text="Done"></Button>
+                        </div>
+                        <div *ngIf="!isAPISComplete">
+                            <Button automationText="apis_submit"class="btn btn-primary" [isEnabled]="isButtonEnabled" (tap)='postSecurityDoc()' [text]="ButtonText"></Button>
+                        </div>
+                    </StackLayout>
+                    <Stacklayout class=" m-l-10">
+                        <div>
+                            <Button automationText="apis_scan"class="btn btn-primary" [isEnabled]="isScanEnabled" (tap)="Scan('Passport')" text="Scan"></Button>
+                        </div>
+                    </Stacklayout>
+                </StackLayout>
+                <!--</For>            -->
+            </GridLayout>
+        </StackLayout>
+        <StackLayout dock="top" height="8%" class="stack" orientation="horizontal" [visibility]="isItemVisible(FlightInfo.MarketingFlight)">
+            <GridLayout row="*" columns="*,*,*,*">
+
+                <StackLayout orientation="horizontal" col="0" class="p-r-10 text-default font-medium" class="text">
+
+                    <Label text="Booking:" style="font-weight: bold ; margin-left:35"></Label>
+                    <DockLayout class="p-r-10 text-default font-medium" class="text" *ngFor="let invent of FlightInfo.inven ">
+                        <Label text="{{invent.CodeLetter}}" style="font-weight: bold;margin-left: 8;"></Label>
+                        <Label text="{{invent.Booking}}" style="font-weight: bold;margin-left: 8;"></Label>
+                    </DockLayout>
+                </StackLayout>
+                <StackLayout orientation="horizontal" col="1" class="p-r-10 text-default font-medium" class="text">
+
+                    <Label text="Capacity:" style="font-weight: bold ; margin-left:35"></Label>
+                    <DockLayout class="p-r-10 text-default font-medium" class="text" *ngFor="let invent of FlightInfo.inven ">
+                        <Label text="{{invent.CodeLetter}}" style="font-weight: bold;margin-left: 8;"></Label>
+                        <Label text="{{invent.Capacity}}" style="font-weight: bold;margin-left: 8;"></Label>
+                    </DockLayout>
+                </StackLayout>
+                <StackLayout col="2" orientation="horizontal" class="p-r-10 text-default font-medium" class="text">
+                    <Label text="Inbound:" style="font-weight: bold"></Label>
+                    <Label text="{{FlightInfo.inbound}}" style="font-weight: bold;margin-left: 8;"></Label>
+
+                </StackLayout>
+                <StackLayout col="3" orientation="horizontal" class="p-r-10 text-default font-medium" class="text">
+                    <Label text="Outbound:" style="font-weight: bold"></Label>
+                    <Label text="{{FlightInfo.outbound}}" style="font-weight: bold;margin-left: 8;"></Label>
+
+                </StackLayout>
+            </GridLayout>
+        </StackLayout>
+        <StackLayout dock="bottom" class="page-footer">
+            <StackLayout class="tabbed-menu">
+                <StackLayout class="tabbed-menu-item active" (tap)="navigateToSearch()">
+                    <Label text="&#xe907;"  class="menu-item-icon copa-icon"></Label>
+                    <Label text="Check In" class="menu-item-text"></Label>
+                </StackLayout>
+                <StackLayout class="tabbed-menu-item menu-divider"  (tap)="navigateToDepartures()">
+                    <Label text="&#xE904;" color="{{isGateDisabled  ? '#2260A4' : 'lightgray'}}" class="menu-item-icon copa-icon"></Label>
+                    <Label text="Departures" class="menu-item-text"></Label>
+                </StackLayout>
+                <StackLayout class="tabbed-menu-item menu-divider" (tap)="navigateToCompensation()">
+                    <Label text="&#xe90e;" color="{{isCompensationEnabled  ? '#2260A4' : 'lightgray'}}" class="menu-item-icon copa-icon"></Label>
+                    <Label text="Compensation" class="menu-item-text"></Label>
+                </StackLayout>
+                <StackLayout class="tabbed-menu-item menu-divider">
+                    <Label text="&#xe90f;" class="menu-item-icon copa-icon" style="color:lightgray"></Label>
+                    <Label text="Notification" class="menu-item-text"></Label>
+                </StackLayout>
+                <StackLayout class="tabbed-menu-item" (tap)="navigateToSetting()">
+                    <Label text="&#xe917;" class="menu-item-icon copa-icon"></Label>
+                    <Label text="Settings" class="menu-item-text"></Label>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+        <StackLayout orientation="horizontal">
+            <StackLayout style="background-color: #DBDAD8">
+                <StackLayout orientation="horizontal" style="background-color: #F5F5F5;padding: 10;margin:3" class="input-field input-field-vertical">
+                    <Label text="Order ID:" class="font-medium text-black font-bold p-b-10"></Label>
+                    <Label [text]="APISPassengerList[0].OrderID" class="font-medium text-black font-bold p-b-10 m-l-5"></Label>
+                </StackLayout>
+                <StackLayout orientation="horizontal" style="background-color: #F5F5F5;padding: 10;margin:3" class="input-field input-field-vertical">
+                    <Label automationText="apis_adccheck"text="{{adcCheck?'&#xE834;':'&#xE835;'}}" class="material-icon font-big" (tap)="adccheck()"></Label>
+                    <Label text="ADC ByPass" class="label m-l-5"></Label>
+                </StackLayout>
+                <ScrollView automationText="ScrollViewpax"> 
+                    <StackLayout>
+                        <For *ngFor="let item of APISPassengerList; let i = index">
+                            <!-- <GridLayout rows="auto" columns="240,520, *" class="m-b-5" *ngFor="let item of APISPassengerList, let i = index"> -->
+
+                            <StackLayout width="250" height="auto" class="{{APISSelection[i] ? 'selected' : 'normal' }}" (tap)="onPassengerSelector(item,false)"
+                                style="padding:10;margin:3;vertical-align:top;">
+                                <StackLayout orientation="horizontal" class="p-b-10">
+                                    <Label text="&#xe910;" class="copa-icon input-icon font-big m-r-5" color="{{item.AdcDecisionStatus == 'OK' || item.AdcDecisionStatus == 'COK' ? '#00A973' :(item.AdcDecisionStatus == 'BYPASSED'||item.AdcDecisionStatus == 'AUTOBYPASSED')? '#F6A736': (item.AdcDecisionStatus == 'NOTOK'||item.AdcDecisionStatus == 'ERR')? '#DA3923' : '#c1c1c1'}}"></Label>
+                                    <Label text="&#xe901;" class="copa-icon input-icon font-big m-r-5" color="{{ (item.SecurityCode == 'NB'|| item.SecurityCode == 'NM' ||item.SecurityCode == 'VU'|| item.SecurityCode == 'NE'|| item.SecurityCode == 'ED') ?'#DA3923' :(item.ApisDocoStatus == 'Complete'&& item.Documents.length>0 && item.Documents[0].IsTrustedData!=true)?'#F6A736':(item.ApisDocoStatus == 'Complete') ? '#00A973' :'#c1c1c1'}}"></Label>
+                                    <!-- <Label text="&#xe907;" class="copa-icon input-icon font-big p-r-5" color="{{item.CheckinStatus? '#00A973' : '#c1c1c1'}}"></Label> -->
+                                    <Label automationText="apis_passenger{{i}}"[text]="item.FullName" textWrap="true" class="font-medium text-black font-bold"></Label>
+
+                                </StackLayout>
+                                <Label [text]="item.PassengerType" textWrap="true" class="font-medium text-black"></Label>
+                                <!-- <GridLayout rows="auto" columns="100, *" style="margin-top:8" class="p-b-10">
+                                    <StackLayout col="0" orientation="horizontal" class="hrz-right">
+                                        <Label [text]="item.SyncTicket ? '&#xe90a;' : ''" class="copa-icon font-big text-warning p-l-10"></Label>
+                                    </StackLayout>
+                                    <StackLayout col="1" orientation="horizontal" class="hrz-right">
+                                        <Label [text]="item.Oversold ? '&#xE25C;' : ''" class="material-icon font-big text-danger p-l-10"></Label>
+                                    </StackLayout>
+                                </GridLayout> -->
+
+                            </StackLayout>
+
+                            <!-- </GridLayout> -->
+                        </For>
+                    </StackLayout>
+                </ScrollView>
+            </StackLayout>
+
+
+            <GridLayout rows="auto" columns="*,3, 245">
+
+                <StackLayout col="0" style="background-color: #FFF;margin-left:3;margin-right:3;height:100%">
+                    <StackLayout class="p-10">
+                        <StackLayout class="m-b-20" visibility="{{true? 'visible':'collapsed' }}">
+                            <SegmentedBar #segbar [items]="apisdetails" width="100%" (selectedIndexChanged)="selectSegment($event)" style="font:15px">
+                            </SegmentedBar>
+                        </StackLayout>
+                        <StackLayout #tabTravelDoc>
+                            <StackLayout orientation="vertical">
+                                <StackLayout row="0" orientation="horizontal" style="background-color: #FFF;padding: 3;">
+                                    <StackLayout orientation="horizontal" class=" m-r-20">
+                                        <Label automationText="apis_manual"[text]="securityDatas.ApisUpdateRequests[ApisIndex].Documents[0].inputType=='Manual' ? '&#xE837;' :'&#xE836;'" class="material-icon input-icon font-big"
+                                            (tap)="Manual()"></Label>
+                                        <Label text="Manual" class="input"></Label>
+                                    </StackLayout>
+                                    <StackLayout orientation="horizontal">
+                                        <Label [text]="securityDatas.ApisUpdateRequests[ApisIndex].Documents[0].inputType=='Machine Readable' ? '&#xE837;' :'&#xE836;'"
+                                            class="material-icon input-icon font-big" (tap)="Machine()"></Label>
+                                        <Label text="Machine Readable" class="input"></Label>
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+                            <GridLayout rows="*,auto,auto" columns="500, *,* " class="p-b-10" orientation="horizontal">
+                                <ScrollView automationText="ScrollViewpd" #APIScroller row="0" height="auto">
+                                    <StackLayout #contentContainer height="auto">
+                                        <GridLayout rows="auto,auto" columns="*">
+                                            <StackLayout>
+                                                <!-- <StackLayout>
+                                                            <Label text="Personal Information" textWrap="true" class="font-l text-black font-bold m-b-10"></Label>
+                                                        </StackLayout> -->
+                                                <GridLayout rows="auto , auto, auto,auto,auto,auto,auto" columns="*,*" class="m-b-10">
+                                                    <StackLayout row="0" col="0" class="input-field input-field-vertical p-r-10">
+                                                        <Label textWrap="true" class="label">
+                                                            <FormattedString>
+                                                                <Span text="Surname"></Span>
+                                                                <Span text=" *" foregroundColor="red"></Span>
+                                                            </FormattedString>
+                                                        </Label>
+                                                        <TextField automationText="apis_surname"hint="" [(ngModel)]="securityDatas.ApisUpdateRequests[ApisIndex].Documents[0].Surname" [isEnabled]="APISEnabled.LastName"
+                                                            (ngModelChange)="onChange($event,1,0)" class="input" [class.error-field]="this.ApisValidationHighlight[this.ApisIndex].LastName[0]"></TextField>
+                                                    </StackLayout>
+                                                    <StackLayout row="0" col="1" class="input-field input-field-vertical p-r-10">
+                                                        <Label textWrap="true" class="label">
+                                                            <FormattedString>
+                                                                <Span text="Given Name"></Span>
+                                                                <Span text=" *" foregroundColor="red"></Span>
+                                                            </FormattedString>
+                                                        </Label>
+                                                        <TextField automationText="apis_firstname" hint="" [(ngModel)]="securityDatas.ApisUpdateRequests[ApisIndex].Documents[0].Firstname" [isEnabled]="APISEnabled.FirstName"
+                                                            (ngModelChange)="onChange($event,0,0)" [class.error-field]="ApisValidationHighlight[ApisIndex].FirstName[0]"
+                                                            class="input"></TextField>
+                                                    </StackLayout>
+                                                    <StackLayout row="1" col="0" class="input-field input-field-vertical p-r-10">
+                                                        <Label textWrap="true" class="label">
+                                                            <FormattedString>
+                                                                <Span text="Date of Birth"></Span>
+                                                                <Span text=" *" foregroundColor="red"></Span>
+                                                            </FormattedString>
+                                                        </Label>
+                                                        <StackLayout orientation="horizontal" class="input-group">
+                                                            <div *ngIf="APISEnabled.DateOfBirth">
+                                                                <Label automationText="apis_dobicon"text="&#xE24F;" class="material-icon input-icon text-blue" (tap)="DateOfBirthModelView('start')"></Label>
+                                                            </div>
+                                                            <div *ngIf="!APISEnabled.DateOfBirth">
+                                                                <Label text="&#xE24F;" class="material-icon input-icon text-blue"></Label>
+                                                            </div>
+                                                            <TextField automationText="apis_dob" hint="" keyboardType="datetime" [(ngModel)]="securityDatas.ApisUpdateRequests[ApisIndex].Documents[0].BirthDate"
+                                                                [isEnabled]="APISEnabled.DateOfBirth" (ngModelChange)="onChange($event,2,0)"
+                                                                class="input" [class.error-field]="this.ApisValidationHighlight[this.ApisIndex].DateOfBirth"></TextField>
+                                                        </StackLayout>
+                                                    </StackLayout>
+                                                    <StackLayout row="1" col="1" class="input-field input-field-vertical p-r-10">
+                                                        <Label textWrap="true" class="label">
+                                                            <FormattedString>
+                                                                <Span text="Gender"></Span>
+                                                                <Span text=" *" foregroundColor="red"></Span>
+                                                            </FormattedString>
+                                                        </Label>
+                                                        <!--<TextField hint="" [(ngModel)]="item.DocHolderGender" class="input"></TextField>-->
+                                                        <StackLayout orientation="vertical">
+                                                            <StackLayout row="1" col="1" orientation="horizontal" style="background-color: #FFF;padding: 3;">
+                                                                <StackLayout orientation="horizontal" class=" m-r-20">
+                                                                    <div *ngIf="APISEnabled.Gender">
+                                                                        <Label automationText="apis_male"[text]="securityDatas.ApisUpdateRequests[ApisIndex].Documents[0].DocHolderGender=='0' ? '&#xE837;' :'&#xE836;'" class="material-icon input-icon font-big"
+                                                                            (tap)="male(ApisIndex)"></Label>
+                                                                    </div>
+                                                                    <div *ngIf="!APISEnabled.Gender">
+                                                                        <Label [text]="securityDatas.ApisUpdateRequests[ApisIndex].Documents[0].DocHolderGender=='0' ? '&#xE837;' :'&#xE836;'" class="material-icon input-icon font-big"></Label>
+                                                                    </div>
+                                                                    <Label text="Male" class="input"></Label>
+                                                                </StackLayout>
+                                                                <StackLayout orientation="horizontal">
+                                                                    <div *ngIf="APISEnabled.Gender">
+                                                                        <Label automationText="apis_female"[text]="securityDatas.ApisUpdateRequests[ApisIndex].Documents[0].DocHolderGender=='1' ? '&#xE837;' :'&#xE836;'" class="material-icon input-icon font-big"
+                                                                            (tap)="female(ApisIndex)"></Label>
+                                                                    </div>
+                                                                    <div *ngIf="!APISEnabled.Gender">
+                                                                        <Label [text]="securityDatas.ApisUpdateRequests[ApisIndex].Documents[0].DocHolderGender=='1' ? '&#xE837;' :'&#xE836;'" class="material-icon input-icon font-big"></Label>
+                                                                    </div>
+                                                                    <Label text="Female" class="input"></Label>
+                                                                </StackLayout>
+                                                            </StackLayout>
+                                                        </StackLayout>
+                                                    </StackLayout>
+                                                    <StackLayout row="2" col="0" class="input-field input-field-vertical p-r-10">
+                                                        <Label textWrap="true" class="label">
+                                                            <FormattedString>
+                                                                <Span text="Country of Residence"></Span>
+                                                                <Span text=" *" foregroundColor="red"></Span>
+                                                            </FormattedString>
+                                                        </Label>
+                                                        <div *ngIf="APISEnabled.CountryOfResidence">
+                                                            <DockLayout class="lable-field">
+                                                                <Label automationText="apis_residence"[text]="this.ApisValidation[this.ApisIndex].CountryOfResidence" class="input" (tap)="displayCountryOfResidenceActionDialog(0)"></Label>
+                                                            </DockLayout>
+                                                        </div>
+                                                        <div *ngIf="!APISEnabled.CountryOfResidence">
+                                                            <DockLayout class="lable-field">
+                                                                <Label [text]="this.ApisValidation[this.ApisIndex].CountryOfResidence" class="input"></Label>
+                                                            </DockLayout>
+                                                        </div>
+                                                    </StackLayout>
+                                                    <StackLayout row="2" col="1" class="input-field input-field-vertical p-r-10">
+                                                        <Label textWrap="true" class="label">
+                                                            <FormattedString>
+                                                                <Span text="Document Type"></Span>
+                                                                <Span text=" *" foregroundColor="red"></Span>
+                                                            </FormattedString>
+                                                        </Label>
+                                                        <div *ngIf="APISEnabled.DocType">
+                                                            <DockLayout class="lable-field">
+                                                                <Label automationText="apis_document" [text]="this.securityDatas.ApisUpdateRequests[ApisIndex].Documents[0].DocTypeText" id="documentType_0" class="input"
+                                                                    (tap)="displayDocumentTypeActionDialog(0)"></Label>
+                                                            </DockLayout>
+                                                        </div>
+                                                        <div *ngIf="!APISEnabled.DocType">
+                                                            <DockLayout class="lable-field">
+                                                                <Label [text]="this.securityDatas.ApisUpdateRequests[ApisIndex].Documents[0].DocTypeText" id="documentType_0" class="input"></Label>
+                                                            </DockLayout>
+                                                        </div>
+                                                    </StackLayout>
+                                                    <StackLayout row="3" col="0" class="input-field input-field-vertical  p-r-10">
+                                                        <Label textWrap="true" class="label">
+                                                            <FormattedString>
+                                                                <Span text="Document Number"></Span>
+                                                                <Span text=" *" foregroundColor="red"></Span>
+                                                            </FormattedString>
+                                                        </Label>
+                                                        <TextField automationText="apis_docno" hint="" class="input" keyboardType="number" [isEnabled]="APISEnabled.DocID" [(ngModel)]="securityDatas.ApisUpdateRequests[ApisIndex].Documents[0].DocID"
+                                                            [class.error-field]="this.ApisValidationHighlight[this.ApisIndex].DocID[0]"
+                                                            (ngModelChange)="onChange($event,3,0)"></TextField>
+
+                                                    </StackLayout>
+                                                    <StackLayout row="3" col="1" class="input-field input-field-vertical p-r-10">
+                                                        <Label textWrap="true" class="label">
+                                                            <FormattedString>
+                                                                <Span text="Date of Expiration"></Span>
+                                                                <Span text=" *" foregroundColor="red"></Span>
+                                                            </FormattedString>
+                                                        </Label>
+                                                        <StackLayout orientation="horizontal" class="input-group">
+                                                            <div *ngIf="APISEnabled.ExpireDate">
+                                                                <Label automationText="apis_expdateicon" dock="left" class="material-icon input-icon text-blue" text="&#xE24F;" (tap)="createModelView('start',0)"></Label>
+                                                            </div>
+                                                            <div *ngIf="!APISEnabled.ExpireDate">
+                                                                <Label dock="left" class="material-icon input-icon text-blue" text="&#xE24F;"></Label>
+                                                            </div>
+                                                            <TextField automationText="apis_expdate" hint="" id="datePick" keyboardType="datetime" class="input" [isEnabled]="APISEnabled.ExpireDate" [class.error-field]="this.ApisValidationHighlight[this.ApisIndex].ExpireDate[0]"
+                                                                [(ngModel)]="securityDatas.ApisUpdateRequests[ApisIndex].Documents[0].ExpireDate"
+                                                                (ngModelChange)="onChange($event,4,0)"></TextField>
+                                                        </StackLayout>
+                                                    </StackLayout>
+                                                    <StackLayout row="4" col="0" class="input-field input-field-vertical p-r-10">
+                                                        <Label textWrap="true" class="label">
+                                                            <FormattedString>
+                                                                <Span text="Country of Issue"></Span>
+                                                                <Span text=" *" foregroundColor="red"></Span>
+                                                            </FormattedString>
+                                                        </Label>
+                                                        <div *ngIf="APISEnabled.CountryOfIssue">
+                                                            <DockLayout class="lable-field">
+                                                                <Label automationText="apis_issue"[text]="this.ApisValidation[this.ApisIndex].CountryOfIssue[0]" class="input" (tap)="displayDocumentIssueActionDialog(0)"></Label>
+                                                            </DockLayout>
+                                                        </div>
+                                                        <div *ngIf="!APISEnabled.CountryOfIssue">
+                                                            <DockLayout class="lable-field">
+                                                                <Label automationText="apis_issue" [text]="this.ApisValidation[this.ApisIndex].CountryOfIssue[0]" class="input"></Label>
+                                                            </DockLayout>
+                                                        </div>
+                                                    </StackLayout>
+                                                    <StackLayout row="4" col="1" class="input-field input-field-vertical p-r-10 ">
+                                                        <Label textWrap="true" class="label">
+                                                            <FormattedString>
+                                                                <Span text="Nationality"></Span>
+                                                                <Span text=" *" foregroundColor="red"></Span>
+                                                            </FormattedString>
+                                                        </Label>
+                                                        <div *ngIf="APISEnabled.Nationality">
+                                                            <DockLayout class="lable-field">
+                                                                <Label automationText="apis_nationality"[text]="this.ApisValidation[this.ApisIndex].Nationality" class="input" (tap)="displayNationalityActionDialog(0)"></Label>
+                                                            </DockLayout>
+                                                        </div>
+                                                        <div *ngIf="!APISEnabled.Nationality">
+                                                            <DockLayout class="lable-field">
+                                                                <Label automationText="apis_nationality" [text]="this.ApisValidation[this.ApisIndex].Nationality" class="input"></Label>
+                                                            </DockLayout>
+                                                        </div>
+
+                                                    </StackLayout>
+                                                    <StackLayout row="5" col="0" class="input-field input-field-vertical p-r-10 ">
+                                                        <Label textWrap="true" class="label">
+                                                            <FormattedString>
+                                                                <Span text="Purpose of Visit"></Span>
+                                                                <Span text="" foregroundColor="black"></Span>
+                                                            </FormattedString>
+                                                        </Label>
+                                                        <DockLayout class="lable-field">
+                                                            <Label automationText="apis_visit" [text]="this.Visit" class="input" (tap)="isInputEnabled?displayVisitActionDialog(0):''"></Label>
+                                                        </DockLayout>
+                                                    </StackLayout>
+                                                    <StackLayout row="5" col="1" class="input-field input-field-vertical p-r-10 " orientation="horizontal">
+                                                        <div *ngIf="isInputEnabled">
+                                                            <Label automationText="apis_trust" text="{{trusted?'&#xE834;':'&#xE835;'}}" class="material-icon font-big" (tap)="trustedCheck()"></Label>
+                                                        </div>
+                                                        <div *ngIf="!isInputEnabled">
+                                                            <Label automationText="apis_trust" text="{{trusted?'&#xE834;':'&#xE835;'}}" class="material-icon font-big"></Label>
+                                                        </div>
+                                                        <Label text="Trusted Data" class="label">
+                                                        </Label>
+                                                    </StackLayout>
+                                                    <div *ngIf="isINHIBIT">
+                                                        <StackLayout row="6" col="1" class="input-field input-field-vertical p-r-10 " orientation="horizontal">
+
+                                                            <!-- <Label text="{{verified?'&#xE834;':'&#xE835;'}}" class="material-icon font-big" (tap)="verifiedCheck()"></Label>
+                                                                <Label text="Verified Id" class="label">
+                                                                </Label> -->
+                                                        </StackLayout>
+                                                    </div>
+                                                    <!-- <StackLayout row="2" col="0" orientation="horizontal" class="input-field p-r-10">
+                                                                <Label text="{{securityDatas.Documents[0].IsVerifiedData?'&#xE834;':'&#xE835;'}}" class="material-icon font-big" (tap)="CheckVerifiedData()"></Label>
+                                                                <Label textWrap="true" class="label">
+                                                                <FormattedString>
+                                                                    <Span text="verified"></Span>
+                                                                    <Span text="" foregroundColor="red"></Span>
+                                                                </FormattedString>
+                                                            </Label>
+                                                            </StackLayout>
+                                                            <StackLayout row="2" col="1" orientation="horizontal" class="input-field p-r-10">
+                                                                <Label text="{{securityDatas.Documents[0].IsTrustedData?'&#xE834;':'&#xE835;'}}" class="material-icon font-big" (tap)="CheckTrustedData()"></Label>
+                                                                <Label textWrap="true" class="label">
+                                                                <FormattedString>
+                                                                    <Span text="Trusted Data"></Span>
+                                                                    <Span text="" foregroundColor="black"></Span>
+                                                                </FormattedString>
+                                                            </Label>
+                                                            </StackLayout> -->
+                                                    <!-- <div *ngIf="isDisplayExitDate"> -->
+                                                        <StackLayout row="6" col="0" class="input-field input-field-vertical p-r-10">
+                                                            <Label textWrap="true" class="label">
+                                                                <FormattedString>
+                                                                    <Span text="Exit Date"></Span>
+                                                                    <Span text="" foregroundColor="black"></Span>
+                                                                </FormattedString>
+                                                            </Label>
+                                                            <StackLayout orientation="horizontal" class="input-group">
+                                                                <div *ngIf="isInputEnabled">
+                                                                    <Label automationText="apis_exitdateicon" dock="left" class="material-icon input-icon text-blue" text="&#xE24F;" (tap)="createModelViewExitDate('start',i)"></Label>
+                                                                </div>
+                                                                <div *ngIf="!isInputEnabled">
+                                                                    <Label dock="left" class="material-icon input-icon text-blue" text="&#xE24F;"></Label>
+                                                                </div>
+                                                                <TextField automationText="apis_exitdate" hint="" id="datePick" keyboardType="datetime" class="input" [isEnabled]="isInputEnabled" (ngModelChange)="onChange($event,9,0)" [(ngModel)]="securityDatas.ApisUpdateRequests[ApisIndex].ExitDate"></TextField>
+                                                            </StackLayout>
+                                                        </StackLayout>
+
+                                                        <StackLayout row="6" col="1" class="input-field input-field-vertical p-r-10">
+                                                                        <Label textWrap="true" class="label">
+                                                                                <FormattedString>
+                                                                                    <Span text="Justification"></Span>
+                                                                                    <Span text="" foregroundColor="black"></Span>
+                                                                                </FormattedString>
+                                                                            </Label>
+                                                                            <TextField automationText="apis_justification" hint="" class="input" [isEnabled]="isInputEnabled" (ngModelChange)="onChange($event,18,0)" [(ngModel)]="securityDatas.ApisUpdateRequests[ApisIndex].ExitDateJustification"
+                                                                            ></TextField>
+                                                                </StackLayout>
+                                                    <!-- </div> -->
+                                                </GridLayout>
+                                                <!-- <StackLayout class="hr-light m-b-20"></StackLayout>
+                                                        <DockLayout>
+                                                            <Label text="Document Information" textWrap="true" class="font-l text-black font-bold m-b-10"></Label>
+                                                        </DockLayout> -->
+
+                                            </StackLayout>
+                                        </GridLayout>
+                                        <StackLayout height=130>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </ScrollView>
+
+                            </GridLayout>
+                        </StackLayout>
+
+                        <GridLayout #tabSecondDoc rows="*,auto,auto" columns="500, *,* " class="p-b-10" orientation="horizontal">
+                            <ScrollView automationText="ScrollViewsd" name="ScrollViewn" id="ScrollViewid" value="ScrollViewval" label="ScrollViewlab"  #APIScroller row="0" height="auto">
+                                <StackLayout #contentSecondContainer height="auto">
+                                    <StackLayout dock="top" height="100%" *ngFor="let item of securityDatas.ApisUpdateRequests[ApisIndex].Documents;let i=index">
+                                        <div *ngIf="i!=0 && item.Firstname!=null">
+                                            <DockLayout *ngIf="isInputEnabled">
+                                                <div *ngIf="i>0">
+                                                    <Label text="" textWrap="true" class="font-l text-black font-bold m-b-10" (tap)="remove(item,i)"></Label>
+                                                    <label automationText="apis_remove" text="&#xE15C;" class="material-icon input-icon font-big" style="color: red;margin-left: 450" (tap)="remove(item,i)"></label>
+                                                </div>
+                                            </DockLayout>
+                                            <StackLayout class="hr-light m-b-20"></StackLayout>
+                                            <GridLayout rows="auto , auto, auto" columns="*,*" class="m-b-10">
+                                                <StackLayout row="0" col="0" class="input-field input-field-vertical p-r-10">
+                                                    <Label textWrap="true" class="label">
+                                                        <FormattedString>
+                                                            <Span text="Surname"></Span>
+                                                            <Span text="" foregroundColor="black"></Span>
+                                                        </FormattedString>
+                                                    </Label>
+                                                    <TextField automationText="apis_surname"hint="" [(ngModel)]="item.Surname" [isEnabled]="isInputEnabled" class="input" [class.error-field]="this.ApisValidationHighlight[this.ApisIndex].LastName[i]" (ngModelChange)="onChange($event,1,i)"></TextField>
+                                                </StackLayout>
+                                                <StackLayout row="0" col="1" class="input-field input-field-vertical p-r-5">
+                                                    <Label textWrap="true" class="label">
+                                                        <FormattedString>
+                                                            <Span text="Given Name"></Span>
+                                                            <Span text="" foregroundColor="black"></Span>
+                                                        </FormattedString>
+                                                    </Label>
+                                                    <TextField automationText="apis_firstname"hint="" [(ngModel)]="item.Firstname" [isEnabled]="isInputEnabled" class="input" (ngModelChange)="onChange($event,0,i)" [class.error-field]="this.ApisValidationHighlight[this.ApisIndex].FirstName[i]"></TextField>
+                                                </StackLayout>
+                                                <StackLayout row="1" col="0" class="input-field input-field-vertical p-r-10">
+                                                    <Label textWrap="true" class="label">
+                                                        <FormattedString>
+                                                            <Span text="Country of Issue"></Span>
+                                                            <Span text="" foregroundColor="black"></Span>
+                                                        </FormattedString>
+                                                    </Label>
+                                                    <div *ngIf="isInputEnabled">
+                                                        <DockLayout class="lable-field">
+                                                            <Label automationText="apis_issue"[text]="this.ApisValidation[this.ApisIndex].CountryOfIssue[i]" class="input" (tap)="displayDocumentIssueActionDialog(i)"></Label>
+                                                        </DockLayout>
+                                                    </div>
+                                                    <div *ngIf="!isInputEnabled">
+                                                        <DockLayout class="lable-field">
+                                                            <Label a [text]="this.ApisValidation[this.ApisIndex].CountryOfIssue[i]" class="input"></Label>
+                                                        </DockLayout>
+                                                    </div>
+
+                                                </StackLayout>
+                                                <StackLayout row="1" col="1" class="input-field input-field-vertical p-r-5">
+                                                    <Label textWrap="true" class="label">
+                                                        <FormattedString>
+                                                            <Span text="Document Type"></Span>
+                                                            <Span text="" foregroundColor="black"></Span>
+                                                        </FormattedString>
+                                                    </Label>
+                                                    <div *ngIf="isInputEnabled">
+                                                        <DockLayout class="lable-field">
+                                                            <Label automationText="apis_document"[text]="item.DocTypeText" id="documentType_{{i}}" class="input" (tap)="displaySecondaryDocumentTypeActionDialog(i)"></Label>
+                                                        </DockLayout>
+                                                    </div>
+                                                    <div *ngIf="!isInputEnabled">
+                                                        <DockLayout class="lable-field">
+                                                            <Label automationText="apis_document" [text]="item.DocTypeText" id="documentType_{{i}}" class="input"></Label>
+                                                        </DockLayout>
+                                                    </div>
+                                                </StackLayout>
+
+                                                <StackLayout row="2" col="0" class="input-field input-field-vertical p-r-10">
+                                                    <Label textWrap="true" class="label">
+                                                        <FormattedString>
+                                                            <Span text="Document Number"></Span>
+                                                            <Span text="" foregroundColor="black"></Span>
+                                                        </FormattedString>
+                                                    </Label>
+                                                    <TextField automationText="apis_docno" hint="" class="input" [(ngModel)]="item.DocID" [isEnabled]="isInputEnabled" [class.error-field]="this.ApisValidationHighlight[this.ApisIndex].DocID[i]"
+                                                        (ngModelChange)="onChange($event,3,i)"></TextField>
+                                                </StackLayout>
+                                                <StackLayout row="2" col="1" class="input-field input-field-vertical">
+                                                    <Label textWrap="true" class="label">
+                                                        <FormattedString>
+                                                            <Span text="Date of Expiration"></Span>
+                                                            <Span text="" foregroundColor="black"></Span>
+                                                        </FormattedString>
+                                                    </Label>
+                                                    <StackLayout orientation="horizontal" class="input-group">
+                                                        <div *ngIf="isInputEnabled">
+                                                            <Label automationText="apis_expdateicon"dock="left" class="material-icon input-icon text-blue" text="&#xE24F;" (tap)="createModelView('start',i)"></Label>
+                                                        </div>
+                                                        <div *ngIf="!isInputEnabled">
+                                                            <Label dock="left" class="material-icon input-icon text-blue" text="&#xE24F;"></Label>
+                                                        </div>
+                                                        <TextField automationText="apis_expdate" hint="" class="input" id="ExpireDate_{{i}}" [isEnabled]="isInputEnabled" [(ngModel)]="item.ExpireDate" [class.error-field]="this.ApisValidationHighlight[this.ApisIndex].ExpireDate[i]"
+                                                            (ngModelChange)="onChange($event,4,i)"></TextField>
+                                                    </StackLayout>
+                                                </StackLayout>
+
+
+                                            </GridLayout>
+                                        </div>
+
+                                    </StackLayout>
+                                </StackLayout>
+
+                            </ScrollView>
+
+                            <StackLayout row="1" orientation="horizontal" *ngIf="isInputEnabled">
+                                <label automationText="apis_adddock" text="&#xE147;" class="material-icon input-icon font-big" style="color: blue" (tap)="add()"></label>
+                                <label automationText="apis_adddock" text="Add Another Document " class="input text-black" style="margin-top: 1;margin-left: 5" (tap)="add()"></label>
+                            </StackLayout>
+
+
+
+
+
+                        </GridLayout>
+
+                        <!-- <div *ngIf="isAddresses"> -->
+                        <GridLayout #tabAddress rows="*,auto,auto" class="p-b-10" orientation="horizontal">
+                            <StackLayout dock="top">
+                                <GridLayout rows="auto , auto, auto" columns="*,*" class="m-b-10">
+                                    <StackLayout row="0" col="0" class="input-field input-field-vertical p-r-10">
+                                        <Label text="Address*" textWrap="true" class="label"></Label>
+                                        <TextField automationText="apis_address" hint="" [(ngModel)]="securityDatas.ApisUpdateRequests[ApisIndex].Addresses[0].Address" [isEnabled]="isInputEnabled"
+                                            [class.error-field]="isAddress" class="input" style="margin-top:5" (ngModelChange)="onChange($event,13,0)"></TextField>
+                                    </StackLayout>
+                                    <StackLayout row="0" col="1" class="input-field input-field-vertical">
+                                        <Label text="City" textWrap="true" class="label"></Label>
+                                        <TextField automationText="apis_city" hint="" [(ngModel)]="securityDatas.ApisUpdateRequests[ApisIndex].Addresses[0].City" [isEnabled]="isInputEnabled"
+                                            [class.error-field]="securityDatas.ApisUpdateRequests[ApisIndex].Addresses[0].isCity" style="margin-top:5" (ngModelChange)="onChange($event,10,0)"
+                                            class="input"></TextField>
+                                    </StackLayout>
+                                    <StackLayout row="1" col="0" class="input-field input-field-vertical p-r-10">
+                                        <Label text="State/Province" textWrap="true" class="label"></Label>
+                                        <TextField automationText="apis_state" hint="" [(ngModel)]="securityDatas.ApisUpdateRequests[ApisIndex].Addresses[0].State" [isEnabled]="isInputEnabled"
+                                            [class.error-field]="securityDatas.ApisUpdateRequests[ApisIndex].Addresses[0].isState" (ngModelChange)="onChange($event,11,0)" class="input"></TextField>
+                                    </StackLayout>
+                                    <StackLayout row="1" col="1" class="input-field input-field-vertical p-r-10">
+                                        <Label textWrap="true" class="label">
+                                            <FormattedString>
+                                                <Span text="Country"></Span>
+                                                <Span text=" *"></Span>
+                                            </FormattedString>
+                                        </Label>
+                                        <!--<Label [text]="this.SelectedCountryOfIssue[i]" class="input"  (tap)="displayDocumentIssueActionDialog(i)"></Label>-->
+                                        <div *ngIf="isInputEnabled">
+                                            <DockLayout class="lable-field">
+                                                <Label automationText="apis_country" [text]="this.CountryAddress" class="input" (tap)="displayCountryActionDialog()" style="margin-top:5"></Label>
+                                            </DockLayout>
+                                        </div>
+                                        <div *ngIf="!isInputEnabled">
+                                            <DockLayout class="lable-field">
+                                                <Label automationText="apis_country" [text]="this.CountryAddress" class="input" style="margin-top:5"></Label>
+                                            </DockLayout>
+                                        </div>
+                                    </StackLayout>
+                                    <!--<Label text="Country*" textWrap="true" class="label"></Label>
+                                                <Label [text]="this.CountryCode" class="input"  (tap)="displayCountryActionDialog()"></Label>-->
+
+                                    <StackLayout row="2" col="0" class="input-field input-field-vertical p-r-10">
+                                        <Label text="Postal Code" textWrap="true" class="label"></Label>
+                                        <TextField automationText="apis_postalcode" hint="" [(ngModel)]="securityDatas.ApisUpdateRequests[ApisIndex].Addresses[0].PostalCode" [isEnabled]="isInputEnabled"
+                                            [class.error-field]="securityDatas.ApisUpdateRequests[ApisIndex].Addresses[0].isPostal" (ngModelChange)="onChange($event,12,0)" class="input"></TextField>
+                                    </StackLayout>
+                                </GridLayout>
+
+                            </StackLayout>
+                        </GridLayout>
+
+                        <StackLayout class="hr-light m-b-20"></StackLayout>
+                        <!-- </div> -->
+
+
+                    </StackLayout>
+                </StackLayout>
+
+                <StackLayout col="1" class="p-10" style="background-color:#F5F5F5" orientation="vertical"></StackLayout>
+
+                <StackLayout col="2" style="background-color: #FFF;margin-left:3;height:100%">
+                    <StackLayout class="p-10">
+                        <StackLayout orientation="horizontal">
+                            <label text="Emergency Contact Info " class="font-l text-black font-bold m-b-10" style="margin-top: 10;margin-left: 5" (tap)="expand()"></label>
+                        </StackLayout>
+                        <GridLayout rows="auto , auto, auto" columns="*" class="m-b-10">
+                            <StackLayout row="0" col="0" class="input-field input-field-vertical">
+                                <Label textWrap="true" class="label">
+                                    <FormattedString>
+                                        <Span text="Contact Name"></Span>
+                                        <!-- <Span text=" *" foregroundColor="red"></Span> -->
+                                    </FormattedString>
+                                </Label>
+                                <TextField automationText="apis_contact"hint="" [(ngModel)]="this.securityDatas.ApisUpdateRequests[ApisIndex].EmergencyDetails[0].EmergencyContactName"
+                                    (ngModelChange)="onChange($event,14,0)" class="input"></TextField>
+                            </StackLayout>
+                            <StackLayout row="1" col="0" class="input-field input-field-vertical">
+                                <Label textWrap="true" class="label">
+                                    <FormattedString>
+                                        <Span text="Phone No"></Span>
+                                        <!-- <Span text=" *" foregroundColor="red"></Span> -->
+                                    </FormattedString>
+                                </Label>
+                                <TextField automationText="apis_phoneno" hint="" [(ngModel)]="this.securityDatas.ApisUpdateRequests[ApisIndex].EmergencyDetails[0].EmergencyPhone.Value" keyboardType="phone"
+                                    (ngModelChange)="onChange($event,15,0)" class="input"></TextField>
+                            </StackLayout>
+                            <StackLayout row="2" col="0" class="input-field input-field-vertical" orientation="horizontal">
+                                <Label automationText="apis_applyall"text="{{checks?'&#xE834;':'&#xE835;'}}" class="material-icon font-big" (tap)="check(this.securityDatas.ApisUpdateRequests[ApisIndex])"></Label>
+                                <Label text="Apply to all PNR Passenger" class="label">
+                                </Label>
+                            </StackLayout>
+                        </GridLayout>
+
+                        <StackLayout class="hr-light m-b-20"></StackLayout>
+                        <StackLayout orientation="horizontal">
+                            <label text="Additional Information " class="font-l text-black font-bold m-b-10" style="margin-top: 10;margin-left: 5" (tap)="expand()"></label>
+                        </StackLayout>
+                        <GridLayout rows="auto , auto, auto" columns="*" class="m-b-10">
+                            <StackLayout row="0" col="0" class="input-field input-field-vertical">
+                                <Label textWrap="true" class="label">
+                                    <FormattedString>
+                                        <Span text="Known Traveler Number"></Span>
+                                        <Span text="" foregroundColor="black"></Span>
+                                    </FormattedString>
+                                </Label>
+                                <TextField  automationText="apis_knowtraveller"hint="" [(ngModel)]="this.securityDatas.ApisUpdateRequests[ApisIndex].KnownTravelerNumber" (ngModelChange)="onChange($event,16,0)"
+                                    class="input" [class.error-field]="this.ApisValidationHighlight[this.ApisIndex].isKnownTraveler"></TextField>
+                            </StackLayout>
+                            <StackLayout row="1" col="0" class="input-field input-field-vertical">
+                                <Label textWrap="true" class="label">
+                                    <FormattedString>
+                                        <Span text="Redress Number"></Span>
+                                        <Span text="" foregroundColor="black"></Span>
+                                    </FormattedString>
+                                </Label>
+                                <TextField automationText="apis_redressno" hint="" [(ngModel)]="this.securityDatas.ApisUpdateRequests[ApisIndex].RedressNumber" (ngModelChange)="onChange($event,17,0)"
+                                    class="input"></TextField>
+                            </StackLayout>
+
+                        </GridLayout>
+
+
+
+
+                        <!-- <GridLayout rows="*,auto,auto" columns="*" class="p-b-10" orientation="horizontal" >
+                                <StackLayout row="0" orientation="vertical">
+                                    <StackLayout orientation="horizontal">
+                                        <label text="Emergency Contact Info " class="font-l text-black font-bold m-b-10" style="margin-top: 10;margin-left: 5" (tap)="expand()"></label>
+                                    </StackLayout>
+                                    <StackLayout orientation="horizontal">
+                                        <GridLayout rows="*,*,*" columns="*">
+                                            <StackLayout row="0" col="0" class="input-field input-field-vertical p-r-1">
+                                                <Label textWrap="true" class="label">
+                                                <FormattedString>
+                                                    <Span text="Contact Name"></Span>
+                                                    <Span text="" foregroundColor="black"></Span>
+                                                </FormattedString>
+                                            </Label>
+                                                <TextField hint="" [(ngModel)]="this.securityDatas.ApisUpdateRequests[0].EmergencyDetails[0].EmergencyContactName" class="input"></TextField>
+                                            </StackLayout>
+                                            <StackLayout row="1" col="0" class="input-field input-field-vertical p-r-1">
+                                                <Label textWrap="true" class="label">
+                                                    <FormattedString>
+                                                        <Span text="Phone Number"></Span>
+                                                        <Span text=" *" foregroundColor="red"></Span>
+                                                    </FormattedString>
+                                                </Label>
+                                                    <TextField hint="" [(ngModel)]="this.securityDatas.ApisUpdateRequests[0].EmergencyDetails[0].EmergencyPhone.Value" class="input"></TextField>
+                                            </StackLayout>
+                                            <StackLayout row="2" col="0" orientation="horizontal" class="input-field p-r-1">
+                                                <Label text="{{checks?'&#xE834;':'&#xE835;'}}" class="material-icon font-big" (tap)="check()"></Label>
+                                                <Label textWrap="true" class="label">
+                                                <FormattedString>
+                                                    <Span text="Apply to all PNR Passenger"></Span>
+                                                    <Span text="" foregroundColor="black"></Span>
+                                                </FormattedString>
+                                        </Label>
+                                            </StackLayout>
+                                           
+                                          
+                                        </GridLayout>
+                                    </StackLayout>
+                                </StackLayout>
+                            </GridLayout> -->
+                    </StackLayout>
+                </StackLayout>
+
+            </GridLayout>
+        </StackLayout>
+    </DockLayout>
+</GridLayout>

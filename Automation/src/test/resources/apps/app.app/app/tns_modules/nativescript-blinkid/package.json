@@ -1,0 +1,76 @@
+{
+  "_from": "file:plugins/nativescript-blinkid-1.0.0.tgz",
+  "_id": "nativescript-blinkid@1.0.0",
+  "_inBundle": false,
+  "_integrity": "sha512-bw8Xe+247aVLzLcvcBzLLnS1i8DxFJX3PCXrSiSGx2Lfya6NwUfXEhTggjEILhP41pMC1s4O0y6D9MeGxpDx3Q==",
+  "_location": "/nativescript-blinkid",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "file",
+    "where": "/Users/mphasis/Desktop/Github-new-repo/tr-ux-pssgui-tablet",
+    "raw": "nativescript-blinkid@./plugins/nativescript-blinkid-1.0.0.tgz",
+    "name": "nativescript-blinkid",
+    "escapedName": "nativescript-blinkid",
+    "rawSpec": "./plugins/nativescript-blinkid-1.0.0.tgz",
+    "saveSpec": "file:plugins/nativescript-blinkid-1.0.0.tgz",
+    "fetchSpec": "/Users/mphasis/Desktop/Github-new-repo/tr-ux-pssgui-tablet/plugins/nativescript-blinkid-1.0.0.tgz"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "/Users/mphasis/Desktop/Github-new-repo/tr-ux-pssgui-tablet/plugins/nativescript-blinkid-1.0.0.tgz",
+  "_shasum": "13a8bdfe1157d11978189b5692de23531f99b3da",
+  "_spec": "nativescript-blinkid@./plugins/nativescript-blinkid-1.0.0.tgz",
+  "_where": "/Users/mphasis/Desktop/Github-new-repo/tr-ux-pssgui-tablet",
+  "author": {
+    "name": "Your Name",
+    "email": "youremail@yourdomain.com"
+  },
+  "bugs": {
+    "url": "https://github.com/selva005/nativescript-blinkid/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "Your awesome NativeScript plugin.",
+  "devDependencies": {
+    "prompt": "^1.0.0",
+    "rimraf": "^2.5.0",
+    "tns-core-modules": "^2.3.0",
+    "tns-platform-declarations": "^2.3.0",
+    "typescript": "^2.0.7"
+  },
+  "homepage": "https://github.com/selva005/nativescript-blinkid",
+  "keywords": [
+    "NativeScript",
+    "JavaScript",
+    "Android",
+    "iOS"
+  ],
+  "license": "MIT",
+  "main": "blinkid",
+  "name": "nativescript-blinkid",
+  "nativescript": {
+    "platforms": {
+      "android": "2.3.0",
+      "ios": "2.3.0"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/selva005/nativescript-blinkid.git"
+  },
+  "scripts": {
+    "build": "tsc",
+    "demo.android": "npm run preparedemo && cd demo && tns run android",
+    "demo.ios": "npm run preparedemo && cd demo && tns emulate ios",
+    "demo.ios.device": "npm run preparedemo && cd demo && tns run ios",
+    "postclone": "npm i && node scripts/postclone.js",
+    "preparedemo": "npm run build && cd demo && tns plugin remove nativescript-blinkid && tns plugin add .. && tns install",
+    "setup": "npm i && cd demo && npm i && cd .. && npm run build && cd demo && tns plugin add .. && cd ..",
+    "test.android": "cd demo && tns test android",
+    "test.ios": "cd demo && tns test ios --emulator",
+    "test.ios.device": "cd demo && tns test ios"
+  },
+  "typings": "index.d.ts",
+  "version": "1.0.0"
+}

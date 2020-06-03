@@ -1,0 +1,115 @@
+<ActionBar title="Passenger Search" icon="" class="action-bar">
+    <NavigationButton visibility="collapsed"></NavigationButton>
+    <!--<StackLayout width="100%" orientation="horizontal">
+        <Image horizontalAlignment="right" class="company-logo" src="~/images/copa_logo.png"></Image>
+    </StackLayout>-->
+    <ActionItem (tap)="navigateToHome()" ios.position="right" text="{{userdetails}}">
+        <!-- <Label text="&#xE88A;" class="material-icon font-big"></Label>-->
+    </ActionItem>
+    <ActionItem ios.position="right" icon="res://logout_icons/logoff_edit" (tap)="_service.LogOut()"> </ActionItem>
+</ActionBar>
+
+<GridLayout #pagecontainer>
+
+
+    <DockLayout stretchLastChild="true" class="page">
+        <StackLayout dock="bottom" class="page-footer">
+            <StackLayout class="tabbed-menu">
+                <StackLayout class="tabbed-menu-item active" (tap)="navigateToSearch()">
+                    <Label text="&#xe907;"  class="menu-item-icon copa-icon"></Label>
+                    <Label text="Check In" class="menu-item-text"></Label>
+                </StackLayout>
+                <StackLayout class="tabbed-menu-item menu-divider"  (tap)="navigateToDepartures()">
+                    <Label text="&#xE904;" color="{{isGateDisabled  ? '#2260A4' : 'lightgray'}}" class="menu-item-icon copa-icon"></Label>
+                    <Label text="Departures" class="menu-item-text"></Label>
+                </StackLayout>    
+                <StackLayout class="tabbed-menu-item menu-divider" (tap)="navigateToCompensation()">
+                    <Label text="&#xe90e;" color="{{isCompensationEnabled  ? '#2260A4' : 'lightgray'}}" class="menu-item-icon copa-icon"></Label>
+                    <Label text="Compensation" class="menu-item-text"></Label>
+                </StackLayout>
+                <StackLayout class="tabbed-menu-item menu-divider">
+                    <Label text="&#xe90f;" class="menu-item-icon copa-icon" style="color:lightgray"></Label>
+                    <Label text="Notification" class="menu-item-text"></Label>
+                </StackLayout>
+                <StackLayout class="tabbed-menu-item" (tap)="navigateToSetting()">
+                    <Label text="&#xe917;" class="menu-item-icon copa-icon"></Label>
+                    <Label text="Settings" class="menu-item-text"></Label>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+        <ScrollView dock="top" class="page-body">
+            <StackLayout class="page-body-container">
+                <StackLayout class="panel">
+                    <Label text="Scan to search" textWrap="true" class="header-text"></Label>
+                    <GridLayout rows="*" columns="*, *, *" class="card-menu">
+                        <StackLayout row="0" col="0" class="card-menu-item">
+                            <StackLayout class="card-menu-item-container" (tap)="Scan('Passport')">
+                                <!--Scan('Passport')-->
+                                <Label text="&#xe910;" textWrap="true" class="copa-icon card-menu-icon"></Label>
+                                <StackLayout class="card-menu-content">
+                                    <Label text="Scan Passport" class="lato-light card-menu-title"></Label>
+                                    <Label text="&#xe90c;" textWrap="true" class="copa-icon card-menu-nav"></Label>
+                                </StackLayout>
+                            </StackLayout>
+                        </StackLayout>
+                        <StackLayout row="0" col="1" class="card-menu-item">
+                            <StackLayout class="card-menu-item-container" (tap)="Scan('pdf417')">
+                                <!--Scan('pdf417')-->
+                                <Label text="&#xe903;" textWrap="true" class="copa-icon card-menu-icon"></Label>
+                                <StackLayout class="card-menu-content">
+                                    <Label text="Scan Barcode" class="lato-light card-menu-title"></Label>
+                                    <Label text="&#xe90c;" textWrap="true" class="copa-icon card-menu-nav"></Label>
+                                </StackLayout>
+                            </StackLayout>
+                        </StackLayout>
+                    </GridLayout>
+                </StackLayout>
+                <StackLayout>
+                    <Label text="OR" textWrap="true" class="header-text hrz-center"></Label>
+                </StackLayout>
+                <StackLayout class="panel panel-margin panel-solid">
+                    <Label text="Enter details to Checkin" textWrap="true" class="header-text"></Label>
+                    <DockLayout width="400" class="input-field input-field-special hrz-left" [class.error-field]="Searchempty()" stretchLastChild="true">
+                        <Label automationText="search_icon"dock="right" class="label copa-icon" text="&#xe915;" color="{{isValid?'blue':'gray'}}" (tap)="SearchAny()"></Label>
+                        <TextField automationText="search_any" dock="left" class="input " hint="Enter ETKT/ Order ID/FQTV" [(ngModel)]="SearchFields.SearchAny" (ngModelChange)="onChange($event,0)"
+                            returnKeyPress="done" (returnPress)="SearchAny()"></TextField>
+                    </DockLayout>
+                </StackLayout>
+                <StackLayout class="panel panel-margin panel-solid">
+                    <GridLayout rows="*, *" columns="*, *" class="m-b-20">
+                        <DockLayout row="0" col="0" width="400" class="input-field input-field-regular hrz-left" stretchLastChild="true">
+                            <Label automationText="search_dateicon" dock="left" class="label copa-icon" text="&#xe905;" (tap)="createModelView('start')"></Label>
+                            <Label automationText="search_date" id="datePick" keyboardType="number" dock="right" class="input" (tap)="createModelView('start')" [text]='startDate | date:"dd MMMM yyyy"'></Label>
+                        </DockLayout>
+                        <DockLayout row="0" col="1" width="400" class="input-field input-field-regular hrz-left" stretchLastChild="true">
+                            <Label dock="left" class="label copa-icon" text="&#xe912;"></Label>
+                            <Label dock="right" class="input " [text]="SearchFields.Location"></Label>
+                        </DockLayout>
+                        <DockLayout row="1" col="0" width="400" class="input-field input-field-regular hrz-left m-t-10" stretchLastChild="true">
+                            <Label dock="left" class="label copa-icon" text="&#xe904;"></Label>
+                            <TextField automationText="search_flight" dock="right" class="input" [class.error-field]="FlightEmpty()" hint="Flight Number" [(ngModel)]="SearchFields.FlightNo"
+                                (ngModelChange)="onChange($event,1)"></TextField>
+                        </DockLayout>
+                        <DockLayout row="1" col="1" width="400" class="input-field input-field-regular hrz-left m-t-10" stretchLastChild="true">
+                            <Label dock="left" class="label copa-icon" text="&#xe911;"></Label>
+                            <TextField automationText="search_name"dock="right" class="input" [class.error-field]="LastNameEmpty()" hint="Last Name" [(ngModel)]="SearchFields.LastName"
+                                (ngModelChange)="onChange($event,2)"></TextField>
+                        </DockLayout>
+                    </GridLayout>
+                    <StackLayout orientation="horizontal" class="hrz-center">
+                        <StackLayout class=" m-r-10">
+                            <Button automationText="search_button" class="btn btn-primary" [isEnabled]="isButtonEnabled" text="Search" width="150" (tap)="search()"></Button>
+                        </StackLayout>
+                        <StackLayout>
+                            <Button automationText="clr_button" class="btn btn-default " text="Clear" width="150" (tap)="clear()"></Button>
+                        </StackLayout>
+
+                    </StackLayout>
+
+
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </DockLayout>
+
+</GridLayout>

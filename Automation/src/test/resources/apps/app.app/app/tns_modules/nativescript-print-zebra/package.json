@@ -1,0 +1,56 @@
+{
+  "_args": [
+    [
+      "nativescript-print-zebra@file:plugins/nativescript-print-zebra-1.2.0.tgz",
+      "/Users/mphasis/Desktop/Github-new-repo/tr-ux-pssgui-tablet"
+    ]
+  ],
+  "_from": "nativescript-print-zebra@file:plugins/nativescript-print-zebra-1.2.0.tgz",
+  "_id": "nativescript-print-zebra@file:plugins/nativescript-print-zebra-1.2.0.tgz",
+  "_inBundle": false,
+  "_integrity": "sha512-hfjkwBwC1zDZrHsTflSDc3o7nj3KNhhLzUktaFGRi28HuGVyUpWixQNqNYw0rib/iSQ3eu6YCUUSswI3ESWAGg==",
+  "_location": "/nativescript-print-zebra",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "file",
+    "where": "/Users/mphasis/Desktop/Github-new-repo/tr-ux-pssgui-tablet",
+    "raw": "nativescript-print-zebra@file:plugins/nativescript-print-zebra-1.2.0.tgz",
+    "name": "nativescript-print-zebra",
+    "escapedName": "nativescript-print-zebra",
+    "rawSpec": "file:plugins/nativescript-print-zebra-1.2.0.tgz",
+    "saveSpec": "file:plugins/nativescript-print-zebra-1.2.0.tgz",
+    "fetchSpec": "/Users/mphasis/Desktop/Github-new-repo/tr-ux-pssgui-tablet/plugins/nativescript-print-zebra-1.2.0.tgz"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": false,
+  "_spec": "file:plugins/nativescript-print-zebra-1.2.0.tgz",
+  "_where": "/Users/mphasis/Desktop/Github-new-repo/tr-ux-pssgui-tablet",
+  "author": {
+    "name": "Nathanael Anderson",
+    "email": "nathan@master-technology.com"
+  },
+  "dependencies": {},
+  "description": "A Zebra Printing Class",
+  "keywords": [
+    "NativeScript",
+    "Print",
+    "Zebra",
+    "Android",
+    "iOS"
+  ],
+  "license": "COMMERCIAL",
+  "main": "print-zebra.js",
+  "name": "nativescript-print-zebra",
+  "nativescript": {
+    "platforms": {
+      "android": "1.0.0",
+      "ios": "1.0.0"
+    },
+    "tns-ios": {
+      "version": "2.5.0"
+    }
+  },
+  "version": "1.2.0"
+}

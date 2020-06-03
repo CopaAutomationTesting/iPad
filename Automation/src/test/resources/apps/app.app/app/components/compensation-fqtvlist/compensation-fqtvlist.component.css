@@ -1,0 +1,11 @@
+.tabledata{
+    padding:15 10;
+    font-size: 13;
+    color:#000;
+    vertical-align: middle;
+}
+.tablerow{
+    border-width:0 0 1 0; 
+    border-color:#EEE;
+    vertical-align: middle;
+}

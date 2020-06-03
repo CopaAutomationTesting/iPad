@@ -1,0 +1,3690 @@
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='UTF-8' /> 
+	<meta name='description' content='' />
+	<meta name='robots' content='noodp, noydir' />
+	<meta name='viewport' content='width=device-width, initial-scale=1' />
+	<meta id="timeStampFormat" name="timeStampFormat" content='MMM d, yyyy hh:mm:ss a'/>
+	
+        <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600' rel='stylesheet' type='text/css' />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+        <link href='https://cdn.jsdelivr.net/gh/extent-framework/extent-github-cdn@ff53917fbbdb5ef820abbbe4d199a6942dc771ff/v3html/css/extent.css' type='text/css' rel='stylesheet' />
+	
+	<title>iOS Report 202005261801</title>
+
+	<style type='text/css'>
+		/* json-tree */
+		.jstBracket,.jstComma,.jstValue{white-space:pre-wrap}.jstValue{font-size:10px;font-weight:400;font-family:"Lucida Console",Monaco,monospace}.jstProperty{color:#666;word-wrap:break-word}.jstBool{color:#2525CC}.jstNum{color:#D036D0}.jstNull{color:gray}.jstStr{color:#2DB669}.jstFold:after{content:' -';cursor:pointer}.jstExpand{white-space:normal}.jstExpand:after{content:' +';cursor:pointer}.jstFolded{white-space:normal!important}.jstHiddenBlock{display:none}
+			.r-img {width: 60%;}
+			
+            
+                .report-name { padding-left: 0px; } .report-name > img { float: left;height: 96%;margin-left: 1px;margin-top: 2px;width auto; }
+				 $('.nav-wrapper.brand-logo blue darken-3').hide();
+            
+        
+	</style>
+	
+	<script type="text/javascript">
+		/*! json-tree - v0.2.2 - 2017-09-25, MIT LICENSE */
+		var JSONTree=function(){var n={"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#x27;","/":"&#x2F;"},t=0,r=0;this.create=function(n,t){return r+=1,N(u(n,0,!1),{class:"jstValue"})};var e=function(t){return t.replace(/[&<>'"]/g,function(t){return n[t]})},s=function(){return r+"_"+t++},u=function(n,t,r){if(null===n)return f(r?t:0);switch(typeof n){case"boolean":return l(n,r?t:0);case"number":return i(n,r?t:0);case"string":return o(n,r?t:0);default:return n instanceof Array?a(n,t,r):c(n,t,r)}},c=function(n,t,r){var e=s(),u=Object.keys(n).map(function(r){return j(r,n[r],t+1,!0)}).join(m()),c=[g("{",r?t:0,e),N(u,{id:e}),p("}",t)].join("\n");return N(c,{})},a=function(n,t,r){var e=s(),c=n.map(function(n){return u(n,t+1,!0)}).join(m());return[g("[",r?t:0,e),N(c,{id:e}),p("]",t)].join("\n")},o=function(n,t){var r=e(JSON.stringify(n));return N(v(r,t),{class:"jstStr"})},i=function(n,t){return N(v(n,t),{class:"jstNum"})},l=function(n,t){return N(v(n,t),{class:"jstBool"})},f=function(n){return N(v("null",n),{class:"jstNull"})},j=function(n,t,r){var s=v(e(JSON.stringify(n))+": ",r),c=N(u(t,r,!1),{});return N(s+c,{class:"jstProperty"})},m=function(){return N(",\n",{class:"jstComma"})},N=function(n,t){return d("span",t,n)},d=function(n,t,r){return"<"+n+Object.keys(t).map(function(n){return" "+n+'="'+t[n]+'"'}).join("")+">"+r+"</"+n+">"},g=function(n,t,r){return N(v(n,t),{class:"jstBracket"})+N("",{class:"jstFold",onclick:"JSONTree.toggle('"+r+"')"})};this.toggle=function(n){var t=document.getElementById(n),r=t.parentNode,e=t.previousElementSibling;""===t.className?(t.className="jstHiddenBlock",r.className="jstFolded",e.className="jstExpand"):(t.className="",r.className="",e.className="jstFold")};var p=function(n,t){return N(v(n,t),{})},v=function(n,t){return Array(2*t+1).join(" ")+n};return this}();
+	</script>
+</head>
+	<body class='extent dark default hide-overflow '>
+		<div id='theme-selector' alt='Click to toggle theme. To enable by default, use theme configuration.' title='Click to toggle theme. To enable by default, use theme configuration.'>
+			<span><i class='material-icons'>desktop_windows</i></span>
+		</div>
+<nav>
+	<div class="nav-wrapper">
+		<a href="#!" class="brand-logo black"><img src="https://cdn.rawgit.com/extent-framework/extent-github-cdn/d74480e/commons/img/logo.png"></a>
+		<!-- slideout menu -->
+		<ul id='slide-out' class='side-nav fixed hide-on-med-and-down'>
+			<li class='waves-effect active'><a href='#!' view='test-view' onclick="configureView(0);chartsView('test');"><i class='material-icons'>dashboard</i></a></li>
+						<li class='waves-effect'><a href='#!' view='category-view' onclick="configureView(1)"><i class='material-icons'>label_outline</i></a></li>
+			<li class='waves-effect'><a href='#!' view='author-view' onclick="configureView(3)"><i class='material-icons'>person_outline</i></a></li>
+			<li class='waves-effect'><a href='#!' onclick="configureView(-1);chartsView('dashboard');" view='dashboard-view'><i class='material-icons'>track_changes</i></a></li>
+		</ul>
+		<!-- report name -->
+		<span class='report-name'>
+		     Automation Report
+		    <image id="image-zoom">
+		 <img src='/Users/mphasis/eclipse-workspace/TestNG_read_from_excel/src/test/java/Configs/logo.png' />
+		 
+	</image>
+	 
+	 
+		</span>
+		<!-- report headline -->
+		<span class='report-headline'></span>
+		<!-- nav-right -->
+		<ul id='nav-mobile' class='right hide-on-med-and-down nav-right'>
+			<a href='#!'>
+			<span class='label blue darken-3 suite-start-time'>May 26, 2020 06:01:14 PM</span>
+			</a>
+		</ul>
+	</div>
+</nav>		<!-- container -->
+		<div class='container'>
+<div id='test-view' class='view'>
+	<section id='controls'>
+		<div class='controls grey lighten-4'>
+			<!-- test toggle -->
+			<div class='chip transparent'>
+				<a class='dropdown-button tests-toggle' data-activates='tests-toggle' data-constrainwidth='true' data-beloworigin='true' data-hover='true' href='#'>
+				<i class='material-icons'>warning</i> Status
+				</a>
+				<ul id='tests-toggle' class='dropdown-content'>
+										<li status='pass'><a href='#!'>Pass <i class='material-icons green-text'>check_circle</i></a></li>
+					<li class='divider'></li>
+					<li status='clear' clear='true'><a href='#!'>Clear Filters <i class='material-icons'>clear</i></a></li>
+				</ul>
+			</div>
+			<!-- test toggle -->
+			<!-- category toggle -->
+			<div class='chip transparent'>
+				<a class='dropdown-button category-toggle' data-activates='category-toggle' data-constrainwidth='false' data-beloworigin='true' data-hover='true' href='#'>
+				<i class='material-icons'>local_offer</i> Category
+				</a>
+				<ul id='category-toggle' class='dropdown-content'>
+					<li><a href='#'>ExecutionReport</a></li>
+					<li class='divider'></li>
+					<li class='clear'><a href='#!' clear='true'>Clear Filters</a></li>
+				</ul>
+			</div>
+			<!-- category toggle -->
+			<!-- clear filters -->
+			<div class='chip transparent hide'>
+				<a class='' id='clear-filters' alt='Clear Filters' title='Clear Filters'>
+				<i class='material-icons'>close</i> Clear
+				</a>
+			</div>
+			<!-- clear filters -->
+			<!-- enable dashboard -->
+			<div id='toggle-test-view-charts' class='chip transparent'>
+				<a class='pink-text' id='enable-dashboard' alt='Enable Dashboard' title='Enable Dashboard'>
+				<i class='material-icons'>track_changes</i> Dashboard
+				</a>
+			</div>
+			<!-- enable dashboard -->
+			<!-- search -->
+			<div class='chip transparent' alt='Search Tests' title='Search Tests'>
+				<a href="#" class='search-div'>
+				<i class='material-icons'>search</i> Search
+				</a>
+				<div class='input-field left hide'>
+					<input id='search-tests' type='text' class='validate browser-default' placeholder='Search Tests...'>
+				</div>
+			</div>
+			<!-- search -->
+		</div>
+	</section>
+<div id='test-view-charts' class='subview-full'>
+    <div id='charts-row' class='row nm-v nm-h'>
+        <div class='col s12 m6 l6 np-h'>
+            <div class='card-panel nm-v'>
+                <div class='left panel-name'>Tests</div>
+                <div class='chart-box' style="max-height:94px;">
+                    <canvas id='parent-analysis' width='90' height='70'></canvas>
+                </div>
+                <div class='block text-small'>
+                    <span class='tooltipped' data-position='top' data-tooltip='100%'><span class='strong'>5</span> test(s) passed</span>
+                </div>
+                <div class='block text-small'>
+                    <span class='strong tooltipped' data-position='top' data-tooltip='0%'>0</span> test(s) failed, <span class='strong tooltipped' data-position='top' data-tooltip='0%'>0</span> skipped
+                </div>
+            </div>
+        </div>
+        <div class='col s12 m6 l6 np-h'>
+            <div class='card-panel nm-v'>
+                <div class='left panel-name'>Steps</div>
+                <div class='chart-box' style="max-height:94px;">
+                    <canvas id='child-analysis' width='90' height='70'></canvas>
+                </div>
+                <div class='block text-small'>
+                    <span class='tooltipped' data-position='top' data-tooltip='100%'><span class='strong'>48</span> step(s) passed</span>
+                </div>
+                <div class='block text-small'>
+                    <span class='strong tooltipped' data-position='top' data-tooltip='0%'>0</span> step(s) failed, 
+                    <span class='strong tooltipped' data-position='top' data-tooltip='0%'>0</span> skipped, 
+                    <span class='strong tooltipped' data-position='top' data-tooltip='0%'>0</span> others
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="timeline-chart" class="row nm-v nm-h">
+        <div class="col s12 m12 l12 np-h">
+            <div class="card-panel">
+                <div class='left panel-name'>Timeline (seconds)</div>
+                <div class="chart-box" style="width:98%;max-height:145px;">
+                    <canvas id="timeline" height="120"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>	<div class='subview-left left'>
+		<div class='view-summary'>
+			<ul id='test-collection' class='test-collection'>
+				<li class='test displayed active has-leaf pass' status='pass' bdd='false' test-id='1'>
+					<div class='test-heading'>
+						<span class='test-name'>145269</span>
+						<span class='test-time'>May 26, 2020 06:01:24 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>May 26, 2020 06:01:24 PM</span>
+	<span class='label end-time'>May 26, 2020 06:06:13 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 4m 49s+102ms</span>
+</div>
+<div class='test-desc'>REGATO-Scenario # 064.1 Attempt to Check-in and add bags for a Passenger When only the 'T' seats are available </div>
+<div class='test-attributes'>
+	<div class='category-list'>
+		<span class='category label'>ExecutionReport</span>
+	</div>
+	<div class='author-list'>
+		<span class='author label'>Jeff</span>
+	</div>
+</div>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+	<li class='node level-1 leaf pass' status='pass' test-id='2'>
+		<div class='collapsible-header'>
+			<div class='node-name'><b><font color=green size=3>Copa.login_logout.login (84)</font></b></div>
+			<span class='node-time'>May 26, 2020 06:01:24 PM</span>
+			&middot; <span class='node-duration'>0h 0m 25s+8ms</span>
+			<span class='test-status right pass'>pass</span>
+		</div>
+		<div class='collapsible-body'>
+			<div class='node-steps'>
+				<table class='bordered table-results'>
+					<thead>
+						<tr>
+							<th>Status</th>
+							<th>Timestamp</th>
+							<th>Details</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class='log' status='pass'>
+							<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+							<td class='timestamp'>18:01:49</td>
+							<td class='step-details'>
+									Checking if logged in------>Login Done
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020CESPEQ.png' src='./Screenshots/Copa_05262020CESPEQ.png'>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</li>
+	<li class='node level-1 leaf pass' status='pass' test-id='3'>
+		<div class='collapsible-header'>
+			<div class='node-name'><b><font color=green size=3>Copa.home_screen.POS_Change_PTY (84)</font></b></div>
+			<span class='node-time'>May 26, 2020 06:01:49 PM</span>
+			&middot; <span class='node-duration'>0h 0m 29s+388ms</span>
+			<span class='test-status right pass'>pass</span>
+		</div>
+		<div class='collapsible-body'>
+			<div class='node-steps'>
+				<table class='bordered table-results'>
+					<thead>
+						<tr>
+							<th>Status</th>
+							<th>Timestamp</th>
+							<th>Details</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class='log' status='pass'>
+							<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+							<td class='timestamp'>18:02:18</td>
+							<td class='step-details'>
+									Checking if POS changed------>POS changed
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020hcNMkx.png' src='./Screenshots/Copa_05262020hcNMkx.png'>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</li>
+	<li class='node level-1 leaf pass' status='pass' test-id='4'>
+		<div class='collapsible-header'>
+			<div class='node-name'><b><font color=green size=3>Copa.home_screen.SelectCheckIN (84)</font></b></div>
+			<span class='node-time'>May 26, 2020 06:02:18 PM</span>
+			&middot; <span class='node-duration'>0h 0m 2s+755ms</span>
+			<span class='test-status right pass'>pass</span>
+		</div>
+		<div class='collapsible-body'>
+			<div class='node-steps'>
+				<table class='bordered table-results'>
+					<thead>
+						<tr>
+							<th>Status</th>
+							<th>Timestamp</th>
+							<th>Details</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class='log' status='pass'>
+							<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+							<td class='timestamp'>18:02:21</td>
+							<td class='step-details'>
+									Checking if check-in is loaded------>Check-in is loaded
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020oOYUtU.png' src='./Screenshots/Copa_05262020oOYUtU.png'>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</li>
+	<li class='node level-1 leaf pass' status='pass' test-id='5'>
+		<div class='collapsible-header'>
+			<div class='node-name'><b><font color=green size=3>Copa.Check_In_Home.searchbyOrderid (84)</font></b></div>
+			<span class='node-time'>May 26, 2020 06:02:21 PM</span>
+			&middot; <span class='node-duration'>0h 0m 18s+248ms</span>
+			<span class='test-status right pass'>pass</span>
+		</div>
+		<div class='collapsible-body'>
+			<div class='node-steps'>
+				<table class='bordered table-results'>
+					<thead>
+						<tr>
+							<th>Status</th>
+							<th>Timestamp</th>
+							<th>Details</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:02:31</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020kcDmqE.png' src='./Screenshots/Copa_05262020kcDmqE.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:02:32</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020Ctdhcu.png' src='./Screenshots/Copa_05262020Ctdhcu.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:02:33</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020lXCNYf.png' src='./Screenshots/Copa_05262020lXCNYf.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:02:33</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020ZzpotM.png' src='./Screenshots/Copa_05262020ZzpotM.png'>
+							</td>
+						</tr>
+						<tr class='log' status='pass'>
+							<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+							<td class='timestamp'>18:02:39</td>
+							<td class='step-details'>
+									Checking if Check-in is loaded------>Check-in is loaded
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020hHGSmo.png' src='./Screenshots/Copa_05262020hHGSmo.png'>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</li>
+	<li class='node level-1 leaf pass' status='pass' test-id='6'>
+		<div class='collapsible-header'>
+			<div class='node-name'><b><font color=green size=3>Copa.Check_In_Passenger.ClickBag0 (84)</font></b></div>
+			<span class='node-time'>May 26, 2020 06:02:39 PM</span>
+			&middot; <span class='node-duration'>0h 0m 50s+140ms</span>
+			<span class='test-status right pass'>pass</span>
+		</div>
+		<div class='collapsible-body'>
+			<div class='node-steps'>
+				<table class='bordered table-results'>
+					<thead>
+						<tr>
+							<th>Status</th>
+							<th>Timestamp</th>
+							<th>Details</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:02:40</td>
+							<td class='step-details'>
+									Clicked on bag for 1st pax------>Clicked Bag
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020GfhdlC.png' src='./Screenshots/Copa_05262020GfhdlC.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:02:41</td>
+							<td class='step-details'>
+									Adding Bag for 1st Pax------>ADD baggage Page
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020EGbuBA.png' src='./Screenshots/Copa_05262020EGbuBA.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:02:49</td>
+							<td class='step-details'>
+									Adding standard Bag------>Clicked Add Extra Bag
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020NyGcNX.png' src='./Screenshots/Copa_05262020NyGcNX.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:03:01</td>
+							<td class='step-details'>
+									Checking if Check-in is loaded------>Check-in is loaded
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020lquReA.png' src='./Screenshots/Copa_05262020lquReA.png'>
+							</td>
+						</tr>
+						<tr class='log' status='pass'>
+							<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+							<td class='timestamp'>18:03:29</td>
+							<td class='step-details'>
+									Added All Bags------>Going to give Continue
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020EacpUE.png' src='./Screenshots/Copa_05262020EacpUE.png'>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</li>
+	<li class='node level-1 leaf pass' status='pass' test-id='7'>
+		<div class='collapsible-header'>
+			<div class='node-name'><b><font color=green size=3>Copa.Check_In_Passenger.ClickSeat0 (84)</font></b></div>
+			<span class='node-time'>May 26, 2020 06:03:45 PM</span>
+			&middot; <span class='node-duration'>0h 0m 56s+462ms</span>
+			<span class='test-status right pass'>pass</span>
+		</div>
+		<div class='collapsible-body'>
+			<div class='node-steps'>
+				<table class='bordered table-results'>
+					<thead>
+						<tr>
+							<th>Status</th>
+							<th>Timestamp</th>
+							<th>Details</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:04:36</td>
+							<td class='step-details'>
+									Requested seat of type T------>Seat assigned
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020DeLBwA.png' src='./Screenshots/Copa_05262020DeLBwA.png'>
+							</td>
+						</tr>
+						<tr class='log' status='pass'>
+							<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+							<td class='timestamp'>18:04:42</td>
+							<td class='step-details'>
+									Selecting Seat for 1st Pax------>Clicked on Seat Selection
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020CQbWLb.png' src='./Screenshots/Copa_05262020CQbWLb.png'>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</li>
+	<li class='node level-1 leaf pass' status='pass' test-id='8'>
+		<div class='collapsible-header'>
+			<div class='node-name'><b><font color=green size=3>Copa.Check_In_Passenger.ClickPax0 (84)</font></b></div>
+			<span class='node-time'>May 26, 2020 06:04:42 PM</span>
+			&middot; <span class='node-duration'>0h 0m 5s+137ms</span>
+			<span class='test-status right pass'>pass</span>
+		</div>
+		<div class='collapsible-body'>
+			<div class='node-steps'>
+				<table class='bordered table-results'>
+					<thead>
+						<tr>
+							<th>Status</th>
+							<th>Timestamp</th>
+							<th>Details</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class='log' status='pass'>
+							<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+							<td class='timestamp'>18:04:47</td>
+							<td class='step-details'>
+									Clicking Pax for 1st Pax------>Clicked on Add Bag
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020IgBHGY.png' src='./Screenshots/Copa_05262020IgBHGY.png'>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</li>
+	<li class='node level-1 leaf pass' status='pass' test-id='9'>
+		<div class='collapsible-header'>
+			<div class='node-name'><b><font color=green size=3>Copa.Check_In_Passenger.Do_Checkin (84)</font></b></div>
+			<span class='node-time'>May 26, 2020 06:04:57 PM</span>
+			&middot; <span class='node-duration'>0h 0m 57s+10ms</span>
+			<span class='test-status right pass'>pass</span>
+		</div>
+		<div class='collapsible-body'>
+			<div class='node-steps'>
+				<table class='bordered table-results'>
+					<thead>
+						<tr>
+							<th>Status</th>
+							<th>Timestamp</th>
+							<th>Details</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:04:58</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020nAFTdr.png' src='./Screenshots/Copa_05262020nAFTdr.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:04:59</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020LenKxw.png' src='./Screenshots/Copa_05262020LenKxw.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:05:00</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020Yfquyg.png' src='./Screenshots/Copa_05262020Yfquyg.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:05:00</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020IHqfWX.png' src='./Screenshots/Copa_05262020IHqfWX.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:05:01</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020YhfgOm.png' src='./Screenshots/Copa_05262020YhfgOm.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:05:01</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020DBYnvN.png' src='./Screenshots/Copa_05262020DBYnvN.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:05:02</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020Bkvubi.png' src='./Screenshots/Copa_05262020Bkvubi.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:05:03</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020faOcdb.png' src='./Screenshots/Copa_05262020faOcdb.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:05:03</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020dwrOdK.png' src='./Screenshots/Copa_05262020dwrOdK.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:05:04</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020yJvKZf.png' src='./Screenshots/Copa_05262020yJvKZf.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:05:05</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020iXBpAL.png' src='./Screenshots/Copa_05262020iXBpAL.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:05:06</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020YurwCz.png' src='./Screenshots/Copa_05262020YurwCz.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:05:06</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020YYpSfT.png' src='./Screenshots/Copa_05262020YYpSfT.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:05:07</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020CGrQyZ.png' src='./Screenshots/Copa_05262020CGrQyZ.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:05:07</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020ZVkfHw.png' src='./Screenshots/Copa_05262020ZVkfHw.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:05:08</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020svcZnq.png' src='./Screenshots/Copa_05262020svcZnq.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:05:09</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020mHxsGi.png' src='./Screenshots/Copa_05262020mHxsGi.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:05:09</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020JUJZzu.png' src='./Screenshots/Copa_05262020JUJZzu.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:05:10</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020FuBhQy.png' src='./Screenshots/Copa_05262020FuBhQy.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:05:10</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020uIKuHN.png' src='./Screenshots/Copa_05262020uIKuHN.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:05:11</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020FQFvXT.png' src='./Screenshots/Copa_05262020FQFvXT.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:05:12</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020gKIbPi.png' src='./Screenshots/Copa_05262020gKIbPi.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:05:12</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020sMvnKr.png' src='./Screenshots/Copa_05262020sMvnKr.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:05:13</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020GMntmy.png' src='./Screenshots/Copa_05262020GMntmy.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:05:14</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020BsnlXZ.png' src='./Screenshots/Copa_05262020BsnlXZ.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:05:14</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020iQoQbW.png' src='./Screenshots/Copa_05262020iQoQbW.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:05:15</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020YZnrcK.png' src='./Screenshots/Copa_05262020YZnrcK.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:05:15</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020llwNZX.png' src='./Screenshots/Copa_05262020llwNZX.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:05:16</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020DIlzga.png' src='./Screenshots/Copa_05262020DIlzga.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:05:17</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020fVipse.png' src='./Screenshots/Copa_05262020fVipse.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:05:17</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020EAIqbM.png' src='./Screenshots/Copa_05262020EAIqbM.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:05:18</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020JmpDCz.png' src='./Screenshots/Copa_05262020JmpDCz.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:05:19</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020WRJgVZ.png' src='./Screenshots/Copa_05262020WRJgVZ.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:05:19</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020NbhZWn.png' src='./Screenshots/Copa_05262020NbhZWn.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:05:20</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020dUqbOw.png' src='./Screenshots/Copa_05262020dUqbOw.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:05:20</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020OLTDmK.png' src='./Screenshots/Copa_05262020OLTDmK.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:05:21</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020PZUKaT.png' src='./Screenshots/Copa_05262020PZUKaT.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:05:22</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020aeYlxK.png' src='./Screenshots/Copa_05262020aeYlxK.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:05:22</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020UGdFIg.png' src='./Screenshots/Copa_05262020UGdFIg.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:05:23</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020isCOBI.png' src='./Screenshots/Copa_05262020isCOBI.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:05:23</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020aILlQS.png' src='./Screenshots/Copa_05262020aILlQS.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:05:54</td>
+							<td class='step-details'>
+									Check-in passenger------>Didn't Check-in passenger
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020FDMmLI.png' src='./Screenshots/Copa_05262020FDMmLI.png'>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</li>
+	<li class='node level-1 leaf pass' status='pass' test-id='10'>
+		<div class='collapsible-header'>
+			<div class='node-name'><b><font color=green size=3>Copa.login_logout.logout (84)</font></b></div>
+			<span class='node-time'>May 26, 2020 06:06:04 PM</span>
+			&middot; <span class='node-duration'>0h 0m 8s+998ms</span>
+			<span class='test-status right pass'>pass</span>
+		</div>
+		<div class='collapsible-body'>
+			<div class='node-steps'>
+				<table class='bordered table-results'>
+					<thead>
+						<tr>
+							<th>Status</th>
+							<th>Timestamp</th>
+							<th>Details</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class='log' status='pass'>
+							<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+							<td class='timestamp'>18:06:13</td>
+							<td class='step-details'>
+									Checking if logged out------>Logout Done
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020AUeTgE.png' src='./Screenshots/Copa_05262020AUeTgE.png'>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</li>
+</ul>
+					</div>
+				</li>
+				<li class='test displayed active has-leaf pass' status='pass' bdd='false' test-id='11'>
+					<div class='test-heading'>
+						<span class='test-name'>145270</span>
+						<span class='test-time'>May 26, 2020 06:06:19 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>May 26, 2020 06:06:19 PM</span>
+	<span class='label end-time'>May 26, 2020 06:10:30 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 4m 10s+629ms</span>
+</div>
+<div class='test-desc'>REGATO-Scenario # 065.1 Attempt to Check-in and add bags for a Passenger When only the 'Z' seats are available </div>
+<div class='test-attributes'>
+	<div class='category-list'>
+		<span class='category label'>ExecutionReport</span>
+	</div>
+	<div class='author-list'>
+		<span class='author label'>Jeff</span>
+	</div>
+</div>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+	<li class='node level-1 leaf pass' status='pass' test-id='12'>
+		<div class='collapsible-header'>
+			<div class='node-name'><b><font color=green size=3>Copa.login_logout.login (85)</font></b></div>
+			<span class='node-time'>May 26, 2020 06:06:19 PM</span>
+			&middot; <span class='node-duration'>0h 0m 22s+833ms</span>
+			<span class='test-status right pass'>pass</span>
+		</div>
+		<div class='collapsible-body'>
+			<div class='node-steps'>
+				<table class='bordered table-results'>
+					<thead>
+						<tr>
+							<th>Status</th>
+							<th>Timestamp</th>
+							<th>Details</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class='log' status='pass'>
+							<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+							<td class='timestamp'>18:06:42</td>
+							<td class='step-details'>
+									Checking if logged in------>Login Done
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020SjbMHN.png' src='./Screenshots/Copa_05262020SjbMHN.png'>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</li>
+	<li class='node level-1 leaf pass' status='pass' test-id='13'>
+		<div class='collapsible-header'>
+			<div class='node-name'><b><font color=green size=3>Copa.home_screen.POS_Change_PTY (85)</font></b></div>
+			<span class='node-time'>May 26, 2020 06:06:42 PM</span>
+			&middot; <span class='node-duration'>0h 0m 29s+516ms</span>
+			<span class='test-status right pass'>pass</span>
+		</div>
+		<div class='collapsible-body'>
+			<div class='node-steps'>
+				<table class='bordered table-results'>
+					<thead>
+						<tr>
+							<th>Status</th>
+							<th>Timestamp</th>
+							<th>Details</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class='log' status='pass'>
+							<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+							<td class='timestamp'>18:07:11</td>
+							<td class='step-details'>
+									Checking if POS changed------>POS changed
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020wAKLUG.png' src='./Screenshots/Copa_05262020wAKLUG.png'>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</li>
+	<li class='node level-1 leaf pass' status='pass' test-id='14'>
+		<div class='collapsible-header'>
+			<div class='node-name'><b><font color=green size=3>Copa.home_screen.SelectCheckIN (85)</font></b></div>
+			<span class='node-time'>May 26, 2020 06:07:11 PM</span>
+			&middot; <span class='node-duration'>0h 0m 2s+820ms</span>
+			<span class='test-status right pass'>pass</span>
+		</div>
+		<div class='collapsible-body'>
+			<div class='node-steps'>
+				<table class='bordered table-results'>
+					<thead>
+						<tr>
+							<th>Status</th>
+							<th>Timestamp</th>
+							<th>Details</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class='log' status='pass'>
+							<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+							<td class='timestamp'>18:07:14</td>
+							<td class='step-details'>
+									Checking if check-in is loaded------>Check-in is loaded
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020aHnxvT.png' src='./Screenshots/Copa_05262020aHnxvT.png'>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</li>
+	<li class='node level-1 leaf pass' status='pass' test-id='15'>
+		<div class='collapsible-header'>
+			<div class='node-name'><b><font color=green size=3>Copa.Check_In_Home.searchbyOrderid (85)</font></b></div>
+			<span class='node-time'>May 26, 2020 06:07:14 PM</span>
+			&middot; <span class='node-duration'>0h 0m 21s+600ms</span>
+			<span class='test-status right pass'>pass</span>
+		</div>
+		<div class='collapsible-body'>
+			<div class='node-steps'>
+				<table class='bordered table-results'>
+					<thead>
+						<tr>
+							<th>Status</th>
+							<th>Timestamp</th>
+							<th>Details</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:07:27</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020nGfzCH.png' src='./Screenshots/Copa_05262020nGfzCH.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:07:27</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020xHDqks.png' src='./Screenshots/Copa_05262020xHDqks.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:07:28</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020miLitG.png' src='./Screenshots/Copa_05262020miLitG.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:07:28</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020ShLcbM.png' src='./Screenshots/Copa_05262020ShLcbM.png'>
+							</td>
+						</tr>
+						<tr class='log' status='pass'>
+							<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+							<td class='timestamp'>18:07:36</td>
+							<td class='step-details'>
+									Checking if Check-in is loaded------>Check-in is loaded
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020gahUdm.png' src='./Screenshots/Copa_05262020gahUdm.png'>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</li>
+	<li class='node level-1 leaf pass' status='pass' test-id='16'>
+		<div class='collapsible-header'>
+			<div class='node-name'><b><font color=green size=3>Copa.Check_In_Passenger.ClickBag0 (85)</font></b></div>
+			<span class='node-time'>May 26, 2020 06:07:36 PM</span>
+			&middot; <span class='node-duration'>0h 0m 48s+199ms</span>
+			<span class='test-status right pass'>pass</span>
+		</div>
+		<div class='collapsible-body'>
+			<div class='node-steps'>
+				<table class='bordered table-results'>
+					<thead>
+						<tr>
+							<th>Status</th>
+							<th>Timestamp</th>
+							<th>Details</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:07:37</td>
+							<td class='step-details'>
+									Clicked on bag for 1st pax------>Clicked Bag
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020FTyyFO.png' src='./Screenshots/Copa_05262020FTyyFO.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:07:37</td>
+							<td class='step-details'>
+									Adding Bag for 1st Pax------>ADD baggage Page
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020QnVhGI.png' src='./Screenshots/Copa_05262020QnVhGI.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:07:46</td>
+							<td class='step-details'>
+									Adding standard Bag------>Clicked Add Extra Bag
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020xSfLPH.png' src='./Screenshots/Copa_05262020xSfLPH.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:07:58</td>
+							<td class='step-details'>
+									Checking if Check-in is loaded------>Check-in is loaded
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020bDlAha.png' src='./Screenshots/Copa_05262020bDlAha.png'>
+							</td>
+						</tr>
+						<tr class='log' status='pass'>
+							<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+							<td class='timestamp'>18:08:24</td>
+							<td class='step-details'>
+									Added All Bags------>Going to give Continue
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020IgSmvH.png' src='./Screenshots/Copa_05262020IgSmvH.png'>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</li>
+	<li class='node level-1 leaf pass' status='pass' test-id='17'>
+		<div class='collapsible-header'>
+			<div class='node-name'><b><font color=green size=3>Copa.Check_In_Passenger.ClickSeat0 (85)</font></b></div>
+			<span class='node-time'>May 26, 2020 06:08:40 PM</span>
+			&middot; <span class='node-duration'>0h 0m 59s+726ms</span>
+			<span class='test-status right pass'>pass</span>
+		</div>
+		<div class='collapsible-body'>
+			<div class='node-steps'>
+				<table class='bordered table-results'>
+					<thead>
+						<tr>
+							<th>Status</th>
+							<th>Timestamp</th>
+							<th>Details</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:09:34</td>
+							<td class='step-details'>
+									Requested seat of type Z------>Seat assigned
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020JdQcXZ.png' src='./Screenshots/Copa_05262020JdQcXZ.png'>
+							</td>
+						</tr>
+						<tr class='log' status='pass'>
+							<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+							<td class='timestamp'>18:09:40</td>
+							<td class='step-details'>
+									Selecting Seat for 1st Pax------>Clicked on Seat Selection
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020XUHbSm.png' src='./Screenshots/Copa_05262020XUHbSm.png'>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</li>
+	<li class='node level-1 leaf pass' status='pass' test-id='18'>
+		<div class='collapsible-header'>
+			<div class='node-name'><b><font color=green size=3>Copa.Check_In_Passenger.ClickPax0 (85)</font></b></div>
+			<span class='node-time'>May 26, 2020 06:09:40 PM</span>
+			&middot; <span class='node-duration'>0h 0m 5s+89ms</span>
+			<span class='test-status right pass'>pass</span>
+		</div>
+		<div class='collapsible-body'>
+			<div class='node-steps'>
+				<table class='bordered table-results'>
+					<thead>
+						<tr>
+							<th>Status</th>
+							<th>Timestamp</th>
+							<th>Details</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class='log' status='pass'>
+							<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+							<td class='timestamp'>18:09:45</td>
+							<td class='step-details'>
+									Clicking Pax for 1st Pax------>Clicked on Add Bag
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020DSjqRR.png' src='./Screenshots/Copa_05262020DSjqRR.png'>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</li>
+	<li class='node level-1 leaf pass' status='pass' test-id='19'>
+		<div class='collapsible-header'>
+			<div class='node-name'><b><font color=green size=3>Copa.Check_In_Passenger.Do_Checkin (85)</font></b></div>
+			<span class='node-time'>May 26, 2020 06:09:55 PM</span>
+			&middot; <span class='node-duration'>0h 0m 13s+826ms</span>
+			<span class='test-status right pass'>pass</span>
+		</div>
+		<div class='collapsible-body'>
+			<div class='node-steps'>
+				<table class='bordered table-results'>
+					<thead>
+						<tr>
+							<th>Status</th>
+							<th>Timestamp</th>
+							<th>Details</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:09:56</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020uRFIWq.png' src='./Screenshots/Copa_05262020uRFIWq.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:09:57</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020uRakeC.png' src='./Screenshots/Copa_05262020uRakeC.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:09:58</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020oGClgi.png' src='./Screenshots/Copa_05262020oGClgi.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:09:58</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020MAkqkb.png' src='./Screenshots/Copa_05262020MAkqkb.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:09:59</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020cKyzpT.png' src='./Screenshots/Copa_05262020cKyzpT.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:09:59</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020ErNKOK.png' src='./Screenshots/Copa_05262020ErNKOK.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:10:00</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020vSmata.png' src='./Screenshots/Copa_05262020vSmata.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:10:01</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020BYshpv.png' src='./Screenshots/Copa_05262020BYshpv.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:10:01</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020IemFLp.png' src='./Screenshots/Copa_05262020IemFLp.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:10:02</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020VmBvcD.png' src='./Screenshots/Copa_05262020VmBvcD.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:10:03</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020CfjSqB.png' src='./Screenshots/Copa_05262020CfjSqB.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:10:03</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020HNbGiu.png' src='./Screenshots/Copa_05262020HNbGiu.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:10:04</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020GTcUKz.png' src='./Screenshots/Copa_05262020GTcUKz.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:10:04</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020CaNpwC.png' src='./Screenshots/Copa_05262020CaNpwC.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:10:05</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020eIDtsF.png' src='./Screenshots/Copa_05262020eIDtsF.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:10:06</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020pLrklg.png' src='./Screenshots/Copa_05262020pLrklg.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:10:06</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020oxQDEU.png' src='./Screenshots/Copa_05262020oxQDEU.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:10:07</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020XQTUqi.png' src='./Screenshots/Copa_05262020XQTUqi.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:10:08</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020BjGrmc.png' src='./Screenshots/Copa_05262020BjGrmc.png'>
+							</td>
+						</tr>
+						<tr class='log' status='pass'>
+							<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+							<td class='timestamp'>18:10:09</td>
+							<td class='step-details'>
+									Checked in passenger------>Checked in passenger
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020gbdobJ.png' src='./Screenshots/Copa_05262020gbdobJ.png'>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</li>
+	<li class='node level-1 leaf pass' status='pass' test-id='20'>
+		<div class='collapsible-header'>
+			<div class='node-name'><b><font color=green size=3>Copa.login_logout.logout (85)</font></b></div>
+			<span class='node-time'>May 26, 2020 06:10:21 PM</span>
+			&middot; <span class='node-duration'>0h 0m 9s+94ms</span>
+			<span class='test-status right pass'>pass</span>
+		</div>
+		<div class='collapsible-body'>
+			<div class='node-steps'>
+				<table class='bordered table-results'>
+					<thead>
+						<tr>
+							<th>Status</th>
+							<th>Timestamp</th>
+							<th>Details</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class='log' status='pass'>
+							<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+							<td class='timestamp'>18:10:30</td>
+							<td class='step-details'>
+									Checking if logged out------>Logout Done
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020DhFMSL.png' src='./Screenshots/Copa_05262020DhFMSL.png'>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</li>
+</ul>
+					</div>
+				</li>
+				<li class='test displayed active has-leaf pass' status='pass' bdd='false' test-id='21'>
+					<div class='test-heading'>
+						<span class='test-name'>145271</span>
+						<span class='test-time'>May 26, 2020 06:10:36 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>May 26, 2020 06:10:36 PM</span>
+	<span class='label end-time'>May 26, 2020 06:14:48 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 4m 11s+949ms</span>
+</div>
+<div class='test-desc'>REGATO-Scenario # 066.1 Attempt to Check-in and add bags for a Passenger When only the 'J' seats are available </div>
+<div class='test-attributes'>
+	<div class='category-list'>
+		<span class='category label'>ExecutionReport</span>
+	</div>
+	<div class='author-list'>
+		<span class='author label'>Jeff</span>
+	</div>
+</div>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+	<li class='node level-1 leaf pass' status='pass' test-id='22'>
+		<div class='collapsible-header'>
+			<div class='node-name'><b><font color=green size=3>Copa.login_logout.login (86)</font></b></div>
+			<span class='node-time'>May 26, 2020 06:10:36 PM</span>
+			&middot; <span class='node-duration'>0h 0m 22s+255ms</span>
+			<span class='test-status right pass'>pass</span>
+		</div>
+		<div class='collapsible-body'>
+			<div class='node-steps'>
+				<table class='bordered table-results'>
+					<thead>
+						<tr>
+							<th>Status</th>
+							<th>Timestamp</th>
+							<th>Details</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class='log' status='pass'>
+							<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+							<td class='timestamp'>18:10:58</td>
+							<td class='step-details'>
+									Checking if logged in------>Login Done
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020JrgafE.png' src='./Screenshots/Copa_05262020JrgafE.png'>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</li>
+	<li class='node level-1 leaf pass' status='pass' test-id='23'>
+		<div class='collapsible-header'>
+			<div class='node-name'><b><font color=green size=3>Copa.home_screen.POS_Change_PTY (86)</font></b></div>
+			<span class='node-time'>May 26, 2020 06:10:58 PM</span>
+			&middot; <span class='node-duration'>0h 0m 29s+787ms</span>
+			<span class='test-status right pass'>pass</span>
+		</div>
+		<div class='collapsible-body'>
+			<div class='node-steps'>
+				<table class='bordered table-results'>
+					<thead>
+						<tr>
+							<th>Status</th>
+							<th>Timestamp</th>
+							<th>Details</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class='log' status='pass'>
+							<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+							<td class='timestamp'>18:11:28</td>
+							<td class='step-details'>
+									Checking if POS changed------>POS changed
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020iqhNVo.png' src='./Screenshots/Copa_05262020iqhNVo.png'>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</li>
+	<li class='node level-1 leaf pass' status='pass' test-id='24'>
+		<div class='collapsible-header'>
+			<div class='node-name'><b><font color=green size=3>Copa.home_screen.SelectCheckIN (86)</font></b></div>
+			<span class='node-time'>May 26, 2020 06:11:28 PM</span>
+			&middot; <span class='node-duration'>0h 0m 2s+979ms</span>
+			<span class='test-status right pass'>pass</span>
+		</div>
+		<div class='collapsible-body'>
+			<div class='node-steps'>
+				<table class='bordered table-results'>
+					<thead>
+						<tr>
+							<th>Status</th>
+							<th>Timestamp</th>
+							<th>Details</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class='log' status='pass'>
+							<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+							<td class='timestamp'>18:11:31</td>
+							<td class='step-details'>
+									Checking if check-in is loaded------>Check-in is loaded
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020jRAhST.png' src='./Screenshots/Copa_05262020jRAhST.png'>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</li>
+	<li class='node level-1 leaf pass' status='pass' test-id='25'>
+		<div class='collapsible-header'>
+			<div class='node-name'><b><font color=green size=3>Copa.Check_In_Home.searchbyOrderid (86)</font></b></div>
+			<span class='node-time'>May 26, 2020 06:11:31 PM</span>
+			&middot; <span class='node-duration'>0h 0m 18s+962ms</span>
+			<span class='test-status right pass'>pass</span>
+		</div>
+		<div class='collapsible-body'>
+			<div class='node-steps'>
+				<table class='bordered table-results'>
+					<thead>
+						<tr>
+							<th>Status</th>
+							<th>Timestamp</th>
+							<th>Details</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:11:40</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020tfPGXd.png' src='./Screenshots/Copa_05262020tfPGXd.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:11:43</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020MFPlNO.png' src='./Screenshots/Copa_05262020MFPlNO.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:11:43</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020ERedwI.png' src='./Screenshots/Copa_05262020ERedwI.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:11:44</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020ADkejT.png' src='./Screenshots/Copa_05262020ADkejT.png'>
+							</td>
+						</tr>
+						<tr class='log' status='pass'>
+							<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+							<td class='timestamp'>18:11:50</td>
+							<td class='step-details'>
+									Checking if Check-in is loaded------>Check-in is loaded
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020qLyERk.png' src='./Screenshots/Copa_05262020qLyERk.png'>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</li>
+	<li class='node level-1 leaf pass' status='pass' test-id='26'>
+		<div class='collapsible-header'>
+			<div class='node-name'><b><font color=green size=3>Copa.Check_In_Passenger.ClickBag0 (86)</font></b></div>
+			<span class='node-time'>May 26, 2020 06:11:50 PM</span>
+			&middot; <span class='node-duration'>0h 0m 49s+53ms</span>
+			<span class='test-status right pass'>pass</span>
+		</div>
+		<div class='collapsible-body'>
+			<div class='node-steps'>
+				<table class='bordered table-results'>
+					<thead>
+						<tr>
+							<th>Status</th>
+							<th>Timestamp</th>
+							<th>Details</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:11:51</td>
+							<td class='step-details'>
+									Clicked on bag for 1st pax------>Clicked Bag
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020kjlGMb.png' src='./Screenshots/Copa_05262020kjlGMb.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:11:52</td>
+							<td class='step-details'>
+									Adding Bag for 1st Pax------>ADD baggage Page
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020ujJKIN.png' src='./Screenshots/Copa_05262020ujJKIN.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:12:01</td>
+							<td class='step-details'>
+									Adding standard Bag------>Clicked Add Extra Bag
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020bjYwuF.png' src='./Screenshots/Copa_05262020bjYwuF.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:12:13</td>
+							<td class='step-details'>
+									Checking if Check-in is loaded------>Check-in is loaded
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020jBdJRA.png' src='./Screenshots/Copa_05262020jBdJRA.png'>
+							</td>
+						</tr>
+						<tr class='log' status='pass'>
+							<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+							<td class='timestamp'>18:12:39</td>
+							<td class='step-details'>
+									Added All Bags------>Going to give Continue
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020cnTudm.png' src='./Screenshots/Copa_05262020cnTudm.png'>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</li>
+	<li class='node level-1 leaf pass' status='pass' test-id='27'>
+		<div class='collapsible-header'>
+			<div class='node-name'><b><font color=green size=3>Copa.Check_In_Passenger.ClickSeat0 (86)</font></b></div>
+			<span class='node-time'>May 26, 2020 06:12:55 PM</span>
+			&middot; <span class='node-duration'>0h 1m 0s+74ms</span>
+			<span class='test-status right pass'>pass</span>
+		</div>
+		<div class='collapsible-body'>
+			<div class='node-steps'>
+				<table class='bordered table-results'>
+					<thead>
+						<tr>
+							<th>Status</th>
+							<th>Timestamp</th>
+							<th>Details</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:13:47</td>
+							<td class='step-details'>
+									Requested seat of type J------>Seat assigned
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020dYnkla.png' src='./Screenshots/Copa_05262020dYnkla.png'>
+							</td>
+						</tr>
+						<tr class='log' status='pass'>
+							<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+							<td class='timestamp'>18:13:55</td>
+							<td class='step-details'>
+									Selecting Seat for 1st Pax------>Clicked on Seat Selection
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020RZKJwc.png' src='./Screenshots/Copa_05262020RZKJwc.png'>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</li>
+	<li class='node level-1 leaf pass' status='pass' test-id='28'>
+		<div class='collapsible-header'>
+			<div class='node-name'><b><font color=green size=3>Copa.Check_In_Passenger.ClickPax0 (86)</font></b></div>
+			<span class='node-time'>May 26, 2020 06:13:55 PM</span>
+			&middot; <span class='node-duration'>0h 0m 5s+334ms</span>
+			<span class='test-status right pass'>pass</span>
+		</div>
+		<div class='collapsible-body'>
+			<div class='node-steps'>
+				<table class='bordered table-results'>
+					<thead>
+						<tr>
+							<th>Status</th>
+							<th>Timestamp</th>
+							<th>Details</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class='log' status='pass'>
+							<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+							<td class='timestamp'>18:14:01</td>
+							<td class='step-details'>
+									Clicking Pax for 1st Pax------>Clicked on Add Bag
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020WGgIEg.png' src='./Screenshots/Copa_05262020WGgIEg.png'>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</li>
+	<li class='node level-1 leaf pass' status='pass' test-id='29'>
+		<div class='collapsible-header'>
+			<div class='node-name'><b><font color=green size=3>Copa.Check_In_Passenger.Do_Checkin (86)</font></b></div>
+			<span class='node-time'>May 26, 2020 06:14:11 PM</span>
+			&middot; <span class='node-duration'>0h 0m 15s+665ms</span>
+			<span class='test-status right pass'>pass</span>
+		</div>
+		<div class='collapsible-body'>
+			<div class='node-steps'>
+				<table class='bordered table-results'>
+					<thead>
+						<tr>
+							<th>Status</th>
+							<th>Timestamp</th>
+							<th>Details</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:14:12</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020YKUWUb.png' src='./Screenshots/Copa_05262020YKUWUb.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:14:13</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020RltOLR.png' src='./Screenshots/Copa_05262020RltOLR.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:14:14</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020VuvtPo.png' src='./Screenshots/Copa_05262020VuvtPo.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:14:15</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020bvGqKf.png' src='./Screenshots/Copa_05262020bvGqKf.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:14:15</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020iDgKIb.png' src='./Screenshots/Copa_05262020iDgKIb.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:14:16</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020YxYlPf.png' src='./Screenshots/Copa_05262020YxYlPf.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:14:17</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020jvxuyl.png' src='./Screenshots/Copa_05262020jvxuyl.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:14:17</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020fzStCw.png' src='./Screenshots/Copa_05262020fzStCw.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:14:18</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020XKpRLj.png' src='./Screenshots/Copa_05262020XKpRLj.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:14:19</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020MUOHdw.png' src='./Screenshots/Copa_05262020MUOHdw.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:14:20</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020MxCyxv.png' src='./Screenshots/Copa_05262020MxCyxv.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:14:20</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020ZBZYLm.png' src='./Screenshots/Copa_05262020ZBZYLm.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:14:21</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020MYKymH.png' src='./Screenshots/Copa_05262020MYKymH.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:14:22</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020kOyjOD.png' src='./Screenshots/Copa_05262020kOyjOD.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:14:23</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020fSIWUD.png' src='./Screenshots/Copa_05262020fSIWUD.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:14:23</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020SrePbS.png' src='./Screenshots/Copa_05262020SrePbS.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:14:24</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020LbQeJA.png' src='./Screenshots/Copa_05262020LbQeJA.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:14:25</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020asdYaS.png' src='./Screenshots/Copa_05262020asdYaS.png'>
+							</td>
+						</tr>
+						<tr class='log' status='pass'>
+							<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+							<td class='timestamp'>18:14:26</td>
+							<td class='step-details'>
+									Checked in passenger------>Checked in passenger
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020qIKljW.png' src='./Screenshots/Copa_05262020qIKljW.png'>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</li>
+	<li class='node level-1 leaf pass' status='pass' test-id='30'>
+		<div class='collapsible-header'>
+			<div class='node-name'><b><font color=green size=3>Copa.login_logout.logout (86)</font></b></div>
+			<span class='node-time'>May 26, 2020 06:14:38 PM</span>
+			&middot; <span class='node-duration'>0h 0m 9s+679ms</span>
+			<span class='test-status right pass'>pass</span>
+		</div>
+		<div class='collapsible-body'>
+			<div class='node-steps'>
+				<table class='bordered table-results'>
+					<thead>
+						<tr>
+							<th>Status</th>
+							<th>Timestamp</th>
+							<th>Details</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class='log' status='pass'>
+							<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+							<td class='timestamp'>18:14:48</td>
+							<td class='step-details'>
+									Checking if logged out------>Logout Done
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020UhIpHQ.png' src='./Screenshots/Copa_05262020UhIpHQ.png'>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</li>
+</ul>
+					</div>
+				</li>
+				<li class='test displayed active has-leaf pass' status='pass' bdd='false' test-id='31'>
+					<div class='test-heading'>
+						<span class='test-name'>145275</span>
+						<span class='test-time'>May 26, 2020 06:14:54 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>May 26, 2020 06:14:54 PM</span>
+	<span class='label end-time'>May 26, 2020 06:20:41 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 5m 46s+697ms</span>
+</div>
+<div class='test-desc'>REGATO-UA Scenario # 072.1 Gold Star Business Domestic Free Baggage Allowance - Add 2 Bags for Gold Star Passenger Passenger from the Detail Screen </div>
+<div class='test-attributes'>
+	<div class='category-list'>
+		<span class='category label'>ExecutionReport</span>
+	</div>
+	<div class='author-list'>
+		<span class='author label'>Jeff</span>
+	</div>
+</div>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+	<li class='node level-1 leaf pass' status='pass' test-id='32'>
+		<div class='collapsible-header'>
+			<div class='node-name'><b><font color=green size=3>Copa.login_logout.login (90)</font></b></div>
+			<span class='node-time'>May 26, 2020 06:14:54 PM</span>
+			&middot; <span class='node-duration'>0h 0m 22s+641ms</span>
+			<span class='test-status right pass'>pass</span>
+		</div>
+		<div class='collapsible-body'>
+			<div class='node-steps'>
+				<table class='bordered table-results'>
+					<thead>
+						<tr>
+							<th>Status</th>
+							<th>Timestamp</th>
+							<th>Details</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class='log' status='pass'>
+							<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+							<td class='timestamp'>18:15:17</td>
+							<td class='step-details'>
+									Checking if logged in------>Login Done
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020aRnOor.png' src='./Screenshots/Copa_05262020aRnOor.png'>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</li>
+	<li class='node level-1 leaf pass' status='pass' test-id='33'>
+		<div class='collapsible-header'>
+			<div class='node-name'><b><font color=green size=3>Copa.home_screen.POS_Change_PTY (90)</font></b></div>
+			<span class='node-time'>May 26, 2020 06:15:17 PM</span>
+			&middot; <span class='node-duration'>0h 0m 30s+71ms</span>
+			<span class='test-status right pass'>pass</span>
+		</div>
+		<div class='collapsible-body'>
+			<div class='node-steps'>
+				<table class='bordered table-results'>
+					<thead>
+						<tr>
+							<th>Status</th>
+							<th>Timestamp</th>
+							<th>Details</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class='log' status='pass'>
+							<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+							<td class='timestamp'>18:15:47</td>
+							<td class='step-details'>
+									Checking if POS changed------>POS changed
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020FVJArR.png' src='./Screenshots/Copa_05262020FVJArR.png'>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</li>
+	<li class='node level-1 leaf pass' status='pass' test-id='34'>
+		<div class='collapsible-header'>
+			<div class='node-name'><b><font color=green size=3>Copa.home_screen.SelectCheckIN (90)</font></b></div>
+			<span class='node-time'>May 26, 2020 06:15:47 PM</span>
+			&middot; <span class='node-duration'>0h 0m 3s+42ms</span>
+			<span class='test-status right pass'>pass</span>
+		</div>
+		<div class='collapsible-body'>
+			<div class='node-steps'>
+				<table class='bordered table-results'>
+					<thead>
+						<tr>
+							<th>Status</th>
+							<th>Timestamp</th>
+							<th>Details</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class='log' status='pass'>
+							<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+							<td class='timestamp'>18:15:50</td>
+							<td class='step-details'>
+									Checking if check-in is loaded------>Check-in is loaded
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020TgSmCb.png' src='./Screenshots/Copa_05262020TgSmCb.png'>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</li>
+	<li class='node level-1 leaf pass' status='pass' test-id='35'>
+		<div class='collapsible-header'>
+			<div class='node-name'><b><font color=green size=3>Copa.Check_In_Home.searchbyOrderid (90)</font></b></div>
+			<span class='node-time'>May 26, 2020 06:15:50 PM</span>
+			&middot; <span class='node-duration'>0h 0m 19s+257ms</span>
+			<span class='test-status right pass'>pass</span>
+		</div>
+		<div class='collapsible-body'>
+			<div class='node-steps'>
+				<table class='bordered table-results'>
+					<thead>
+						<tr>
+							<th>Status</th>
+							<th>Timestamp</th>
+							<th>Details</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:16:00</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020IdfvZI.png' src='./Screenshots/Copa_05262020IdfvZI.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:16:00</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020YHfhla.png' src='./Screenshots/Copa_05262020YHfhla.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:16:01</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020FRgfgc.png' src='./Screenshots/Copa_05262020FRgfgc.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:16:01</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020AOzviJ.png' src='./Screenshots/Copa_05262020AOzviJ.png'>
+							</td>
+						</tr>
+						<tr class='log' status='pass'>
+							<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+							<td class='timestamp'>18:16:09</td>
+							<td class='step-details'>
+									Checking if Check-in is loaded------>Check-in is loaded
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020WauTkF.png' src='./Screenshots/Copa_05262020WauTkF.png'>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</li>
+	<li class='node level-1 leaf pass' status='pass' test-id='36'>
+		<div class='collapsible-header'>
+			<div class='node-name'><b><font color=green size=3>Copa.Check_In_Passenger.Click_FQTV0 (90)</font></b></div>
+			<span class='node-time'>May 26, 2020 06:16:09 PM</span>
+			&middot; <span class='node-duration'>0h 0m 59s+273ms</span>
+			<span class='test-status right pass'>pass</span>
+		</div>
+		<div class='collapsible-body'>
+			<div class='node-steps'>
+				<table class='bordered table-results'>
+					<thead>
+						<tr>
+							<th>Status</th>
+							<th>Timestamp</th>
+							<th>Details</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class='log' status='pass'>
+							<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+							<td class='timestamp'>18:16:32</td>
+							<td class='step-details'>
+									Swiping down------>Searching for airline code
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020SdgYhX.png' src='./Screenshots/Copa_05262020SdgYhX.png'>
+							</td>
+						</tr>
+						<tr class='log' status='pass'>
+							<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+							<td class='timestamp'>18:17:08</td>
+							<td class='step-details'>
+									FQTV number is added------>FQTV added
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020FRfylU.png' src='./Screenshots/Copa_05262020FRfylU.png'>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</li>
+	<li class='node level-1 leaf pass' status='pass' test-id='37'>
+		<div class='collapsible-header'>
+			<div class='node-name'><b><font color=green size=3>Copa.Check_In_Passenger.ClickBag0 (90)</font></b></div>
+			<span class='node-time'>May 26, 2020 06:17:08 PM</span>
+			&middot; <span class='node-duration'>0h 1m 33s+617ms</span>
+			<span class='test-status right pass'>pass</span>
+		</div>
+		<div class='collapsible-body'>
+			<div class='node-steps'>
+				<table class='bordered table-results'>
+					<thead>
+						<tr>
+							<th>Status</th>
+							<th>Timestamp</th>
+							<th>Details</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:17:10</td>
+							<td class='step-details'>
+									Clicked on bag for 1st pax------>Clicked Bag
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020ghPZgO.png' src='./Screenshots/Copa_05262020ghPZgO.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:17:10</td>
+							<td class='step-details'>
+									Adding Bag for 1st Pax------>ADD baggage Page
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020uoOVyE.png' src='./Screenshots/Copa_05262020uoOVyE.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:17:21</td>
+							<td class='step-details'>
+									Adding standard Bag------>Clicked Add Extra Bag
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020GohRHS.png' src='./Screenshots/Copa_05262020GohRHS.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:17:33</td>
+							<td class='step-details'>
+									Checking if Check-in is loaded------>Check-in is loaded
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020EsuwMw.png' src='./Screenshots/Copa_05262020EsuwMw.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:18:00</td>
+							<td class='step-details'>
+									Adding Extra Bag------>Clicked Add Extra Bag
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020tIwKFj.png' src='./Screenshots/Copa_05262020tIwKFj.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:18:03</td>
+							<td class='step-details'>
+									Adding standard Bag------>Clicked Add Extra Bag
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020nPyfOI.png' src='./Screenshots/Copa_05262020nPyfOI.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:18:16</td>
+							<td class='step-details'>
+									Checking if Check-in is loaded------>Check-in is loaded
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020aHfwKx.png' src='./Screenshots/Copa_05262020aHfwKx.png'>
+							</td>
+						</tr>
+						<tr class='log' status='pass'>
+							<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+							<td class='timestamp'>18:18:42</td>
+							<td class='step-details'>
+									Added All Bags------>Going to give Continue
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020eDSxlx.png' src='./Screenshots/Copa_05262020eDSxlx.png'>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</li>
+	<li class='node level-1 leaf pass' status='pass' test-id='38'>
+		<div class='collapsible-header'>
+			<div class='node-name'><b><font color=green size=3>Copa.Check_In_Passenger.ClickPax0 (90)</font></b></div>
+			<span class='node-time'>May 26, 2020 06:18:58 PM</span>
+			&middot; <span class='node-duration'>0h 0m 5s+114ms</span>
+			<span class='test-status right pass'>pass</span>
+		</div>
+		<div class='collapsible-body'>
+			<div class='node-steps'>
+				<table class='bordered table-results'>
+					<thead>
+						<tr>
+							<th>Status</th>
+							<th>Timestamp</th>
+							<th>Details</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class='log' status='pass'>
+							<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+							<td class='timestamp'>18:19:03</td>
+							<td class='step-details'>
+									Clicking Pax for 1st Pax------>Clicked on Add Bag
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020PwKqTN.png' src='./Screenshots/Copa_05262020PwKqTN.png'>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</li>
+	<li class='node level-1 leaf pass' status='pass' test-id='39'>
+		<div class='collapsible-header'>
+			<div class='node-name'><b><font color=green size=3>Copa.Check_In_Passenger.Do_Checkin (90)</font></b></div>
+			<span class='node-time'>May 26, 2020 06:19:13 PM</span>
+			&middot; <span class='node-duration'>0h 0m 22s+374ms</span>
+			<span class='test-status right pass'>pass</span>
+		</div>
+		<div class='collapsible-body'>
+			<div class='node-steps'>
+				<table class='bordered table-results'>
+					<thead>
+						<tr>
+							<th>Status</th>
+							<th>Timestamp</th>
+							<th>Details</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:19:15</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020DDldOF.png' src='./Screenshots/Copa_05262020DDldOF.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:19:15</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020oeFIZu.png' src='./Screenshots/Copa_05262020oeFIZu.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:19:16</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020IQLTcE.png' src='./Screenshots/Copa_05262020IQLTcE.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:19:17</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020ZGYrZX.png' src='./Screenshots/Copa_05262020ZGYrZX.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:19:17</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020iIhRbh.png' src='./Screenshots/Copa_05262020iIhRbh.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:19:18</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020FeHMOh.png' src='./Screenshots/Copa_05262020FeHMOh.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:19:19</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020urwMgA.png' src='./Screenshots/Copa_05262020urwMgA.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:19:19</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020sEeJFr.png' src='./Screenshots/Copa_05262020sEeJFr.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:19:20</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020PWyUHR.png' src='./Screenshots/Copa_05262020PWyUHR.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:19:21</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020UvphvW.png' src='./Screenshots/Copa_05262020UvphvW.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:19:21</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020kpwSxA.png' src='./Screenshots/Copa_05262020kpwSxA.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:19:22</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020Ztznax.png' src='./Screenshots/Copa_05262020Ztznax.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:19:22</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020CcvCEB.png' src='./Screenshots/Copa_05262020CcvCEB.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:19:23</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020xCHIZB.png' src='./Screenshots/Copa_05262020xCHIZB.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:19:24</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020NHNvID.png' src='./Screenshots/Copa_05262020NHNvID.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:19:24</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020zaHSMg.png' src='./Screenshots/Copa_05262020zaHSMg.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:19:25</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020RASymL.png' src='./Screenshots/Copa_05262020RASymL.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:19:26</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020qYapUd.png' src='./Screenshots/Copa_05262020qYapUd.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:19:26</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020AYLvzs.png' src='./Screenshots/Copa_05262020AYLvzs.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:19:27</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020YsXTAF.png' src='./Screenshots/Copa_05262020YsXTAF.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:19:28</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020ulbzVC.png' src='./Screenshots/Copa_05262020ulbzVC.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:19:28</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020JwiHKO.png' src='./Screenshots/Copa_05262020JwiHKO.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:19:29</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020UxPumO.png' src='./Screenshots/Copa_05262020UxPumO.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:19:29</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020EMXhwz.png' src='./Screenshots/Copa_05262020EMXhwz.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:19:30</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020HeJQvj.png' src='./Screenshots/Copa_05262020HeJQvj.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:19:31</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020ZIguxy.png' src='./Screenshots/Copa_05262020ZIguxy.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:19:31</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020erjKuT.png' src='./Screenshots/Copa_05262020erjKuT.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:19:32</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020ZURTpS.png' src='./Screenshots/Copa_05262020ZURTpS.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:19:33</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020aTJGts.png' src='./Screenshots/Copa_05262020aTJGts.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:19:33</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020GptEfG.png' src='./Screenshots/Copa_05262020GptEfG.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:19:34</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020AAkgQw.png' src='./Screenshots/Copa_05262020AAkgQw.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:19:34</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020FtFafJ.png' src='./Screenshots/Copa_05262020FtFafJ.png'>
+							</td>
+						</tr>
+						<tr class='log' status='pass'>
+							<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+							<td class='timestamp'>18:19:36</td>
+							<td class='step-details'>
+									Checked in passenger------>Checked in passenger
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020tDPSTp.png' src='./Screenshots/Copa_05262020tDPSTp.png'>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</li>
+	<li class='node level-1 leaf pass' status='pass' test-id='40'>
+		<div class='collapsible-header'>
+			<div class='node-name'><b><font color=green size=3>Copa.Check_In_Passenger.ClickPax0 (90)</font></b></div>
+			<span class='node-time'>May 26, 2020 06:19:48 PM</span>
+			&middot; <span class='node-duration'>0h 0m 5s+319ms</span>
+			<span class='test-status right pass'>pass</span>
+		</div>
+		<div class='collapsible-body'>
+			<div class='node-steps'>
+				<table class='bordered table-results'>
+					<thead>
+						<tr>
+							<th>Status</th>
+							<th>Timestamp</th>
+							<th>Details</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class='log' status='pass'>
+							<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+							<td class='timestamp'>18:19:53</td>
+							<td class='step-details'>
+									Clicking Pax for 1st Pax------>Clicked on Add Bag
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020jsvXcR.png' src='./Screenshots/Copa_05262020jsvXcR.png'>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</li>
+	<li class='node level-1 leaf pass' status='pass' test-id='41'>
+		<div class='collapsible-header'>
+			<div class='node-name'><b><font color=green size=3>Copa.Check_In_Passenger.Do_Boarding (90)</font></b></div>
+			<span class='node-time'>May 26, 2020 06:20:03 PM</span>
+			&middot; <span class='node-duration'>0h 0m 19s+203ms</span>
+			<span class='test-status right pass'>pass</span>
+		</div>
+		<div class='collapsible-body'>
+			<div class='node-steps'>
+				<table class='bordered table-results'>
+					<thead>
+						<tr>
+							<th>Status</th>
+							<th>Timestamp</th>
+							<th>Details</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:20:05</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020CPVAJS.png' src='./Screenshots/Copa_05262020CPVAJS.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:20:06</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020GQELJf.png' src='./Screenshots/Copa_05262020GQELJf.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:20:06</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020oEYkHR.png' src='./Screenshots/Copa_05262020oEYkHR.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:20:07</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020qDtuYl.png' src='./Screenshots/Copa_05262020qDtuYl.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:20:08</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020oKTsVV.png' src='./Screenshots/Copa_05262020oKTsVV.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:20:09</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020QviAEt.png' src='./Screenshots/Copa_05262020QviAEt.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:20:10</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020rdjUvi.png' src='./Screenshots/Copa_05262020rdjUvi.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:20:11</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020zrXwpo.png' src='./Screenshots/Copa_05262020zrXwpo.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:20:12</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020qJzMnr.png' src='./Screenshots/Copa_05262020qJzMnr.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:20:12</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020IXhrnn.png' src='./Screenshots/Copa_05262020IXhrnn.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:20:13</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020BKQCmj.png' src='./Screenshots/Copa_05262020BKQCmj.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:20:14</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020XPNzhz.png' src='./Screenshots/Copa_05262020XPNzhz.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:20:15</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020NjfNbY.png' src='./Screenshots/Copa_05262020NjfNbY.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:20:16</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020XiYdiD.png' src='./Screenshots/Copa_05262020XiYdiD.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:20:17</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020WTUzia.png' src='./Screenshots/Copa_05262020WTUzia.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:20:17</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020YiOvxG.png' src='./Screenshots/Copa_05262020YiOvxG.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:20:18</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020sTNorD.png' src='./Screenshots/Copa_05262020sTNorD.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:20:19</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020cCuaNB.png' src='./Screenshots/Copa_05262020cCuaNB.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:20:20</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020gqxiAX.png' src='./Screenshots/Copa_05262020gqxiAX.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:20:21</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020eUTioC.png' src='./Screenshots/Copa_05262020eUTioC.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:20:22</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020tLSxoe.png' src='./Screenshots/Copa_05262020tLSxoe.png'>
+							</td>
+						</tr>
+						<tr class='log' status='pass'>
+							<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+							<td class='timestamp'>18:20:22</td>
+							<td class='step-details'>
+									Boarded passenger------>Passenger boarded
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020gPulyi.png' src='./Screenshots/Copa_05262020gPulyi.png'>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</li>
+	<li class='node level-1 leaf pass' status='pass' test-id='42'>
+		<div class='collapsible-header'>
+			<div class='node-name'><b><font color=green size=3>Copa.login_logout.logout (90)</font></b></div>
+			<span class='node-time'>May 26, 2020 06:20:32 PM</span>
+			&middot; <span class='node-duration'>0h 0m 8s+515ms</span>
+			<span class='test-status right pass'>pass</span>
+		</div>
+		<div class='collapsible-body'>
+			<div class='node-steps'>
+				<table class='bordered table-results'>
+					<thead>
+						<tr>
+							<th>Status</th>
+							<th>Timestamp</th>
+							<th>Details</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class='log' status='pass'>
+							<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+							<td class='timestamp'>18:20:41</td>
+							<td class='step-details'>
+									Checking if logged out------>Logout Done
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020FxCOiG.png' src='./Screenshots/Copa_05262020FxCOiG.png'>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</li>
+</ul>
+					</div>
+				</li>
+				<li class='test displayed active has-leaf pass' status='pass' bdd='false' test-id='43'>
+					<div class='test-heading'>
+						<span class='test-name'>145276</span>
+						<span class='test-time'>May 26, 2020 06:20:47 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>May 26, 2020 06:20:47 PM</span>
+	<span class='label end-time'>May 26, 2020 06:24:11 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 3m 24s+430ms</span>
+</div>
+<div class='test-desc'>REGATO-Scenario # 073.1 Add to Connect Miles Pre Assigned Number for a Passenger in the iPad CSS GUI </div>
+<div class='test-attributes'>
+	<div class='category-list'>
+		<span class='category label'>ExecutionReport</span>
+	</div>
+	<div class='author-list'>
+		<span class='author label'>Jeff</span>
+	</div>
+</div>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+	<li class='node level-1 leaf pass' status='pass' test-id='44'>
+		<div class='collapsible-header'>
+			<div class='node-name'><b><font color=green size=3>Copa.login_logout.login (91)</font></b></div>
+			<span class='node-time'>May 26, 2020 06:20:47 PM</span>
+			&middot; <span class='node-duration'>0h 0m 23s+602ms</span>
+			<span class='test-status right pass'>pass</span>
+		</div>
+		<div class='collapsible-body'>
+			<div class='node-steps'>
+				<table class='bordered table-results'>
+					<thead>
+						<tr>
+							<th>Status</th>
+							<th>Timestamp</th>
+							<th>Details</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class='log' status='pass'>
+							<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+							<td class='timestamp'>18:21:11</td>
+							<td class='step-details'>
+									Checking if logged in------>Login Done
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020VvewNF.png' src='./Screenshots/Copa_05262020VvewNF.png'>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</li>
+	<li class='node level-1 leaf pass' status='pass' test-id='45'>
+		<div class='collapsible-header'>
+			<div class='node-name'><b><font color=green size=3>Copa.home_screen.POS_Change_PTY (91)</font></b></div>
+			<span class='node-time'>May 26, 2020 06:21:11 PM</span>
+			&middot; <span class='node-duration'>0h 0m 30s+20ms</span>
+			<span class='test-status right pass'>pass</span>
+		</div>
+		<div class='collapsible-body'>
+			<div class='node-steps'>
+				<table class='bordered table-results'>
+					<thead>
+						<tr>
+							<th>Status</th>
+							<th>Timestamp</th>
+							<th>Details</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class='log' status='pass'>
+							<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+							<td class='timestamp'>18:21:41</td>
+							<td class='step-details'>
+									Checking if POS changed------>POS changed
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020wqKfaR.png' src='./Screenshots/Copa_05262020wqKfaR.png'>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</li>
+	<li class='node level-1 leaf pass' status='pass' test-id='46'>
+		<div class='collapsible-header'>
+			<div class='node-name'><b><font color=green size=3>Copa.home_screen.SelectCheckIN (91)</font></b></div>
+			<span class='node-time'>May 26, 2020 06:21:41 PM</span>
+			&middot; <span class='node-duration'>0h 0m 3s+96ms</span>
+			<span class='test-status right pass'>pass</span>
+		</div>
+		<div class='collapsible-body'>
+			<div class='node-steps'>
+				<table class='bordered table-results'>
+					<thead>
+						<tr>
+							<th>Status</th>
+							<th>Timestamp</th>
+							<th>Details</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class='log' status='pass'>
+							<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+							<td class='timestamp'>18:21:44</td>
+							<td class='step-details'>
+									Checking if check-in is loaded------>Check-in is loaded
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020cERNot.png' src='./Screenshots/Copa_05262020cERNot.png'>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</li>
+	<li class='node level-1 leaf pass' status='pass' test-id='47'>
+		<div class='collapsible-header'>
+			<div class='node-name'><b><font color=green size=3>Copa.Check_In_Home.searchbyOrderid (91)</font></b></div>
+			<span class='node-time'>May 26, 2020 06:21:44 PM</span>
+			&middot; <span class='node-duration'>0h 0m 19s+525ms</span>
+			<span class='test-status right pass'>pass</span>
+		</div>
+		<div class='collapsible-body'>
+			<div class='node-steps'>
+				<table class='bordered table-results'>
+					<thead>
+						<tr>
+							<th>Status</th>
+							<th>Timestamp</th>
+							<th>Details</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:21:54</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020RhxDqi.png' src='./Screenshots/Copa_05262020RhxDqi.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:21:55</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020adRRNr.png' src='./Screenshots/Copa_05262020adRRNr.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:21:55</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020GbkdIf.png' src='./Screenshots/Copa_05262020GbkdIf.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:21:56</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020vbNFEF.png' src='./Screenshots/Copa_05262020vbNFEF.png'>
+							</td>
+						</tr>
+						<tr class='log' status='pass'>
+							<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+							<td class='timestamp'>18:22:03</td>
+							<td class='step-details'>
+									Checking if Check-in is loaded------>Check-in is loaded
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020Blsory.png' src='./Screenshots/Copa_05262020Blsory.png'>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</li>
+	<li class='node level-1 leaf pass' status='pass' test-id='48'>
+		<div class='collapsible-header'>
+			<div class='node-name'><b><font color=green size=3>Copa.Check_In_Passenger.Click_FQTV0 (91)</font></b></div>
+			<span class='node-time'>May 26, 2020 06:22:03 PM</span>
+			&middot; <span class='node-duration'>0h 0m 42s+308ms</span>
+			<span class='test-status right pass'>pass</span>
+		</div>
+		<div class='collapsible-body'>
+			<div class='node-steps'>
+				<table class='bordered table-results'>
+					<thead>
+						<tr>
+							<th>Status</th>
+							<th>Timestamp</th>
+							<th>Details</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class='log' status='pass'>
+							<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+							<td class='timestamp'>18:22:45</td>
+							<td class='step-details'>
+									FQTV number is added------>FQTV added
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020HuwKHw.png' src='./Screenshots/Copa_05262020HuwKHw.png'>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</li>
+	<li class='node level-1 leaf pass' status='pass' test-id='49'>
+		<div class='collapsible-header'>
+			<div class='node-name'><b><font color=green size=3>Copa.Check_In_Passenger.ClickPax0 (91)</font></b></div>
+			<span class='node-time'>May 26, 2020 06:22:45 PM</span>
+			&middot; <span class='node-duration'>0h 0m 5s+326ms</span>
+			<span class='test-status right pass'>pass</span>
+		</div>
+		<div class='collapsible-body'>
+			<div class='node-steps'>
+				<table class='bordered table-results'>
+					<thead>
+						<tr>
+							<th>Status</th>
+							<th>Timestamp</th>
+							<th>Details</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class='log' status='pass'>
+							<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+							<td class='timestamp'>18:22:51</td>
+							<td class='step-details'>
+									Clicking Pax for 1st Pax------>Clicked on Add Bag
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020IApsvj.png' src='./Screenshots/Copa_05262020IApsvj.png'>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</li>
+	<li class='node level-1 leaf pass' status='pass' test-id='50'>
+		<div class='collapsible-header'>
+			<div class='node-name'><b><font color=green size=3>Copa.Check_In_Passenger.Do_Checkin (91)</font></b></div>
+			<span class='node-time'>May 26, 2020 06:23:01 PM</span>
+			&middot; <span class='node-duration'>0h 0m 5s+339ms</span>
+			<span class='test-status right pass'>pass</span>
+		</div>
+		<div class='collapsible-body'>
+			<div class='node-steps'>
+				<table class='bordered table-results'>
+					<thead>
+						<tr>
+							<th>Status</th>
+							<th>Timestamp</th>
+							<th>Details</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:23:02</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020EaQOLY.png' src='./Screenshots/Copa_05262020EaQOLY.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:23:03</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020eDAHva.png' src='./Screenshots/Copa_05262020eDAHva.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:23:04</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020rTGgbC.png' src='./Screenshots/Copa_05262020rTGgbC.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:23:04</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020omXuNV.png' src='./Screenshots/Copa_05262020omXuNV.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:23:05</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020BcSsAx.png' src='./Screenshots/Copa_05262020BcSsAx.png'>
+							</td>
+						</tr>
+						<tr class='log' status='pass'>
+							<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+							<td class='timestamp'>18:23:06</td>
+							<td class='step-details'>
+									Checked in passenger------>Checked in passenger
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020vGYOAT.png' src='./Screenshots/Copa_05262020vGYOAT.png'>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</li>
+	<li class='node level-1 leaf pass' status='pass' test-id='51'>
+		<div class='collapsible-header'>
+			<div class='node-name'><b><font color=green size=3>Copa.Check_In_Passenger.ClickPax0 (91)</font></b></div>
+			<span class='node-time'>May 26, 2020 06:23:18 PM</span>
+			&middot; <span class='node-duration'>0h 0m 5s+232ms</span>
+			<span class='test-status right pass'>pass</span>
+		</div>
+		<div class='collapsible-body'>
+			<div class='node-steps'>
+				<table class='bordered table-results'>
+					<thead>
+						<tr>
+							<th>Status</th>
+							<th>Timestamp</th>
+							<th>Details</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class='log' status='pass'>
+							<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+							<td class='timestamp'>18:23:23</td>
+							<td class='step-details'>
+									Clicking Pax for 1st Pax------>Clicked on Add Bag
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020AdzaTs.png' src='./Screenshots/Copa_05262020AdzaTs.png'>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</li>
+	<li class='node level-1 leaf pass' status='pass' test-id='52'>
+		<div class='collapsible-header'>
+			<div class='node-name'><b><font color=green size=3>Copa.Check_In_Passenger.Do_Boarding (91)</font></b></div>
+			<span class='node-time'>May 26, 2020 06:23:33 PM</span>
+			&middot; <span class='node-duration'>0h 0m 18s+816ms</span>
+			<span class='test-status right pass'>pass</span>
+		</div>
+		<div class='collapsible-body'>
+			<div class='node-steps'>
+				<table class='bordered table-results'>
+					<thead>
+						<tr>
+							<th>Status</th>
+							<th>Timestamp</th>
+							<th>Details</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:23:35</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020MHEezx.png' src='./Screenshots/Copa_05262020MHEezx.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:23:36</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020URKenX.png' src='./Screenshots/Copa_05262020URKenX.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:23:37</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020NwrvzW.png' src='./Screenshots/Copa_05262020NwrvzW.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:23:38</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020ZKepwk.png' src='./Screenshots/Copa_05262020ZKepwk.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:23:39</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020oqiQpA.png' src='./Screenshots/Copa_05262020oqiQpA.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:23:39</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020gxNTkt.png' src='./Screenshots/Copa_05262020gxNTkt.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:23:40</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020okwaxr.png' src='./Screenshots/Copa_05262020okwaxr.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:23:41</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020zeMvkO.png' src='./Screenshots/Copa_05262020zeMvkO.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:23:42</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020CHNEqI.png' src='./Screenshots/Copa_05262020CHNEqI.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:23:43</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020gHhBPL.png' src='./Screenshots/Copa_05262020gHhBPL.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:23:44</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020GBaLpu.png' src='./Screenshots/Copa_05262020GBaLpu.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:23:44</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020CGsTWj.png' src='./Screenshots/Copa_05262020CGsTWj.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:23:45</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020hvtiFJ.png' src='./Screenshots/Copa_05262020hvtiFJ.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:23:46</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020dZgbmd.png' src='./Screenshots/Copa_05262020dZgbmd.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:23:47</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020AuQjXO.png' src='./Screenshots/Copa_05262020AuQjXO.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:23:48</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020BvRHDh.png' src='./Screenshots/Copa_05262020BvRHDh.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:23:49</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020chYVKE.png' src='./Screenshots/Copa_05262020chYVKE.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:23:49</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020YlsbDC.png' src='./Screenshots/Copa_05262020YlsbDC.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:23:50</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020fAXOws.png' src='./Screenshots/Copa_05262020fAXOws.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:23:51</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020hKaqvf.png' src='./Screenshots/Copa_05262020hKaqvf.png'>
+							</td>
+						</tr>
+						<tr class='log' status='info'>
+							<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+							<td class='timestamp'>18:23:52</td>
+							<td class='step-details'>
+									searching------>toast message
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020mmNHYF.png' src='./Screenshots/Copa_05262020mmNHYF.png'>
+							</td>
+						</tr>
+						<tr class='log' status='pass'>
+							<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+							<td class='timestamp'>18:23:52</td>
+							<td class='step-details'>
+									Boarded passenger------>Passenger boarded
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020ACuSNF.png' src='./Screenshots/Copa_05262020ACuSNF.png'>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</li>
+	<li class='node level-1 leaf pass' status='pass' test-id='53'>
+		<div class='collapsible-header'>
+			<div class='node-name'><b><font color=green size=3>Copa.login_logout.logout (91)</font></b></div>
+			<span class='node-time'>May 26, 2020 06:24:02 PM</span>
+			&middot; <span class='node-duration'>0h 0m 9s+141ms</span>
+			<span class='test-status right pass'>pass</span>
+		</div>
+		<div class='collapsible-body'>
+			<div class='node-steps'>
+				<table class='bordered table-results'>
+					<thead>
+						<tr>
+							<th>Status</th>
+							<th>Timestamp</th>
+							<th>Details</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class='log' status='pass'>
+							<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+							<td class='timestamp'>18:24:11</td>
+							<td class='step-details'>
+									Checking if logged out------>Logout Done
+								<img class='r-img' onerror='this.style.display="none"' data-featherlight='./Screenshots/Copa_05262020OEoyrH.png' src='./Screenshots/Copa_05262020OEoyrH.png'>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</li>
+</ul>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!-- subview left -->
+	<div class='subview-right left'>
+		<div class='view-summary'>
+			<div id='step-filters' class="right sr-filters">
+				<a class="btn-floating waves-effect waves-light green" status="pass" alt="pass" title="pass"><i class="material-icons">check_circle</i></a>
+				<a class="btn-floating waves-effect waves-light red" status="fail" alt="fail" title="fail"><i class="material-icons">cancel</i></a>
+				<a class="btn-floating waves-effect waves-light red darken-4" status="fatal" alt="fatal" title="fatal"><i class="material-icons">cancel</i></a>
+				<a class="btn-floating waves-effect waves-light pink text-lighten-1" status="error" alt="error" title="error"><i class="material-icons">error</i></a>
+				<a class="btn-floating waves-effect waves-light orange" alt="warning" status="warning" title="warning"><i class="material-icons">warning</i></a>
+				<a class="btn-floating waves-effect waves-light teal" status="skip" alt="skip" title="skip"><i class="material-icons">redo</i></a>
+				<a class="btn-floating waves-effect waves-light grey" status="clear" alt="Clear filters" title="Clear filters"><i class="material-icons">clear</i></a>
+			</div>
+			<h5 class='test-name'></h5>
+		</div>
+	</div>
+	<!-- subview right -->
+</div>
+<!-- test view --><div id='category-view' class='view hide'>
+	<section id='controls'>
+		<div class='controls grey lighten-4'>
+			<!-- search -->
+			<div class='chip transparent' alt='Search Tests' title='Search Tests'>
+				<a href="#" class='search-div'>
+				<i class='material-icons'>search</i> Search
+				</a>
+				<div class='input-field left hide'>
+					<input id='search-tests' type='text' class='validate browser-default' placeholder='Search Tests...'>
+				</div>
+			</div>
+			<!-- search -->
+		</div>
+	</section>
+	<div class='subview-left left'>
+		<div class='view-summary'>
+			<ul id='category-collection' class='category-collection'>
+				<li class='category displayed active'>
+					<div class='category-heading'>
+						<span class='category-name'>ExecutionReport</span>
+						<span class='category-status right'>
+						<span class='label pass'>5</span>
+						</span>
+					</div>
+					<div class='category-content hide'>
+						<div class='category-status-counts'>
+							<span status="pass" class='label green accent-4 white-text'>Passed: 5</span>
+							
+							
+						</div>
+						<div class='category-tests'>
+							<table class='bordered table-results'>
+								<thead>
+									<tr>
+										<th>Timestamp</th>
+										<th>TestName</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>May 26, 2020 06:01:24 PM</td>
+										<td class='linked' test-id='1'>145269</td>
+										<td><span class='test-status pass'>pass</span></td>
+									</tr>
+									<tr>
+										<td>May 26, 2020 06:06:19 PM</td>
+										<td class='linked' test-id='11'>145270</td>
+										<td><span class='test-status pass'>pass</span></td>
+									</tr>
+									<tr>
+										<td>May 26, 2020 06:10:36 PM</td>
+										<td class='linked' test-id='21'>145271</td>
+										<td><span class='test-status pass'>pass</span></td>
+									</tr>
+									<tr>
+										<td>May 26, 2020 06:14:54 PM</td>
+										<td class='linked' test-id='31'>145275</td>
+										<td><span class='test-status pass'>pass</span></td>
+									</tr>
+									<tr>
+										<td>May 26, 2020 06:20:47 PM</td>
+										<td class='linked' test-id='43'>145276</td>
+										<td><span class='test-status pass'>pass</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class='subview-right left'>
+		<div class='view-summary'>
+			<h5 class='category-name'></h5>
+		</div>
+	</div>
+</div>
+<!-- category view --><!-- exception view --><div id='author-view' class='view hide'>
+	<section id='controls'>
+		<div class='controls grey lighten-4'>
+			<!-- search -->
+			<div class='chip transparent' alt='Search Authors' title='Search Authors'>
+				<a href="#" class='search-div'>
+				<i class='material-icons'>search</i> Search
+				</a>
+				<div class='input-field left hide'>
+					<input id='search-tests' type='text' class='validate browser-default' placeholder='Search Authors...'>
+				</div>
+			</div>
+			<!-- search -->
+		</div>
+	</section>
+	<div class='subview-left left'>
+		<div class='view-summary'>
+			<ul id='author-collection' class='author-collection'>
+				<li class='author displayed active'>
+					<div class='author-heading'>
+						<span class='author-name'>Jeff</span>
+						<span class='author-status right'>
+						<span class='label pass'>5</span>
+						</span>
+					</div>
+					<div class='author-content hide'>
+						<div class='author-status-counts'>
+							<span class='label green accent-4 white-text'>Passed: 5</span>
+							
+							
+						</div>
+						<div class='author-tests'>
+							<table class='bordered table-results'>
+								<thead>
+									<tr>
+										<th>Timestamp</th>
+										<th>TestName</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>May 26, 2020 06:01:24 PM</td>
+										<td class='linked' test-id='1'>145269</td>
+										<td><span class='test-status pass'>pass</span></td>
+									</tr>
+									<tr>
+										<td>May 26, 2020 06:06:19 PM</td>
+										<td class='linked' test-id='11'>145270</td>
+										<td><span class='test-status pass'>pass</span></td>
+									</tr>
+									<tr>
+										<td>May 26, 2020 06:10:36 PM</td>
+										<td class='linked' test-id='21'>145271</td>
+										<td><span class='test-status pass'>pass</span></td>
+									</tr>
+									<tr>
+										<td>May 26, 2020 06:14:54 PM</td>
+										<td class='linked' test-id='31'>145275</td>
+										<td><span class='test-status pass'>pass</span></td>
+									</tr>
+									<tr>
+										<td>May 26, 2020 06:20:47 PM</td>
+										<td class='linked' test-id='43'>145276</td>
+										<td><span class='test-status pass'>pass</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class='subview-right left'>
+		<div class='view-summary'>
+			<h5 class='author-name'></h5>
+		</div>
+	</div>
+</div>
+<div id='dashboard-view' class='view hide'>
+	<div class='card-panel transparent np-v'>
+		<h5>Dashboard</h5>
+
+		<div class='row'>
+			<div class='col s2'>
+				<div class='card-panel r'>
+					Tests
+					<div class='panel-lead'>5</div>
+				</div>
+			</div>
+			<div class='col s2'>
+				<div class='card-panel r'>
+					Steps
+					<div class='panel-lead'>48</div>
+				</div>
+			</div>
+			<div class='col s2'>
+				<div class='card-panel r'>
+					Start
+					<div class='panel-lead'>May 26, 2020 06:01:14 PM</div>
+				</div>
+			</div>
+			<div class='col s2'>
+				<div class='card-panel r'>
+			 		End
+			 		<div class='panel-lead'>May 26, 2020 06:24:17 PM</div>
+				</div>
+			</div>
+			<div class='col s2'>
+				<div class='card-panel r'>
+					Time Taken
+					<div class='panel-lead'>0h 23m 3s+533ms</div>
+				</div>
+			</div>
+			<div class='col s6'>
+				<div class='card-panel dashboard-categories'>
+					<span class='right label cyan white-text'>Categories</span><p>&nbsp;</p>
+					
+					<table>
+						<tr>
+							<th>Name</th>
+							<th>Passed</th>
+							<th>Failed</th>
+							<th>Skipped</th>
+							<th>Passed %</th>
+						</tr>
+						<tr>
+							<td>ExecutionReport</td>
+							<td>5</td>
+							<td>0</td>
+							<td>0</td>
+							<td>
+									100%
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- dashboard view -->
+<!-- testrunner-logs view -->		</div>
+		<!-- container -->
+		<script>
+			var statusGroup = {
+                parentCount: 5,
+				passParent: 5,
+				failParent: 0,
+				fatalParent: 0,
+				errorParent: 0,
+				warningParent: 0,
+				skipParent: 0,
+				exceptionsParent: 0,
+				childCount: 48,
+				passChild: 48,
+				failChild: 0,
+				fatalChild: 0,
+				errorChild: 0,
+				warningChild: 0,
+				skipChild: 0,
+				infoChild: 0,
+				debugChild: 0,
+				exceptionsChild: 0,
+				grandChildCount: 0,
+				passGrandChild: 0,
+				failGrandChild: 0,
+				fatalGrandChild: 0,
+				errorGrandChild: 0,
+				warningGrandChild: 0,
+				skipGrandChild: 0,
+				infoGrandChild: 0,
+				debugGrandChild: 0,
+				exceptionsGrandChild: 0,
+			};
+		</script>
+		<script>
+			var timeline = {
+			        "145269":289.102,"145270":250.629,"145271":251.949,"145275":346.697,"145276":204.43
+			};
+		</script>
+	
+		  <script src='https://cdn.jsdelivr.net/gh/extent-framework/extent-github-cdn@ff53917fbbdb5ef820abbbe4d199a6942dc771ff/v3html/js/extent.js' type='text/javascript'></script>
+		<script type='text/javascript'>
+			
+           
+		   $(document).ready(function() { 
+		   
+              
+			   $('.nav-wrapper.brand-logo blue darken-3').hide();
+              
+		   });
+                
+
+
+		    
+        
+		</script>
+	</body>
+</html>
